@@ -78,7 +78,7 @@ d3.csv("../../data/02_lakásminőség_energiaszegénység/02_01_komfort.csv", fu
         .attr("fill", "#000")
         .attr("font-weight", "bold")
         .attr("text-anchor", "start")
-        .text("Régió");
+        .text("%");
 
     var legend = g.append("g")
         .attr("font-family", "sans-serif")
