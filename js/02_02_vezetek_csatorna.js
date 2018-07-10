@@ -17,7 +17,7 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
 
-d3.csv("../../data/02_lakásminőség_energiaszegénység/02_02_vezeték_csatorna.csv", function(d, i, columns) {
+d3.csv("../../data/test/02_02_vezeték_csatorna.csv", function(d, i, columns) {
   for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
   return d;
 }, function(error, data) {
