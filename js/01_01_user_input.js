@@ -16,13 +16,13 @@ var yAxis = d3.axisLeft()
     .scale(y)
     .ticks(10);
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#vis-0101").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
-var tooltip = d3.select("body")
+var tooltip = d3.select("#vis-0101")
 	.append("div")
 	.attr("class", "toolTip")
 	.style("visibility", "hidden");

@@ -1,19 +1,19 @@
-var svg = d3.select("#topic02-vis03"),
+var svg3 = d3.select("#topic02-vis03"),
     margin = {top: 20, right: 80, bottom: 30, left: 50},
-    width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = +svg3.node().getBoundingClientRect().width - margin.left - margin.right,
+    height = +svg3.attr("height") - margin.top - margin.bottom,
+    g3 = svg3.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var parseTime = d3.timeParse("%Y%m%d");
 
-var x = d3.scaleTime().range([0, width]),
-    y = d3.scaleLinear().range([height, 0]),
-    z = d3.scaleOrdinal(d3.schemeCategory10);
+var x3 = d3.scaleTime().range([0, width]),
+    y3 = d3.scaleLinear().range([height, 0]),
+    z3 = d3.scaleOrdinal(d3.schemeCategory10);
 
 var line = d3.line()
     .curve(d3.curveBasis)
-    .x(function(d) { return x(d.date); })
-    .y(function(d) { return y(d.arany); });
+    .x(function(ds) { return x3(ds.date); })
+    .y(function(ds) { return y3(ds.arany); });
 
 d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_arany.tsv", type, function(error, data) {
   if (error) throw error;
@@ -21,26 +21,26 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
   var futesmodok = data.columns.slice(1).map(function(id) {
     return {
       id: id,
-      values: data.map(function(d) {
-        return {date: d.date, arany: d[id]};
+      values: data.map(function(ds) {
+        return {date: ds.date, arany: ds[id]};
       })
     };
   });
     
-  x.domain(d3.extent(data, function(d) { return d.date; }));
+  x3.domain(d3.extent(data, function(ds) { return ds.date; }));
     
-  y.domain([0,1]);
+  y3.domain([0,1]);
     
-  z.domain(futesmodok.map(function(c) { return c.id; }));
+  z3.domain(futesmodok.map(function(c) { return c.id; }));
     
-  g.append("g")
+  g3.append("g")
       .attr("class", "axis axis--x")
       .attr("transform", "translate(0," + height + ")")
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(x3));
     
-  g.append("g")
+  g3.append("g")
       .attr("class", "axis axis--y")
-      .call(d3.axisLeft(y))
+      .call(d3.axisLeft(y3))
     .append("text")
       .attr("transform", "rotate(-90)")
       .attr("y", 6)
@@ -48,7 +48,7 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
       .attr("fill", "#000")
       .text("Adott fűtési módot használó háztartások aránya");
     
-  var futesmod = g.selectAll(".futesmod")
+  var futesmod = g3.selectAll(".futesmod")
     .data(futesmodok)
     .enter().append("g")
       .attr("class", "futesmod");
@@ -56,20 +56,20 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
   futesmod.append("path")
       .attr("class", "line")
       .attr("d", function(d) { return line(d.values); })
-      .style("stroke", function(d) { return z(d.id); });
+      .style("stroke", function(ds) { return z3(ds.id); });
     
   futesmod.append("text")
-      .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
-      .attr("transform", function(d) { return "translate(" + (x(d.value.date) + 30) + "," + y(d.value.arany) + ")"; })
+      .datum(function(ds) { return {id: ds.id, value: ds.values[ds.values.length - 1]}; })
+      .attr("transform", function(ds) { return "translate(" + (x3(ds.value.date) + 30) + "," + y3(ds.value.arany) + ")"; })
       .attr("x", 3)
       .attr("dy", "0.35em")
       .style("font", "10px sans-serif")
-      .text(function(d) { return d.id; });
+      .text(function(ds) { return ds.id; });
     
-    var mouseG = g.append("g")
+    var mouseG = g3.append("g")
       .attr("class", "mouse-over-effects");
 /*
-    mouseG.append("path") // this is the black vertical line to follow mouse
+    mouseg3.append("path") // this is the black vertical line to follow mouse
       .attr("class", "mouse-line")
       .style("stroke", "black")
       .style("stroke-width", "1px")
@@ -77,7 +77,7 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
       
     var lines = document.getElementsByClassName('line');
 
-    var mousePerLine = mouseG.selectAll('.mouse-per-line')
+    var mousePerLine = mouseg3.selectAll('.mouse-per-line')
       .data(cities)
       .enter()
       .append("g")
@@ -95,7 +95,7 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
     mousePerLine.append("text")
       .attr("transform", "translate(10,3)");
 
-    mouseG.append('svg:rect') // append a rect to catch mouse movements on canvas
+    mouseg3.append('svg3:rect') // append a rect to catch mouse movements on canvas
       .attr('width', width) // can't catch mouse events on a g element
       .attr('height', height)
       .attr('fill', 'none')
@@ -128,7 +128,7 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
         d3.selectAll(".mouse-per-line")
           .attr("transform", function(d, i) {
             console.log(width/mouse[0])
-            var xDate = x.invert(mouse[0]),
+            var xDate = x3.invert(mouse[0]),
                 bisect = d3.bisector(function(d) { return d.date; }).right;
                 idx = bisect(d.values, xDate);
             
@@ -148,15 +148,15 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_a
             }
             
             d3.select(this).select('text')
-              .text(y.invert(pos.y).toFixed(2));
+              .text(y3.invert(pos.y).toFixed(2));
               
             return "translate(" + mouse[0] + "," + pos.y +")";
           });
       });*/
 });
 
-function type(d, _, columns) {
-  d.date = parseTime(d.date);
-  for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
-  return d;
+function type(ds, _, columns) {
+  ds.date = parseTime(ds.date);
+  for (var i = 1, n = columns.length, c; i < n; ++i) ds[c = columns[i]] = +ds[c];
+  return ds;
 }
