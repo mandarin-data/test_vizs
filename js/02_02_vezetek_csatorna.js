@@ -1,8 +1,8 @@
-var svg = d3.select("#vis-2"),
+var svg2 = d3.select("#vis-2"),
     margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = +svg2.node().getBoundingClientRect().width - margin.left - margin.right,
+    height = +svg2.attr("height") - margin.top - margin.bottom,
+    g2 = svg2.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x0 = d3.scaleBand()
     .rangeRound([0, width])
@@ -29,7 +29,7 @@ d3.csv("../../data/test/02_02_vezetek_csatorna.csv", function(d, i, columns) {
   x1.domain(keys).rangeRound([0, x0.bandwidth()]);
   y.domain([0, d3.max(data, function(d) { return d3.max(keys, function(key) { return d[key]; }); })]).nice();
 
-  g.append("g")
+  g2.append("g")
     .selectAll("g")
     .data(data)
     .enter().append("g")
@@ -43,12 +43,12 @@ d3.csv("../../data/test/02_02_vezetek_csatorna.csv", function(d, i, columns) {
       .attr("height", function(d) { return height - y(d.value); })
       .attr("fill", function(d) { return z(d.key); });
 
-  g.append("g")
+  g2.append("g")
       .attr("class", "axis")
       .attr("transform", "translate(0," + height + ")")
       .call(d3.axisBottom(x0));
 
-  g.append("g")
+  g2.append("g")
       .attr("class", "axis")
       .call(d3.axisLeft(y).ticks(null, "s"))
     .append("text")
@@ -60,7 +60,7 @@ d3.csv("../../data/test/02_02_vezetek_csatorna.csv", function(d, i, columns) {
       .attr("text-anchor", "start")
       .text("%");
 
-  var legend = g.append("g")
+  var legend = g2.append("g")
       .attr("font-family", "sans-serif")
       .attr("font-size", 10)
       .attr("text-anchor", "end")

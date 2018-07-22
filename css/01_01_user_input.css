@@ -1,4 +1,7 @@
-
+svg{
+    display: block;
+    margin: auto;
+}
 .form-style-2{
     max-width: 600px;
     padding: 6px 6px 6px 6px;
