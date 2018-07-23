@@ -1,19 +1,17 @@
-
-
 function BarChart() {
 
 	function chart(selection) {
     	selection.each(function (d, i) {
 			
-    d3.select("svg").remove();
-	var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    d3.select("#vis-11").remove();
+	var margin = {top: 30, right: 20, bottom: 30, left: 40},
 	width = 960 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
 	var x = d3.scaleBand()
 			.rangeRound([0, width - 230])
 			.paddingInner(0.05)
-			.align(0.1);
+			.align(0.8);
 
 	var y = d3.scaleLinear()
 		.rangeRound([height, 0]);
@@ -27,10 +25,10 @@ function BarChart() {
 	var yAxis =d3.axisLeft(y)
 		.ticks(null, "%");
 
-
-	var svg = d3.select("body").append("svg")
-		.attr("width", width + margin.left + margin.right)
-		.attr("height", height + margin.top + margin.bottom)
+	var svg = d3.select("#viscontainer-11").append("svg")
+	.attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .attr("id","vis-11")
 		.append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -154,19 +152,18 @@ state.selectAll("rect")
         height_diff = height_diff + y(d.y0) - y(d.y1) - (y(0) - y(d.value));
         y_corrected = y(d.y1) + height_diff;
         d.y_corrected = y_corrected //store in d for later use in restorePlot()
-        return y_corrected;
-
-         //return y(d.y1); 
+        //return y_corrected;
+         return y(d.y1); 
       })
       .attr("x",function(d) { //add to stock code
           return x(d.myregion)
         })
       .attr("height", function(d) {
-        //return y(d.y0) - y(d.y1); //heights calculated based on stacked values (inaccurate)
-        return y(0) - y(d.value); //calculate height directly from value in csv file
+        return y(d.y0) - y(d.y1); //heights calculated based on stacked values (inaccurate)
+        //return y(0) - y(d.value); //calculate height directly from value in csv file
       })
       .attr("class", function(d) {
-        classLabel = d.name.replace(/\s/g, ''); //remove spaces
+        classLabel = d.name.replace(/\s+|[,]+\s/g, '').trim(); //remove spaces
         return "bars class" + classLabel;
       })
       .style("fill", function(d) { return color(d.name); });
@@ -188,7 +185,7 @@ state.selectAll("rect")
       .data(color.domain().slice().reverse())
     .enter().append("g")
       .attr("class", function (d) {
-        legendClassArray.push(d.replace(/\s/g, '')); //remove spaces
+        legendClassArray.push(d.replace(/\s+|[,]+\s/g, '')); //remove spaces
         legendClassArray_orig.push(d); //remove spaces
         return "legend";
       })
@@ -204,7 +201,7 @@ state.selectAll("rect")
       .attr("height", 18)
       .style("fill", color)
       .attr("id", function (d, i) {
-        return "id" + d.replace(/\s/g, '');
+        return "id" + d.replace(/\s+|[,]+\s/g, '');
       })
       .on("mouseover",function(){
 
@@ -288,8 +285,8 @@ function restorePlot(d) {
           .transition()
           .duration(1000)
           .delay(function() {
-            if (restoreXFlag) return 3000;
-            else return 750;
+            if (restoreXFlag) return 1300;
+            else return 0;
           })
           .attr("width", x.bandwidth()) //restore bar width
           .style("opacity", 1);
@@ -300,12 +297,12 @@ function restorePlot(d) {
       .transition()
       .duration(1000)
       .delay(function () {
-        if (restoreXFlag) return 2000; //bars have to be restored to orig posn
+        if (restoreXFlag) return 1300; //bars have to be restored to orig posn
         else return 0;
       })
       .attr("y", function(d) {
-        //return y(d.y1); //not exactly correct since not based on raw data value
-        return d.y_corrected;
+        return y(d.y1); //not exactly correct since not based on raw data value
+        //return d.y_corrected;
       });
 
     //reset
