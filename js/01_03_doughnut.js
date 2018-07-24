@@ -15,7 +15,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 		d.enabled = true;
 	});
 
-	var pie = d3.layout.pie()
+	var pie = d3.pie()
 		.value(function(d) {
 			return d.percent;
 		})
@@ -118,7 +118,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 var width = 360;
 var height = 360;
 var radius = Math.min(width, height) / 2;
-var color = d3.scale.category20b();
+var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
 var svg = d3.select('#chart')
 	.append('svg')
@@ -130,6 +130,6 @@ var svg = d3.select('#chart')
 
 var donutWidth = 75;
 
-var arc = d3.svg.arc()
+var arc = d3.arc()
 	.innerRadius(radius - donutWidth) // NEW
 	.outerRadius(radius);
