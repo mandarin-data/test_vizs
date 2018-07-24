@@ -1,3 +1,5 @@
+
+
 function BarChart() {
 
 	function chart(selection) {

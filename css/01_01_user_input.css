@@ -1,28 +1,37 @@
-
-.form-style-2{
+svg{
+    display: block;
+    margin: auto;
+}
+.form-style-01-01{
     max-width: 600px;
     padding: 6px 6px 6px 6px;
     font: 13px Arial, Helvetica, sans-serif;;
 }
-.form-style-2 label{
+.form-style-01-01 label{
     display: block;
     margin: 0px 0px 6px 0px;
+    font: 13px Arial, Helvetica, sans-serif; 
+    color: #333;
+    margin-left: 0px;
+    text-align: start;
+    height: 31px;
+    line-height: normal; 
 }
-.form-style-2 label > span{
+.form-style-01-01 label > span{
     width: 180px;
     font-weight: bold;
     float: left;
     padding-top: 8px;
     padding-right: 5px;
 }
-.form-style-2 span.required{
+.form-style-01-01 span.required{
     color:red;
 }
 
-.form-style-2 input.input-field{
+.form-style-01-01 input.input-field-01-01{
     width: 25%; 
 }
-.form-style-2 input.input-field{
+.form-style-01-01 input.input-field-01-01{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -36,7 +45,7 @@
     padding: 7px;
     outline: none;
 }
-.form-style-2 .input-field:focus{
+.form-style-01-01 .input-field-01-01:focus{
     border: 1px solid #0C0;
 }
 

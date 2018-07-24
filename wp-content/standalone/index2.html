@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <title>Habitat test</title>
+</head>
+
+<body>
+    <style>
+        .axis .domain {
+            display: none;
+        }
+        svg{
+    display: block;
+    margin: auto;
+}
+    </style>
+    <div>
+    <svg id="vis-2" class="entry-content" width="inherit" height="500"></svg>
+
+    <script src="../../js/d3.v4.min.js"></script>
+    <script src="../../js/02_02_vezetek_csatorna.js"></script>
+</div>
+<div>
+    <style>
+        .axis .domain {
+            display: none;
+        }
+        svg{
+    display: block;
+    margin: auto;
+}
+    </style>
+    <svg id="vis-1" class="entry-content" width="inherit" height="500"></svg>
+    <script src="../../js/d3.v4.min.js"></script>
+    <script src="../../js/02_01_komfort.js"></script>
+</div>
+
+
+    <link rel="stylesheet" type="text/css" href="../../css/01_01_user_input.css">
+
+	<div class="form-style-2">	
+		<form id="myForm" action="/action_page.php">
+			<label for="field1"><span>Az Ön jövedelme: <span class="required">*</span></span><input id="myInput1" type="text" name="wage" placeholder="pl. 160000" value="160000" class="input-field"></label>
+			<label for="field1"><span>Az Ön lakhatási kiadásai: <span class="required">*</span></span><input id="myInput2" type="text" name="expend"  placeholder="pl. 80000" value="80000" class="input-field"></label>
+		</form>
+		<button class="button" onclick="myFunction()">Mehet!</button>
+
+	</div>
+    <div>	
+	
+	<div>
+    <script src="../../js/d3.v4.min.js"></script>
+    <script src="../../js/01_01_user_input.js"></script>
+    </div>
+    
+<!--
+
+    <div id="chart">
+	<link rel="stylesheet" type="text/css" href="../../css/01_03_doughnut.css">
+		<script src="../../js/d3.v4.min.js"></script>
+		<script src="../../js/01_03_doughnut.js"></script>
+		<p align=center>A legendre kattintva szűrhet!</p>
+	</div>
+</div>
+	<div>
+    -->
+	<footer>
+		<p>Copyright 2018 Mandarin Data</p>
+	</footer>
+	</div>
+</body>	
+</html>
