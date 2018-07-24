@@ -1,15 +1,15 @@
 var margin = {top: 20, right: 40, bottom: 20, left: 40},
-    width = 800 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
+    userInputWidth = d3.select("#viscontainer-0101").node().getBoundingClientRect().width - margin.left - margin.right,
+    userInputHeight = 450 - margin.top - margin.bottom;
 
 var x = d3.scaleBand()
-    .rangeRound([0, width], 0.1)
+    .rangeRound([0, userInputWidth], 0.1)
 		.paddingInner(0.1);
 
 var y = d3.scaleLinear()
-    .range([height, 0]);
+    .range([userInputHeight, 0]);
 
-var xAxis = d3.axisBottom()
+var xAxisUserInput = d3.axisBottom()
     .scale(x);
 
 var yAxis = d3.axisLeft()
@@ -17,8 +17,8 @@ var yAxis = d3.axisLeft()
     .ticks(10);
 
 var svg = d3.select("#vis-0101").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", userInputWidth + margin.left + margin.right)
+    .attr("height", userInputHeight + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	
@@ -34,8 +34,8 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 	y.domain([0, 100]);
 	svg.append("g")
 	  .attr("class", "x axis")
-	  .attr("transform", "translate(0," + height + ")")
-	  .call(xAxis);
+	  .attr("transform", "translate(0," + userInputHeight + ")")
+	  .call(xAxisUserInput);
 
 	svg.append("g")
 	  .attr("class", "y axis")
@@ -55,7 +55,7 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 	  .attr("y", function(d) { return y(d["Percent"]); })
 
 	  .attr("width", x.bandwidth())
-	  .attr("height", function(d) { return height - y(d["Percent"]); })
+	  .attr("height", function(d) { return userInputHeight - y(d["Percent"]); })
 
 	  .on("mousemove", function(d){
 			tooltip
@@ -101,8 +101,8 @@ function myFunction() {
 		
 	  svg.append("g")
 		  .attr("class", "x axis")
-		  .attr("transform", "translate(0," + height + ")")
-		  .call(xAxis);
+		  .attr("transform", "translate(0," + userInputHeight + ")")
+		  .call(xAxisUserInput);
 
 	  svg.append("g")
 		  .attr("class", "y axis")
@@ -122,7 +122,7 @@ function myFunction() {
 		  .attr("y", function(d) { return y(d["Percent"]); })
 
 		  .attr("width", x.bandwidth())
-		  .attr("height", function(d) { return height - y(d["Percent"]); })
+		  .attr("height", function(d) { return userInputHeight - y(d["Percent"]); })
 
 		  .on("mousemove", function(d){
 				tooltip
@@ -152,7 +152,7 @@ function myFunction() {
 			.enter().append("text")
 			.attr("class", "label")
 			.attr("x", function (d) {
-				return width/2;
+				return userInputWidth/2;
 			}).attr("y", function (d) {
 				return 10;
 			})
@@ -166,7 +166,7 @@ function myFunction() {
 			.enter().append("text")
 			.attr("class", "label")
 			.attr("x", function (d) {
-				return width/2;
+				return userInputWidth/2;
 			}).attr("y", function (d) {
 				return 25;
 			})
@@ -182,7 +182,7 @@ function myFunction() {
 			.enter().append("text")
 			.attr("class", "label")
 			.attr("x", function (d) {
-				return width/2;
+				return userInputWidth/2;
 			}).attr("y", function (d) {
 				return 40;
 			})
@@ -198,9 +198,9 @@ function myFunction() {
 				.enter().append("line")
 				.attr("class", "arrow")
 				.attr("x1", function (d) {
-			 		if (dec < 4) {return (width/2 - 60)} 
-			 		else if (dec > 6) {return (width/2 + 60)} 
-			 		else {return width/2};
+			 		if (dec < 4) {return (userInputWidth/2 - 60)} 
+			 		else if (dec > 6) {return (userInputWidth/2 + 60)} 
+			 		else {return userInputWidth/2};
 				})
 				.attr("x2", function (d) {
 					return ((x(d.Decilis)-4)/2) * 1 + ((x(d.Decilis)-4) * (dec-1));
@@ -209,7 +209,7 @@ function myFunction() {
 					return 65;
 				})
 				.attr("y2", function (d) {
-					return (height * ((100 -atl_kolt) / 100)) - 25 ;
+					return (userInputHeight * ((100 -atl_kolt) / 100)) - 25 ;
 				})
 				.attr("marker-end", "url(#arrow)");
 
