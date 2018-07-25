@@ -1,11 +1,11 @@
-var tooltip = d3.select('#chart')
+var chartTooltip = d3.select('#chart-doughnut')
             .append('div')
             .attr('class', 'tooltip');
 
-        tooltip.append('div')
+        chartTooltip.append('div')
             .attr('class', 'label');
 
-        tooltip.append('div')
+        chartTooltip.append('div')
             .attr('class', 'percent');
 
 
@@ -21,7 +21,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 		})
 		.sort(null);
 
-	var path = svg.selectAll('path')
+	var path = svgdoughnut.selectAll('path')
 		.data(pie(dataset))
 		.enter()
 		.append('path')
@@ -37,7 +37,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 
 	var legendSpacing = 4;
 
-	var legend = svg.selectAll('.legend')
+	var legend = svgdoughnut.selectAll('.legend')
 		.data(color.domain())
 		.enter()
 		.append('g')
@@ -98,35 +98,35 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 
 	path.on('mouseover', function(d) {
 
-		tooltip.select('.label').html(d.data.label);
-		tooltip.select('.percent').html(parseFloat(d.data.percent * 100).toFixed(1) + '%');
-		tooltip.style('display', 'block');
+		chartTooltip.select('.label').html(d.data.label);
+		chartTooltip.select('.percent').html(parseFloat(d.data.percent * 100).toFixed(1) + '%');
+		chartTooltip.style('display', 'block');
 	});
 	path.on('mouseout', function() {
-		tooltip.style('display', 'none');
+		chartTooltip.style('display', 'none');
 	});
 
 
 	path.on('mousemove', function(d) {
-		tooltip.style('top', (d3.event.pageY + 10) + 'px')
+		chartTooltip.style('top', (d3.event.pageY + 10) + 'px')
 			.style('left', (d3.event.pageX + 10) + 'px');
 	});
 
 
 });
 
-var width = 360;
-var height = 360;
-var radius = Math.min(width, height) / 2;
+var doughnutWidth = 360;
+var doughnutHeight = 360;
+var radius = Math.min(doughnutWidth, doughnutHeight) / 2;
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
 
-var svg = d3.select('#chart')
+var svgdoughnut = d3.select('#chart-doughnut')
 	.append('svg')
-	.attr('width', width)
-	.attr('height', height)
+	.attr('width', doughnutWidth)
+	.attr('height', doughnutHeight)
 	.append('g')
 	.attr('transform', 'translate(' +
-		(width / 2) + ',' + (height / 2) + ')');
+		(doughnutWidth / 2) + ',' + (doughnutHeight / 2) + ')');
 
 var donutWidth = 75;
 

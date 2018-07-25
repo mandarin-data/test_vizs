@@ -5,17 +5,17 @@ var svg = d3.select("#vis-1"),
         bottom: 30,
         left: 40
     },
-    width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
+    comfortWidth = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
+    comfortHeight = +svg.attr("height") - margin.top - margin.bottom,
     g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var x = d3.scaleBand()
-    .rangeRound([0, width])
+var comfortX = d3.scaleBand()
+    .rangeRound([0, comfortWidth])
     .paddingInner(0.05)
     .align(0.1);
 
 var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
+    .rangeRound([comfortHeight, 0]);
 
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b"]);
@@ -32,7 +32,7 @@ d3.csv("../../data/test/02_01_komfort.csv", function (d, i, columns) {
     data.sort(function (a, b) {
         return b.total - a.total;
     });
-    x.domain(data.map(function (d) {
+    comfortX.domain(data.map(function (d) {
         return d.Régió;
     }));
     y.domain([0, d3.max(data, function (d) {
@@ -53,7 +53,7 @@ d3.csv("../../data/test/02_01_komfort.csv", function (d, i, columns) {
         })
         .enter().append("rect")
         .attr("x", function (d) {
-            return x(d.data.Régió);
+            return comfortX(d.data.Régió);
         })
         .attr("y", function (d) {
             return y(d[1]);
@@ -61,12 +61,12 @@ d3.csv("../../data/test/02_01_komfort.csv", function (d, i, columns) {
         .attr("height", function (d) {
             return y(d[0]) - y(d[1]);
         })
-        .attr("width", x.bandwidth());
+        .attr("width", comfortX.bandwidth());
 
     g.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .attr("transform", "translate(0," + comfortHeight + ")")
+        .call(d3.axisBottom(comfortX));
 
     g.append("g")
         .attr("class", "axis")
@@ -92,13 +92,13 @@ d3.csv("../../data/test/02_01_komfort.csv", function (d, i, columns) {
         });
 
     legend.append("rect")
-        .attr("x", width - 19)
+        .attr("x", comfortWidth - 19)
         .attr("width", 19)
         .attr("height", 19)
         .attr("fill", z);
 
     legend.append("text")
-        .attr("x", width - 24)
+        .attr("x", comfortWidth - 24)
         .attr("y", 9.5)
         .attr("dy", "0.32em")
         .text(function (d) {
