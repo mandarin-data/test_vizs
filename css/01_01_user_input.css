@@ -33,7 +33,6 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
     -moz-box-shadow: 1px 1px 4px #EBEBEB;
     -webkit-box-shadow: 1px 1px 4px #EBEBEB;
     border-radius: 3px;
@@ -43,12 +42,13 @@
     outline: none;
 }
 .form-style-01-01 .input-field-01-01:focus{
-    border: 1px solid #0C0;
+    border: 1px solid #C2C2C2;
+    box-shadow: 2px 1px 4px #EBEBEB;
 }
 
 
 .button{
-    background: #4B99AD;
+    background: #385988;
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
@@ -57,20 +57,20 @@
 	
 .button:hover, 
 .button:hover{
-	background: #4691A4;
+	background: #2e4970;
 	box-shadow:none;
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
 }	
 .bar {
-  fill: #4B99AD;
+  fill: #385988;
 	border: none;
     color: #fff;
 	
 }
 
 .bar:hover {
-  fill: #4691A4;
+  fill: #2e4970;
 }
 
 .axis {

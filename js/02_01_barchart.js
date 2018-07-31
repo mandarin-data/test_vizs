@@ -17,7 +17,7 @@ function BarChart() {
 			.rangeRound([height, 0]);
 
 			var color_11 = d3.scaleOrdinal()
-			.range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b"]);
+			.range(["#385988", "#5C779D","#8095b3","#B6C2D3"]);
 
 			var xAxis_11 = d3.axisBottom()
 			.scale(x_11);

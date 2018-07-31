@@ -122,7 +122,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 var doughnutWidth = 360;
 var doughnutHeight = 360;
 var radius_doughnut = Math.min(doughnutWidth, doughnutHeight) / 2;
-var color_doughnut = d3.scaleOrdinal(d3.schemeCategory20b);
+var color_doughnut = d3.scaleOrdinal().range([ "#385988", "#5C779D","#8095b3","#B6C2D3"]);
 
 var svgdoughnut = d3.select('#chart-doughnut')
 	.append('svg')
