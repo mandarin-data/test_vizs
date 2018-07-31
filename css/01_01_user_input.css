@@ -1,7 +1,4 @@
-svg{
-    display: block;
-    margin: auto;
-}
+
 .form-style-01-01{
     max-width: 600px;
     padding: 6px 6px 6px 6px;
@@ -98,17 +95,15 @@ svg{
 	padding: 4px;
 	border: 0.5px solid #C2C2C2;
 }	
-
-
-line {
-    stroke: #606060;
-}
-
-path.marker {
-    fill: #606060;
-}	
 	
-footer {
+	
+footer#footer-0101 {
 	font: 12px Arial, Helvetica,sans-serif;
 
 }	
+
+/* Vis container style */
+div#vis-0101{
+	height: 450px;
+	width: 960px;
+}
