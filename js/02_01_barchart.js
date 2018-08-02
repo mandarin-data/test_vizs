@@ -4,7 +4,7 @@ function BarChart() {
 		selection.each(function (d, i) {
 
 			d3.select("#vis-11").remove();
-			var margin_11 = {top: 30, right: 20, bottom: 30, left: 40},
+			var margin_11 = {top: 30, right: 0, bottom: 30, left: 40},
 				width = d3.select("#viscontainer-11").node().getBoundingClientRect().width - margin_11.left - margin_11.right,
 				height = d3.select("#viscontainer-11").node().getBoundingClientRect().height - margin_11.top - margin_11.bottom;
 
@@ -96,12 +96,12 @@ function BarChart() {
 
 
 			svg_11.append("g")
-				.attr("class", "x axis")
+				.attr("class", "axis_0201")
 				.attr("transform", "translate(0," + height + ")")
 				.call(xAxis_11);
 
 			svg_11.append("g")
-				.attr("class", "y axis")
+				.attr("class", "axis_0201")
 				.call(yAxis_11)
 				.append("text")
 				.attr("x", 2)
@@ -121,7 +121,7 @@ function BarChart() {
 			.attr("transform", function(d) { return "translate(" + "0" + ",0)"; })
 
 			var tooltip_11 = svg_11.append("g")
-			.attr("class", "tooltip")
+			.attr("class", "tooltip_0201")
 			.style("display", "none");
 
 			tooltip_11.append("rect")
@@ -269,11 +269,10 @@ function BarChart() {
 
 
 			legend_11.append("text")
+				.attr("class", "legend_0201")
 				.attr("x", width-175)
 				.attr("y", 8)
 				.attr("dy", "0.32em")
-				.attr("font-size", "14px")
-				.attr("font", "sans-serif")	
 				.attr("text-anchor", "start")
 				.text(function(d) { return d; });
 
