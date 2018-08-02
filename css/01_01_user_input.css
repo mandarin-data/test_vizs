@@ -2,12 +2,12 @@
 .form-style-01-01{
     max-width: 600px;
     padding: 6px 6px 6px 6px;
-    font: 13px Arial, Helvetica, sans-serif;;
+    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
 }
 .form-style-01-01 label{
     display: block;
     margin: 0px 0px 6px 0px;
-    font: 13px Arial, Helvetica, sans-serif; 
+    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;; 
     color: #333;
     margin-left: 0px;
     text-align: start;
@@ -52,7 +52,7 @@
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
-	font: Arial, Helvetica, sans-serif;
+	font: "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
 }
 	
 .button:hover, 
@@ -74,8 +74,9 @@
 }
 
 .axis {
-  font: 10px Arial, Helvetica, sans-serif;
+  font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
 }
+
 
 .axis path,
 .axis line {
@@ -85,12 +86,17 @@
 }
 
 
+.label{
+  font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+
+}
+
 .toolTip {
 	box-sizing: border-box;
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 0.5;
-	font: 10px Arial, Helvetica, sans-serif;
+	font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #C2C2C2;
@@ -98,7 +104,7 @@
 	
 	
 footer#footer-0101 {
-	font: 12px Arial, Helvetica,sans-serif;
+	font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
 
 }	
 
