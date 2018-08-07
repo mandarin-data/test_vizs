@@ -3,3 +3,5 @@
 /wp-content/standalone/indexbackup.html
 /wp-content/divi/js
 /wp-content/divi/vizs
+.Rhistory
+.DS_Store
