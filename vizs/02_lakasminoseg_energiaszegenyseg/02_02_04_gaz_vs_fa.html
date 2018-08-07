@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Stacked Barchart</title>
-    <link rel="stylesheet" href="../../css/02_02_stacked_barcharts.css">
+    <link rel="stylesheet" href="/wp-habitat/css/02_02_stacked_barcharts.css">
 
 </head>
 
@@ -14,7 +14,7 @@
 <div id="main">
 <svg width="960" height="500"></svg>
 </div>
-<script src="../../js/d3.v4.min.js"></script>
+<script src="/wp-habitat/js/d3.v4.min.js"></script>
 
 <script>
 // create the svg
@@ -39,7 +39,7 @@ var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 // load the csv and create the chart
-d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function(d, i, columns) {
+d3.csv("/wp-habitat/data/02_02_04_gaz_vs_fa.csv", function(d, i, columns) {
   for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
   d.total = t;
   return d;
@@ -131,10 +131,10 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
     .attr("font-weight", "bold");
 
 </script>
-    
-    <footer>
-        <p>Copyright 2018 Mandarin Data</p>
-    </footer>
+<!--
+<footer>
+    <p>Copyright 2018 Mandarin Data</p>
+</footer>-->
 
 </body>
 

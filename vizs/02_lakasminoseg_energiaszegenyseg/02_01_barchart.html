@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Stacked Barchart</title>
-    <script src="../../js/d3.v4.min.js"></script>
-    <link rel="stylesheet" href="../../css/02_01_barchart.css" >
-    <script src="../../js/02_01_barchart.js"></script>
+    <script src="/wp-habitat/js/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="/wp-habitat/css/02_01_barchart.css" >
+    <script src="/wp-habitat/js/js/02_01_barchart.js"></script>
 	
 </head>
 <body>
@@ -27,7 +27,7 @@
 	<svg id="vis-11"></svg>
 	<script>
 		var donut = BarChart()
-		d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_01_01_komfort_fokozat.tsv", function(error, data) {
+		d3.tsv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_01_01_komfort_fokozat.tsv", function(error, data) {
 			if (error) throw error;
 			d3.select('#chart')
 				.datum(data) // bind data to the div
@@ -41,11 +41,11 @@
 			
 		var str;
 		if(selected == "02_01_01_komfort_fokozat"){
-			str = "../../data/02_lakasminoseg_energiaszegenyseg/02_01_01_komfort_fokozat.tsv";
+			str = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_01_01_komfort_fokozat.tsv";
 		}else if(selected == "02_01_02_infra_hiany"){
-			str = "../../data/02_lakasminoseg_energiaszegenyseg/02_01_02_infra_hiany.tsv";
+			str = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_01_02_infra_hiany.tsv";
 		}else{
-			str = "../../data/02_lakasminoseg_energiaszegenyseg/02_01_03_felujitas.tsv";
+			str = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_01_03_felujitas.tsv";
 		}
 		console.log(str)
 		var donut = BarChart()
@@ -62,8 +62,10 @@
 
 	
 </body>
+<!--
 	
 	<footer>
         <p>Copyright 2018 Mandarin Data</p>
     </footer>
+-->
 </html>
