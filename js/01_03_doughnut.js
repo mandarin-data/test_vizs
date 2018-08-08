@@ -9,7 +9,7 @@ chartTooltip.append('div')
     .attr('class', 'percent');
 
 
-d3.csv('/wp-habitat/data/01_03_doughnut.tsv', function (error, dataset) {
+d3.csv('/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', function (error, dataset) {
     dataset.forEach(function (d) {
         d.percent = +d.percent;
         d.enabled = true;

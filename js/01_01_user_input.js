@@ -34,7 +34,7 @@ var tooltip = d3.select("#vis-0101")
 
 
 
-d3.tsv("/wp-habitat/data/01_01_user_input.tsv", function (error, data) {
+d3.tsv("/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", function (error, data) {
     x.domain(data.map(function (d) {
         return d.Decilis;
     }));
