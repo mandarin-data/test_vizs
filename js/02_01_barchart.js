@@ -60,8 +60,8 @@ function BarChart() {
 
             data.forEach(function (d) {
                 data[columns[1]] = +data[columns[1]];
-                data[columns[2]] = +data[columns[2]];.. / .. / data / 01 _hozzaferhetoseg_es_megfizethetoseg /
-                    data[columns[3]] = +data[columns[3]];
+                data[columns[2]] = +data[columns[2]]; //.. / .. / data / 01 _hozzaferhetoseg_es_megfizethetoseg /
+                data[columns[3]] = +data[columns[3]];
                 data[columns[0]] = +data[columns[0]];
             });
 
@@ -82,7 +82,7 @@ function BarChart() {
                     return {
                         myregion: myregion,
                         name: name,
-                        .. / .. / data / 01 _hozzaferhetoseg_es_megfizethetoseg /
+                        //.. / .. / data / 01 _hozzaferhetoseg_es_megfizethetoseg /
                         y0: y0,
                         y1: y0 += +d[name],
                         value: d[name],

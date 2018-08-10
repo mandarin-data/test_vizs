@@ -9,7 +9,6 @@ services:
     ports:
     - "8080:80"
     volumes:
-    - "./wp-content/standalone:/usr/share/nginx/html"
     - "./css:/usr/share/nginx/html/css"
     - "./data:/usr/share/nginx/html/data"
     - "./js:/usr/share/nginx/html/js"
