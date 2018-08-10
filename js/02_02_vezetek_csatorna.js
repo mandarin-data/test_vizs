@@ -1,13 +1,13 @@
-var svg2 = d3.select("#vis-2"),
+var svg02_02 = d3.select("#vis-2"),
     margin = {
         top: 20,
         right: 20,
         bottom: 30,
         left: 40
     },
-    width = +svg2.node().getBoundingClientRect().width - margin.left - margin.right,
-    height = +svg2.attr("height") - margin.top - margin.bottom,
-    g2 = svg2.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = +svg02_02.node().getBoundingClientRect().width - margin.left - margin.right,
+    height = +svg02_02.attr("height") - margin.top - margin.bottom,
+    g2 = svg02_02.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var x0 = d3.scaleBand()
     .rangeRound([0, width])
