@@ -24,7 +24,7 @@ var line = d3.line()
         return y3(ds.arany);
     });
 
-d3.tsv("//wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_arany.tsv", type, function (error, data) {
+d3.tsv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_arany.tsv", type, function (error, data) {
     if (error) throw error;
 
     var futesmodok = data.columns.slice(1).map(function (id) {
