@@ -60,7 +60,7 @@ function BarChart() {
 
             data.forEach(function (d) {
                 data[columns[1]] = +data[columns[1]];
-                data[columns[2]] = +data[columns[2]]; //.. / .. / data / 01 _hozzaferhetoseg_es_megfizethetoseg /
+                data[columns[2]] = +data[columns[2]];
                 data[columns[3]] = +data[columns[3]];
                 data[columns[0]] = +data[columns[0]];
             });
