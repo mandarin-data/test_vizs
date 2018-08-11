@@ -96,7 +96,7 @@ return;
        preserveAspectRatio="none"
        height="264.00003"
        width="275"
-       onclick="nextScreen(evt,'berlakas_bp')" />
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/berlakas_bp')" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -116,7 +116,7 @@ return;
        height="253.38147"
        x="40.594063"
        y="-935.6225"
-       onclick="nextScreen(evt,'munkasszallo')"
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/munkasszallo')"
        transform="scale(1,-1)" />
     <text
        xml:space="preserve"
@@ -153,7 +153,7 @@ return;
        y="801.60022"
        id="text4260"
        sodipodi:linespacing="125%"
-       onclick="nextScreen(evt,'munkasszallo')"><tspan
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/munkasszallo')"><tspan
          sodipodi:role="line"
          x="172.1864"
          y="801.60022"
@@ -176,7 +176,7 @@ return;
        y="804.47308"
        id="text4264"
        sodipodi:linespacing="125%"
-       onclick="nextScreen(evt,'berlakas_bp')"><tspan
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/berlakas_bp')"><tspan
          sodipodi:role="line"
          x="555.70917"
          y="804.47308"
@@ -196,7 +196,7 @@ return;
            id="tspan3446">(Budapesten)</tspan></tspan></text>
     <rect
        transform="scale(1,-1)"
-       onclick="nextScreen(evt,'uzsora')"
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/uzsora')"
        y="-935.6225"
        x="792.33032"
        height="253.38147"
@@ -204,7 +204,7 @@ return;
        id="rect3432"
        style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     <text
-       onclick="nextScreen(evt,'uzsora')"
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/uzsora')"
        sodipodi:linespacing="125%"
        id="text3434"
        y="801.60022"

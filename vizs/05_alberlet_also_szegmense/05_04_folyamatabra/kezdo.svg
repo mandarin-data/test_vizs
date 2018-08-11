@@ -96,7 +96,7 @@ return;
        preserveAspectRatio="none"
        height="264.00003"
        width="275"
-       onclick="nextScreen(evt,'berlakas')" />
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/berlakas')" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -116,7 +116,7 @@ return;
        height="253.38147"
        x="142.59406"
        y="-935.6225"
-       onclick="nextScreen(evt,'piaci-albi')"
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/piaci-albi')"
        transform="scale(1,-1)" />
     <text
        xml:space="preserve"
@@ -188,7 +188,7 @@ return;
        y="801.60022"
        id="text4260"
        sodipodi:linespacing="125%"
-       onclick="nextScreen(evt,'piaci-albi')"><tspan
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/piaci-albi')"><tspan
          sodipodi:role="line"
          id="tspan4262"
          x="274.1864"
@@ -206,7 +206,7 @@ return;
        y="802.47308"
        id="text4264"
        sodipodi:linespacing="125%"
-       onclick="nextScreen(evt,'berlakas')"><tspan
+       onclick="nextScreen(evt,'/wp-habitat/vizs/05_alberlet_also_szegmense/05_04_folyamatabra/berlakas')"><tspan
          sodipodi:role="line"
          id="tspan4266"
          x="825.63666"
