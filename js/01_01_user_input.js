@@ -4,7 +4,7 @@ var margin = {
         bottom: 20,
         left: 40
     },
-    userInputWidth = d3.select("#viscontainer-0101").node().getBoundingClientRect().width - margin.left - margin.right,
+    userInputWidth = d3.select("#vis-0101").node().getBoundingClientRect().width - margin.left - margin.right,
     userInputHeight = 450 - margin.top - margin.bottom;
 
 var x = d3.scaleBand()
@@ -91,7 +91,7 @@ function myFunction() {
     var userexp = ((expend / wage) * 100);
 
 
-    d3.tsv("/wp-habitat/js/01_01_user_input.tsv", function (error, data) {
+    d3.tsv("/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", function (error, data) {
         if (error) throw error;
         var period = data.filter(function (row) {
             row["Dec_f"] = +row["Dec_f"];
