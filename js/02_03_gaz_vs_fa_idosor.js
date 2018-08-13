@@ -1,191 +1,227 @@
-var svg3 = d3.select("#topic02-vis03"),
-    margin = {
-        top: 20,
-        right: 80,
-        bottom: 30,
-        left: 50
-    },
-    width = +svg3.node().getBoundingClientRect().width - margin.left - margin.right,
-    height = +svg3.attr("height") - margin.top - margin.bottom,
-    g3 = svg3.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var margin_0203 = {
+  top: 50, 
+  right: 50, 
+  bottom: 50, 
+  left: 60
+};
 
-var parseTime = d3.timeParse("%Y%m%d");
+var w_0203 = d3.select("#topic02-vis03").node().getBoundingClientRect().width - margin_0203.left - margin_0203.right;
+var h_0203 = d3.select("#topic02-vis03").node().getBoundingClientRect().height - margin_0203.top - margin_0203.bottom;
 
-var x3 = d3.scaleTime().range([0, width]),
-    y3 = d3.scaleLinear().range([height, 0]),
-    z3 = d3.scaleOrdinal(d3.schemeCategory10);
+var parseDate_0203 = d3.timeParse("%Y%m%d");
 
-var line = d3.line()
-    .curve(d3.curveBasis)
-    .x(function (ds) {
-        return x3(ds.date);
-    })
-    .y(function (ds) {
-        return y3(ds.arany);
-    });
+var scaleX_0203 = d3.scaleTime()
+    .range([0, w_0203]);
+
+var scaleY_0203 = d3.scaleLinear()
+    .range([h_0203, 0]);
+
+var color_0203 = d3.scaleOrdinal(d3.schemeCategory10);
+
+var xAxis_0203 = d3.axisBottom()
+    .scale(scaleX_0203);
+
+var yAxis_0203 = d3.axisLeft()
+    .scale(scaleY_0203)
+
+var line_0203 = d3.line()
+    .x(function(d){return scaleX_0203(d.date)})
+    .y(function(d){return scaleY_0203(d.ydata)})
+    //.curve(d3.curveBasis);
+
+var svg_0203 = d3.select("#topic02-vis03").append("svg")
+    .attr("width", w_0203 + margin_0203.left + margin_0203.right)
+    .attr("height", h_0203 + margin_0203.top + margin_0203.bottom)
+    // .style("background-color", "lightGreen")
+    .append("g")
+    .attr("transform", "translate("+margin_0203.left +", "+margin_0203.top+")")
 
 d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_idosor_arany.tsv", type, function (error, data) {
     if (error) throw error;
 
-    var futesmodok = data.columns.slice(1).map(function (id) {
+    var categories_0203 = data.columns.slice(1).map(function (name) {
         return {
-            id: id,
-            values: data.map(function (ds) {
+            name: name, 
+            values: data.map(function (d) {
                 return {
-                    date: ds.date,
-                    arany: ds[id]
+                    date: d.date, 
+                    ydata: d[name]
                 };
             })
         };
     });
 
-    x3.domain(d3.extent(data, function (ds) {
-        return ds.date;
-    }));
+scaleX_0203.domain(d3.extent(data, function(d){
+  return d.date;
+}));
+scaleY_0203.domain([0, 1]);
 
-    y3.domain([0, 1]);
+console.log("categories_0203", categories_0203);
 
-    z3.domain(futesmodok.map(function (c) {
-        return c.id;
-    }));
+var legend_0203 = svg_0203.selectAll("g")
+    .data(categories_0203)
+    .enter()
+    .append("g")
+    .attr("class", "legend");
 
-    g3.append("g")
-        .attr("class", "axis axis--x")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x3));
+legend_0203.append("rect")
+    .attr("x", w_0203-110)
+    .attr("y", function(d, i) {return i * 20;} )
+    .attr("width", 2)
+    .attr("height", 15)
+    .style("fill", function(d) {return color_0203(d.name);} );
 
-    g3.append("g")
-        .attr("class", "axis axis--y")
-        .call(d3.axisLeft(y3))
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", "0.71em")
-        .attr("fill", "#000")
-        .text("Adott fűtési módot használó háztartások aránya");
+legend_0203.append("text")
+    .attr("x", w_0203-105)
+    .attr("y", function(d, i) {return (i * 20) + 12;} )
+    .text(function(d) {return d.name;} );
 
-    var futesmod = g3.selectAll(".futesmod")
-        .data(futesmodok)
-        .enter().append("g")
-        .attr("class", "futesmod");
+svg_0203.append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0, "+h_0203+")")
+    .call(xAxis_0203);
 
-    futesmod.append("path")
-        .attr("class", "line")
-        .attr("d", function (d) {
-            return line(d.values);
-        })
-        .style("stroke", function (ds) {
-            return z3(ds.id);
-        });
+svg_0203.append("g")
+    .attr("class", "y axis")
+    .call(yAxis_0203)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", 6)
+    .attr("dy", ".71em")
+    .style("text-anchor", "end")
+    .style("fill", "black")
+    .text("Adott fűtési módot használó háztartások aránya");
 
-    futesmod.append("text")
-        .datum(function (ds) {
-            return {
-                id: ds.id,
-                value: ds.values[ds.values.length - 1]
-            };
-        })
-        .attr("transform", function (ds) {
-            return "translate(" + (x3(ds.value.date) + 30) + "," + y3(ds.value.arany) + ")";
-        })
-        .attr("x", 3)
-        .attr("dy", "0.35em")
-        .style("font", "10px sans-serif")
-        .text(function (ds) {
-            return ds.id;
-        });
+var category_0203 = svg_0203.selectAll(".category")
+    .data(categories_0203)
+    .enter().append("g")
+    .attr("class", "category");
 
-    var mouseG = g3.append("g")
-        .attr("class", "mouse-over-effects");
-    /*
-        mouseg3.append("path") // this is the black vertical line to follow mouse
-          .attr("class", "mouse-line")
-          .style("stroke", "black")
-          .style("stroke-width", "1px")
-          .style("opacity", "0");
+category_0203.append("path")
+    .attr("class", "line")
+    .attr("d", function(d) {return line_0203(d.values);} )
+    .style("stroke", function(d) {return color_0203(d.name)} );
 
-        var lines = document.getElementsByClassName('line');
+var mouseG_0203 = svg_0203.append("g") // this the black vertical line to folow mouse
+    .attr("class", "mouse-over-effects");
 
-        var mousePerLine = mouseg3.selectAll('.mouse-per-line')
-          .data(cities)
-          .enter()
-          .append("g")
-          .attr("class", "mouse-per-line");
+mouseG_0203.append("path")
+    .attr("class", "mouse-line")
+    .style("stroke", "black")
+    .style("stroke-width", "1px")
+    .style("opacity", "0");
 
-        mousePerLine.append("circle")
-          .attr("r", 7)
-          .style("stroke", function(d) {
-            return z(d.id);
-          })
-          .style("fill", "none")
-          .style("stroke-width", "1px")
-          .style("opacity", "0");
+var lines_0203 = document.getElementsByClassName("line");
+var mousePerLine_0203 = mouseG_0203.selectAll(".mouse-per-line")
+    .data(categories_0203)
+    .enter()
+    .append("g")
+    .attr("class", "mouse-per-line");
 
-        mousePerLine.append("text")
-          .attr("transform", "translate(10,3)");
+mousePerLine_0203.append("circle")
+    .attr("r", 7)
+    .style("stroke", function(d) {return color_0203(d.name);} )
+    .style("fill", "none")
+    .style("stroke-width", "1px")
+    .style("opacity", "0");
 
-        mouseg3.append('svg3:rect') // append a rect to catch mouse movements on canvas
-          .attr('width', width) // can't catch mouse events on a g element
-          .attr('height', height)
-          .attr('fill', 'none')
-          .attr('pointer-events', 'all')
-          .on('mouseout', function() { // on mouse out hide line, circles and text
-            d3.select(".mouse-line")
-              .style("opacity", "0");
-            d3.selectAll(".mouse-per-line circle")
-              .style("opacity", "0");
-            d3.selectAll(".mouse-per-line text")
-              .style("opacity", "0");
-          })
-          .on('mouseover', function() { // on mouse in show line, circles and text
-            d3.select(".mouse-line")
-              .style("opacity", "1");
-            d3.selectAll(".mouse-per-line circle")
-              .style("opacity", "1");
-            d3.selectAll(".mouse-per-line text")
-              .style("opacity", "1");
-          })
-          .on('mousemove', function() { // mouse moving over canvas
-            var mouse = d3.mouse(this);
-            d3.select(".mouse-line")
-              .attr("d", function() {
-                var d = "M" + mouse[0] + "," + height;
-                d += " " + mouse[0] + "," + 0;
-                return d;
-              });
+mousePerLine_0203.append("text")
+    .attr("transform", "translate(10, 3)");
 
-            d3.selectAll(".mouse-per-line")
-              .attr("transform", function(d, i) {
-                console.log(width/mouse[0])
-                var xDate = x3.invert(mouse[0]),
-                    bisect = d3.bisector(function(d) { return d.date; }).right;
-                    idx = bisect(d.values, xDate);
+mouseG_0203.append("rect")
+    .attr("width", w_0203)
+    .attr("height", h_0203)
+    .attr("fill", "none")
+    .attr("pointer-events", "all")
+    .on("mouseout", function(){
+        d3.select(".mouse-line").style("opacity", "0");
+        d3.selectAll(".mouse-per-line circle").style("opacity", "0");
+        d3.selectAll(".mouse-per-line text").style("opacity", "0")
+    })
+    .on("mouseover", function(){
+        d3.select(".mouse-line").style("opacity", "1");
+        d3.selectAll(".mouse-per-line circle").style("opacity", "1");
+        d3.selectAll(".mouse-per-line text").style("opacity", "1")
+    })
+    .on("mousemove", function(){
+        var mouse_0203 = d3.mouse(this);
+    
+        console.log("Mouse:", mouse_0203);
+    
+        d3.select(".mouse-line")
+            .attr("d", function(){
+                var d_0203 = "M" + mouse_0203[0] +", " + h_0203;
+                d_0203+=" " +mouse_0203[0] + ", " + 0;
+                return d_0203;
+            })
+    
+        var ypos_0203 = [];
 
-                var beginning = 0,
-                    end = lines[i].getTotalLength(),
-                    target = null;
+        d3.selectAll(".mouse-per-line")
+            .attr("transform", function(d, i) {
+                console.log(w_0203/mouse_0203[0])
+                var xDate_0203 = scaleX_0203.invert(mouse_0203[0]), 
+                bisect_0203 = d3.bisector(function(d) { return d.date;}).right;
+                idx_0203 = bisect_0203(d.values, xDate_0203);
+
+                console.log("xDate:", xDate_0203);
+                console.log("bisect", bisect_0203);
+                console.log("idx:", idx_0203)
+
+                var beginning_0203 = 0, 
+                    end_0203 = lines_0203[i].getTotalLength(), 
+                    target_0203 = null;
+
+                console.log("end", end_0203);
 
                 while (true){
-                  target = Math.floor((beginning + end) / 2);
-                  pos = lines[i].getPointAtLength(target);
-                  if ((target === end || target === beginning) && pos.x !== mouse[0]) {
+                  target_0203 = Math.floor((beginning_0203 + end_0203) / 2);
+                  console.log("Target:", target_0203);
+                  pos_0203 = lines_0203[i].getPointAtLength(target_0203);
+                  console.log("Position", pos_0203.y);
+                  console.log("What is the position here:", pos_0203)
+                  if ((target_0203 === end_0203 || target_0203 === beginning_0203) && pos_0203.x !== mouse_0203[0]) {
                       break;
                   }
-                  if (pos.x > mouse[0])      end = target;
-                  else if (pos.x < mouse[0]) beginning = target;
+                  if (pos_0203.x > mouse_0203[0])      end_0203 = target_0203;
+                  else if (pos_0203.x < mouse_0203[0]) beginning_0203 = target_0203;
                   else break; //position found
                 }
 
                 d3.select(this).select('text')
-                  .text(y3.invert(pos.y).toFixed(2));
+                  .text(scaleY_0203.invert(pos_0203.y).toFixed(3));
 
-                return "translate(" + mouse[0] + "," + pos.y +")";
-              });
-          });*/
+                ypos_0203.push ({ind: i, y: pos_0203.y, off: 0});
+
+                return "translate(" + mouse_0203[0] + ", " + pos_0203.y +")";
+        })
+
+        .call(function(sel) {
+            ypos_0203.sort (function(a, b) { return a.y - b.y; });
+            ypos_0203.forEach (function(p, i) {
+                if (i > 0) {
+                var last_0203 = ypos_0203[i-1].y;
+                ypos_0203[i].off = Math.max (0, (last_0203 + 15) - ypos_0203[i].y);
+                ypos_0203[i].y += ypos_0203[i].off;
+                }
+            })
+            ypos_0203.sort (function(a, b) { return a.ind - b.ind; });
+        })
+
+        .select("text")
+        .attr("transform", function(d, i) {
+            return "translate (10, "+(3+ypos_0203[i].off)+")";
+        });
+
+    });
 });
-
-function type(ds, _, columns) {
-    ds.date = parseTime(ds.date);
-    for (var i = 1, n = columns.length, c; i < n; ++i) ds[c = columns[i]] = +ds[c];
-    return ds;
+    
+function type(d, _, columns) {
+    d.date = parseDate_0203(d.date);
+    for (var i_0203 = 1, n = columns.length, c; i_0203 < n; ++i_0203) d[c = columns[i_0203]] = +d[c];
+    return d;
 }
+
+/*Sources:
+https://bl.ocks.org/mbostock/3884955
+https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo */

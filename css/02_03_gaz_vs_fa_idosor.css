@@ -1,12 +1,33 @@
-.axis--x path {
-  display: none;
+body {
+    font: 10px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
 }
-svg{
+
+.axis {
+    font: 10px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+}
+
+.legend {
+    font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {
+    display: none;
+}
+
+svg {
   display: block;
   margin: auto;
 }
+
 .line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 1.5px;
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
 }
