@@ -1,0 +1,57 @@
+.form-style-2{
+    max-width: 500px;
+    padding: 6px 6px 6px 0px;
+    font: 13px Arial, Helvetica, sans-serif;
+}
+
+.form-style-2 label{
+    display: block;
+    margin: 0px 0px 15px 0px;
+}
+.form-style-2 label > span{
+    width: 500px;
+    font-weight: bold;
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+.form-style-2 span.required{
+    color:red;
+}
+
+
+.select-field{
+    width: 48%;
+	margin-left: 40px;
+}
+
+ .form-style-2 .select-field{
+	width: 200px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 4px;
+    outline: none;
+}
+
+.form-style-2 .select-field:focus{
+    border: 1px solid #C2C2C2;
+}
+
+	
+footer {
+	font: 10px Arial, Helvetica,sans-serif;
+
+}	
+
+
+
+Collapse 
+
