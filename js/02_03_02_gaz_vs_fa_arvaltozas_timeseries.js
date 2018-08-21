@@ -1,5 +1,3 @@
-// TODO: change hard-coded values to relative values
-
 var margin_020302 = {
   top: 50, 
   right: 50, 
@@ -18,17 +16,8 @@ var scaleX_020302 = d3.scaleTime()
 var scaleY_020302 = d3.scaleLinear()
     .range([h_020302, 0]);
 
-var headerNames_020302 = [];
-d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", function(data) {
-    var keys_020302 = Object.keys_020302(data[0]);
-    data.forEach(function(d) {
-      headerNames_020302.push(d[keys_020302[0]]);
-    });
-});
-
 var color_020302 = d3.scaleOrdinal()
-  .domain(headerNames_020302)
-  .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
 
 var xAxis_020302 = d3.axisBottom()
     .scale(scaleX_020302);
@@ -44,7 +33,6 @@ var line_020302 = d3.line()
 var svg_020302 = d3.select("#topic02-vis03-part02").append("svg")
     .attr("width", w_020302 + margin_020302.left + margin_020302.right)
     .attr("height", h_020302 + margin_020302.top + margin_020302.bottom)
-    // .style("background-color", "lightGreen")
     .append("g")
     .attr("transform", "translate("+margin_020302.left +", "+margin_020302.top+")")
 

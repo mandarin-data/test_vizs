@@ -18,19 +18,8 @@ var scaleX_020301 = d3.scaleTime()
 var scaleY_020301 = d3.scaleLinear()
     .range([h_020301, 0]);
 
-//var color_020301 = d3.scaleOrdinal(d3.schemeCategory10);
-
-var headerNames_020301 = [];
-d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_hasznalat_timeseries.tsv", function(data) {
-    var keys_020301 = Object.keys_020301(data[0]);
-    data.forEach(function(d) {
-      headerNames_020301.push(d[keys_020301[0]]);
-    });
-});
-
 var color_020301 = d3.scaleOrdinal()
-  .domain(headerNames_020301)
-  .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
 
 var xAxis_020301 = d3.axisBottom()
     .scale(scaleX_020301);
