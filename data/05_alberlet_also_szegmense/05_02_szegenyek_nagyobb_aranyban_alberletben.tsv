@@ -1,7 +1,7 @@
-Lakáshasználati jogcím (2017)	Átlag	Alsó három jövedelmi decilis (legalacsonyabb jövedelműek)	Felső három jövedelmi decilis (legmagasabb jövedelműek)
-Tulajdonos	0.8515340079	0.8134839231	0.8565853298
-Haszonélvező, tulajdonos rokona	0.041517611	0.0444200654	0.035630511
-Bérelt lakás bérlői piaci áron	0.052400772	0.0538381872	0.0567697062
-Bérelt lakás bérlői nem piaci áron	0.0375668695	0.0578866146	0.033510869
-Magántulajdonú lakás szívességi lakáshasználói	0.0125385739	0.0242458842	0.0110215002
-Szolgálati lakás használói	0.0044421657	0.0061253255	0.0064820837
+lakashasznalati_jogcim_2017	Átlag	Alsó három jövedelmi decilis (legalacsonyabb jövedelműek)
+Tulajdonos	85.15340079	81.34839231
+Haszonélvező, tulajdonos rokona	4.1517611	4.44200654
+Bérelt lakás bérlői piaci áron	5.2400772	5.38381872
+Bérelt lakás bérlői nem piaci áron	3.75668695	5.78866146
+Magántulajdonú lakás szívességi lakáshasználói	1.25385739	2.42458842
+Szolgálati lakás használói	0.044421657	0.61253255
