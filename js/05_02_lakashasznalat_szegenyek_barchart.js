@@ -2,7 +2,7 @@ var svg_0502 = d3.select("#topic05-vis02"),
     margin_0502 = {
         top: 20,
         right: 20,
-        bottom: 70,
+        bottom: 50,
         left: 40
     },
     width_0502 = +svg_0502.node().getBoundingClientRect().width - margin_0502.left - margin_0502.right,
@@ -72,14 +72,15 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         });
 
     g_0502.append("g")
-        .attr("class", "axis")
+        .attr("class", "xaxis")
         .attr("transform", "translate(0," + height_0502 + ")")
         .call(d3.axisBottom(x0_0502))
         .selectAll(".tick text")
+        .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em")
         .call(wrap_0502, x0_0502.bandwidth());
 
     g_0502.append("g")
-        .attr("class", "axis")
+        .attr("class", "yaxis")
         .call(d3.axisLeft(y_0502).ticks(null, "s"))
         .append("text")
         .attr("x", 2)
@@ -89,10 +90,12 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("font-weight", "bold")
         .attr("text-anchor", "start")
         .text("%");
+    
+    svg_0502.selectAll(".yaxis text")
+        .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em");
 
     var legend_0502 = g_0502.append("g")
-        .attr("font-family", "sans-serif")
-        .attr("font-size", 10)
+        .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em")
         .attr("text-anchor", "end")
         .selectAll("g")
         .data(keys_0502.slice().reverse())
