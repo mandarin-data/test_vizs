@@ -37,7 +37,7 @@ var svg_0501 = d3.select("#topic05-vis01").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_0501.left +", "+margin_0501.top+")")
 
-d3.tsv("../../data/05_alberlet_also_szegmense/05_01_jovedelem_vs_alberletar_novekedes.tsv", type, function (error, data) {
+d3.tsv("../../data/05_alberlet_also_szegmense/05_01_jovedelem_vs_alberletar_novekedes.tsv", type_0501, function (error, data) {
     if (error) throw error;
 
     var categories_0501 = data.columns.slice(1).map(function (name) {
@@ -218,7 +218,7 @@ mouseG_0501.append("rect")
     });
 });
     
-function type(d, _, columns) {
+function type_0501(d, _, columns) {
     d.date = parseDate_0501(d.date);
     for (var i_0501 = 1, n = columns.length, c; i_0501 < n; ++i_0501) d[c = columns[i_0501]] = +d[c];
     return d;
