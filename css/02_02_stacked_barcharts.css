@@ -1,7 +1,7 @@
 
 
 body {
-  font: 10px sans-serif;
+  font: 10px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
 .axis path,
@@ -21,13 +21,13 @@ body {
 
 .tooltip{
   text-anchor: middle;
-  font-family: sans-serif;
+  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
   font-size: 10px;
   font-weight: bold;
   fill:black; 
 }
 
 footer {
-	font: 10px Arial, Helvetica,sans-serif;
+	font: 10px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 
 }

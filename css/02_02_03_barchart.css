@@ -1,7 +1,7 @@
 .form-style-2{
     max-width: 500px;
     padding: 6px 6px 6px 0px;
-    font: 13px Arial, Helvetica, sans-serif;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
 .form-style-2 label{
@@ -47,7 +47,7 @@
 
 	
 footer {
-	font: 10px Arial, Helvetica,sans-serif;
+	font: 10px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 
 }	
 

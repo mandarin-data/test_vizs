@@ -95,7 +95,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
         .attr("text-anchor", "start");
 
     var legend = g.append("g")
-        .attr("font-family", "sans-serif")
+        .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
         .attr("text-anchor", "start")
         .selectAll("g")

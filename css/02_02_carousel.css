@@ -1,9 +1,9 @@
 body {
-  font: 10px sans-serif;
+  font: 10px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
 p {
-    font: 10px sans-serif;
+    font: 10px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
     color: black;
 }
 
@@ -12,6 +12,5 @@ h1 {
 }
 
 footer {
-	font: 10px Arial, Helvetica,sans-serif;
-
+	font: 10px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }

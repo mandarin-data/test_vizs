@@ -81,7 +81,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_komfort.csv", func
         .text("%");
 
     var legend = g.append("g")
-        .attr("font-family", "sans-serif")
+        .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
         .attr("text-anchor", "end")
         .selectAll("g")
