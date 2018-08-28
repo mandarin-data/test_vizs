@@ -1,4 +1,4 @@
-var chartTooltip_doughnut = d3.select('#chart-doughnut')
+var chartTooltip_doughnut = d3.select('#chart-doughnut-040604')
     .append('div')
     .attr('class', 'tooltip');
 
@@ -124,7 +124,7 @@ var doughnutHeight = 360;
 var radius_doughnut = Math.min(doughnutWidth, doughnutHeight) / 2;
 var color_doughnut = d3.scaleOrdinal().range(["#A4343A", "#43B02A", "#FF671F", "#888B8D", "#385988"]);
 
-var svgdoughnut = d3.select('#chart-doughnut')
+var svgdoughnut = d3.select('#chart-doughnut-040604')
     .append('svg')
     .attr('width', doughnutWidth)
     .attr('height', doughnutHeight)
