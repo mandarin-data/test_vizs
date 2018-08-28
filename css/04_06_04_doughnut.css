@@ -1,0 +1,47 @@
+#chart {
+  height: 360px;
+  position: relative;
+  width: 360px;
+}
+
+/* Vis container style */
+div#chart-doughnut{
+	height: 360px;
+	width: 360px;
+}
+
+div#chart-doughnut p{
+	font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+}
+
+footer#footer-doughnut {
+	font: 11px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+}	
+
+.legend {
+	font: 11px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+}
+
+.label {
+	font: 11px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+}
+
+.tooltip {
+	background: #eee;
+	box-shadow: 0 0 5px #999999;
+	color: #333;
+	display: none;
+	font-size: 12px;
+	left: 130px;
+	
+	padding: 4px;
+	position: absolute;
+	height: auto;
+	
+	text-align: center;
+	z-index: 10;
+}
+
+.disabled {
+  fill: transparent !important;
+}
