@@ -1,14 +1,19 @@
 // create the svg
-var svg = d3.select("svg"),
-    margin = {
+var margin = {
         top: 20,
         right: 20,
         bottom: 30,
         left: 40
     },
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = d3.select("#vis-020201").node().getBoundingClientRect().width- margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+
+var svg = d3.select("#vis-020201").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // set x scale
 var x = d3.scaleBand()
@@ -42,7 +47,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
     })]).nice();
     z.domain(keys);
 
-    g.append("g")
+    svg.append("g")
         .selectAll("g")
         .data(d3.stack().keys(keys)(data))
         .enter().append("g")
@@ -78,12 +83,12 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
             tooltip.select("text").text(((d[1] - d[0])).toFixed(1));
         });
 
-    g.append("g")
+    svg.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 
-    g.append("g")
+    svg.append("g")
         .attr("class", "axis")
         .call(d3.axisLeft(y).ticks(null, "s"))
         .append("text")
@@ -94,7 +99,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
         .attr("font-weight", "bold")
         .attr("text-anchor", "start");
 
-    var legend = g.append("g")
+    var legend = svg.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
         .attr("text-anchor", "start")
