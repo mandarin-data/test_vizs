@@ -37,7 +37,7 @@ var svg_0501 = d3.select("#topic05-vis01").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_0501.left +", "+margin_0501.top+")")
 
-d3.tsv("../../data/05_alberlet_also_szegmense/05_01_jovedelem_vs_alberletar_novekedes.tsv", type, function (error, data) {
+d3.tsv("../../data/05_alberlet_also_szegmense/05_01_jovedelem_vs_alberletar_novekedes.tsv", type_0501, function (error, data) {
     if (error) throw error;
 
     var categories_0501 = data.columns.slice(1).map(function (name) {
@@ -76,6 +76,7 @@ legend_0501.append("rect")
     .style("fill", function(d) {return color_0501(d.name);} );
 
 legend_0501.append("text")
+    .attr("font-size", (w_0501 * 0.0005 + 0.5) + "em")
     .attr("x", w_0501-195)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
@@ -83,7 +84,9 @@ legend_0501.append("text")
 svg_0501.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0, "+h_0501+")")
-    .call(xAxis_0501);
+    .call(xAxis_0501)
+    .selectAll(".tick text")
+    .attr("font-size", (w_0501 * 0.0005 + 0.5) + "em");
 
 svg_0501.append("g")
     .attr("class", "y axis")
@@ -95,6 +98,9 @@ svg_0501.append("g")
     .style("text-anchor", "end")
     .style("fill", "black")
     .text("Változás aránya 2010-hez képest");
+
+svg_0501.selectAll(".y.axis text")
+    .attr("font-size", (w_0501 * 0.0005 + 0.5) + "em");
 
 var category_0501 = svg_0501.selectAll(".category")
     .data(categories_0501)
@@ -130,7 +136,8 @@ mousePerLine_0501.append("circle")
     .style("opacity", "0");
 
 mousePerLine_0501.append("text")
-    .attr("transform", "translate(10, 3)");
+    .attr("transform", "translate(10, 3)")
+    .attr("font-size", (w_0501 * 0.0005 + 0.5) + "em");
 
 mouseG_0501.append("rect")
     .attr("width", w_0501)
@@ -218,7 +225,7 @@ mouseG_0501.append("rect")
     });
 });
     
-function type(d, _, columns) {
+function type_0501(d, _, columns) {
     d.date = parseDate_0501(d.date);
     for (var i_0501 = 1, n = columns.length, c; i_0501 < n; ++i_0501) d[c = columns[i_0501]] = +d[c];
     return d;

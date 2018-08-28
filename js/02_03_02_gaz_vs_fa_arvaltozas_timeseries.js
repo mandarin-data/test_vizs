@@ -36,7 +36,7 @@ var svg_020302 = d3.select("#topic02-vis03-part02").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_020302.left +", "+margin_020302.top+")")
 
-d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", type, function (error, data) {
+d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", type_020302, function (error, data) {
     if (error) throw error;
 
     var categories_020302 = data.columns.slice(1).map(function (name) {
@@ -75,6 +75,7 @@ legend_020302.append("rect")
     .style("fill", function(d) {return color_020302(d.name);} );
 
 legend_020302.append("text")
+    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em")
     .attr("x", w_020302-180)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
@@ -82,7 +83,9 @@ legend_020302.append("text")
 svg_020302.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0, "+h_020302+")")
-    .call(xAxis_020302);
+    .call(xAxis_020302)
+    .selectAll(".tick text")
+    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em");
 
 svg_020302.append("g")
     .attr("class", "y axis")
@@ -95,6 +98,9 @@ svg_020302.append("g")
     .style("fill", "black")
     .text("Árváltozás aránya 2010-hez képest");
 
+svg_020302.selectAll(".y.axis text")
+    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em");
+    
 var category_020302 = svg_020302.selectAll(".category")
     .data(categories_020302)
     .enter().append("g")
@@ -129,7 +135,8 @@ mousePerLine_020302.append("circle")
     .style("opacity", "0");
 
 mousePerLine_020302.append("text")
-    .attr("transform", "translate(10, 3)");
+    .attr("transform", "translate(10, 3)")
+    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em");
 
 mouseG_020302.append("rect")
     .attr("width", w_020302)
@@ -217,7 +224,7 @@ mouseG_020302.append("rect")
     });
 });
     
-function type(d, _, columns) {
+function type_020302(d, _, columns) {
     d.date = parseDate_020302(d.date);
     for (var i_020302 = 1, n = columns.length, c; i_020302 < n; ++i_020302) d[c = columns[i_020302]] = +d[c];
     return d;

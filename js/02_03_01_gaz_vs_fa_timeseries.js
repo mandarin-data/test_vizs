@@ -1,5 +1,3 @@
-// TODO: change hard-coded values to relative values
-
 var margin_020301 = {
   top: 50, 
   right: 50, 
@@ -39,7 +37,7 @@ var svg_020301 = d3.select("#topic02-vis03-part01").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_020301.left +", "+margin_020301.top+")")
 
-d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_hasznalat_timeseries.tsv", type, function (error, data) {
+d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_hasznalat_timeseries.tsv", type_020301, function (error, data) {
     if (error) throw error;
 
     var categories_020301 = data.columns.slice(1).map(function (name) {
@@ -75,6 +73,7 @@ legend_020301.append("rect")
     .style("fill", function(d) {return color_020301(d.name);} );
 
 legend_020301.append("text")
+    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em")
     .attr("x", w_020301-105)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
@@ -82,7 +81,9 @@ legend_020301.append("text")
 svg_020301.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0, "+h_020301+")")
-    .call(xAxis_020301);
+    .call(xAxis_020301)
+    .selectAll(".tick text")
+    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em");
 
 svg_020301.append("g")
     .attr("class", "y axis")
@@ -94,6 +95,9 @@ svg_020301.append("g")
     .style("text-anchor", "end")
     .style("fill", "black")
     .text("Adott fűtési módot használó háztartások aránya");
+
+svg_020301.selectAll(".y.axis text")
+    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em");
 
 var category_020301 = svg_020301.selectAll(".category")
     .data(categories_020301)
@@ -129,7 +133,8 @@ mousePerLine_020301.append("circle")
     .style("opacity", "0");
 
 mousePerLine_020301.append("text")
-    .attr("transform", "translate(10, 3)");
+    .attr("transform", "translate(10, 3)")
+    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em");
 
 mouseG_020301.append("rect")
     .attr("width", w_020301)
@@ -217,7 +222,7 @@ mouseG_020301.append("rect")
     });
 });
     
-function type(d, _, columns) {
+function type_020301(d, _, columns) {
     d.date = parseDate_020301(d.date);
     for (var i_020301 = 1, n = columns.length, c; i_020301 < n; ++i_020301) d[c = columns[i_020301]] = +d[c];
     return d;
