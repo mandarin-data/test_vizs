@@ -1,7 +1,7 @@
 var margin_0404 = {
   top: 50, 
   right: 50, 
-  bottom: 50, 
+  bottom: 80, 
   left: 60
 };
 
@@ -101,6 +101,110 @@ svg_0404.append("g")
 
 svg_0404.selectAll(".y.axis text")
     .attr("font-size", (w_0404 * 0.0005 + 0.5) + "em");
+
+svg_0404.append("text") // text label for the x axis
+        .attr("x", w_0404)
+        .attr("y", h_0404 + 60)
+        .style("text-anchor", "middle")
+        .attr("font-size", (w_0404 * 0.0005 + 0.3) + "em")
+        .text("Forrás: MNB");
+
+svg_0404.append("line")
+    .attr("class", "event")
+    .attr("x1", scaleX_0404(parseDate_0404("20040401")))
+    .attr("y1", 0)
+    .attr("x2",  scaleX_0404(parseDate_0404("20040401")))
+    .attr("y2", h_0404 + 50)
+    .style("stroke-width", 1)
+    .style("stroke", "red")
+    .style("fill", "none")
+    .style("stroke-dasharray", ("3, 3"));
+    
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20040401")))
+    .attr("y", h_0404 + 60)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("EU-csatlakozás")
+    
+svg_0404.append("line")
+    .attr("class", "event")
+    .attr("x1", scaleX_0404(parseDate_0404("20081001")))
+    .attr("y1", 0)
+    .attr("x2",  scaleX_0404(parseDate_0404("20081001")))
+    .attr("y2", h_0404 + 50)
+    .style("stroke-width", 1)
+    .style("stroke", "red")
+    .style("fill", "none")
+    .style("stroke-dasharray", ("3, 3"));
+    
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20081001")))
+    .attr("y", h_0404 + 60)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("Gazdasági válság")
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20081001")))
+    .attr("y", h_0404 + 75)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("kezdete")
+
+svg_0404.append("line")
+    .attr("class", "event")
+    .attr("x1", scaleX_0404(parseDate_0404("20111001")))
+    .attr("y1", 0)
+    .attr("x2",  scaleX_0404(parseDate_0404("20111001")))
+    .attr("y2", h_0404 + 50)
+    .style("stroke-width", 1)
+    .style("stroke", "red")
+    .style("fill", "none")
+    .style("stroke-dasharray", ("3, 3"));
+    
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20111001")))
+    .attr("y", h_0404 + 60)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("Végtörlesztés:")
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20111001")))
+    .attr("y", h_0404 + 75)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("180 forint/frank")
+    
+svg_0404.append("line")
+    .attr("class", "event")
+    .attr("x1", scaleX_0404(parseDate_0404("20141001")))
+    .attr("y1", 0)
+    .attr("x2",  scaleX_0404(parseDate_0404("20141001")))
+    .attr("y2", h_0404 + 50)
+    .style("stroke-width", 1)
+    .style("stroke", "red")
+    .style("fill", "none")
+    .style("stroke-dasharray", ("3, 3"));
+    
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20141001")))
+    .attr("y", h_0404 + 60)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("Forintosítás:")
+svg_0404.append("text")
+    .attr("class", "event text")
+    .attr("x", scaleX_0404(parseDate_0404("20141001")))
+    .attr("y", h_0404 + 75)
+    .style("text-anchor", "middle")
+    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
+    .text("256,5 forint/frank")
     
 var category_0404 = svg_0404.selectAll(".category")
     .data(categories_0404)
@@ -137,7 +241,7 @@ mousePerLine_0404.append("circle")
 
 mousePerLine_0404.append("text")
     .attr("transform", "translate(10, 3)")
-    .attr("font-size", (w_0501 * 0.0005 + 0.5) + "em");
+    .attr("font-size", (w_0404 * 0.0005 + 0.5) + "em");
 
 mouseG_0404.append("rect")
     .attr("width", w_0404)
