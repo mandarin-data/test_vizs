@@ -1,24 +1,28 @@
-var svg = d3.select("#vis-1"),
-    margin = {
-        top: 20,
-        right: 20,
+var margin = {
+        top: 30,
+        right: 0,
         bottom: 30,
         left: 40
     },
-    width = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = d3.select("#vis-020203").node().getBoundingClientRect().width - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
 
 var x = d3.scaleBand()
-    .rangeRound([0, width])
+    .rangeRound([0, width - 230])
     .paddingInner(0.05)
-    .align(0.1);
+    .align(0.8);
 
 var y = d3.scaleLinear()
     .rangeRound([height, 0]);
 
 var z = d3.scaleOrdinal()
     .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
+
+var svg = d3.select("#vis-020203").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_komfort.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
@@ -40,7 +44,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_komfort.csv", func
     })]).nice();
     z.domain(keys);
 
-    g.append("g")
+    svg.append("g")
         .selectAll("g")
         .data(d3.stack().keys(keys)(data))
         .enter().append("g")
@@ -63,12 +67,12 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_komfort.csv", func
         })
         .attr("width", x.bandwidth());
 
-    g.append("g")
+    svg.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 
-    g.append("g")
+    svg.append("g")
         .attr("class", "axis")
         .call(d3.axisLeft(y).ticks(null, "s"))
         .append("text")
@@ -80,7 +84,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_komfort.csv", func
         .attr("text-anchor", "start")
         .text("%");
 
-    var legend = g.append("g")
+    var legend = svg.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
         .attr("text-anchor", "end")

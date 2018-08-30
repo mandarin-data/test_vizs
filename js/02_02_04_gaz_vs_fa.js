@@ -1,18 +1,23 @@
 // create the svg
-var svg = d3.select("svg"),
-    margin = {
+var margin = {
         top: 20,
         right: 20,
         bottom: 30,
         left: 40
     },
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    width = d3.select("#vis-020204").node().getBoundingClientRect().width- margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+
+var svg = d3.select("#vis-020204").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 // set x scale
 var x = d3.scaleBand()
-    .rangeRound([0, width])
+    .rangeRound([0, width - 230])
     .paddingInner(0.05)
     .align(0.1);
 
@@ -42,7 +47,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
     })]).nice();
     z.domain(keys);
 
-    g.append("g")
+    svg.append("g")
         .selectAll("g")
         .data(d3.stack().keys(keys)(data))
         .enter().append("g")
@@ -78,12 +83,12 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
             tooltip.select("text").text((((d[1] - d[0]) * 100).toFixed(1)) + "%");
         });
 
-    g.append("g")
+    svg.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + height + ")")
         .call(d3.axisBottom(x));
 
-    g.append("g")
+    svg.append("g")
         .attr("class", "axis")
         .call(d3.axisLeft(y).ticks(null, "%"))
         .append("text")
@@ -94,7 +99,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .attr("font-weight", "bold")
         .attr("text-anchor", "start");
 
-    var legend = g.append("g")
+    var legend = svg.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
         .attr("text-anchor", "start")
@@ -106,13 +111,13 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         });
 
     legend.append("rect")
-        .attr("x", 19)
-        .attr("width", 19)
-        .attr("height", 19)
+        .attr("x", width - 210)
+        .attr("width", 18)
+        .attr("height", 18)
         .attr("fill", z);
 
     legend.append("text")
-        .attr("x", 45)
+        .attr("x", width-185)
         .attr("y", 9.5)
         .attr("dy", "0.32em")
         .text(function (d) {

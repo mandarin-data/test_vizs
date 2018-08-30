@@ -3,76 +3,72 @@
 <html lang="en">
 
 <head>
-    
+
     <meta charset="UTF-8">
     <title>Barchart</title>
     <script src="../../js/d3.v4.min.js"></script>
     <link rel="stylesheet" href="../../css/02_02_03_barchart.css">
     <script src="../../js/02_02_03_barchart.js"></script>
-    
+
 </head>
 
 
 
 <body>
-    
-    <div class="form-style-2">
-        <select class="select-field" id="d3-dropdown">
+
+    <div id="vis-020203">
+        <div class="form-style-2">
+            <select class="select-field" id="d3-dropdown">
             <option value="02_02_03_furdo">Fürdőszoba</option>
             <option value="02_02_03_wc">WC</option>
             <option value="02_02_03_viz">Folyó víz</option>
             <option value="02_02_03_gaz">Vezetékes gáz</option>
             <option value="02_02_03_kozcsatorna">Közcsatorna</option>
 		</select>
+        </div>
+        
+        <div style="width:inherit" height="500" id="chart"></div>
+        <svg id="v-020203"></svg>
+        <script>
+            var donut = BarChart()
+            d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv", function(error, data) {
+                if (error) throw error;
+                d3.select('#chart')
+                    .datum(data) // bind data to the div
+                    .call(donut); // draw chart in div
+            });
+
+            d3.select("select")
+                .on("change", function(d) {
+                    var selected = d3.select("#d3-dropdown").node().value;
+
+                    var str;
+                    if (selected == "02_02_03_furdo") {
+                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv";
+                    } else if (selected == "02_02_03_wc") {
+                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_wc.csv";
+                    } else if (selected == "02_02_03_viz") {
+                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_viz.csv";
+                    } else if (selected == "02_02_03_gaz") {
+                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_gaz.csv";
+                    } else {
+                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_kozcsatorna.csv";
+                    }
+
+                    console.log(str)
+
+
+                    var donut = BarChart()
+                    d3.csv(str, function(error, data) {
+                        if (error) throw error;
+                        d3.select('#chart')
+                            .datum(data) // bind data to the div
+                            .call(donut); // draw chart in div
+                    });
+                })
+
+        </script>
     </div>
-
-    <div id="chart"></div>
-    <svg width="960" height="500"></svg>
-    
-    <script>
-        var donut = BarChart()
-
-        d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv", function(error, data) {
-            if (error) throw error;
-            d3.select('#chart')
-                .datum(data) // bind data to the div
-                .call(donut); // draw chart in div
-        });
-
-        d3.select("select")
-            .on("change", function(d) {
-                var selected = d3.select("#d3-dropdown").node().value;
-
-                var str;
-                if (selected == "02_02_03_furdo") {
-                    str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv";
-                } else if (selected == "02_02_03_wc") {
-                    str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_wc.csv";
-                } else if (selected == "02_02_03_viz") {
-                    str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_viz.csv";
-                } else if (selected == "02_02_03_gaz") {
-                    str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_gaz.csv";
-                } else {
-                    str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_kozcsatorna.csv";
-                }
-
-                console.log(str)
-
-
-                var donut = BarChart()
-                d3.csv(str, function(error, data) {
-                    if (error) throw error;
-                    d3.select('#chart')
-                        .datum(data) // bind data to the div
-                        .call(donut); // draw chart in div
-                });
-            })
-
-    </script>
-
-    <footer>
-        <p>Copyright 2018 Mandarin Data</p>
-    </footer>
 
 </body>
 
