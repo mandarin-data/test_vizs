@@ -12,13 +12,15 @@
 
 <body>
     <div id="main">
+        <!--   TODO: NE, tegyük bele az svg taget, pláne ne fix értékekkel, itt legyen egy div, egy egyedi id-vel     -->
         <svg width="960" height="500"></svg>
     </div>
     <script src="../../js/d3.v4.min.js"></script>
-
+    <!-- TODO: kerüljön ki külön fájlba a js-->
     <script>
-        // create the svg
-        var svg = d3.select("svg"),
+        // ne simán svg legyen a változó neve, hanem svg_vizuneve
+        var svg = d3.select("svg"), // ne az svg taghez kössük, hanem a fenti kommentben kért div-hez és .append('svg') módon adunk ahhoz a div-hez egy svg elemet itt d3-ban
+            // a width és height jöjjön be a window.innerWidth és window.innerHeight hívással, ne abszolút értékekkel
             margin = {
                 top: 20,
                 right: 20,
@@ -159,9 +161,11 @@
 
     </script>
 
+    <!--
     <footer>
         <p>Copyright 2018 Mandarin Data</p>
     </footer>
+-->
 
 </body>
 

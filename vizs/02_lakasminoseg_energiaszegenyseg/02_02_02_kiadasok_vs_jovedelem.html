@@ -1,9 +1,11 @@
 <!--helped by: http://bl.ocks.org/yuuniverse4444/8325617-->
 <!DOCTYPE html>
+<!-- TODO: ha a html-ben lang attrubútum van, akkor itt legyen az magyar-->
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <!--  TODO: cím nem kell  -->
     <title>Stacked Barchart</title>
     <link rel="stylesheet" href="../../css/02_02_stacked_barcharts.css">
 
@@ -12,19 +14,22 @@
 
 <body>
     <div id="main">
+        <!--   TODO: ne kerüljön a kódba svg tag, itt egy div kell egy egyedi id-vel ami utal a vizu nevére     -->
         <svg width="960" height="500"></svg>
     </div>
     <script src="../../js/d3.v4.min.js"></script>
 
+    <!--  TODO: NEM HASZNÁLUNK INLINE JS-T, tegyük ki a js könyvtárba egy fájlba  -->
     <script>
         // create the svg
-        var svg = d3.select("svg"),
+        var svg = d3.select("svg"), // nem az svg-t selectáljuk, hanem a fenti kommentben kért egyedi div-et, ahhoz .append('svg') hívással adjuk hozzá az svg elemet
             margin = {
                 top: 20,
                 right: 20,
                 bottom: 30,
                 left: 40
             },
+            // a width és height a window.innerWidth és window.innerHeight hívásokból jöjjön
             width = +svg.attr("width") - margin.left - margin.right,
             height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -158,10 +163,12 @@
             .attr("font-weight", "bold");
 
     </script>
+<!--
 
     <footer>
         <p>Copyright 2018 Mandarin Data</p>
     </footer>
+-->
 
 </body>
 
