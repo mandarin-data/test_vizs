@@ -36,7 +36,7 @@ var svg_020302 = d3.select("#topic02-vis03-part02").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_020302.left +", "+margin_020302.top+")")
 
-d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", type_020302, function (error, data) {
+d3.tsv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", type_020302, function (error, data) {
     if (error) throw error;
 
     var categories_020302 = data.columns.slice(1).map(function (name) {
