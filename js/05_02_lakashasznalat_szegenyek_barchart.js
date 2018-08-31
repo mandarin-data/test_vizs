@@ -1,4 +1,4 @@
-var svg_0502 = d3.select("#topic05-vis02"),
+var svg_0502 = d3.select("#topic05-vis02"), // div id-t selectálj, ahhoz .append('svg')
     margin_0502 = {
         top: 20,
         right: 20,
@@ -20,7 +20,7 @@ var y_0502 = d3.scaleLinear()
     .rangeRound([height_0502, 0]);
 
 var z_0502 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
+    .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
 d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_alberletben.tsv", function (d, i, columns) {
     for (var i_0502 = 1, n = columns.length; i_0502 < n; ++i_0502) d[columns[i_0502]] = +d[columns[i_0502]];
@@ -90,7 +90,7 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("font-weight", "bold")
         .attr("text-anchor", "start")
         .text("%");
-    
+
     svg_0502.selectAll(".yaxis text")
         .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em");
 
@@ -118,28 +118,28 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
             return d;
         });
 
-// Source: https://gist.github.com/guypursey/f47d8cd11a8ff24854305505dbbd8c07
-function wrap_0502(text, width) {
-  text.each(function() {
-    var text_0502 = d3.select(this),
-        words_0502 = text_0502.text().split(/\s+/).reverse(),
-        word_0502,
-        line_0502 = [],
-        lineNumber_0502 = 0,
-        lineHeight_0502 = 1.1, // ems
-        y_0502 = text_0502.attr("y"),
-        dy_0502 = parseFloat(text_0502.attr("dy")),
-        tspan_0502 = text_0502.text(null).append("tspan").attr("x", 0).attr("y", y_0502).attr("dy", dy_0502 + "em")
-    while (word_0502 = words_0502.pop()) {
-      line_0502.push(word_0502)
-      tspan_0502.text(line_0502.join(" "))
-      if (tspan_0502.node().getComputedTextLength() > width) {
-        line_0502.pop()
-        tspan_0502.text(line_0502.join(" "))
-        line_0502 = [word_0502]
-        tspan_0502 = text_0502.append("tspan").attr("x", 0).attr("y", y_0502).attr("dy", `${++lineNumber_0502 * lineHeight_0502 + dy_0502}em`).text(word_0502)
-      }
+    // Source: https://gist.github.com/guypursey/f47d8cd11a8ff24854305505dbbd8c07
+    function wrap_0502(text, width) {
+        text.each(function () {
+            var text_0502 = d3.select(this),
+                words_0502 = text_0502.text().split(/\s+/).reverse(),
+                word_0502,
+                line_0502 = [],
+                lineNumber_0502 = 0,
+                lineHeight_0502 = 1.1, // ems
+                y_0502 = text_0502.attr("y"),
+                dy_0502 = parseFloat(text_0502.attr("dy")),
+                tspan_0502 = text_0502.text(null).append("tspan").attr("x", 0).attr("y", y_0502).attr("dy", dy_0502 + "em")
+            while (word_0502 = words_0502.pop()) {
+                line_0502.push(word_0502)
+                tspan_0502.text(line_0502.join(" "))
+                if (tspan_0502.node().getComputedTextLength() > width) {
+                    line_0502.pop()
+                    tspan_0502.text(line_0502.join(" "))
+                    line_0502 = [word_0502]
+                    tspan_0502 = text_0502.append("tspan").attr("x", 0).attr("y", y_0502).attr("dy", `${++lineNumber_0502 * lineHeight_0502 + dy_0502}em`).text(word_0502)
+                }
+            }
+        })
     }
-  })
-}
 });

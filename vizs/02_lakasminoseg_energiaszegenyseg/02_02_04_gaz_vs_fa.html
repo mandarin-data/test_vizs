@@ -1,9 +1,11 @@
 <!--helped by: http://bl.ocks.org/yuuniverse4444/8325617-->
 <!DOCTYPE html>
+<!-- TODO: a nyelv legyen magyar -->
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <!--  TODO: cím nem kell  -->
     <title>Stacked Barchart</title>
     <link rel="stylesheet" href="../../css/02_02_stacked_barcharts.css">
 
@@ -12,19 +14,22 @@
 
 <body>
     <div id="main">
+<!--   TODO: az svg elem nem kell ide, pláne nem fix értékekkel, ide jön egy div egy egyedi id-vel     -->
         <svg width="960" height="500"></svg>
     </div>
     <script src="../../js/d3.v4.min.js"></script>
 
+<!--  TODO: a js szkriptek külön fájlba kerülnek a js mappában  -->
     <script>
         // create the svg
-        var svg = d3.select("svg"),
+        var svg = d3.select("svg"), // a változó neve legyen svg_vizu_neve, ne az svg elemet selectálja, hanem #divid-t és .append('svg') hívással adjuk hozzá az svg-t
             margin = {
                 top: 20,
                 right: 20,
                 bottom: 30,
                 left: 40
             },
+            // a width és height értéke a window.innerWith és window.innerHeight hívásokból jön
             width = +svg.attr("width") - margin.left - margin.right,
             height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -159,9 +164,11 @@
 
     </script>
 
+<!--
     <footer>
         <p>Copyright 2018 Mandarin Data</p>
     </footer>
+-->
 
 </body>
 

@@ -1,4 +1,4 @@
-var svg2 = d3.select("#vis-2"),
+var svg2 = d3.select("#vis-2"), // a div id-t selectáljuk, ahhot .append('svg')
     margin = {
         top: 20,
         right: 20,
