@@ -1,0 +1,53 @@
+{
+ "name": "90 napon túli késedelmes hitelek",
+
+   "children": [
+    {
+     "name": "lakáshitel",
+     "children": [
+      {"name": "forint", "value": 126311},
+      {"name": "deviza", "value": 1067}
+     ]
+    },
+    {
+     "name": "szabad felhasználású jelzáloghitel",
+     "children": [
+      {"name": "forint", "value": 180155},
+      {"name": "deviza", "value": 5349}
+     ]
+    },
+    {
+     "name": "személyi hitel",
+     "children": [
+      {"name": "forint", "value": 19673},
+      {"name": "deviza", "value": 150}
+	 ]
+    },
+	    {
+     "name": "gépjárműhitel",
+     "children": [
+      {"name": "forint", "value": 40203},
+      {"name": "deviza", "value": 92}
+	 ]
+    },
+	{
+     "name": "folyószámlahitel",
+     "children": [
+	    {"name": "forint", "value": 24338}
+	 ]
+    },
+	   	{
+     "name": "áruvásárlási és egyéb hitel",
+     "children": [
+	    {"name": "forint", "value": 2580}
+		 ]
+    },	   	
+	   {
+     "name": "egyéb hitel",
+     "children": [
+	    {"name": "forint", "value": 8472}
+			 ]
+    }	  	 
+	     
+   ]
+}
