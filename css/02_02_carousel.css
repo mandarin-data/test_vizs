@@ -1,3 +1,8 @@
+/*TODO:
+- a két nyilat lementeni és saját oldalról hívni
+- background hivatkozások törlése
+- abszolút értékek átnézése
+*/
 .carousel-wrapper{
   height:100%;
   position:relative;
