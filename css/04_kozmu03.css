@@ -1,0 +1,67 @@
+
+.all_text {
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	fill: #000;
+	color: #666;
+	font-weight: normal;
+}
+
+.slice {
+	cursor: pointer;
+}
+
+.slice .main-arc {
+	stroke: #000000;
+	stroke-width: 0.8px;
+}
+
+.slice .hidden-arc {
+	fill: none;
+}
+
+.slice text {
+	pointer-events: none;
+	dominant-baseline: middle;
+	text-anchor: middle;
+}
+
+.labjegyzet_kozmu03{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	fill: #000;
+	color: #666;
+}
+
+.cim_kozmu03{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	fill: #000;
+	color: #666;
+}
+
+.kozmu03_forras{
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  	font-style: italic;
+	font-weight: lighter;
+  	text-decoration: underline;	
+	fill: #000;
+	color: #666;
+}
+
+.tooltip_kozmu03{
+	background-color: #FFFFFF;
+	color: #666;
+		box-sizing: border-box;
+	background-color: #FFFFFF;
+	position: absolute;
+	line-height: 1;
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding: 4px;
+	border: 0.5px solid #666;
+	color: #000000;
+	 white-space: pre-line;
+
+}

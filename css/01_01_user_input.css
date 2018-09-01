@@ -1,38 +1,52 @@
-
 .form-style-01-01{
-    max-width: 600px;
+    max-width: 1000px;
     padding: 6px 6px 6px 6px;
-    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
+
+
 .form-style-01-01 label{
     display: block;
-    margin: 0px 0px 6px 0px;
-    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;; 
+    margin: 6px 0px 6px 0px;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
     color: #333;
     margin-left: 0px;
     text-align: start;
     height: 31px;
     line-height: normal; 
 }
+
+#myForm{
+	    margin: 0px 0px 6px 0px;
+}
+
+#myInput2{
+		    margin: 0px 0px 0px 0px;
+
+}
+
 .form-style-01-01 label > span{
-    width: 180px;
-    font-weight: bold;
+    width: 570px;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
+    font-weight: 500;
     float: left;
+    color: #333;
     padding-top: 8px;
-    padding-right: 5px;
+    padding-right: 0px;
 }
 .form-style-01-01 span.required{
     color:red;
 }
 
 .form-style-01-01 input.input-field-01-01{
-    width: 25%; 
+    width: 20%; 
 }
 .form-style-01-01 input.input-field-01-01{
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
     -moz-box-shadow: 1px 1px 4px #EBEBEB;
     -webkit-box-shadow: 1px 1px 4px #EBEBEB;
     border-radius: 3px;
@@ -42,22 +56,21 @@
     outline: none;
 }
 .form-style-01-01 .input-field-01-01:focus{
-    border: 1px solid #C2C2C2;
-    box-shadow: 2px 1px 4px #EBEBEB;
+    border: 1px solid #0C0;
 }
 
 
 .button{
     background: #385988;
-    padding: 8px 15px 8px 15px;
+    padding: 8px 12px 8px 12px;
     border: none;
     color: #fff;
-	font: "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
+	font: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 	
 .button:hover, 
 .button:hover{
-	background: #2e4970;
+	background: #00AFD7;
 	box-shadow:none;
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
@@ -70,46 +83,54 @@
 }
 
 .bar:hover {
-  fill: #2e4970;
+  fill: #00AFD7;
 }
 
-.axis {
-  font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+.axis_userinput {
+  font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
-
-.axis path,
-.axis line {
+.axis_userinput path,
+.axis_userinput line {
   fill: none;
-  stroke: #606060;
+  stroke: #666;
   shape-rendering: crispEdges;
 }
 
 
-.label{
-  font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
-
-}
-
-.toolTip {
+div#toolTip {
 	box-sizing: border-box;
 	background-color: #FFFFFF;
 	position: absolute;
-	line-height: 0.5;
-	font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
+	line-height: 1;
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
-	border: 0.5px solid #C2C2C2;
-}	
-	
-	
-footer#footer-0101 {
-	font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;;
-
+	border: 0.5px solid #666;
+	color: #000000;
 }	
 
-/* Vis container style */
-div#vis-0101{
-	height: 450px;
-	width: 960px;
+
+line {
+    stroke: #666;
+}
+
+path.marker {
+    fill: #666;
+}
+
+.label_01_01{
+	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+text#userinput_forras{
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	  font-weight: normal;
+  font-style: italic;
+  text-decoration: underline;	
+
+}
+
+text#ytitle{
+		font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
