@@ -1,32 +1,32 @@
 // create the svg
-var margin = {
+var margin_020204 = {
         top: 20,
         right: 20,
         bottom: 30,
         left: 40
     },
-    width = d3.select("#vis-020204").node().getBoundingClientRect().width- margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
+    width_020204 = d3.select("#vis-020204").node().getBoundingClientRect().width- margin_020204.left - margin_020204.right,
+    height_020204 = 450 - margin_020204.top - margin_020204.bottom;
 
 
-var svg = d3.select("#vis-020204").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
+var svg_020204 = d3.select("#vis-020204").append("svg")
+            .attr("width", width_020204 + margin_020204.left + margin_020204.right)
+            .attr("height", height_020204 + margin_020204.top + margin_020204.bottom)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+            .attr("transform", "translate(" + margin_020204.left + "," + margin_020204.top + ")");
 
 // set x scale
-var x = d3.scaleBand()
-    .rangeRound([0, width - 230])
+var x_020204 = d3.scaleBand()
+    .rangeRound([0, width_020204 - 230])
     .paddingInner(0.05)
     .align(0.1);
 
 // set y scale
-var y = d3.scaleLinear()
-    .rangeRound([height, 0]);
+var y_020204 = d3.scaleLinear()
+    .rangeRound([height_020204, 0]);
 
 // set the colors
-var z = d3.scaleOrdinal()
+var z_020204 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
 // load the csv and create the chart
@@ -37,22 +37,22 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
 }, function (error, data) {
     if (error) throw error;
 
-    var keys = data.columns.slice(1);
+    var keys_020204 = data.columns.slice(1);
 
-    x.domain(data.map(function (d) {
+    x_020204.domain(data.map(function (d) {
         return d.Tized;
     }));
-    y.domain([0, d3.max(data, function (d) {
+    y_020204.domain([0, d3.max(data, function (d) {
         return d.total;
     })]).nice();
-    z.domain(keys);
+    z_020204.domain(keys_020204);
 
-    svg.append("g")
+    svg_020204.append("g")
         .selectAll("g")
-        .data(d3.stack().keys(keys)(data))
+        .data(d3.stack().keys(keys_020204)(data))
         .enter().append("g")
         .attr("fill", function (d) {
-            return z(d.key);
+            return z_020204(d.key);
         })
         .selectAll("rect")
         .data(function (d) {
@@ -60,64 +60,64 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         })
         .enter().append("rect")
         .attr("x", function (d) {
-            return x(d.data.Tized);
+            return x_020204(d.data.Tized);
         })
         .attr("y", function (d) {
-            return y(d[1]);
+            return y_020204(d[1]);
         })
         .attr("height", function (d) {
-            return y(d[0]) - y(d[1]);
+            return y_020204(d[0]) - y_020204(d[1]);
         })
-        .attr("width", x.bandwidth())
+        .attr("width", x_020204.bandwidth())
         .on("mouseover", function () {
-            tooltip.style("display", null);
+            tooltip_020204.style("display", null);
         })
         .on("mouseout", function () {
-            tooltip.style("display", "none");
+            tooltip_020204.style("display", "none");
         })
         .on("mousemove", function (d) {
             console.log(d);
-            var xPosition = d3.mouse(this)[0] - 5;
-            var yPosition = d3.mouse(this)[1] - 5;
-            tooltip.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-            tooltip.select("text").text((((d[1] - d[0]) * 100).toFixed(1)) + "%");
+            var xPosition_020204 = d3.mouse(this)[0] - 5;
+            var yPosition_020204 = d3.mouse(this)[1] - 5;
+            tooltip_020204.attr("transform", "translate(" + xPosition_020204 + "," + yPosition_020204 + ")");
+            tooltip_020204.select("text").text((((d[1] - d[0]) * 100).toFixed(1)) + "%");
         });
 
-    svg.append("g")
+    svg_020204.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
+        .attr("transform", "translate(0," + height_020204 + ")")
+        .call(d3.axisBottom(x_020204));
 
-    svg.append("g")
+    svg_020204.append("g")
         .attr("class", "axis")
-        .call(d3.axisLeft(y).ticks(null, "%"))
+        .call(d3.axisLeft(y_020204).ticks(null, "%"))
         .append("text")
         .attr("x", 2)
-        .attr("y", y(y.ticks().pop()) + 0.5)
+        .attr("y", y_020204(y_020204.ticks().pop()) + 0.5)
         .attr("dy", "0.32em")
         .attr("fill", "#000")
         .attr("font-weight", "bold")
         .attr("text-anchor", "start");
 
-    var legend = svg.append("g")
+    var legend_020204 = svg_020204.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
         .attr("text-anchor", "start")
         .selectAll("g")
-        .data(keys.slice().reverse())
+        .data(keys_020204.slice().reverse())
         .enter().append("g")
         .attr("transform", function (d, i) {
             return "translate(0," + i * 20 + ")";
         });
 
-    legend.append("rect")
-        .attr("x", width - 210)
+    legend_020204.append("rect")
+        .attr("x", width_020204 - 210)
         .attr("width", 18)
         .attr("height", 18)
-        .attr("fill", z);
+        .attr("fill", z_020204);
 
-    legend.append("text")
-        .attr("x", width-185)
+    legend_020204.append("text")
+        .attr("x", width_020204-185)
         .attr("y", 9.5)
         .attr("dy", "0.32em")
         .text(function (d) {
@@ -126,17 +126,17 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
 });
 
 // Prep the tooltip bits, initial display is hidden
-var tooltip = svg.append("g")
+var tooltip_020204 = svg_020204.append("g")
     .attr("class", "tooltip")
     .style("display", "none");
 
-tooltip.append("rect")
+tooltip_020204.append("rect")
     .attr("width", 60)
     .attr("height", 20)
     .attr("fill", "white")
     .style("opacity", 0.5);
 
-tooltip.append("text")
+tooltip_020204.append("text")
     .attr("x", 30)
     .attr("dy", "1.2em")
     .style("text-anchor", "middle")

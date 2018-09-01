@@ -5,7 +5,7 @@ var margin_020202 = {
         bottom: 30,
         left: 40
     },
-    width_020202 = d3.select("#vis-020202").node().getBoundingClientRect().width_020202 - margin_020202.left - margin_020202.right,
+    width_020202 = d3.select("#vis-020202").node().getBoundingClientRect().width - margin_020202.left - margin_020202.right,
     height_020202 = 450 - margin_020202.top - margin_020202.bottom;
 
 
@@ -49,7 +49,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
 
     svg_020202.append("g")
         .selectAll("g")
-        .data(d3.stack().keys_020202(keys_020202)(data))
+        .data(d3.stack().keys(keys_020202)(data))
         .enter().append("g")
         .attr("fill", function (d) {
             return z_020202(d.key);
@@ -86,7 +86,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
     svg_020202.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(0," + height_020202 + ")")
-        .call(d3.axisBottom(x));
+        .call(d3.axisBottom(x_020202));
 
     svg_020202.append("g")
         .attr("class", "axis")
