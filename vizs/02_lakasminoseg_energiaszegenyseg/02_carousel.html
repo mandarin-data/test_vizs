@@ -1,29 +1,38 @@
+<html>
+
 <head>
     <meta charset="UTF-8">
     <title>Stacked Barchart</title>
     <link rel="stylesheet" href="../../css/02_02_carousel.css">
 
 </head>
-<div class="slider">
-    <input type="radio" name="slider" title="slide1" checked="checked" class="slider__nav" />
-    <input type="radio" name="slider" title="slide2" class="slider__nav" />
-    <input type="radio" name="slider" title="slide3" class="slider__nav" />
-    <input type="radio" name="slider" title="slide4" class="slider__nav" />
-    <div class="slider__inner">
-        <div class="slider__contents">
-            <iframe src="02_02_01_rezsicsokkentes.html" with="300%" height="200%" frameBorder="0" scrolling="no"></iframe>
+
+<body>
+    <div class="carousel-wrapper">
+        <span id="item-1"></span>
+        <span id="item-2"></span>
+        <span id="item-3"></span>
+        <div class="carousel-item item-1">
+            <h2>Vizu1</h2>
+            <iframe src="02_02_01_rezsicsokkentes.html" scrolling="no" frameborder="0" width="100%" height="70%"></iframe>
+            <a class="arrow arrow-prev" href="#item-3"></a>
+            <a class="arrow arrow-next" href="#item-2"></a>
         </div>
-        <div class="slider__contents"><i class="slider__image fa fa-newspaper-o"></i>
-            <h2 class="slider__caption">newspaper-o</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+
+        <div class="carousel-item item-2">
+            <h2>Vizu 2</h2>
+            <iframe src="02_02_02_kiadasok_vs_jovedelem.html" scrolling="no" frameborder="0" width="100%" height="70%"></iframe>
+            <a class="arrow arrow-prev" href="#item-1"></a>
+            <a class="arrow arrow-next" href="#item-3"></a>
         </div>
-        <div class="slider__contents"><i class="slider__image fa fa-television"></i>
-            <h2 class="slider__caption">television</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
-        </div>
-        <div class="slider__contents"><i class="slider__image fa fa-diamond"></i>
-            <h2 class="slider__caption">diamond</h2>
-            <p class="slider__txt">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At cupiditate omnis possimus illo quos, corporis minima!</p>
+
+        <div class="carousel-item item-3">
+            <h2>Vizu 3</h2>
+            <iframe src="02_02_03_komfort.html" scrolling="no" frameborder="0" width="100%" height="70%"></iframe>
+            <a class="arrow arrow-prev" href="#item-2"></a>
+            <a class="arrow arrow-next" href="#item-1"></a>
         </div>
     </div>
-</div>
+</body>
+
+</html>
