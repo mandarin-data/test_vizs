@@ -98,7 +98,43 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .attr("fill", "#000")
         .attr("font-weight", "bold")
         .attr("text-anchor", "start");
+    
+    svg_020204.append('text')
+        .attr('id', '020204_title')
+        .attr('x', ((width_020204  - 230) / 2))
+        .attr('y', -5)
+        .attr("text-anchor", "middle")
+        .text("A lakások megoszlása a fűtés módja szerint (%)");
 
+    svg_020204.append('text')
+        .attr("id", "020202_forras")
+        .attr("x", width_020204  - 230)
+        .attr("y", height_020204 + (margin_020204.bottom))
+        .attr("text-anchor", "end")
+        .style('font-size', "12px")
+        .text("Adatok forrása: nincs");
+
+    
+    // Prep the tooltip bits, initial display is hidden
+    var tooltip_020204 = svg_020204.append("g")
+        .attr("class", "tooltip_020204")
+        .style("display", "none");
+
+    tooltip_020204.append("rect")
+        .attr("width", 60)
+        .attr("height", 20)
+        .attr("fill", "white")
+        .attr("stroke", "#666")
+        .attr("stroke-width", "0.5px");
+
+
+    tooltip_020204.append("text")
+        .attr("x", 30)
+        .attr("dy", "1.2em")
+        .style("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .attr("font", "sans-serif");
+    
     var legend_020204 = svg_020204.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
         .attr("font-size", 10)
@@ -117,6 +153,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .attr("fill", z_020204);
 
     legend_020204.append("text")
+        .attr("class", "legend_020204")
         .attr("x", width_020204-185)
         .attr("y", 9.5)
         .attr("dy", "0.32em")
@@ -125,20 +162,3 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         });
 });
 
-// Prep the tooltip bits, initial display is hidden
-var tooltip_020204 = svg_020204.append("g")
-    .attr("class", "tooltip")
-    .style("display", "none");
-
-tooltip_020204.append("rect")
-    .attr("width", 60)
-    .attr("height", 20)
-    .attr("fill", "white")
-    .style("opacity", 0.5);
-
-tooltip_020204.append("text")
-    .attr("x", 30)
-    .attr("dy", "1.2em")
-    .style("text-anchor", "middle")
-    .attr("font-size", "12px")
-    .attr("font-weight", "bold");
