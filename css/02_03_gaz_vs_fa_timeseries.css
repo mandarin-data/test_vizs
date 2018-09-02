@@ -10,6 +10,14 @@ body {
     font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
+/*.title {
+    font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+}*/
+
+.data.source {
+    font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+}
+
 .axis path,
 .axis line {
     fill: none;

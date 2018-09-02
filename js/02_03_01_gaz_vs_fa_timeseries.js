@@ -17,7 +17,7 @@ var scaleY_020301 = d3.scaleLinear()
     .range([h_020301, 0]);
 
 var color_020301 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A, #00AFD7, #C4D600"]);
 
 var xAxis_020301 = d3.axisBottom()
     .scale(scaleX_020301);
@@ -33,7 +33,6 @@ var line_020301 = d3.line()
 var svg_020301 = d3.select("#topic02-vis03-part01").append("svg")
     .attr("width", w_020301 + margin_020301.left + margin_020301.right)
     .attr("height", h_020301 + margin_020301.top + margin_020301.bottom)
-    // .style("background-color", "lightGreen")
     .append("g")
     .attr("transform", "translate("+margin_020301.left +", "+margin_020301.top+")")
 
@@ -55,7 +54,10 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_hasznala
 scaleX_020301.domain(d3.extent(data, function(d){
   return d.date;
 }));
-scaleY_020301.domain([0, 1]);
+scaleY_020301.domain([
+    0,
+    d3.max(categories_020301, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.3; }); })
+  ]);
 
 console.log("categories_020301", categories_020301);
 
@@ -73,7 +75,6 @@ legend_020301.append("rect")
     .style("fill", function(d) {return color_020301(d.name);} );
 
 legend_020301.append("text")
-    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em")
     .attr("x", w_020301-105)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
@@ -81,9 +82,7 @@ legend_020301.append("text")
 svg_020301.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0, "+h_020301+")")
-    .call(xAxis_020301)
-    .selectAll(".tick text")
-    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em");
+    .call(xAxis_020301);
 
 svg_020301.append("g")
     .attr("class", "y axis")
@@ -94,11 +93,22 @@ svg_020301.append("g")
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
-    .text("Adott fűtési módot használó háztartások aránya");
+    .text("Adott fűtési módot használó háztartások aránya (%)");
+    
+/*svg_020301.append("text")
+    .attr("class", "title")
+    .attr("x", (w_020301 / 2))             
+    .attr("y", 0 - (margin_020301.top / 2))
+    .attr("text-anchor", "middle")
+    .text("Fűtési módok használatának aránya 2011-2016");*/
 
-svg_020301.selectAll(".y.axis text")
-    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em");
-
+svg_020301.append("text")
+    .attr("class", "data source")
+    .attr("x", w_020301 - 40)
+    .attr("y", h_020301 + 40)
+    .style("text-anchor", "middle")
+    .text("Adatok forrása: nincs");
+    
 var category_020301 = svg_020301.selectAll(".category")
     .data(categories_020301)
     .enter().append("g")
@@ -133,8 +143,7 @@ mousePerLine_020301.append("circle")
     .style("opacity", "0");
 
 mousePerLine_020301.append("text")
-    .attr("transform", "translate(10, 3)")
-    .attr("font-size", (w_020301 * 0.0005 + 0.5) + "em");
+    .attr("transform", "translate(10, 3)");
 
 mouseG_020301.append("rect")
     .attr("width", w_020301)

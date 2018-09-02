@@ -17,7 +17,7 @@ var scaleY_020302 = d3.scaleLinear()
     .range([h_020302, 0]);
 
 var color_020302 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A, #00AFD7, #C4D600"]);
 
 var xAxis_020302 = d3.axisBottom()
     .scale(scaleX_020302);
@@ -36,7 +36,7 @@ var svg_020302 = d3.select("#topic02-vis03-part02").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_020302.left +", "+margin_020302.top+")")
 
-d3.tsv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", type_020302, function (error, data) {
+d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltozas_timeseries.tsv", type_020302, function (error, data) {
     if (error) throw error;
 
     var categories_020302 = data.columns.slice(1).map(function (name) {
@@ -55,8 +55,8 @@ scaleX_020302.domain(d3.extent(data, function(d){
   return d.date;
 }));
 scaleY_020302.domain([
-    d3.min(categories_020302, function(c) { return d3.min(c.values, function(d) { return d.ydata * 1.15; }); }),
-    d3.max(categories_020302, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.15; }); })
+    d3.min(categories_020302, function(c) { return d3.min(c.values, function(d) { return d.ydata * 1.3; }); }),
+    d3.max(categories_020302, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.3; }); })
   ]);
     
 console.log("categories_020302", categories_020302);
@@ -75,7 +75,6 @@ legend_020302.append("rect")
     .style("fill", function(d) {return color_020302(d.name);} );
 
 legend_020302.append("text")
-    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em")
     .attr("x", w_020302-180)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
@@ -83,9 +82,7 @@ legend_020302.append("text")
 svg_020302.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0, "+h_020302+")")
-    .call(xAxis_020302)
-    .selectAll(".tick text")
-    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em");
+    .call(xAxis_020302);
 
 svg_020302.append("g")
     .attr("class", "y axis")
@@ -96,11 +93,32 @@ svg_020302.append("g")
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
-    .text("Árváltozás aránya 2010-hez képest");
+    .text("Árváltozás 2010-hez képest (%)");
 
-svg_020302.selectAll(".y.axis text")
-    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em");
+/*svg_020302.append("text")
+    .attr("class", "title")
+    .attr("x", (w_020302 / 2))             
+    .attr("y", 0 - (margin_020302.top / 2))
+    .attr("text-anchor", "middle")
+    .text("Fa és gáz árváltozása 2010-2017");*/
+
+svg_020302.append("text")
+    .attr("class", "data source")
+    .attr("x", w_020302 - 40)
+    .attr("y", h_020302 + 40)
+    .style("text-anchor", "middle")
+    .text("Adatok forrása: nincs");
     
+svg_020302.append("line")
+    .attr("x1", 0)
+    .attr("y1", scaleY_020302(0))
+    .attr("x2", w_020302)
+    .attr("y2", scaleY_020302(0))
+    .style("stroke-width", 0.5)
+    .style("stroke", "black")
+    .style("fill", "none")
+    .style("stroke-dasharray", ("3, 3"));
+
 var category_020302 = svg_020302.selectAll(".category")
     .data(categories_020302)
     .enter().append("g")
@@ -135,8 +153,7 @@ mousePerLine_020302.append("circle")
     .style("opacity", "0");
 
 mousePerLine_020302.append("text")
-    .attr("transform", "translate(10, 3)")
-    .attr("font-size", (w_020302 * 0.0005 + 0.5) + "em");
+    .attr("transform", "translate(10, 3)");
 
 mouseG_020302.append("rect")
     .attr("width", w_020302)
