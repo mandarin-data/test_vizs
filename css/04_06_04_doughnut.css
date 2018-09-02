@@ -1,47 +1,51 @@
-#chart {
-  height: 360px;
-  position: relative;
-  width: 360px;
-}
-
-/* Vis container style */
-div#chart-doughnut-040604{
-	height: 360px;
-	width: 360px;
-}
-
-div#chart-doughnut-040604 p{
-	font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
-}
-
-footer#footer-doughnut {
-	font: 11px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
-}	
-
 .legend {
-	font: 11px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
-.label {
-	font: 11px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+text#doughnut_title{
+  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  font-weight: normal;
 }
 
-.tooltip {
-	background: #eee;
-	box-shadow: 0 0 5px #999999;
-	color: #333;
-	display: none;
-	font-size: 12px;
-	left: 130px;
-	
-	padding: 4px;
-	position: absolute;
-	height: auto;
-	
-	text-align: center;
-	z-index: 10;
+text#doughnut_forras{
+  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  font-style: italic;
+  text-decoration: underline;	
+
+}
+
+text#doughnut_labjegyzet{
+  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
+
+.legend.d_rect {
+  cursor: pointer;
+  stroke-width: 2;
 }
 
 .disabled {
   fill: transparent !important;
+}
+
+
+div#d_tooltip {
+	box-sizing: border-box;
+	background-color: #FFFFFF;
+	position: absolute;
+	line-height: 1;
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding: 4px;
+	border: 0.5px solid #666;
+	color: #000000;
+}
+
+span#legend_d{
+	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+        color: #000000;
+        fill: #000000;
+
 }

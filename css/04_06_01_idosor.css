@@ -38,3 +38,11 @@ svg {
   position: absolute;
 }
 
+text#idosor_forras{
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	  font-weight: normal;
+  font-style: italic;
+  text-decoration: underline;	
+
+}
+

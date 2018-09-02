@@ -1,12 +1,12 @@
 var chartTooltip_doughnut = d3.select('#chart-doughnut-040604')
     .append('div')
-    .attr('class', 'tooltip');
+    .attr('class', 'd_tooltip');
 
 chartTooltip_doughnut.append('div')
-    .attr('class', 'label');
+    .attr('class', 'd_label');
 
 chartTooltip_doughnut.append('div')
-    .attr('class', 'percent');
+    .attr('class', 'd_percent');
 
 
 d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_doughnut) {
@@ -14,6 +14,7 @@ d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_d
         d.percent = +d.percent;
         d.enabled = true;
     });
+
 
     var pie_doughnut = d3.pie()
         .value(function (d) {
@@ -33,7 +34,7 @@ d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_d
             this._current = d;
         });
 
-    var legendRectSize_doughnut = 18;
+    var legendRectSize_doughnut = doughnutWidth/30;
 
     var legendSpacing_doughnut = 4;
 
@@ -45,14 +46,14 @@ d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_d
         .attr('transform', function (d, i) {
             var height_doughnut = legendRectSize_doughnut + legendSpacing_doughnut;
             var offset_doughnut = height_doughnut * color_doughnut.domain().length / 2;
-            var horz_doughnut = -2 * legendRectSize_doughnut;
+            var horz_doughnut = -5 * legendRectSize_doughnut;
             var vert_doughnut = i * height_doughnut - offset_doughnut;
             return 'translate(' + horz_doughnut + ',' + vert_doughnut + ')';
         });
 
 
-
     legend_doughnut.append('rect')
+        .attr('class', 'd_rect')
         .attr('width', legendRectSize_doughnut)
         .attr('height', legendRectSize_doughnut)
         .style('fill', color_doughnut)
@@ -102,8 +103,8 @@ d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_d
 
     path_doughnut.on('mouseover', function (d) {
 
-        chartTooltip_doughnut.select('.label').html(d.data.label);
-        chartTooltip_doughnut.select('.percent').html(parseFloat(d.data.percent) + 'M Ft');
+        chartTooltip_doughnut.select('#d_label').html(d.data.label);
+        chartTooltip_doughnut.select('#d_percent').html(parseFloat(d.data.percent) + 'M Ft');
         chartTooltip_doughnut.style('display', 'block');
     });
     path_doughnut.on('mouseout', function () {
@@ -111,16 +112,27 @@ d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_d
     });
 
 
-    path_doughnut.on('mousemove', function (d) {
-        chartTooltip_doughnut.style('top', (d3.event.pageY + 10) + 'px')
-            .style('left', (d3.event.pageX + 10) + 'px');
+    path_doughnut.on('mousemove', function(d) {
+		chartTooltip_doughnut
+			.style("left", d3.mouse(this)[0]+ (d3.select("#chart-doughnut-040604").node().getBoundingClientRect().width)/2 - 30 + "px")
+			.style("top", d3.mouse(this)[1] + 195 + "px");
     });
 
 
 });
 
-var doughnutWidth = 360;
-var doughnutHeight = 360;
+var margin = {
+	top: 50,
+	right: 100,
+	bottom: 50,
+	left: 100
+},
+	userInputWidth = d3.select("#chart-doughnut-040604").node().getBoundingClientRect().width - margin.left - margin.right,
+	userInputHeight = d3.select("#chart-doughnut-040604").node().getBoundingClientRect().width - margin.top - margin.bottom;
+
+
+var doughnutWidth = userInputWidth;
+var doughnutHeight = userInputHeight;
 var radius_doughnut = Math.min(doughnutWidth, doughnutHeight) / 2;
 var color_doughnut = d3.scaleOrdinal().range(["#A4343A", "#43B02A", "#FF671F", "#888B8D", "#385988"]);
 
@@ -132,8 +144,33 @@ var svgdoughnut = d3.select('#chart-doughnut-040604')
     .attr('transform', 'translate(' +
         (doughnutWidth / 2) + ',' + (doughnutHeight / 2) + ')');
 
-var donutWidth = 75;
+svgdoughnut.append('text')
+    .attr("id", "doughnut_title")
+    .attr('x', 0)
+    .attr('y', (-doughnutHeight) / 2 + margin.top / 2)
+    .attr("text-anchor", "middle")
+    .style('font-size', doughnutWidth / 27)
+    .text("60 napon túli hátralékos lakossági fogyasztók hátraléka (Mft)");
 
+svgdoughnut.append('text')
+    .attr("id", "doughnut_forras")
+    .attr('x', 0)
+    .attr('y', (+doughnutHeight) / 2 - margin.bottom / 2)
+    .attr("text-anchor", "middle")
+    .style('font-size', doughnutWidth / 30)
+    .text("Adatok forrása: MEKH")
+    ;
+
+
+svgdoughnut.append('text')
+    .attr("id", "doughnut_labjegyzet")
+    .attr('x', 0)
+    .attr('y', (+doughnutHeight) / 2 - margin.bottom / 10)
+    .attr("text-anchor", "middle")
+    .style('font-size', doughnutWidth / 30)
+    .text("A legend-re kattintva szűrhet!");
+
+var donutWidth = userInputWidth/5;
 var arc_doughnut = d3.arc()
-    .innerRadius(radius_doughnut - donutWidth) // NEW
-    .outerRadius(radius_doughnut);
+	.innerRadius(radius_doughnut - donutWidth)
+	.outerRadius(radius_doughnut);
