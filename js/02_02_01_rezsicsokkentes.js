@@ -71,17 +71,17 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
         })
         .attr("width", x_020201.bandwidth())
         .on("mouseover", function () {
-            tooltip.style("display", null);
+            tooltip_020201.style("display", null);
         })
         .on("mouseout", function () {
-            tooltip.style("display", "none");
+            tooltip_020201.style("display", "none");
         })
         .on("mousemove", function (d) {
             console.log(d);
             var xPosition_020201 = d3.mouse(this)[0] - 5;
             var yPosition_020201 = d3.mouse(this)[1] - 5;
-            tooltip.attr("transform", "translate(" + xPosition_020201 + "," + yPosition_020201 + ")");
-            tooltip.select("text").text(((d[1] - d[0])).toFixed(1));
+            tooltip_020201.attr("transform", "translate(" + xPosition_020201 + "," + yPosition_020201 + ")");
+            tooltip_020201.select("text").text(((d[1] - d[0])).toFixed(1));
         });
 
     svg_020201.append("g")

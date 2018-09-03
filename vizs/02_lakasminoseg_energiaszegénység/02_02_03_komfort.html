@@ -17,51 +17,53 @@
 <body>
 
     <div id="vis-020203">
-        <div class="form-style-2">
+        <div class="form-style-2-k">
             <select class="select-field" id="d3-dropdown">
-            <option value="02_02_03_furdo">Fürdőszoba</option>
-            <option value="02_02_03_wc">WC</option>
-            <option value="02_02_03_viz">Folyó víz</option>
-            <option value="02_02_03_gaz">Vezetékes gáz</option>
-            <option value="02_02_03_kozcsatorna">Közcsatorna</option>
+            <option value="02_02_03_furdo">Fürdőszobával rendelkezők aránya</option>
+            <option value="02_02_03_wc">WC-vel rendelkezők aránya</option>
+            <option value="02_02_03_viz">Folyó vízzel rendelkezők aránya</option>
+            <option value="02_02_03_gaz">Vezetékes gázzal rendelkezők aránya</option>
+            <option value="02_02_03_kozcsatorna">Közcsatornával rendelkezők aránya</option>
 		</select>
+            
+ <br>
         </div>
-        
+         <div id="chartkomf"></div>
         <script>
-            var donut = BarChart()
-            d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv", function(error, data) {
-                if (error) throw error;
-                d3.select('#chart')
-                    .datum(data) // bind data to the div
-                    .call(donut); // draw chart in div
+            var komf = BarChartKomf()
+            d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv", function(errork, datak) {
+                if (errork) throw error;
+                d3.select('#chartkomf')
+                    .datum(datak) // bind data to the div
+                    .call(komf); // draw chart in div
             });
 
             d3.select("select")
                 .on("change", function(d) {
-                    var selected = d3.select("#d3-dropdown").node().value;
+                    var selectedk = d3.select("#d3-dropdown").node().value;
 
-                    var str;
-                    if (selected == "02_02_03_furdo") {
-                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv";
-                    } else if (selected == "02_02_03_wc") {
-                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_wc.csv";
-                    } else if (selected == "02_02_03_viz") {
-                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_viz.csv";
-                    } else if (selected == "02_02_03_gaz") {
-                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_gaz.csv";
+                    var strk;
+                    if (selectedk == "02_02_03_furdo") {
+                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv";
+                    } else if (selectedk == "02_02_03_wc") {
+                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_wc.csv";
+                    } else if (selectedk == "02_02_03_viz") {
+                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_viz.csv";
+                    } else if (selectedk == "02_02_03_gaz") {
+                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_gaz.csv";
                     } else {
-                        str = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_kozcsatorna.csv";
+                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_kozcsatorna.csv";
                     }
 
-                    console.log(str)
+                    console.log(strk)
 
 
-                    var donut = BarChart()
-                    d3.csv(str, function(error, data) {
-                        if (error) throw error;
-                        d3.select('#chart')
-                            .datum(data) // bind data to the div
-                            .call(donut); // draw chart in div
+                    var komf = BarChartKomf()
+                    d3.csv(strk, function(errork, datak) {
+                        if (errork) throw error;
+                        d3.select('#chartkomf')
+                            .datum(datak) // bind data to the div
+                            .call(komf); // draw chart in div
                     });
                 })
 
