@@ -1,0 +1,113 @@
+/* Dropdown style */
+.form-style-2{
+	max-height:20px;
+	max-width: 500px;
+	padding: 6px 6px 6px 0px;
+	font: 13px 	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+;
+}
+
+.form-style-2 label{
+	display: block;
+	margin: 0px 0px 0px 0px;
+}
+.form-style-2 label > span{
+	width: 500px;
+	font-weight: bold;
+	float: left;
+	padding-top: 8px;
+	padding-right: 5px;
+}
+.form-style-2 span.required{
+	color:red;
+}
+
+.select-field{
+	float:left;
+	width: 48%;
+	margin-left: 40px;
+	margin-right: 20px;
+}
+
+.form-style-2 .select-field{
+	width: 200px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	-moz-box-shadow: 1px 1px 4px #EBEBEB;
+	-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 4px;
+	outline: none;
+	font: 13px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+
+}
+
+.form-style-2 .select-field:focus{
+	border: 1px solid #C2C2C2;
+}
+
+input.myinput_large{
+	float: left;
+	height:22px;
+	width: 22px;
+	margin: 0px 2px 0px 0px;
+	opacity: 0;
+
+}
+
+label.barlabel{
+	font: 13px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	padding: 4px;
+	color: #FFFFFF;
+
+
+}
+
+
+
+/* Checkbox style */
+label#label-11 {
+	font: 13px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	color: #D8D8D8;
+	text-align : justify;
+	height: 26px;
+	line-height: 26px;
+}
+
+input#mycheck[type=checkbox], input#mycheck[type=radio] {
+    margin: 2px 4px 0;
+    line-height: normal;
+}
+
+.axis_0201{
+	font: 10.5px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+.tooltip_0201{
+	box-sizing: border-box;
+	background-color: #FFFFFF;
+	position: absolute;
+	line-height: 1;
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding: 4px;
+	border: 0.5px solid #666;
+	color: #000000;
+}
+
+.legend_0201{
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+
+}
+
+text.barchart_02_01_forras{
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	font-style: italic;
+	text-decoration: underline;
+}

@@ -1,6 +1,7 @@
 cp -R ../vizs ./
 cp -R ../data ./
-
+cp -R ../js ./
+cp -R ../css ./
 
 # sudo npm install uglifyjs --global
 # sudo npm install cssnano cssnano-cli --global
@@ -15,7 +16,7 @@ done
 
 echo "compress css files"
 
-for file in ../css/*; do
+for file in ./css/*; do
   targetFile=$(echo $file | awk -F '/' '{print $NF}')
   echo "compressing $file to ./css/$targetFile"
   cssnano $file ./css/$(echo $file | awk -F '/' '{print $NF}');
@@ -23,7 +24,7 @@ done
 
 echo "compress js files"
 
-for file in ../js/*; do
+for file in ./js/*; do
   targetFile=$(echo $file | awk -F '/' '{print $NF}')
   echo "compressing $file to ./js/$targetFile"
   uglifyjs $file --compress hoist_vars=true,unused=false --mangle -o ./js/$targetFile;
