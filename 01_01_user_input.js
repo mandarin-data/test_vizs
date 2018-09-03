@@ -45,9 +45,9 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
     x_userinput.domain(data.map(function (d) {
         return d.Decilis;
     }));
-	
+
     y_userinput.domain([0, 100]);
-	
+
 	svg_userinput.append("g")
 		.attr("class", "axis_userinput")
 		.style("font-size", "12px")
@@ -68,7 +68,7 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 		.text("Lakhatási költségek a jövedelem viszonylatában (%)");
 
 
-	
+
     svg_userinput.selectAll(".bar")
         .data(data)
         .enter().append("rect")
@@ -97,7 +97,7 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
         .on("mouseout", function (d) {
             tooltip_userinput.style("display", "none");
         });
-	
+
 		svg_userinput.append('text')
 			.attr("id", "userinput_forras")
 			.attr("x", fullwidth_ui * 2 )
@@ -112,14 +112,14 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 				);
 			  })
 			.on('mouseover', function(d){
-				d3.select(this).style("cursor", "pointer"); 
+				d3.select(this).style("cursor", "pointer");
 				})
 
 			.on("mouseout", function() { d3.select(this).style("cursor", "default"); })
 			.on("mousemove", function(d) {
-						d3.select(this).style("cursor", "pointer"); 
+						d3.select(this).style("cursor", "pointer");
 		});
-	
+
 		svg_userinput.append('text')
 			.attr("id", "ytitle")
 			.attr("x", fullwidth_ui )
@@ -127,7 +127,7 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 			.style("text-anchor", "middle")
 			.style("font-size", "12px")
 			.text("Jövedelmi tized");
-	
+
 });
 
 
@@ -163,7 +163,7 @@ function myFunction() {
 
         svg_userinput.selectAll("text.label_01_01").remove();
         svg_userinput.selectAll("line.arrow").remove();
-		
+
 
 
         svg_userinput.append("defs").append("marker")
@@ -263,7 +263,7 @@ function myFunction() {
                 return   (350 * ((100 - atl_kolt_userinput) / 100) - 40) ;
             })
             .attr("marker-end", "url(#arrow)");
-			
+
 
     });
 
