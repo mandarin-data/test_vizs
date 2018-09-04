@@ -5,8 +5,8 @@ var margin_040601 = {
     left: 60
 };
 
-var w_040601 = d3.select("#topic04-vis06-part01").node().getBoundingClientRect().width - margin_040601.left - margin_040601.right;
-var h_040601 = d3.select("#topic04-vis06-part01").node().getBoundingClientRect().height - margin_040601.top - margin_040601.bottom;
+var w_040601 = d3.select("#vis-040601").node().getBoundingClientRect().width - margin_040601.left - margin_040601.right;
+var h_040601 = d3.select("#vis-040601").node().getBoundingClientRect().height - margin_040601.top - margin_040601.bottom;
 
 var parseDate_040601 = d3.timeParse("%Y%m%d");
 
@@ -34,12 +34,18 @@ var line_040601 = d3.line()
     })
 //.curve(d3.curveBasis);
 
-var svg_040601 = d3.select("#topic04-vis06-part01").append("svg")
+var svg_040601 = d3.select("#vis-040601").append("svg")
     .attr("width", w_040601 + margin_040601.left + margin_040601.right)
     .attr("height", h_040601 + margin_040601.top + margin_040601.bottom)
     .append("g")
     .attr("transform", "translate(" + margin_040601.left + ", " + margin_040601.top + ")")
 
+svg_040601.append("text")
+    .attr("class", "idosor_title")
+    .attr("x", (w_040601 / 2))             
+    .attr("y", 0 - (margin_040601.top / 2))
+    .attr("text-anchor", "middle")
+    .text('Közműhátralékkal rendelkező háztartások aránya');
 
 svg_040601.append('text')
     .attr("id", "idosor_forras")
@@ -107,7 +113,7 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
         .attr("dy", ".71em")
         .style("text-anchor", "end")
         .style("fill", "black")
-        .text("Közműhátralékkal rendelkező háztartások aránya");
+        .text("%");
 
     var category_040601 = svg_040601.selectAll(".category")
         .data(categories_040601)
