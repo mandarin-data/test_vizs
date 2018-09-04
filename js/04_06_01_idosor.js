@@ -45,6 +45,7 @@ svg_040601.append("text")
     .attr("x", (w_040601 / 2))             
     .attr("y", 0 - (margin_040601.top / 2))
     .attr("text-anchor", "middle")
+    .style('font-size', '14px')
     .text('Közműhátralékkal rendelkező háztartások aránya');
 
 svg_040601.append('text')
@@ -99,13 +100,13 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
     */
 
     svg_040601.append("g")
-        .attr("class", "x axis")
+        .attr("class", "x axis_040601")
         .attr("transform", "translate(0, " + h_040601 + ")")
         .call(xAxis_040601)
     
 
     svg_040601.append("g")
-        .attr("class", "y axis")
+        .attr("class", "y axis_040601")
         .call(yAxis_040601)
         .append("text")
         .attr("transform", "rotate(-90)")
@@ -115,13 +116,13 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
         .style("fill", "black")
         .text("%");
 
-    var category_040601 = svg_040601.selectAll(".category")
+    var category_040601 = svg_040601.selectAll(".category_040601")
         .data(categories_040601)
         .enter().append("g")
-        .attr("class", "category");
+        .attr("class", "category_040601");
 
     category_040601.append("path")
-        .attr("class", "line")
+        .attr("class", "line_040601")
         .attr("d", function (d) {
             return line_040601(d.values);
         })
@@ -130,20 +131,20 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
         });
 
     var mouseG_040601 = svg_040601.append("g") // black vertical line to folow mouse
-        .attr("class", "mouse-over-effects");
+        .attr("class", "mouse-over-effects_040601");
 
     mouseG_040601.append("path")
-        .attr("class", "mouse-line")
+        .attr("class", "mouse-line_040601")
         .style("stroke", "black")
         .style("stroke-width", "1px")
         .style("opacity", "0");
 
-    var lines_040601 = document.getElementsByClassName("line");
-    var mousePerLine_040601 = mouseG_040601.selectAll(".mouse-per-line")
+    var lines_040601 = document.getElementsByClassName("line_040601");
+    var mousePerLine_040601 = mouseG_040601.selectAll(".mouse-per-line_040601")
         .data(categories_040601)
         .enter()
         .append("g")
-        .attr("class", "mouse-per-line");
+        .attr("class", "mouse-per-line_040601");
 
     mousePerLine_040601.append("circle")
         .attr("r", 7)
@@ -163,20 +164,20 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
         .attr("pointer-events", "all")
         .on("mouseout", function () {
             d3.select(".mouse-line").style("opacity", "0");
-            d3.selectAll(".mouse-per-line circle").style("opacity", "0");
-            d3.selectAll(".mouse-per-line text").style("opacity", "0")
+            d3.selectAll(".mouse-per-line_040601 circle").style("opacity", "0");
+            d3.selectAll(".mouse-per-line_040601 text").style("opacity", "0")
         })
         .on("mouseover", function () {
-            d3.select(".mouse-line").style("opacity", "1");
-            d3.selectAll(".mouse-per-line circle").style("opacity", "1");
-            d3.selectAll(".mouse-per-line text").style("opacity", "1")
+            d3.select(".mouse-line_040601").style("opacity", "1");
+            d3.selectAll(".mouse-per-line_040601 circle").style("opacity", "1");
+            d3.selectAll(".mouse-per-line_040601 text").style("opacity", "1")
         })
         .on("mousemove", function () {
             var mouse_040601 = d3.mouse(this);
 
             console.log("Mouse:", mouse_040601);
 
-            d3.select(".mouse-line")
+            d3.select(".mouse-line_040601")
                 .attr("d", function () {
                     var d_040601 = "M" + mouse_040601[0] + ", " + h_040601;
                     d_040601 += " " + mouse_040601[0] + ", " + 0;
@@ -185,7 +186,7 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
 
             var ypos_040601 = [];
 
-            d3.selectAll(".mouse-per-line")
+            d3.selectAll(".mouse-per-line_040601")
                 .attr("transform", function (d, i) {
                     console.log(w_040601 / mouse_040601[0])
                     var xDate_040601 = scaleX_040601.invert(mouse_040601[0]),

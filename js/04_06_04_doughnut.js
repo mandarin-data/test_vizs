@@ -104,7 +104,7 @@ d3.csv('../../data/04_adossag/04_06_04_doughnut.csv', function (error, dataset_d
     path_doughnut.on('mouseover', function (d) {
 
         chartTooltip_doughnut.select('#d_label').html(d.data.label);
-        chartTooltip_doughnut.select('#d_percent').html(parseFloat(d.data.percent) + 'M Ft');
+        chartTooltip_doughnut.select('#d_percent').html((d.data.percent) + 'M Ft');
         chartTooltip_doughnut.style('display', 'block');
     });
     path_doughnut.on('mouseout', function () {

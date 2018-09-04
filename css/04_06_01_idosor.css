@@ -1,23 +1,17 @@
-body {
-    font: 10px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
-}
 
-.axis {
+.axis_040601 {
     font: 10px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
-.legend {
-    font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
-}
 
-.axis path,
-.axis line {
+.axis_040601 path,
+.axis_040601 line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
 
-.x.axis path {
+.x.axis_040601 path {
     display: none;
 }
 
@@ -26,7 +20,7 @@ svg {
   margin: auto;
 }
 
-.line {
+.line_040601 {
     fill: none;
     stroke: steelblue;
     stroke-width: 1.5px;
@@ -34,8 +28,7 @@ svg {
 
 #vis-040601 {
   width: 100%;
-  height: 100%;
-  position: absolute;
+  height: 500px;
 }
 
 text#idosor_forras{
@@ -46,3 +39,7 @@ text#idosor_forras{
 
 }
 
+text#idosor_title{
+  font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  font-weight: normal;
+}
