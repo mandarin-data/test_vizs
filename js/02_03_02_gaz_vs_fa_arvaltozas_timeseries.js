@@ -17,7 +17,7 @@ var scaleY_020302 = d3.scaleLinear()
     .range([h_020302, 0]);
 
 var color_020302 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A, #00AFD7, #C4D600"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A", "#00AFD7", "#C4D600"]);
 
 var xAxis_020302 = d3.axisBottom()
     .scale(scaleX_020302);
@@ -58,14 +58,12 @@ scaleY_020302.domain([
     d3.min(categories_020302, function(c) { return d3.min(c.values, function(d) { return d.ydata * 1.3; }); }),
     d3.max(categories_020302, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.3; }); })
   ]);
-    
-console.log("categories_020302", categories_020302);
 
 var legend_020302 = svg_020302.selectAll("g")
     .data(categories_020302)
     .enter()
     .append("g")
-    .attr("class", "legend");
+    .attr("class", "legend_020302");
 
 legend_020302.append("rect")
     .attr("x", w_020302-185)
@@ -80,12 +78,12 @@ legend_020302.append("text")
     .text(function(d) {return d.name;} );
 
 svg_020302.append("g")
-    .attr("class", "x axis")
+    .attr("class", "x axis_020302")
     .attr("transform", "translate(0, "+h_020302+")")
     .call(xAxis_020302);
 
 svg_020302.append("g")
-    .attr("class", "y axis")
+    .attr("class", "y axis_020302")
     .call(yAxis_020302)
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -96,54 +94,45 @@ svg_020302.append("g")
     .text("Árváltozás 2010-hez képest (%)");
 
 /*svg_020302.append("text")
-    .attr("class", "title")
+    .attr("class", "title_020302")
     .attr("x", (w_020302 / 2))             
     .attr("y", 0 - (margin_020302.top / 2))
     .attr("text-anchor", "middle")
     .text("Fa és gáz árváltozása 2010-2017");*/
 
 svg_020302.append("text")
-    .attr("class", "data source")
+    .attr("class", "data_source_020302")
     .attr("x", w_020302 - 40)
     .attr("y", h_020302 + 40)
     .style("text-anchor", "middle")
     .text("Adatok forrása: nincs");
     
-svg_020302.append("line")
-    .attr("x1", 0)
-    .attr("y1", scaleY_020302(0))
-    .attr("x2", w_020302)
-    .attr("y2", scaleY_020302(0))
-    .style("stroke-width", 0.5)
-    .style("stroke", "black")
-    .style("fill", "none")
-    .style("stroke-dasharray", ("3, 3"));
-
-var category_020302 = svg_020302.selectAll(".category")
+var category_020302 = svg_020302.selectAll(".category_020302")
     .data(categories_020302)
     .enter().append("g")
-    .attr("class", "category");
+    .attr("class", "category_020302");
 
 category_020302.append("path")
-    .attr("class", "line")
+    .attr("class", "line_020302")
     .attr("d", function(d) {return line_020302(d.values);} )
     .style("stroke", function(d) {return color_020302(d.name)} );
 
 var mouseG_020302 = svg_020302.append("g") // this the black vertical line to folow mouse
-    .attr("class", "mouse-over-effects");
+    .attr("class", "mouse-over-effects_020302");
 
 mouseG_020302.append("path")
-    .attr("class", "mouse-line")
+    .attr("class", "mouse-line_020302")
     .style("stroke", "black")
     .style("stroke-width", "1px")
     .style("opacity", "0");
 
-var lines_020302 = document.getElementsByClassName("line");
-var mousePerLine_020302 = mouseG_020302.selectAll(".mouse-per-line")
+var lines_020302 = document.getElementsByClassName("line_020302");
+
+var mousePerLine_020302 = mouseG_020302.selectAll(".mouse-per-line_020302")
     .data(categories_020302)
     .enter()
     .append("g")
-    .attr("class", "mouse-per-line");
+    .attr("class", "mouse-per-line_020302");
 
 mousePerLine_020302.append("circle")
     .attr("r", 7)
@@ -161,21 +150,19 @@ mouseG_020302.append("rect")
     .attr("fill", "none")
     .attr("pointer-events", "all")
     .on("mouseout", function(){
-        d3.select(".mouse-line").style("opacity", "0");
-        d3.selectAll(".mouse-per-line circle").style("opacity", "0");
-        d3.selectAll(".mouse-per-line text").style("opacity", "0")
+        d3.select(".mouse-line_020302").style("opacity", "0");
+        d3.selectAll(".mouse-per-line_020302 circle").style("opacity", "0");
+        d3.selectAll(".mouse-per-line_020302 text").style("opacity", "0")
     })
     .on("mouseover", function(){
-        d3.select(".mouse-line").style("opacity", "1");
-        d3.selectAll(".mouse-per-line circle").style("opacity", "1");
-        d3.selectAll(".mouse-per-line text").style("opacity", "1")
+        d3.select(".mouse-line_020302").style("opacity", "1");
+        d3.selectAll(".mouse-per-line_020302 circle").style("opacity", "1");
+        d3.selectAll(".mouse-per-line_020302 text").style("opacity", "1")
     })
     .on("mousemove", function(){
         var mouse_020302 = d3.mouse(this);
     
-        console.log("Mouse:", mouse_020302);
-    
-        d3.select(".mouse-line")
+        d3.select(".mouse-line_020302")
             .attr("d", function(){
                 var d_020302 = "M" + mouse_020302[0] +", " + h_020302;
                 d_020302+=" " +mouse_020302[0] + ", " + 0;
@@ -184,29 +171,21 @@ mouseG_020302.append("rect")
     
         var ypos_020302 = [];
 
-        d3.selectAll(".mouse-per-line")
+        d3.selectAll(".mouse-per-line_020302")
             .attr("transform", function(d, i) {
-                console.log(w_020302/mouse_020302[0])
                 var xDate_020302 = scaleX_020302.invert(mouse_020302[0]), 
                 bisect_020302 = d3.bisector(function(d) { return d.date;}).right;
                 idx_020302 = bisect_020302(d.values, xDate_020302);
-
-                console.log("xDate:", xDate_020302);
-                console.log("bisect", bisect_020302);
-                console.log("idx:", idx_020302)
 
                 var beginning_020302 = 0, 
                     end_020302 = lines_020302[i].getTotalLength(), 
                     target_020302 = null;
 
-                console.log("end", end_020302);
-
                 while (true){
                   target_020302 = Math.floor((beginning_020302 + end_020302) / 2);
-                  console.log("Target:", target_020302);
+                    
                   pos_020302 = lines_020302[i].getPointAtLength(target_020302);
-                  console.log("Position", pos_020302.y);
-                  console.log("What is the position here:", pos_020302)
+
                   if ((target_020302 === end_020302 || target_020302 === beginning_020302) && pos_020302.x !== mouse_020302[0]) {break;}
                   if (pos_020302.x > mouse_020302[0]) end_020302 = target_020302;
                   else if (pos_020302.x < mouse_020302[0]) beginning_020302 = target_020302;

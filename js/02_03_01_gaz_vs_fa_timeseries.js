@@ -17,7 +17,7 @@ var scaleY_020301 = d3.scaleLinear()
     .range([h_020301, 0]);
 
 var color_020301 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A, #00AFD7, #C4D600"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A", "#00AFD7", "#C4D600"]);
 
 var xAxis_020301 = d3.axisBottom()
     .scale(scaleX_020301);
@@ -59,13 +59,11 @@ scaleY_020301.domain([
     d3.max(categories_020301, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.3; }); })
   ]);
 
-console.log("categories_020301", categories_020301);
-
 var legend_020301 = svg_020301.selectAll("g")
     .data(categories_020301)
     .enter()
     .append("g")
-    .attr("class", "legend");
+    .attr("class", "legend_020301");
 
 legend_020301.append("rect")
     .attr("x", w_020301-110)
@@ -80,12 +78,12 @@ legend_020301.append("text")
     .text(function(d) {return d.name;} );
 
 svg_020301.append("g")
-    .attr("class", "x axis")
+    .attr("class", "x axis_020301")
     .attr("transform", "translate(0, "+h_020301+")")
     .call(xAxis_020301);
 
 svg_020301.append("g")
-    .attr("class", "y axis")
+    .attr("class", "y axis_020301")
     .call(yAxis_020301)
     .append("text")
     .attr("transform", "rotate(-90)")
@@ -96,44 +94,45 @@ svg_020301.append("g")
     .text("Adott fűtési módot használó háztartások aránya (%)");
     
 /*svg_020301.append("text")
-    .attr("class", "title")
+    .attr("class", "title_020301")
     .attr("x", (w_020301 / 2))             
     .attr("y", 0 - (margin_020301.top / 2))
     .attr("text-anchor", "middle")
     .text("Fűtési módok használatának aránya 2011-2016");*/
 
 svg_020301.append("text")
-    .attr("class", "data source")
+    .attr("class", "data_source_020301")
     .attr("x", w_020301 - 40)
     .attr("y", h_020301 + 40)
     .style("text-anchor", "middle")
     .text("Adatok forrása: nincs");
     
-var category_020301 = svg_020301.selectAll(".category")
+var category_020301 = svg_020301.selectAll(".category_020301")
     .data(categories_020301)
     .enter().append("g")
-    .attr("class", "category");
+    .attr("class", "category_020301");
 
 category_020301.append("path")
-    .attr("class", "line")
+    .attr("class", "line_020301")
     .attr("d", function(d) {return line_020301(d.values);} )
     .style("stroke", function(d) {return color_020301(d.name)} );
 
 var mouseG_020301 = svg_020301.append("g") // this the black vertical line to folow mouse
-    .attr("class", "mouse-over-effects");
+    .attr("class", "mouse-over-effects_020301");
 
 mouseG_020301.append("path")
-    .attr("class", "mouse-line")
+    .attr("class", "mouse-line_020301")
     .style("stroke", "black")
     .style("stroke-width", "1px")
     .style("opacity", "0");
 
-var lines_020301 = document.getElementsByClassName("line");
-var mousePerLine_020301 = mouseG_020301.selectAll(".mouse-per-line")
+var lines_020301 = document.getElementsByClassName("line_020301");
+
+var mousePerLine_020301 = mouseG_020301.selectAll(".mouse-per-line_020301")
     .data(categories_020301)
     .enter()
     .append("g")
-    .attr("class", "mouse-per-line");
+    .attr("class", "mouse-per-line_020301");
 
 mousePerLine_020301.append("circle")
     .attr("r", 7)
@@ -151,21 +150,19 @@ mouseG_020301.append("rect")
     .attr("fill", "none")
     .attr("pointer-events", "all")
     .on("mouseout", function(){
-        d3.select(".mouse-line").style("opacity", "0");
-        d3.selectAll(".mouse-per-line circle").style("opacity", "0");
-        d3.selectAll(".mouse-per-line text").style("opacity", "0")
+        d3.select(".mouse-line_020301").style("opacity", "0");
+        d3.selectAll(".mouse-per-line_020301 circle").style("opacity", "0");
+        d3.selectAll(".mouse-per-line_020301 text").style("opacity", "0")
     })
     .on("mouseover", function(){
-        d3.select(".mouse-line").style("opacity", "1");
-        d3.selectAll(".mouse-per-line circle").style("opacity", "1");
-        d3.selectAll(".mouse-per-line text").style("opacity", "1")
+        d3.select(".mouse-line_020301").style("opacity", "1");
+        d3.selectAll(".mouse-per-line_020301 circle").style("opacity", "1");
+        d3.selectAll(".mouse-per-line_020301 text").style("opacity", "1")
     })
     .on("mousemove", function(){
         var mouse_020301 = d3.mouse(this);
     
-        console.log("Mouse:", mouse_020301);
-    
-        d3.select(".mouse-line")
+        d3.select(".mouse-line_020301")
             .attr("d", function(){
                 var d_020301 = "M" + mouse_020301[0] +", " + h_020301;
                 d_020301+=" " +mouse_020301[0] + ", " + 0;
@@ -174,29 +171,21 @@ mouseG_020301.append("rect")
     
         var ypos_020301 = [];
 
-        d3.selectAll(".mouse-per-line")
+        d3.selectAll(".mouse-per-line_020301")
             .attr("transform", function(d, i) {
-                console.log(w_020301/mouse_020301[0])
                 var xDate_020301 = scaleX_020301.invert(mouse_020301[0]), 
                 bisect_020301 = d3.bisector(function(d) { return d.date;}).right;
                 idx_020301 = bisect_020301(d.values, xDate_020301);
-
-                console.log("xDate:", xDate_020301);
-                console.log("bisect", bisect_020301);
-                console.log("idx:", idx_020301)
 
                 var beginning_020301 = 0, 
                     end_020301 = lines_020301[i].getTotalLength(), 
                     target_020301 = null;
 
-                console.log("end", end_020301);
-
                 while (true){
                   target_020301 = Math.floor((beginning_020301 + end_020301) / 2);
-                  console.log("Target:", target_020301);
+                    
                   pos_020301 = lines_020301[i].getPointAtLength(target_020301);
-                  console.log("Position", pos_020301.y);
-                  console.log("What is the position here:", pos_020301)
+
                   if ((target_020301 === end_020301 || target_020301 === beginning_020301) && pos_020301.x !== mouse_020301[0]) {break;}
                   if (pos_020301.x > mouse_020301[0]) end_020301 = target_020301;
                   else if (pos_020301.x < mouse_020301[0]) beginning_020301 = target_020301;
