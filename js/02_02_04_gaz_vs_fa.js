@@ -77,8 +77,8 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         })
         .on("mousemove", function (d) {
             console.log(d);
-            var xPosition_020204 = d3.mouse(this)[0] - 5;
-            var yPosition_020204 = d3.mouse(this)[1] - 5;
+            var xPosition_020204 = d3.mouse(this)[0] + 15;
+            var yPosition_020204 = d3.mouse(this)[1] + 15;
             tooltip_020204.attr("transform", "translate(" + xPosition_020204 + "," + yPosition_020204 + ")");
             tooltip_020204.select("text").text((((d[1] - d[0]) * 100).toFixed(1)) + "%");
         });

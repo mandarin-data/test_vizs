@@ -79,7 +79,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
             console.log(d);
             var xPosition_020202 = d3.mouse(this)[0] - 5;
             var yPosition_020202 = d3.mouse(this)[1] - 5;
-            tooltip_020202.attr("transform", "translate(" + xPosition_020202 + "," + yPosition_020202 + ")");
+            tooltip_020202.attr("transform", "translate(" + (xPosition_020202 + 15) + "," + (yPosition_020202 + 15) + ")");
             tooltip_020202.select("text").text(d[1] - d[0]);
         });
 

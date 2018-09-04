@@ -217,8 +217,8 @@ function BarChartKomf() {
                 })
                 .on("mousemove", function (d) {
                     var delta_020203 = d.y1_020203 - d.y0_020203;
-                    var xPosition_020203 = d3.mouse(this)[0] - 40;
-                    var yPosition_020203 = d3.mouse(this)[1] - 30;
+                    var xPosition_020203 = d3.mouse(this)[0] + 15;
+                    var yPosition_020203 = d3.mouse(this)[1] + 15;
                     tooltip_020203.attr("transform", "translate(" + xPosition_020203 + "," + yPosition_020203 + ")")
                         .select("text").text((delta_020203 * 100).toFixed(1) + "%");
                     console.log(delta_020203)

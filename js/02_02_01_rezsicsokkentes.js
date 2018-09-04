@@ -80,7 +80,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
             console.log(d);
             var xPosition_020201 = d3.mouse(this)[0] - 5;
             var yPosition_020201 = d3.mouse(this)[1] - 5;
-            tooltip_020201.attr("transform", "translate(" + xPosition_020201 + "," + yPosition_020201 + ")");
+            tooltip_020201.attr("transform", "translate(" + (xPosition_020201 +15) + "," + (yPosition_020201+15) + ")");
             tooltip_020201.select("text").text(((d[1] - d[0])).toFixed(1));
         });
 
