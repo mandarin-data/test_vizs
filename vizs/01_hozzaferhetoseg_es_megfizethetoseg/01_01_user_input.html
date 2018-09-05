@@ -2,39 +2,38 @@
 
 <html>
 
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Habitat test</title>
-	</head>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Habitat test</title>
+</head>
 
-	<body>
+<body>
 
-		<link rel="stylesheet" type="text/css" href="../../css/01_01_user_input.css">
+    <link rel="stylesheet" type="text/css" href="../../css/01_01_user_input.css">
 
-		<div class="form-style-01-01">
-			<form id="myForm" action="/action_page.php">
-				<label for="field1"><span>Az egy főre jutó havi nettó jövedelem az Ön háztartásában: <span class="required">*</span></span><input id="myInput1" type="text" name="wage" placeholder="pl. 160000" value="160000" class="input-field-01-01"></label>
-				<label for="field1"><span>Az egy főre jutó havi lakhatási kiadások az Ön háztartásában (lakbér, lakáskarbantartás, rezsi): <span class="required">*</span></span><input id="myInput2" type="text" name="expend" placeholder="pl. 80000" value="80000" class="input-field-01-01"></label>
-			</form>
-			<button class="button" onclick="myFunction()" id="calcualtion">Mehet!</button>
-			<button class="button" onclick="BaseLine()" id="baseline">Alaphelyzetbe!</button>
+    <div class="form-style-01-01">
+        <form id="myForm" action="/action_page.php">
+            <label for="field1"><span>Az egy főre jutó havi nettó jövedelem az Ön háztartásában: <span class="required">*</span></span><input id="myInput1" type="text" name="wage" placeholder="pl. 160000" value="160000" class="input-field-01-01"></label>
+            <label for="field1"><span>Az egy főre jutó havi lakhatási kiadások az Ön háztartásában (lakbér, lakáskarbantartás, rezsi): <span class="required">*</span></span><input id="myInput2" type="text" name="expend" placeholder="pl. 80000" value="80000" class="input-field-01-01"></label>
+        </form>
+        <button class="button" onclick="myFunction()" id="calcualtion">Mehet!</button>
+        <button class="button" onclick="BaseLine()" id="baseline">Alaphelyzetbe!</button>
 
-		</div>
+    </div>
 
 
-		<div id="vis-0101">
-			<script src="../../js/d3.v4.min.js"></script>
-			<script src="../../js/01_01_user_input.js"></script>
-			<script>
-				function BaseLine(){
-					document.getElementById("myForm").reset();
-					svg_userinput.selectAll("text.label_01_01").remove();
-					svg_userinput.selectAll("line.arrow").remove();
-				};
+    <div id="vis-0101">
+        <script src="../../js/d3.v4.min.js"></script>
+        <script src="../../js/01_01_user_input.js"></script>
+        <script>
+            function BaseLine() {
+                document.getElementById("myForm").reset();
+                svg_userinput.selectAll("text.label_01_01").remove();
+                svg_userinput.selectAll("line.arrow").remove();
+            };
 
-			</script>
-		</div>
-	</body>
+        </script>
+    </div>
+</body>
 
 </html>
-

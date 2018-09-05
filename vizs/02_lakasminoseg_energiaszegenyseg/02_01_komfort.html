@@ -4,36 +4,14 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Habitat test</title>
+    <link rel="stylesheet" href="../../css/02_01_komfort.css">
+    <title></title>
 </head>
 
 <body>
-
-    <!DOCTYPE html>
-    <!--TODO: a css kerüljön külön fájlba -->
-    <style>
-        .axis .domain {
-            display: none;
-        }
-
-        svg {
-            display: block;
-            margin: auto;
-        }
-
-    </style>
-    <!-- TODO: itt ne svg legyen, hanem egy div, aminek adjunk egy egyedi id-t, a js-ben pedig legyen az hogy
-    var svg_vizu_neve = d3.select('#a-div-id-ahova-megy-a-vizu')
-    .append('svg')
-    .mindenmás, ami az svg-t beállítja
--->
-    <svg id="vis-1" class="entry-content" width="inherit" height="500"></svg>
+    <div id="vis-1"></div>
     <script src="../../js/d3.v4.min.js"></script>
     <script src="../../js/02_01_komfort.js"></script>
-<!--
-<footer>
-    <p>Copyright 2018 Mandarin Data</p>
-</footer>-->
 </body>
 
 </html>

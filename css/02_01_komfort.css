@@ -1,0 +1,8 @@
+.axis .domain {
+    display: none;
+}
+
+svg {
+    display: block;
+    margin: auto;
+}
