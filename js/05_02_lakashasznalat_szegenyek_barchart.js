@@ -1,13 +1,12 @@
-var svg_0502 = d3.select("#topic05-vis02"), // div id-t selectálj, ahhoz .append('svg')
-    margin_0502 = {
-        top: 20,
-        right: 20,
-        bottom: 50,
-        left: 40
-    },
-    width_0502 = +svg_0502.node().getBoundingClientRect().width - margin_0502.left - margin_0502.right,
-    height_0502 = +svg_0502.node().getBoundingClientRect().height - margin_0502.top - margin_0502.bottom,
-    g_0502 = svg_0502.append("g").attr("transform", "translate(" + margin_0502.left + "," + margin_0502.top + ")");
+var margin_0502 = {
+    top: 50,
+    right: 20,
+    bottom: 75,
+    left: 40
+};
+
+var width_0502 = d3.select("#topic05-vis02").node().getBoundingClientRect().width - margin_0502.left - margin_0502.right;
+var height_0502 = d3.select("#topic05-vis02").node().getBoundingClientRect().height - margin_0502.top - margin_0502.bottom;
 
 var x0_0502 = d3.scaleBand()
     .rangeRound([0, width_0502])
@@ -20,7 +19,13 @@ var y_0502 = d3.scaleLinear()
     .rangeRound([height_0502, 0]);
 
 var z_0502 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
+    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A", "#00AFD7", "#C4D600"]);
+
+var svg_0502 = d3.select("#topic05-vis02").append("svg")
+    .attr("width", width_0502 + margin_0502.left + margin_0502.right)
+    .attr("height", height_0502 + margin_0502.top + margin_0502.bottom)
+    .append("g")
+    .attr("transform", "translate("+margin_0502.left +", "+margin_0502.top+")")
 
 d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_alberletben.tsv", function (d, i, columns) {
     for (var i_0502 = 1, n = columns.length; i_0502 < n; ++i_0502) d[columns[i_0502]] = +d[columns[i_0502]];
@@ -40,7 +45,7 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         });
     })]).nice();
 
-    g_0502.append("g")
+    svg_0502.append("g")
         .selectAll("g")
         .data(data)
         .enter().append("g")
@@ -71,16 +76,15 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
             return z_0502(d.key);
         });
 
-    g_0502.append("g")
-        .attr("class", "xaxis")
+    svg_0502.append("g")
+        .attr("class", "xaxis_0502")
         .attr("transform", "translate(0," + height_0502 + ")")
         .call(d3.axisBottom(x0_0502))
         .selectAll(".tick text")
-        .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em")
         .call(wrap_0502, x0_0502.bandwidth());
 
-    g_0502.append("g")
-        .attr("class", "yaxis")
+    svg_0502.append("g")
+        .attr("class", "yaxis_0502")
         .call(d3.axisLeft(y_0502).ticks(null, "s"))
         .append("text")
         .attr("x", 2)
@@ -91,11 +95,7 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("text-anchor", "start")
         .text("%");
 
-    svg_0502.selectAll(".yaxis text")
-        .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em");
-
-    var legend_0502 = g_0502.append("g")
-        .attr("font-size", (width_0502 * 0.0005 + 0.5) + "em")
+    var legend_0502 = svg_0502.append("g")
         .attr("text-anchor", "end")
         .selectAll("g")
         .data(keys_0502.slice().reverse())
@@ -116,6 +116,33 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("dy", "0.32em")
         .text(function (d) {
             return d;
+        });
+    
+    svg_0502.append("text")
+        .attr("class", "title_0502")
+        .attr("x", (width_0502 / 2))             
+        .attr("y", 0 - (margin_0502.top / 2))
+        .attr("text-anchor", "middle")
+        .text("Lakáshasználati típusok a legalacsonyabb jövedelműek között (2017)");
+    
+    svg_0502.append("text")
+        .attr("class", "data_source_0502")
+        .attr("x", width_0502 - 80)
+        .attr("y", height_0502 + 70)
+        .style("text-anchor", "middle")
+        .text("Adatok forrása: KSH 2018b.")
+        .on('click', function(d) {
+		window.open(
+            'https://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc019a.html'
+		);
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
         });
 
     // Source: https://gist.github.com/guypursey/f47d8cd11a8ff24854305505dbbd8c07
