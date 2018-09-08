@@ -7,7 +7,7 @@ svg {
     display: block;
     margin: auto;
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -15,7 +15,7 @@ svg {
 
 body {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -23,7 +23,7 @@ body {
 
 .title_0404 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -38,6 +38,14 @@ body {
 	color: #666;
 }
 
+.axis_0404 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+	fill: #000;
+	color: #666;
+}
+
 .axis_0404 path,
 .axis_0404 line {
     fill: none;
@@ -47,9 +55,17 @@ body {
 
 .time.series.line_0404 {
     fill: none;
-    stroke-width: 1.5px;
+    stroke-width: 2px;
 }
 
 .x.axis_0404 path {
     display: none;
+}
+
+.label_0404 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+	fill: #000;
+	color: #666;
 }

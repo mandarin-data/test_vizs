@@ -1,5 +1,5 @@
 var margin_0502 = {
-    top: 50,
+    top: 80,
     right: 20,
     bottom: 75,
     left: 40

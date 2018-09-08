@@ -1,5 +1,5 @@
 var margin_0501 = {
-  top: 50, 
+  top: 80, 
   right: 50, 
   bottom: 100, 
   left: 60
@@ -66,14 +66,14 @@ var legend_0501 = svg_0501.selectAll("g")
     .attr("class", "legend_0501");
 
 legend_0501.append("rect")
-    .attr("x", w_0501-185)
+    .attr("x", w_0501-220)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_0501(d.name);} );
 
 legend_0501.append("text")
-    .attr("x", w_0501-180)
+    .attr("x", w_0501-215)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
 
@@ -102,7 +102,7 @@ svg_0501.append("text")
 
 svg_0501.append("text")
     .attr("class", "data_source_0501")
-    .attr("x", w_0501 - 112)
+    .attr("x", w_0501 - 130)
     .attr("y", h_0501 + 50)
     .style("text-anchor", "middle")
     .text("Adatok forrása: jofogas.hu, ")
@@ -122,7 +122,7 @@ svg_0501.append("text")
 
 svg_0501.append("text")
     .attr("class", "data_source_0501")
-    .attr("x", w_0501 - 15)
+    .attr("x", w_0501 - 25)
     .attr("y", h_0501 + 50)
     .style("text-anchor", "middle")
     .text("KSH 2018a.")

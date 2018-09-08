@@ -1,6 +1,6 @@
 var margin_0404 = {
-  top: 50, 
-  right: 185, 
+  top: 80, 
+  right: 260, 
   bottom: 110, 
   left: 60
 };
@@ -57,7 +57,7 @@ svg_0404.append("g")
 
 
 function relax_0404(data) {
-    var spacing_0404 = 16;
+    var spacing_0404 = 26;
     var dy_0404 = 2;
     var repeat_0404 = false;
     var count_0404 = 0;
@@ -164,7 +164,6 @@ d3.tsv("../../data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv", function(d,
         .attr("x", 3)
         .attr("dy", "0.35em")
         .attr("class", "label_0404")
-        .style("font", "10px sans-serif")
         .text(function(d) {
             return d.id;
         });
@@ -224,8 +223,8 @@ d3.tsv("../../data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv", function(d,
     
     svg_0404.append('text')
         .attr("class", "data source_0404")
-        .attr("x", width_0404 + 120)
-        .attr("y", height_0404 + 90)
+        .attr("x", width_0404 + 170)
+        .attr("y", height_0404 + 100)
         .attr("text-anchor", "middle")  
         .text("Adatok forrása: MNB")
         .on('click', function(d) {

@@ -5,7 +5,7 @@
 
 body {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -18,7 +18,7 @@ svg {
 
 .axis_0501 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -26,7 +26,7 @@ svg {
 
 .legend_0501 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -34,7 +34,7 @@ svg {
 
 .title_0501 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -62,5 +62,5 @@ svg {
 
 .line_0501 {
     fill: none;
-    stroke-width: 1.5px;
+    stroke-width: 2px;
 }

@@ -1,7 +1,7 @@
 #topic05-vis02 {
     width: 100%;
     height: 500px;
-    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+    font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
 }
 
 svg {
@@ -14,16 +14,16 @@ svg {
 }
 
 .yaxis_0502 { 
-    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+    font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
 }
 
 .xaxis_0502 { 
-    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+    font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
 }
 
 .title_0502 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -39,5 +39,5 @@ svg {
 }
 
 .legend_0502 {
-    font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+    font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
 }

@@ -66,14 +66,14 @@ var legend_020302 = svg_020302.selectAll("g")
     .attr("class", "legend_020302");
 
 legend_020302.append("rect")
-    .attr("x", w_020302-225)
+    .attr("x", w_020302-210)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_020302(d.name);} );
 
 legend_020302.append("text")
-    .attr("x", w_020302-220)
+    .attr("x", w_020302-205)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
 
@@ -102,7 +102,7 @@ svg_020302.append("text")
 
 svg_020302.append("text")
     .attr("class", "data_source_020302")
-    .attr("x", w_020302 - 125)
+    .attr("x", w_020302 - 110)
     .attr("y", h_020302 + 50)
     .style("text-anchor", "middle")
     .text("Adatok forrása: KSH 2018b, ")

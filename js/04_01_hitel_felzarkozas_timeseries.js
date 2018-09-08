@@ -1,5 +1,5 @@
 var margin_0401 = {
-  top: 50, 
+  top: 80, 
   right: 50, 
   bottom: 60, 
   left: 60
@@ -66,14 +66,14 @@ var legend_0401 = svg_0401.selectAll("g")
     .attr("class", "legend_0401");
 
 legend_0401.append("rect")
-    .attr("x", w_0401-120)
+    .attr("x", w_0401-135)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_0401(d.name);} );
 
 legend_0401.append("text")
-    .attr("x", w_0401-115)
+    .attr("x", w_0401-130)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
 
@@ -103,7 +103,7 @@ svg_0401.append("text")
 svg_0401.append('text')
 	.attr("class", "data_source_0401")
     .attr("x", w_0401 - 40)
-    .attr("y", h_0401 + 40)
+    .attr("y", h_0401 + 50)
 	.attr("text-anchor", "middle")  
 	.text("Adatok forrása: MNB")
 	.on('click', function(d) {
