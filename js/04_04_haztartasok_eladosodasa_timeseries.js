@@ -1,6 +1,6 @@
 var margin_0404 = {
   top: 50, 
-  right: 180, 
+  right: 185, 
   bottom: 110, 
   left: 60
 };
@@ -220,17 +220,17 @@ d3.tsv("../../data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv", function(d,
     .attr("x", (width_0404 / 2))             
     .attr("y", 0 - (margin_0404.top / 2))
     .attr("text-anchor", "middle")
-    .text("Háztartások eladósodása");
+    .text("A háztartások eladósodottsága (milliárd Ft, 1989–2018)");
     
     svg_0404.append('text')
         .attr("class", "data source_0404")
-        .attr("x", width_0404 + 100)
+        .attr("x", width_0404 + 120)
         .attr("y", height_0404 + 90)
         .attr("text-anchor", "middle")  
         .text("Adatok forrása: MNB")
         .on('click', function(d) {
             window.open(
-                'http://www.mnb.hu/statisztika/statisztikai-adatok-informaciok/adatok-idosorok',
+                'http://www.mnb.hu/letoltes/htszla-hu.xlsx',
                 '_blank'
             );
         })

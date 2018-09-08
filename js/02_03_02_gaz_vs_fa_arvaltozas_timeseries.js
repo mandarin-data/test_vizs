@@ -1,7 +1,7 @@
 var margin_020302 = {
   top: 50, 
   right: 50, 
-  bottom: 50, 
+  bottom: 60, 
   left: 60
 };
 
@@ -66,14 +66,14 @@ var legend_020302 = svg_020302.selectAll("g")
     .attr("class", "legend_020302");
 
 legend_020302.append("rect")
-    .attr("x", w_020302-185)
+    .attr("x", w_020302-225)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_020302(d.name);} );
 
 legend_020302.append("text")
-    .attr("x", w_020302-180)
+    .attr("x", w_020302-220)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
 
@@ -87,25 +87,58 @@ svg_020302.append("g")
     .call(yAxis_020302)
     .append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 6)
+    .attr("y", -50)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
     .text("Árváltozás 2010-hez képest (%)");
 
-/*svg_020302.append("text")
+svg_020302.append("text")
     .attr("class", "title_020302")
     .attr("x", (w_020302 / 2))             
     .attr("y", 0 - (margin_020302.top / 2))
     .attr("text-anchor", "middle")
-    .text("Fa és gáz árváltozása 2010-2017");*/
+    .text("Az energiahordozók árváltozásai (2010–2016)");
 
 svg_020302.append("text")
     .attr("class", "data_source_020302")
-    .attr("x", w_020302 - 40)
-    .attr("y", h_020302 + 40)
+    .attr("x", w_020302 - 125)
+    .attr("y", h_020302 + 50)
     .style("text-anchor", "middle")
-    .text("Adatok forrása: nincs");
+    .text("Adatok forrása: KSH 2018b, ")
+    .on('click', function(d) {
+    window.open(
+        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_qsf003a.html?down=642.4000244140625'
+    );
+    })
+    .on('mouseover', function(d){
+        d3.select(this).style("cursor", "pointer"); 
+    })
+
+    .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+    .on("mousemove", function(d) {
+    d3.select(this).style("cursor", "pointer"); 
+    });
+
+svg_020302.append("text")
+    .attr("class", "data_source_020302")
+    .attr("x", w_020302 - 15)
+    .attr("y", h_020302 + 50)
+    .style("text-anchor", "middle")
+    .text("2018c.")
+    .on('click', function(d) {
+    window.open(
+        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc025a.html'
+    );
+    })
+    .on('mouseover', function(d){
+        d3.select(this).style("cursor", "pointer"); 
+    })
+
+    .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+    .on("mousemove", function(d) {
+    d3.select(this).style("cursor", "pointer"); 
+    });
     
 var category_020302 = svg_020302.selectAll(".category_020302")
     .data(categories_020302)

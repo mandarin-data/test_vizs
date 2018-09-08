@@ -1,7 +1,7 @@
 var margin_0401 = {
   top: 50, 
   right: 50, 
-  bottom: 50, 
+  bottom: 60, 
   left: 60
 };
 
@@ -91,7 +91,7 @@ svg_0401.append("g")
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
-    .text("Árváltozás 2010-hez képest (%)");
+    .text("%");
     
 svg_0401.append("text")
     .attr("class", "title_0401")
@@ -108,8 +108,7 @@ svg_0401.append('text')
 	.text("Adatok forrása: MNB")
 	.on('click', function(d) {
 		window.open(
-			'http://www.mnb.hu/statisztika/statisztikai-adatok-informaciok/adatok-idosorok',
-			'_blank'
+			'https://www.portfolio.hu/public/portfolio/conferences/presentations/nagy_marton_portfolio_hitelezes_2018-787.pdf'
 		);
 	})
 	.on('mouseover', function(d){
@@ -120,6 +119,17 @@ svg_0401.append('text')
 	.on("mousemove", function(d) {
 	d3.select(this).style("cursor", "pointer"); 
 	});
+
+//svg_0401.append("line")
+//    .attr("class", "prognose line_0401")
+//    .attr("x1", scaleX_0401(parseDate_0401("20180101")))
+//    .attr("y1", 0)
+//    .attr("x2", scaleX_0401(parseDate_0401("20180101")))
+//    .attr("y2", h_0401)
+//    .style("stroke-width", 1)
+//    .style("stroke", "black")
+//    .style("fill", "none")
+//    .style("stroke-dasharray", ("3, 3"));
     
 var category_0401 = svg_0401.selectAll(".category_0401")
     .data(categories_0401)

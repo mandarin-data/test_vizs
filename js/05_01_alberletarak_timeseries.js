@@ -27,7 +27,7 @@ var yAxis_0501 = d3.axisLeft()
 
 var line_0501 = d3.line()
     .x(function(d){return scaleX_0501(d.date)})
-    .y(function(d){return scaleY_0501(d.ydata)})
+    .y(function(d){return scaleY_0501(d.ydata)});
     //.curve(d3.curveBasis);
 
 var svg_0501 = d3.select("#topic05-vis01").append("svg")
@@ -55,7 +55,7 @@ scaleX_0501.domain(d3.extent(data, function(d){
   return d.date;
 }));
 scaleY_0501.domain([
-    85,
+    -10,
     d3.max(categories_0501, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.3; }); })
   ]);
 
@@ -87,25 +87,58 @@ svg_0501.append("g")
     .call(yAxis_0501)
     .append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 6)
+    .attr("y", -50)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
-    .text("%");
+    .text("Változás aránya 2010-hez képest (%)");
 
 svg_0501.append("text")
     .attr("class", "title_0501")
     .attr("x", (w_0501 / 2))             
     .attr("y", 0 - (margin_0501.top / 2))
     .attr("text-anchor", "middle")
-    .text("Jövedelmek változása az alsó jövedelmi decilisben (a legszegényebbek között) és az albérletárak változása (2010=100)");
+    .text("A jövedelmek és az albérletárak változása az alsó jövedelmi tizedben (2010–2017)");
 
 svg_0501.append("text")
     .attr("class", "data_source_0501")
-    .attr("x", w_0501 - 40)
-    .attr("y", h_0501 + 40)
+    .attr("x", w_0501 - 112)
+    .attr("y", h_0501 + 50)
     .style("text-anchor", "middle")
-    .text("Adatok forrása: nincs");
+    .text("Adatok forrása: jofogas.hu, ")
+    .on('click', function(d) {
+    window.open(
+        'https://www.jofogas.hu/'
+    );
+    })
+    .on('mouseover', function(d){
+        d3.select(this).style("cursor", "pointer"); 
+    })
+
+    .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+    .on("mousemove", function(d) {
+    d3.select(this).style("cursor", "pointer"); 
+    });
+
+svg_0501.append("text")
+    .attr("class", "data_source_0501")
+    .attr("x", w_0501 - 15)
+    .attr("y", h_0501 + 50)
+    .style("text-anchor", "middle")
+    .text("KSH 2018a.")
+    .on('click', function(d) {
+    window.open(
+        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc014a.html'
+    );
+    })
+    .on('mouseover', function(d){
+        d3.select(this).style("cursor", "pointer"); 
+    })
+
+    .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+    .on("mousemove", function(d) {
+    d3.select(this).style("cursor", "pointer"); 
+    });
     
 var category_0501 = svg_0501.selectAll(".category_0501")
     .data(categories_0501)

@@ -1,14 +1,14 @@
 var margin_020301 = {
   top: 50, 
   right: 50, 
-  bottom: 50, 
+  bottom: 60, 
   left: 60
 };
 
 var w_020301 = d3.select("#topic02-vis03-part01").node().getBoundingClientRect().width - margin_020301.left - margin_020301.right;
 var h_020301 = d3.select("#topic02-vis03-part01").node().getBoundingClientRect().height - margin_020301.top - margin_020301.bottom;
 
-var parseDate_020301 = d3.timeParse("%Y%m%d");
+var parseDate_020301 = d3.timeParse("%Y");
 
 var scaleX_020301 = d3.scaleTime()
     .range([0, w_020301]);
@@ -66,14 +66,14 @@ var legend_020301 = svg_020301.selectAll("g")
     .attr("class", "legend_020301");
 
 legend_020301.append("rect")
-    .attr("x", w_020301-110)
+    .attr("x", w_020301-130)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_020301(d.name);} );
 
 legend_020301.append("text")
-    .attr("x", w_020301-105)
+    .attr("x", w_020301-125)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
     .text(function(d) {return d.name;} );
 
@@ -87,26 +87,59 @@ svg_020301.append("g")
     .call(yAxis_020301)
     .append("text")
     .attr("transform", "rotate(-90)")
-    .attr("y", 6)
+    .attr("y", -50)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
     .text("Adott fűtési módot használó háztartások aránya (%)");
     
-/*svg_020301.append("text")
+svg_020301.append("text")
     .attr("class", "title_020301")
     .attr("x", (w_020301 / 2))             
     .attr("y", 0 - (margin_020301.top / 2))
     .attr("text-anchor", "middle")
-    .text("Fűtési módok használatának aránya 2011-2016");*/
+    .text("Az energiahordozók lakossági használatának aránya (2010–2016)");
 
 svg_020301.append("text")
     .attr("class", "data_source_020301")
-    .attr("x", w_020301 - 40)
-    .attr("y", h_020301 + 40)
+    .attr("x", w_020301 - 125)
+    .attr("y", h_020301 + 50)
     .style("text-anchor", "middle")
-    .text("Adatok forrása: nincs");
-    
+    .text("Adatok forrása: KSH 2018b, ")
+    .on('click', function(d) {
+    window.open(
+        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_qsf003a.html?down=642.4000244140625'
+    );
+    })
+    .on('mouseover', function(d){
+        d3.select(this).style("cursor", "pointer"); 
+    })
+
+    .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+    .on("mousemove", function(d) {
+    d3.select(this).style("cursor", "pointer"); 
+    });
+
+svg_020301.append("text")
+    .attr("class", "data_source_020301")
+    .attr("x", w_020301 - 15)
+    .attr("y", h_020301 + 50)
+    .style("text-anchor", "middle")
+    .text("2018c.")
+    .on('click', function(d) {
+    window.open(
+        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc025a.html'
+    );
+    })
+    .on('mouseover', function(d){
+        d3.select(this).style("cursor", "pointer"); 
+    })
+
+    .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+    .on("mousemove", function(d) {
+    d3.select(this).style("cursor", "pointer"); 
+    });
+
 var category_020301 = svg_020301.selectAll(".category_020301")
     .data(categories_020301)
     .enter().append("g")
@@ -116,8 +149,8 @@ category_020301.append("path")
     .attr("class", "line_020301")
     .attr("d", function(d) {return line_020301(d.values);} )
     .style("stroke", function(d) {return color_020301(d.name)} );
-
-var mouseG_020301 = svg_020301.append("g") // this the black vertical line to folow mouse
+    
+var mouseG_020301 = svg_020301.append("g") // this the black vertical line to follow mouse
     .attr("class", "mouse-over-effects_020301");
 
 mouseG_020301.append("path")
@@ -161,11 +194,14 @@ mouseG_020301.append("rect")
     })
     .on("mousemove", function(){
         var mouse_020301 = d3.mouse(this);
+        console.log("mouse_020301[0]", mouse_020301[0]);
     
         d3.select(".mouse-line_020301")
             .attr("d", function(){
                 var d_020301 = "M" + mouse_020301[0] +", " + h_020301;
+                console.log("d_020301 I", d_020301);
                 d_020301+=" " +mouse_020301[0] + ", " + 0;
+                console.log("d_020301 II", d_020301);
                 return d_020301;
             })
     
@@ -176,17 +212,28 @@ mouseG_020301.append("rect")
                 var xDate_020301 = scaleX_020301.invert(mouse_020301[0]), 
                 bisect_020301 = d3.bisector(function(d) { return d.date;}).right;
                 idx_020301 = bisect_020301(d.values, xDate_020301);
+            
+                //console.log("xDate_020301", xDate_020301);
+                //console.log("idx_020301", idx_020301);
 
                 var beginning_020301 = 0, 
                     end_020301 = lines_020301[i].getTotalLength(), 
                     target_020301 = null;
-
+                
+                //console.log("lines_020301", lines_020301);
+                //console.log("beginning_020301", beginning_020301);
+                //console.log("end_020301", end_020301);
+                
                 while (true){
                   target_020301 = Math.floor((beginning_020301 + end_020301) / 2);
                     
+                    //console.log("target_020301", target_020301);
+                    
                   pos_020301 = lines_020301[i].getPointAtLength(target_020301);
-
-                  if ((target_020301 === end_020301 || target_020301 === beginning_020301) && pos_020301.x !== mouse_020301[0]) {break;}
+                    
+                    //console.log("pos_020301", pos_020301);
+                
+                    if ((target_020301 === end_020301 || target_020301 === beginning_020301) && pos_020301.x !== mouse_020301[0]) {break;}
                   if (pos_020301.x > mouse_020301[0]) end_020301 = target_020301;
                   else if (pos_020301.x < mouse_020301[0]) beginning_020301 = target_020301;
                   else break; //position found
@@ -194,7 +241,8 @@ mouseG_020301.append("rect")
 
                 d3.select(this).select('text')
                   .text(scaleY_020301.invert(pos_020301.y).toFixed(3));
-
+                console.log("i", i);
+                console.log("pos_020301.y", pos_020301.y);
                 ypos_020301.push ({ind: i, y: pos_020301.y, off: 0});
 
                 return "translate(" + mouse_020301[0] + ", " + pos_020301.y +")";
@@ -218,6 +266,70 @@ mouseG_020301.append("rect")
         });
 
     });
+
+/*var bisect = d3.bisector(function(d) { return parseDate_020301(d.date); }).left;
+
+var focus = svg_020301.append("g")
+      .attr("class", "focus")
+      .style("display", "none");
+
+for(var i=0;i<categories_020301.length;i++){
+          focus.append("g")
+            .attr("class", "focus"+i)
+            .append("circle")
+            .style("stroke",  color_020301(categories_020301[i].name))
+            .style("fill", "none")
+            .attr("transform", "translate(" + margin_020301.left  + "," + margin_020301.top + ")")
+            .attr("r", 4);
+          focus.append("g")
+            .attr("class", "focus"+i)
+            .append("line")
+            .style("stroke",  color_020301(categories_020301[i].name))
+            .style("fill", color_020301(categories_020301[i].name))
+            .attr("transform", "translate(" + margin_020301.left  + "," + margin_020301.top + ")")
+            .classed('x', true); 
+          svg_020301.select(".focus"+i)
+            .append("text")
+            .attr("transform", "translate(" + margin_020301.left  + "," + margin_020301.top + ")")
+            .attr("x", 9)
+            .attr("dy", ".35em");
+      }
+
+  svg_020301.append("rect")
+      .attr("class", "overlay")
+      .attr("width", w_020301)
+      .attr("height", h_020301)
+        .attr("transform", "translate(" + margin_020301.left + "," + margin_020301.top + ")")
+      .on("mouseover", function() { focus.style("display", null); })
+      .on("mouseout", function() { focus.style("display", "none"); })
+      .on("mousemove",  mousemove);
+
+
+function mousemove() {
+          var x0 = scaleX_020301.invert(d3.mouse(this)[0]);
+          var series =
+                categories_020301.map(function(e) {
+                var i = bisect(e.values, x0, 1),
+                    d0 = e.values[i - 1],
+                    d1 = e.values[i];
+                return x0 - d0.date > d1.date - x0 ? d1 : d0;
+              });
+
+  for(var i=0; i<series.length;i++){
+            var selectedFocus = svg_020301.selectAll(".focus"+i);
+            selectedFocus.attr("transform", "translate(" + scaleX_020301(parseDate_020301(series[i].date)) + "," + scaleY_020301(series[i].ydata) + ")");
+            selectedFocus.select("text").text(series[i].ydata);
+      console.log("i", i);
+      console.log("parseDate_020301(series[i].date)", parseDate_020301(series[i].date));
+      console.log("series[i].ydata", series[i].ydata)
+//           selectedFocus.select("line")
+//                .attr('x1', 0)
+//                .attr('x2', 0)
+//                .attr('y1', 0)
+//                .attr('y2', h_020301 - scaleY_020301(series[i].ydata));
+          }
+        }*/
+
 });
     
 function type_020301(d, _, columns) {
