@@ -23,7 +23,7 @@
     width: 50px;
     height: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    background: url("../vizs/02_lakasminoseg_energiaszegenyseg/02_02_carousel/carousel-arrow-dark.png") 50% 50% / 20px no-repeat;
+    background: url("/wp-habitat/vizs/02_lakasminoseg_energiaszegenyseg/02_02_carousel/carousel-arrow-dark.png") 50% 50% / 20px no-repeat;
 }
 
 .arrow-prev {
