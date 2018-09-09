@@ -1,17 +1,23 @@
-var svg = d3.select("#vis-1"),
-    margin = {
-        top: 20,
-        right: 20,
-        bottom: 30,
-        left: 40
-    },
-    comfortWidth = +svg.node().getBoundingClientRect().width - margin.left - margin.right,
-    comfortHeight = +svg.attr("height") - margin.top - margin.bottom,
-    g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var margin = {
+    top: 30,
+    right: 30,
+    bottom: 40,
+    left: 50
+};
+
+var comfortWidth = window.innerWidth - margin.left - margin.right;
+var comfortHeight = window.innerHeight - margin.top - margin.bottom;
+
+var svg_komfort = d3.select("#vis-1")
+    .append("svg")
+    .attr("width", comfortWidth)
+    .attr("height", comfortHeight);
+
+var g = svg_komfort.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 var comfortX = d3.scaleBand()
     .rangeRound([0, comfortWidth])
-    .paddingInner(0.05)
+    .paddingInner(0.001)
     .align(0.1);
 
 var y = d3.scaleLinear()
@@ -80,6 +86,8 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_01_komfort.csv", f
         .attr("text-anchor", "start")
         .text("%");
 
+
+    // legend, fix mértek, szerintem rossz pozíció
     var legend = g.append("g")
         .attr("font-family", "sans-serif")
         .attr("font-size", 10)
@@ -90,7 +98,6 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_01_komfort.csv", f
         .attr("transform", function (d, i) {
             return "translate(0," + i * 20 + ")";
         });
-
     legend.append("rect")
         .attr("x", comfortWidth - 19)
         .attr("width", 19)

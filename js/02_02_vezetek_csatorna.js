@@ -1,13 +1,23 @@
+<<<<<<< HEAD
 var svg02_02 = d3.select("#vis-2"),
+=======
+var svg2 = d3.select("#vis-2"), // a div id-t selectáljuk, ahhot .append('svg')
+>>>>>>> 0dfefe8661d328b490d06c203612c3c0e24ddc25
     margin = {
         top: 20,
         right: 20,
         bottom: 30,
         left: 40
     },
+<<<<<<< HEAD
     width = +svg02_02.node().getBoundingClientRect().width - margin.left - margin.right,
     height = +svg02_02.attr("height") - margin.top - margin.bottom,
     g2 = svg02_02.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+=======
+    width = +svg2.node().getBoundingClientRect().width - margin.left - margin.right,
+    height = +svg2.attr("height") - margin.top - margin.bottom,
+    g2 = svg2.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+>>>>>>> 0dfefe8661d328b490d06c203612c3c0e24ddc25
 
 var x0 = d3.scaleBand()
     .rangeRound([0, width])
@@ -22,7 +32,11 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888"]);
 
+<<<<<<< HEAD
 d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_vezetek_csatorna.csv", function (d, i, columns) {
+=======
+d3.csv("../../data/test/02_02_vezetek_csatorna.csv", function (d, i, columns) {
+>>>>>>> 0dfefe8661d328b490d06c203612c3c0e24ddc25
     for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
     return d;
 }, function (error, data) {

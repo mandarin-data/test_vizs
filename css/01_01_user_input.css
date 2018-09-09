@@ -1,35 +1,45 @@
-svg{
-    display: block;
-    margin: auto;
-}
 .form-style-01-01{
-    max-width: 600px;
+    max-width: 1000px;
     padding: 6px 6px 6px 6px;
-    font: 13px Arial, Helvetica, sans-serif;;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
+
+
 .form-style-01-01 label{
     display: block;
-    margin: 0px 0px 6px 0px;
-    font: 13px Arial, Helvetica, sans-serif; 
+    margin: 6px 0px 6px 0px;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
     color: #333;
     margin-left: 0px;
     text-align: start;
     height: 31px;
     line-height: normal; 
 }
+
+#myForm{
+	    margin: 0px 0px 6px 0px;
+}
+
+#myInput2{
+		    margin: 0px 0px 0px 0px;
+
+}
+
 .form-style-01-01 label > span{
-    width: 180px;
-    font-weight: bold;
+    width: 570px;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: 500;
     float: left;
+    color: #333;
     padding-top: 8px;
-    padding-right: 5px;
+    padding-right: 0px;
 }
 .form-style-01-01 span.required{
     color:red;
 }
 
 .form-style-01-01 input.input-field-01-01{
-    width: 25%; 
+    width: 20%;
 }
 .form-style-01-01 input.input-field-01-01{
     box-sizing: border-box;
@@ -51,64 +61,76 @@ svg{
 
 
 .button{
-    background: #4B99AD;
-    padding: 8px 15px 8px 15px;
+    background: #385988;
+    padding: 8px 12px 8px 12px;
     border: none;
     color: #fff;
-	font: Arial, Helvetica, sans-serif;
+	font: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 	
 .button:hover, 
 .button:hover{
-	background: #4691A4;
+	background: #00AFD7;
 	box-shadow:none;
 	-moz-box-shadow:none;
 	-webkit-box-shadow:none;
 }	
 .bar {
-  fill: #4B99AD;
+  fill: #385988;
 	border: none;
     color: #fff;
 	
 }
 
 .bar:hover {
-  fill: #4691A4;
+  fill: #00AFD7;
 }
 
-.axis {
-  font: 10px Arial, Helvetica, sans-serif;
+.axis_userinput {
+  font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
-.axis path,
-.axis line {
+.axis_userinput path,
+.axis_userinput line {
   fill: none;
-  stroke: #606060;
+  stroke: #666;
   shape-rendering: crispEdges;
 }
 
 
-.toolTip {
+div#toolTip {
 	box-sizing: border-box;
 	background-color: #FFFFFF;
 	position: absolute;
-	line-height: 0.5;
-	font: 10px Arial, Helvetica, sans-serif;
+	line-height: 1;
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
-	border: 0.5px solid #C2C2C2;
+	border: 0.5px solid #666;
+	color: #000000;
 }	
 
 
 line {
-    stroke: #606060;
+    stroke: #666;
 }
 
 path.marker {
-    fill: #606060;
-}	
-	
-footer {
-	font: 12px Arial, Helvetica,sans-serif;
+    fill: #666;
+}
 
-}	
+.label_01_01{
+	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+text#userinput_forras{
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	  font-weight: normal;
+  font-style: italic;
+  text-decoration: underline;
+
+}
+
+text#ytitle{
+		font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
