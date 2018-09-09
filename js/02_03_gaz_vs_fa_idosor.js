@@ -176,7 +176,7 @@ d3.tsv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_id
                   else break; //position found
                 }
 
-                d3.select(this).select('text')../../data/02_lakasminoseg_energiaszegenyseg/
+                d3.select(this).select('text')/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/
                   .text(y3.invert(pos.y).toFixed(2));
 
                 return "translate(" + mouse[0] + "," + pos.y +")";
