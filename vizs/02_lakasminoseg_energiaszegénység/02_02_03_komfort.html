@@ -6,9 +6,9 @@
 
     <meta charset="UTF-8">
     <title>Barchart</title>
-    <script src="../../js/d3.v4.min.js"></script>
-    <link rel="stylesheet" href="../../css/02_02_03_barchart.css">
-    <script src="../../js/02_02_03_barchart.js"></script>
+    <script src="/wp-habitat/js/d3.v4.min.js"></script>
+    <link rel="stylesheet" href="/wp-habitat/css/02_02_03_barchart.css">
+    <script src="/wp-habitat/js/02_02_03_barchart.js"></script>
 
 </head>
 
@@ -18,41 +18,41 @@
 
     <div id="vis-020203">
         <div class="form-style-2-k">
-            <select class="select-field" id="d3-dropdown">
-            <option value="02_02_03_furdo">Fürdőszobával rendelkezők aránya</option>
-            <option value="02_02_03_wc">WC-vel rendelkezők aránya</option>
-            <option value="02_02_03_viz">Folyó vízzel rendelkezők aránya</option>
-            <option value="02_02_03_gaz">Vezetékes gázzal rendelkezők aránya</option>
-            <option value="02_02_03_kozcsatorna">Közcsatornával rendelkezők aránya</option>
-		</select>
-            
- <br>
+            <select class="select-field-k" id="d3-dropdown-k">
+ <option value="02_02_03_furdo">Fürdőszobával rendelkezők aránya</option>
+ <option value="02_02_03_wc">WC-vel rendelkezők aránya</option>
+ <option value="02_02_03_viz">Folyó vízzel rendelkezők aránya</option>
+ <option value="02_02_03_gaz">Vezetékes gázzal rendelkezők aránya</option>
+ <option value="02_02_03_kozcsatorna">Közcsatornával rendelkezők aránya</option>
+ </select>
+
+            <br>
         </div>
-         <div id="chartkomf"></div>
+        <div id="chartkomf"></div>
         <script>
             var komf = BarChartKomf()
-            d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv", function(errork, datak) {
+            d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv", function(errork, datak) {
                 if (errork) throw error;
                 d3.select('#chartkomf')
                     .datum(datak) // bind data to the div
                     .call(komf); // draw chart in div
             });
 
-            d3.select("select")
+            d3.select("select.select-field-k")
                 .on("change", function(d) {
-                    var selectedk = d3.select("#d3-dropdown").node().value;
+                    var selectedk = d3.select("#d3-dropdown-k").node().value;
 
                     var strk;
                     if (selectedk == "02_02_03_furdo") {
-                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv";
+                        strk = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_03_furdo.csv";
                     } else if (selectedk == "02_02_03_wc") {
-                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_wc.csv";
+                        strk = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_03_wc.csv";
                     } else if (selectedk == "02_02_03_viz") {
-                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_viz.csv";
+                        strk = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_03_viz.csv";
                     } else if (selectedk == "02_02_03_gaz") {
-                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_gaz.csv";
+                        strk = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_03_gaz.csv";
                     } else {
-                        strk = "../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_kozcsatorna.csv";
+                        strk = "/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_03_kozcsatorna.csv";
                     }
 
                     console.log(strk)

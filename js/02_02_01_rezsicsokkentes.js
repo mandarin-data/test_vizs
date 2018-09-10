@@ -31,7 +31,7 @@ var z_020201 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A"]);
 
 // load the csv and create the chart
-d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.csv", function (d, i, columns) {
+d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
@@ -80,8 +80,8 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
             console.log(d);
             var xPosition_020201 = d3.mouse(this)[0] - 5;
             var yPosition_020201 = d3.mouse(this)[1] - 5;
-            tooltip_020201.attr("transform", "translate(" + (xPosition_020201 +15) + "," + (yPosition_020201+15) + ")");
-            tooltip_020201.select("text").text(((d[1] - d[0])).toFixed(1));
+            tooltip_020201.attr("transform", "translate(" + (xPosition_020201 + 15) + "," + (yPosition_020201+15) + ")");
+            tooltip_020201.select("text").text(((d[1] - d[0])).toFixed(0));
         });
 
     svg_020201.append("g")
@@ -162,4 +162,3 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.cs
             return d;
         });
 });
-
