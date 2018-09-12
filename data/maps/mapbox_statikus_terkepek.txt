@@ -1,0 +1,30 @@
+﻿*mapboxból statikus térkép: délkeleti agglomeráció*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/19.269,47.422,10.2/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+*mapboxból statikus térkép: Hajdúböszörmény*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/21.540,47.673,11.9/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+*mapboxból statikus térkép: Alföld*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/20.24,46.73,7.2/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+*mapboxból statikus térkép: Hős utca*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/19.114,47.498,15,5/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+*mapboxból statikus térkép: miskolci számozott utcák*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/20.725,48.098,14.8/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+*mapboxból statikus térkép: Cserehát*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/20.96,48.4,9.2/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+*mapboxból statikus térkép: Középső-Ferencváros és Középső-Józsefváros*
+
+https://api.mapbox.com/styles/v1/czirfusz/cjj5pgk8g0qhf2sqph2gdv2pm/static/19.082,47.483,13.8/700x500?access_token=pk.eyJ1IjoiY3ppcmZ1c3oiLCJhIjoiY2pqNW50bWh5MGRtZTNxbzM3ZWlldzhmNiJ9.VNeiLwWcThcwFGJP4wxxAw
+
+
+
