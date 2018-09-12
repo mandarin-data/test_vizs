@@ -2,7 +2,7 @@
 var margin_0304 = {
   top: 90, 
   right: 45, 
-  bottom: 150, 
+  bottom: 175, 
   left: 55
 };
 
@@ -74,16 +74,7 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("x", function(d) { return xbar_0304(d.data.date); })
       .attr("y", function(d) { return ybar_0304(d[1]); })
       .attr("height", function(d) { return ybar_0304(d[0]) - ybar_0304(d[1]); })
-      .attr("width", xbar_0304.bandwidth())
-//    .on("mouseover", function() { tooltip_0304.style("display", null); })
-//    .on("mouseout", function() { tooltip_0304.style("display", "none"); })
-//    .on("mousemove", function(d) {
-//      console.log(d);
-//      var xPosition = d3.mouse(this)[0] - 5;
-//      var yPosition = d3.mouse(this)[1] - 5;
-//      tooltip_0304.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-//      tooltip_0304.select("text").text(d[1]-d[0]);
-//    });
+      .attr("width", xbar_0304.bandwidth());
 
   // Add the X Axis
   svg_0304.append("g")
@@ -96,7 +87,7 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("class", "axisSteelBlue_0304")
       .call(d3.axisLeft(ybar_0304).ticks(null, "s"))
       .append("text")
-      .attr("x", 0)
+      .attr("x", 0 - margin_0304.left)
       .attr("y", -45)
       .attr("dy", "0.32em")
       .attr("text-anchor", "end")
@@ -109,7 +100,7 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("transform", "translate( " + width_0304 + ", 0 )")
       .call(d3.axisRight(yline_0304))
       .append("text")
-      .attr("x", 0)
+      .attr("x", 0 + margin_0304.left)
       .attr("y", -35)
       .attr("dy", "0.32em")
       .attr("text-anchor", "start")
@@ -159,16 +150,208 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     
     legendline_0304.append("rect")
         .attr("x", -20)
-        .attr("y", height_0304 + 68 )
+        .attr("y", height_0304 + 68)
         .attr("width", 3)
         .attr("height", 15)
         .style("fill", function(d) {return z_0304(d.name);} );
 
     legendline_0304.append("text")
         .attr("x", -14)
-        .attr("y", height_0304 + 83 )
+        .attr("y", height_0304 + 83)
         .text(function(d) {return d.name;} );
 
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 460)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("Adatok forrása: ");
+    
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 388)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("KSH 2018., ")
+        .on('click', function(d) {
+        window.open(
+            'https://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zrl001.html',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+        });
+
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 333)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("NET Zrt., ")
+        .on('click', function(d) {
+        window.open(
+            'http://',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+    
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 243)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("Költségvetési törvények ");
+    
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 162)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("2012, ")
+        .on('click', function(d) {
+        window.open(
+            'http://www.parlament.hu/irom39/12002/adatok/01_mell.pdf',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 132)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("2013, ")
+        .on('click', function(d) {
+        window.open(
+            'http://www.parlament.hu/irom40/01143/2013zsz_fokotet.pdf',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 102)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("2014, ")
+        .on('click', function(d) {
+        window.open(
+            'http://www.parlament.hu/irom40/05954/2014zsz_fokotet.pdf',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 72)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("2015, ")
+        .on('click', function(d) {
+        window.open(
+            'http://www.parlament.hu/irom40/12284/2015zsz_0_OGY.pdf',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+    
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 42)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("2016, ")
+        .on('click', function(d) {
+        window.open(
+            'http://www.parlament.hu/irom40/17578/2016zsz_0_OGY.pdf',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+    
+    svg_0304.append("text")
+        .attr("class", "data_source_0304")
+        .attr("x", width_0304 - 12)
+        .attr("y", height_0304 + 170)
+        .style("text-anchor", "middle")
+        .text("2017, ")
+        .on('click', function(d) {
+        window.open(
+            'http://www.parlament.hu/irom40/10377/10377-1172.pdf',
+            '_blank'
+        );
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+    });
+//    svg_0304.selectAll("rect")
+//        .on("mouseover", function() { tooltip_0304.style("display", null); })
+//        .on("mouseout", function() { tooltip_0304.style("display", "none"); })
+//        .on("mousemove", function(d) {
+//          console.log(d);
+//          var xPosition = d3.mouse(this)[0] - 5;
+//          var yPosition = d3.mouse(this)[1] - 5;
+//          tooltip_0304.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
+//          tooltip_0304.select("text").text(d[1]-d[0]);
+//        });
+    
 });
 
 //// Prep the tooltip bits, initial display is hidden
@@ -180,11 +363,13 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
 //    .attr("width", 60)
 //    .attr("height", 20)
 //    .attr("fill", "white")
-//    .style("opacity", 0.5);
+//    .style("opacity", 0.5)
+//    .attr("stroke", "#666")
+//    .attr("stroke-width", "0.5px");
 //
 //tooltip_0304.append("text")
 //    .attr("x", 30)
 //    .attr("dy", "1.2em")
 //    .style("text-anchor", "middle")
 //    .attr("font-size", "12px")
-//    .attr("font-weight", "bold");
+//    .attr("font", "sans serif");

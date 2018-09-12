@@ -92,14 +92,14 @@ svg {
     font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
-/*
-.tooltip_0304 {
-    position: absolute;
-    min-width: 80px;
-    height: auto;
-    background: none repeat scroll 0 0 #ffffff;
-    border: 1px solid #6F257F;
-    padding: 14px;
-    text-align: center;
+.tooltip_0304{
+	box-sizing: border-box;
+	background-color: #FFFFFF;
+	position: absolute;
+	line-height: 1;
+	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	text-align: center;
+	padding: 4px;
+	border: 0.5px solid #666;
+	color: #000000;
 }
-*/
