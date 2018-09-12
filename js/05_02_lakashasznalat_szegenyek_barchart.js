@@ -22,7 +22,7 @@ var y_0502 = d3.scaleLinear()
 var z_0502 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
-d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_alberletben.tsv", function (d, i, columns) {
+d3.tsv("/wp-habitat/data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_alberletben.tsv", function (d, i, columns) {
     for (var i_0502 = 1, n = columns.length; i_0502 < n; ++i_0502) d[columns[i_0502]] = +d[columns[i_0502]];
     return d;
 }, function (error, data) {

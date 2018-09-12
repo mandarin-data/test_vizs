@@ -95,7 +95,7 @@ svg_kozmu03.append('text')
 	.text("A háttérre kattintva a vizualizáció alaphelyzetbe hozható.");
 
 
-d3.json('../../data/04_eladosodas/04_kozmu03.json', (error, root) => {
+d3.json('/wp-habitat/data/04_eladosodas/04_kozmu03.json', (error, root) => {
 	if (error) throw error;
 
 	root_kozmu03 = d3.hierarchy(root);

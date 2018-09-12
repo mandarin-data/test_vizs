@@ -37,7 +37,7 @@ var svg_0404 = d3.select("#topic04-vis04").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_0404.left +", "+margin_0404.top+")")
 
-d3.tsv("../../data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv", type_0404, function (error, data) {
+d3.tsv("/wp-habitat/data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv", type_0404, function (error, data) {
     if (error) throw error;
 
     var categories_0404 = data.columns.slice(1).map(function (name) {

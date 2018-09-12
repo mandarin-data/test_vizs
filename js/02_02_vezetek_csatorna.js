@@ -35,7 +35,7 @@ var z = d3.scaleOrdinal()
 <<<<<<< HEAD
 d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_vezetek_csatorna.csv", function (d, i, columns) {
 =======
-d3.csv("../../data/test/02_02_vezetek_csatorna.csv", function (d, i, columns) {
+d3.csv("/wp-habitat/data/test/02_02_vezetek_csatorna.csv", function (d, i, columns) {
 >>>>>>> 0dfefe8661d328b490d06c203612c3c0e24ddc25
     for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
     return d;

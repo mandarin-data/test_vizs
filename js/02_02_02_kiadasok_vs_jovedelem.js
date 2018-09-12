@@ -30,7 +30,7 @@ var z = d3.scaleOrdinal()
     .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 // load the csv and create the chart
-d3.csv("../../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovedelem.csv", function (d, i, columns) {
+d3.csv("/wp-habitat/../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovedelem.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;

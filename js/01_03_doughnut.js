@@ -125,7 +125,7 @@ chartTooltip_doughnut.append('div')
 	.attr('id', 'd_percent');
 
 
-d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', function(error, dataset_doughnut) {
+d3.csv('/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', function(error, dataset_doughnut) {
 	dataset_doughnut.forEach(function(d) {
 		d.percent = +d.percent;
 		d.enabled = true;

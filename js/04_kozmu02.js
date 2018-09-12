@@ -42,7 +42,7 @@ function stacked_chart(){
 	.attr("transform", "translate(" + margin_kozmu02.left + "," + margin_kozmu02.top + ")");
 
 
-	d3.csv("../../data/04_eladosodas/04_kozmu02.csv", function(d, i, columns) {
+	d3.csv("/wp-habitat/data/04_eladosodas/04_kozmu02.csv", function(d, i, columns) {
 		for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
 		d.total = t;
 		return d;
@@ -178,7 +178,7 @@ function normalized_chart(){
 	var stack = d3.stack()
 		.offset(d3.stackOffsetExpand);
 
-	d3.csv("../../data/04_eladosodas/04_kozmu02.csv", type, function(error, data) {
+	d3.csv("/wp-habitat/data/04_eladosodas/04_kozmu02.csv", type, function(error, data) {
 		if (error) throw error;
 
 		data.sort(function(a, b) { return b.total - a.total; });

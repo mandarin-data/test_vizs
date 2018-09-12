@@ -94,7 +94,7 @@ d3.tsv("/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.
 
     svg.selectAll(".bar")
 =======
-d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", function (error, data) {
+d3.tsv("/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", function (error, data) {
     x_userinput.domain(data.map(function (d) {
         return d.Decilis;
     }));
@@ -299,7 +299,7 @@ function myFunction() {
     var userexp_userinput = ((expend_userinput / wage_userinput) * 100);
 
 
-    d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", function (error, data) {
+    d3.tsv("/wp-habitat/data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", function (error, data) {
         if (error) throw error;
         var period_userinput = data.filter(function (row) {
             row["Dec_f"] = +row["Dec_f"];
