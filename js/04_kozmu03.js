@@ -1,68 +1,141 @@
 
-var width_kozmu03 = d3.select("#viscontainer-kozmu03").node().getBoundingClientRect().width/1.2,
-	height_kozmu03 = d3.select("#viscontainer-kozmu03").node().getBoundingClientRect().width/1.2,
-	maxRadius_kozmu03 = (Math.min(width_kozmu03, height_kozmu03) / 2) - 60;
+var margin_kozmu03 = {top: 40, right: 0, bottom: 80, left: 60},
+	width = d3.select("#viscontainer-kozmu03").node().getBoundingClientRect().width - margin_kozmu03.left - margin_kozmu03.right,
+	height = 450 - margin_kozmu03.top - margin_kozmu03.bottom;
 
-var formatNumber_kozmu03 = d3.format(',d');
-
-var x_kozmu03 = d3.scaleLinear()
-	.range([0, 2 * Math.PI])
-	.clamp(true);
+var x_kozmu03 = d3.scaleBand()
+.rangeRound([0, width - 150])
+.paddingInner(0.15)
+.align(0.8);
 
 var y_kozmu03 = d3.scaleLinear()
-	.range([maxRadius_kozmu03*0.4, maxRadius_kozmu03]);
+.rangeRound([380, 0]);
 
-var color_kozmu03 = d3.scaleOrdinal(["#888B8D","#43B02A","#385988", "#00AFD7","#A4343A","#FF671F","#fff", "#C4D600"]);
+var z_kozmu03 = d3.scaleOrdinal()
+.range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
-var partition_kozmu03 = d3.partition();
+var svg_kozmu03 = d3.select("#viscontainer-kozmu03").append("svg")
+.attr("width", width + margin_kozmu03.left + margin_kozmu03.right)
+.attr("height", 380 + margin_kozmu03.top + margin_kozmu03.bottom)
+.attr("id","svg_kozmu03")
+.append("g")
+.attr("transform", "translate(" + margin_kozmu03.left + "," + margin_kozmu03.top + ")");
 
-var arc_kozmu03 = d3.arc()
-	.startAngle(d => x_kozmu03(d.x0))
-	.endAngle(d => x_kozmu03(d.x1))
-	.innerRadius(d => Math.max(0, y_kozmu03(d.y0)))
-	.outerRadius(d => Math.max(0, y_kozmu03(d.y1)));
 
-var middleArcLine_kozmu03 = d => {
-	var halfPi_kozmu03 = Math.PI/2;
-	var angles_kozmu03 = [x_kozmu03(d.x0) - halfPi_kozmu03, x_kozmu03(d.x1) - halfPi_kozmu03];
-	var r_kozmu03 = Math.max(0, (y_kozmu03(d.y0) + y_kozmu03(d.y1)) / 2);
+d3.csv("../../data/04_eladosodas/04_kozmu03.csv", function(d, i, columns) {
+	for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
+	d.total = t;
+	return d;
+}, function(error, data) {
+	if (error) throw error;
 
-	var middleAngle_kozmu03 = (angles_kozmu03[1] + angles_kozmu03[0]) / 2;
-	var invertDirection_kozmu03 = middleAngle_kozmu03 > 0 && middleAngle_kozmu03 < Math.PI;
-	if (invertDirection_kozmu03) { angles_kozmu03.reverse(); }
+	console.log(data);
+	var keys_kozmu03 = data.columns.slice(1);
 
-	var path_kozmu03 = d3.path();
-	path_kozmu03.arc(0, 0, r_kozmu03, angles_kozmu03[0], angles_kozmu03[1], invertDirection_kozmu03);
-	return path_kozmu03.toString();
-};
+	var serie_kozmu03 = svg_kozmu03.selectAll(".serie_kozmu03")
+	.data(d3.stack().keys(keys_kozmu03)(data))
+	.enter().append("g")
+	.attr("class", "serie_kozmu03");
 
-var textFits_kozmu03 = d => {
-	var CHAR_SPACE_kozmu03 = 6;
-	var deltaAngle_kozmu03 = x_kozmu03(d.x1) - x_kozmu03(d.x0);
-	var r_kozmu03 = Math.max(0, (y_kozmu03(d.y0) + y_kozmu03(d.y1)) / 2);
-	var perimeter_kozmu03 = r_kozmu03 * deltaAngle_kozmu03;
-	return d.data.name.length * CHAR_SPACE_kozmu03 < perimeter_kozmu03;
-};
+	data.sort(function(a, b) { return b.total - a.total; });
+	x_kozmu03.domain(data.map(function(d) { return d.type; }));
+	y_kozmu03.domain([0, d3.max(data, function(d) { return d.total; })]).nice();
+	z_kozmu03.domain(keys_kozmu03);
 
-var svg_kozmu03 = d3.select('#viscontainer-kozmu03').append('svg')
-	.attr("id", "svg_kozmu03")
-	.style('width', width_kozmu03)
-	.style('height', height_kozmu03)
-	.attr('viewBox', `${-width_kozmu03/2} ${-height_kozmu03/2 } ${width_kozmu03} ${height_kozmu03}`)
-	.on('click', () => focusOn());
+	serie_kozmu03.append("g")
+		.selectAll("g")
+		.data(d3.stack().keys(keys_kozmu03)(data))
+		.enter().append("g")
+		.attr("fill", function(d) { return z_kozmu03(d.key); })
+		.selectAll("rect")
+		.data(function(d) { return d; })
+		.enter().append("rect")
+		.attr("x", function(d) { return x_kozmu03(d.data.type); })
+		.attr("y", function(d) { return y_kozmu03(d[1]); })
+		.attr("height", function(d) { return y_kozmu03(d[0]) - y_kozmu03(d[1]); })
+		.attr("width", x_kozmu03.bandwidth());
+
+	
 
 svg_kozmu03.append('text')
-	.attr("class", "cim_kozmu03")
-	.attr("x", 0)             
-	.attr("y", (maxRadius_kozmu03 * -1) - 20)
-	.attr("text-anchor", "middle")  
-	.text("90 napon túli késedelmes hitelek (volumen)");
+		.attr('id', 'title_0304')
+		.attr("x",  (width - 150 )/2)
+		.attr("y", -25)
+		.text("90 napon túli késedelmes hitelszerződések száma (2017. december)");
+		
 
-svg_kozmu03.append('text')
+	svg_kozmu03.append("g")
+		.attr("class", "axis_kozmu03")
+		.attr("transform", "translate(0," + 380 + ")")
+		.call(d3.axisBottom(x_kozmu03))
+	    .selectAll(".tick text")
+		.call(wrap, x_kozmu03.bandwidth());;
+
+
+	svg_kozmu03.append("g")
+		.attr("class", "axis_kozmu03")
+		.call(d3.axisLeft(y_kozmu03))
+		.append("text")
+		.attr("x", 2)
+		.attr("y", y_kozmu03(y_kozmu03.ticks().pop()))
+		.attr("dy", "0.32em")
+		.attr("text-anchor", "start");
+
+	var legend_kozmu03 = svg_kozmu03.append("g")
+		.attr("text-anchor", "end")
+		.selectAll("g")
+		.data(keys_kozmu03.slice().reverse())
+		.enter().append("g")
+		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+	legend_kozmu03.append("rect")
+		.attr("x", width - 90)
+		.attr("width", 18)
+		.attr("height", 18)
+		.attr("fill", z_kozmu03);
+
+	legend_kozmu03.append("text")
+		.attr("class", "legend_kozmu03")
+		.attr("x", width-60)
+		.attr("y", 8)
+		.attr("dy", "0.32em")
+		.attr("text-anchor", "start")
+		.text(function(d) { return d; });
+
+	var tooltip_kozmu03 = svg_kozmu03.append("g")
+		.attr("class", "tooltip_kozmu03")
+		.style("visibility", "hidden");
+
+	tooltip_kozmu03.append("rect")
+		.attr("width", 60)
+		.attr("height", 20)
+		.attr("fill", "white")
+		.attr("stroke", "#666")
+		.attr("stroke-width", "0.5px");
+
+	tooltip_kozmu03.append("text")
+		.attr("x", 30)
+		.attr("dy", "1.2em")
+		.style("text-anchor", "middle");	
+
+	serie_kozmu03.selectAll("rect")
+		.on("mouseout", function() { tooltip_kozmu03.style("display", "none"); })
+		.on("mousemove", function(d) {
+		var delta_kozmu03 = d[1]-d[0];
+		var xPosition_kozmu03 = d3.mouse(this)[0] - 40;
+		var yPosition_kozmu03 = d3.mouse(this)[1] - 30;
+		tooltip_kozmu03
+			.style("visibility", "visible")
+			.style("display", "inline")
+			.attr("transform", "translate(" + xPosition_kozmu03 + "," + yPosition_kozmu03 + ")")
+			.select("text").text((delta_kozmu03).toFixed(0));
+	});
+
+serie_kozmu03.append('text')
 	.attr("class", "kozmu03_forras")
-	.attr("x", 0)             
-	.attr("y", (-maxRadius_kozmu03 * -1) + 20)
-	.attr("text-anchor", "middle")  
+		.attr("x", width- 150)
+		.attr("y", 450)
+	.attr("text-anchor", "end")  
 	.text("Adatok forrása: MNB")
 	.on('click', function(d) {
 		window.open(
@@ -78,117 +151,31 @@ svg_kozmu03.append('text')
 	.on("mousemove", function(d) {
 	d3.select(this).style("cursor", "pointer"); 
 	});
-
-svg_kozmu03.append('text')
-	.attr("class", "labjegyzet_kozmu03")
-	.attr("x", 0)             
-	.attr("y", (-maxRadius_kozmu03 * -1) + 40)
-	.attr("text-anchor", "middle")  
-	.text("Lábjegyzet: A körívekre kattintva be-, a fehér körre kattintva kizoomolhat.");
-
-
-svg_kozmu03.append('text')
-	.attr("class", "labjegyzet_kozmu03")
-	.attr("x", 0)             
-	.attr("y", (-maxRadius_kozmu03 * -1) + 55)
-	.attr("text-anchor", "middle")  
-	.text("A háttérre kattintva a vizualizáció alaphelyzetbe hozható.");
-
-
-d3.json('../../data/04_eladosodas/04_kozmu03.json', (error, root) => {
-	if (error) throw error;
-
-	root_kozmu03 = d3.hierarchy(root);
-	root_kozmu03.sum(d => d.value);
-
-	var slice_kozmu03 = svg_kozmu03.selectAll('g.slice')
-	.data(partition_kozmu03(root_kozmu03).descendants());
-
-	slice_kozmu03.exit().remove();
-
-	var tooltip_kozmu03 = d3.select("#viscontainer-kozmu03")
-	.append("div")
-	.attr("class", "tooltip_kozmu03")
-	.style("visibility", "hidden");
-
-	var newSlice_kozmu03 = slice_kozmu03.enter()
-	.append('g').attr('class', 'slice')
-	.on('click', d => {
-		d3.event.stopPropagation();
-		focusOn(d);
-	})
-
-	.on("mousemove", function (d) {
-		tooltip_kozmu03
-			.style("visibility", "visible")
-			.style("left", d3.mouse(this)[0] + 280 + "px")
-			.style("top", d3.mouse(this)[1] + 200  + "px")
-			.style("display", "inline")
-			.html(d.data.name + '\n' + formatNumber_kozmu03(d.value));
-	})
-	.on("mouseout", function (d) {
-		tooltip_kozmu03.style("display", "none");
-	});
-
-	newSlice_kozmu03.append('path')
-		.attr('class', 'main-arc')
-		.style('fill', d => color_kozmu03((d.children ? d : d.parent).data.name))
-		.attr('d', arc_kozmu03);
-
-	newSlice_kozmu03.append('path')
-		.attr('class', 'hidden-arc')
-		.attr('id', (_, i) => `hiddenArc${i}`)
-		.attr('d', middleArcLine_kozmu03);
-
-	var text_kozmu03 = newSlice_kozmu03.append('text')
-	.attr("class", "all_text");
-
-	svg_kozmu03.selectAll(".all_text")
-		.attr('display', d => textFits_kozmu03(d) ? null : 'none');
-
-	text_kozmu03.append('textPath')
-		.attr('startOffset','50%')
-		.attr('xlink:href', (_, i) => `#hiddenArc${i}` )
-		.text(d => d.data.name)
-		.style('fill', 'none')
-		.style('stroke', '#fff')
-		.style('stroke-width', 0)
-		.style('stroke-linejoin', 'round');
-
-	text_kozmu03.append('textPath')
-		.attr('startOffset','50%')
-		.attr('xlink:href', (_, i) => `#hiddenArc${i}` )
-		.text(d => d.data.name);
-
+	
+	
 });
 
-function focusOn(d = { x0: 0, x1: 1, y0: 0, y1: 1 }) {
 
-	var transition_kozmu03 = svg_kozmu03.transition()
-		.duration(750)
-		.tween('scale', () => {
-			var xd_kozmu03 = d3.interpolate(x_kozmu03.domain(), [d.x0, d.x1]),
-				yd_kozmu03 = d3.interpolate(y_kozmu03.domain(), [d.y0, 1]);
-			return t => { x_kozmu03.domain(xd_kozmu03(t)); y_kozmu03.domain(yd_kozmu03(t)); };
-		});
-
-	transition_kozmu03.selectAll('path.main-arc')
-		.attrTween('d', d => () => arc_kozmu03(d));
-
-	transition_kozmu03.selectAll('path.hidden-arc')
-		.attrTween('d', d => () => middleArcLine_kozmu03(d));
-
-	transition_kozmu03.selectAll('.all_text')
-		.attrTween('display', d => () => textFits_kozmu03(d) ? null : 'none');
-
-	moveStackToFront_kozmu03(d);
-
-
-	function moveStackToFront_kozmu03(elD) {
-		svg_kozmu03.selectAll('.slice').filter(d => d === elD)
-			.each(function(d) {
-			this.parentNode.appendChild(this);
-			if (d.parent) { moveStackToFront_kozmu03(d.parent); }
-		})
-	}
+function wrap(text, width) {
+  text.each(function() {
+    var text = d3.select(this),
+        words = text.text().split(/\s+/).reverse(),
+        word,
+        line = [],
+        lineNumber = 0,
+        lineHeight = 1.1, // ems
+        y = text.attr("y"),
+        dy = parseFloat(text.attr("dy")),
+        tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em")
+    while (word = words.pop()) {
+      line.push(word)
+      tspan.text(line.join(" "))
+      if (tspan.node().getComputedTextLength() > width) {
+        line.pop()
+        tspan.text(line.join(" "))
+        line = [word]
+        tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", `${++lineNumber * lineHeight + dy}em`).text(word)
+      }
+    }
+  })
 }

@@ -1,33 +1,72 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-    <script src="../../js/d3.v4.min.js"></script>
-    <link rel="stylesheet" href="../../css/02_01_barchart.css">
-    <script src="../../js/02_01_barchart.js"></script>
+	<head>
+		<meta charset="UTF-8">
+		<title>Stacked Barchart</title>
+		<script src="../../js/d3.v4.min.js"></script>
+		<link rel="stylesheet" href="../../css/02_01_barchart.css">
+		<script src="../../js/02_01_barchart.js"></script>
 
-</head>
+	</head>
 
-<body>
-    <div id="viscontainer-11">
-        <div class="form-style-2">
-            <select class="select-field" id="d3-dropdown">
-					<option value="02_01_01_komfort_fokozat">Komfort fokozat</option>
-					<option value="02_01_02_infra_hiany">Wc</option>
-					<option value="02_01_03_felujitas">Felújítás</option>
+	<body>
+		<svg id=svg_0201barchart_title></svg>
+		<div id="viscontainer-11">
+			<div class="form-style-2">
+				<select class="select-field" id="d3-dropdown">
+					<option value="02_01_01_komfort_fokozat">Komfortfokozat</option>
+					<option value="02_01_02_infra_hiany">Közműellátottság</option>
+					<option value="02_01_03_felujitas">Felújítási tevékenység</option>
 				</select>
 
 
-            <input type="checkbox" class="myinput_large" id=mycheck><label class="barlabel">Rendezés </label>
+				<input type="checkbox" class="myinput_large" id=mycheck_0201><label class="barlabel">Rendezés </label>
 
-            <br>
-        </div>
+				<br>
+			</div>
 
-        <div id="chart"></div>
-        <script src="../../js/02_01_donut.js"></script>
-    </div>
-</body>
+			<div id="chart"></div>
+			<script>
+				MyTitle()
+				var donut = BarChart()
+				d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_01_01_komfort_fokozat.tsv", function(error, data) {
+					if (error) throw error;
+					d3.select('#chart')
+						.datum(data) // bind data to the div
+						.call(donut); // draw chart in div
+				});
 
+
+				d3.select("select#d3-dropdown")
+					.on("change", function(d) {
+					var selected = d3.select("#d3-dropdown").node().value;
+
+					var str;
+					if (selected == "02_01_01_komfort_fokozat") {
+						str = "../../data/02_lakasminoseg_energiaszegenyseg/02_01_01_komfort_fokozat.tsv";
+						MyTitle()
+						var donut = BarChart()
+						d3.tsv(str, function(error, data) {
+							if (error) throw error;
+							d3.select('#chart')
+								.datum(data) // bind data to the div
+								.call(donut); // draw chart in div
+					})
+					} else if (selected == "02_01_02_infra_hiany") {
+						MyTitle2();
+						str = "../../data/02_lakasminoseg_energiaszegenyseg/02_01_02_infra_hiany.tsv";
+						GroupedChart(str)
+					} else {
+						MyTitle3()	;	
+						str = "../../data/02_lakasminoseg_energiaszegenyseg/02_01_03_felujitas.tsv";
+						GroupedChart(str)
+
+					}
+;
+				})
+
+			</script>
+		</div>
+	</body>
 </html>

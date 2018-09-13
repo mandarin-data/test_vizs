@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+		<div id="chart_01_02">
+			<svg id=svg_01_02_title></svg>
+			<div class="form-style-2">
+				<select class="select-field" id="d3-dropdown">
+					<option value="01_02_hasznaltlakas">Használt lakások</option>
+					<option value="01_02_ujlakas">Új lakások</option>
+				</select>
+				
+			<link rel="stylesheet" type="text/css" href="../../css/01_02_groupedbar_with_lines.css">
+			<script src="../../js/d3.v4.min.js"></script>
+			<script src="../../js/01_02_groupedbar_with_lines.js"></script>
+			<script>
+			MyTitle()
+			var str = "../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_02_hasznaltlakas.tsv";
+			BarWithLines(str);
+			d3.select("select#d3-dropdown")
+					.on("change", function(d) {
+					
+					var selected = d3.select("#d3-dropdown").node().value;
+
+					if (selected == "01_02_hasznaltlakas") {
+						str = "../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_02_hasznaltlakas.tsv";
+					} else {
+						str = "../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_02_ujlakas.tsv";
+					}
+				BarWithLines(str);
+
+				});
+			</script>
+			</div>

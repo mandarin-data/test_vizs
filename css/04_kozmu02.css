@@ -1,12 +1,13 @@
 
+
 input[type=radio] + span{
-	font: 13px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 14px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	color: #D8D8D8;  
 	text-align : justify;
 	height: 26px;
 	line-height: 26px;
 	cursor: pointer;
-	margin: 2px 4px 0;
+	margin: 2px 4px 0 0px;
     line-height: normal;
 } 
 
@@ -18,7 +19,7 @@ input[type=radio]:checked + span{
 
 
 .axis_kozmu02{
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	fill: #000000;
 
 }
@@ -36,7 +37,7 @@ input[type=radio]:checked + span{
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #666;
@@ -44,12 +45,12 @@ input[type=radio]:checked + span{
 }
 
 .legend_kozmu02{
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 
 }
 
 #kozmu02_forras{
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
   	font-style: italic;
 	font-weight: lighter;
   	text-decoration: underline;	
@@ -60,7 +61,7 @@ input[type=radio]:checked + span{
 }
 
 text#kozmu02_title{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 17px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	text-anchor: middle;
 }

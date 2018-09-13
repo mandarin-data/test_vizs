@@ -1,3 +1,22 @@
+function MyTitle(){
+	var margin_userinput = {top: 20, right: 0, bottom: 45, left: 40},
+		userInputWidth = d3.select("#vis-0101").node().getBoundingClientRect().width - margin_userinput.left - margin_userinput.right,
+		userInputHeight = 450 - margin_userinput.top - margin_userinput.bottom;
+
+	var svg_userinput_title = d3.select("#svg_userinput_title")
+	.attr("width", userInputWidth + margin_userinput.left + margin_userinput.right)
+	.attr("height", 30);
+
+	svg_userinput_title.append('text')
+		.attr('id', 'userinput_title')
+		.attr("x",  (userInputWidth)/2 )
+		.attr("y", 27)
+		.text("Az egy főre jutó havi lakhatási költségek és nettó jövedelmek jövedelmi tizedenként (Ft, 2016)");
+
+}
+
+
+
 var margin_userinput = {
         top: 20,
         right: 60,
@@ -13,7 +32,7 @@ var fullwidth_ui = userInputWidth/2;
 
 var x_userinput = d3.scaleBand()
     .rangeRound([0, userInputWidth], 0.1)
-    .paddingInner(0.1);
+    .paddingInner(0.15);
 
 var y_userinput = d3.scaleLinear()
     .range([userInputHeight, 0]);
@@ -45,18 +64,16 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
     x_userinput.domain(data.map(function (d) {
         return d.Decilis;
     }));
-
+	
     y_userinput.domain([0, 100]);
-
+	
 	svg_userinput.append("g")
 		.attr("class", "axis_userinput")
-		.style("font-size", "12px")
 		.attr("transform", "translate(0," + 350 + ")")
 		.call(xAxis_userinput);
 
 	svg_userinput.append("g")
 		.attr("class", "axis_userinput")
-		.style("font-size", "12px")
 		.call(yAxis_userinput)
 		.append("text")
 		.attr("transform", "rotate(-90)")
@@ -64,11 +81,10 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 		.attr("x", 0  - (350/2) )
 		.style("text-anchor", "middle")
 		.style("fill", "#000000")
-		.style("font-size", "12px")
-		.text("Lakhatási költségek a jövedelem viszonylatában (%)");
+		.text("Lakhatásra fordított költségek a nettó jövedelemből (%)");
 
 
-
+	
     svg_userinput.selectAll(".bar")
         .data(data)
         .enter().append("rect")
@@ -97,13 +113,12 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
         .on("mouseout", function (d) {
             tooltip_userinput.style("display", "none");
         });
-
+	
 		svg_userinput.append('text')
 			.attr("id", "userinput_forras")
 			.attr("x", fullwidth_ui * 2 )
 			.attr("y",  350 + (margin_userinput.bottom) + 10)
 			.attr("text-anchor", "end")
-			.style('font-size', "12px")
 			.text("Adatok forrása: KSH 2017a")
 			.on('click', function(d) {
 				window.open(
@@ -112,22 +127,22 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 				);
 			  })
 			.on('mouseover', function(d){
-				d3.select(this).style("cursor", "pointer");
+				d3.select(this).style("cursor", "pointer"); 
 				})
 
 			.on("mouseout", function() { d3.select(this).style("cursor", "default"); })
 			.on("mousemove", function(d) {
-						d3.select(this).style("cursor", "pointer");
+						d3.select(this).style("cursor", "pointer"); 
 		});
-
+	
 		svg_userinput.append('text')
 			.attr("id", "ytitle")
 			.attr("x", fullwidth_ui )
 			.attr("y",  350 + (margin_userinput.bottom - 5))
 			.style("text-anchor", "middle")
-			.style("font-size", "12px")
+			.style("font-size", "14px")
 			.text("Jövedelmi tized");
-
+	
 });
 
 
@@ -163,7 +178,7 @@ function myFunction() {
 
         svg_userinput.selectAll("text.label_01_01").remove();
         svg_userinput.selectAll("line.arrow").remove();
-
+		
 
 
         svg_userinput.append("defs").append("marker")
@@ -232,9 +247,9 @@ function myFunction() {
 			.style("font-size", "14px")
             .text(function (d) {
                 if (dif_userinput < 0) {
-                    return "költ kevesebbet lahatásra"
+                    return "költ kevesebbet lakhatásra"
                 } else {
-                    return "költ többet lahatásra"
+                    return "költ többet lakhatásra"
                 };
             })
 
@@ -263,7 +278,7 @@ function myFunction() {
                 return   (350 * ((100 - atl_kolt_userinput) / 100) - 40) ;
             })
             .attr("marker-end", "url(#arrow)");
-
+			
 
     });
 

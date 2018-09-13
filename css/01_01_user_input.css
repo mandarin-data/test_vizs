@@ -1,14 +1,14 @@
 .form-style-01-01{
     max-width: 1000px;
     padding: 6px 6px 6px 6px;
-    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
 
 .form-style-01-01 label{
     display: block;
     margin: 6px 0px 6px 0px;
-    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
+    font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
     color: #333;
     margin-left: 0px;
     text-align: start;
@@ -26,9 +26,9 @@
 }
 
 .form-style-01-01 label > span{
-    width: 570px;
-    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
-    font-weight: 500;
+    width: 620px;
+    font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
+    font-weight: normal;
     float: left;
     color: #333;
     padding-top: 8px;
@@ -87,7 +87,7 @@
 }
 
 .axis_userinput {
-  font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+  font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
 .axis_userinput path,
@@ -103,7 +103,7 @@ div#toolTip {
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #666;
@@ -124,7 +124,7 @@ path.marker {
 }
 
 text#userinput_forras{
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	  font-weight: normal;
   font-style: italic;
   text-decoration: underline;	
@@ -133,4 +133,10 @@ text#userinput_forras{
 
 text#ytitle{
 		font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+text#userinput_title{
+	font: 16px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-anchor: middle;
 }

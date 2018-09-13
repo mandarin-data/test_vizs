@@ -1,5 +1,5 @@
 function MyTitle(){
-	var margin_kozmu02 = {top: 20, right: 0, bottom: 60, left: 40},
+	var margin_kozmu02 = {top: 20, right: 0, bottom: 60, left: 45},
 		width = d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
@@ -9,9 +9,9 @@ function MyTitle(){
 
 	svg_kozmu02_title.append('text')
 		.attr('id', 'kozmu02_title')
-		.attr("x",  (width - 230)/2 + margin_kozmu02.left )
+		.attr("x",  (width - 300)/2 + margin_kozmu02.left )
 		.attr("y", 15)
-		.text("Hátralékos fogyasztók a tartozás hossza szerint (2017)");
+		.text("Hátralékos fogyasztók a tartozás hossza szerint (2017. december 31.)");
 
 }
 
@@ -19,13 +19,13 @@ function MyTitle(){
 function stacked_chart(){
 	d3.select("#svg_kozmu02").remove();
 
-	var margin_kozmu02 = {top: 20, right: 0, bottom: 60, left: 40},
+	var margin_kozmu02 = {top: 20, right: 0, bottom: 60, left: 45},
 		width = d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
 	var x_kozmu02 = d3.scaleBand()
-	.rangeRound([0, width - 230])
-	.paddingInner(0.05)
+	.rangeRound([0, width - 300])
+	.paddingInner(0.15)
 	.align(0.8);
 
 	var y_kozmu02 = d3.scaleLinear()
@@ -74,14 +74,25 @@ function stacked_chart(){
 			.attr("height", function(d) { return y_kozmu02(d[0]) - y_kozmu02(d[1]); })
 			.attr("width", x_kozmu02.bandwidth());
 
+		
 		svg_kozmu02.append("g")
 			.attr("class", "axis_kozmu02")
 			.attr("transform", "translate(0," + 380 + ")")
 			.call(d3.axisBottom(x_kozmu02));
 
+var locale = d3.formatLocale({
+  decimal: ",",
+});
+
+
+		
+var format = locale.format(",.1f");
+		
 		svg_kozmu02.append("g")
 			.attr("class", "axis_kozmu02")
-			.call(d3.axisLeft(y_kozmu02).ticks(null, "s"))
+			.call(d3.axisLeft(y_kozmu02).tickFormat(function(d){
+ if(this.parentNode.nextSibling){
+return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 			.append("text")
 			.attr("x", 2)
 			.attr("y", y_kozmu02(y_kozmu02.ticks().pop()))
@@ -96,14 +107,14 @@ function stacked_chart(){
 			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend_kozmu02.append("rect")
-			.attr("x", width - 210)
+			.attr("x", width - 280)
 			.attr("width", 18)
 			.attr("height", 18)
 			.attr("fill", z_kozmu02);
 
 		legend_kozmu02.append("text")
 			.attr("class", "legend_kozmu02")
-			.attr("x", width-175)
+			.attr("x", width-245)
 			.attr("y", 8)
 			.attr("dy", "0.32em")
 			.attr("text-anchor", "start")
@@ -140,11 +151,11 @@ function stacked_chart(){
 
 		serie_kozmu02.append('text')
 			.attr("id", "kozmu02_forras")
-			.attr("x", width- 230)
+			.attr("x", width- 300)
 			.attr("y",  380 + 40)
 			.attr("text-anchor", "end")
-			.style('font-size', "12px")
-			.text("Adatok forrása: MEKH");
+			.style('font-size', "13px")
+			.text("Adatok forrása: MEKH adatszolgáltatás, 2018.");
 	});
 
 }
@@ -153,13 +164,13 @@ function stacked_chart(){
 function normalized_chart(){		
 	d3.select("#svg_kozmu02").remove();
 
-	var margin_kozmu02 = {top: 20, right: 0, bottom: 60, left: 40},
+	var margin_kozmu02 = {top: 20, right: 0, bottom: 60, left: 45},
 		width = d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
 	var x_kozmu02 = d3.scaleBand()
-		.rangeRound([0, width - 230])
-		.paddingInner(0.05)
+		.rangeRound([0, width - 300])
+		.paddingInner(0.15)
 		.align(0.8);
 
 	var y_kozmu02 = d3.scaleLinear()
@@ -224,7 +235,7 @@ function normalized_chart(){
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend_kozmu02.append("rect")
-			.attr("x", width - 210)
+			.attr("x", width - 280)
 			.attr("width", 18)
 			.attr("height", 18)
 			.style("fill", z_kozmu02)
@@ -233,7 +244,7 @@ function normalized_chart(){
 
 		legend_kozmu02.append("text")
 			.attr("class", "legend_kozmu02")
-			.attr("x", width-175)
+			.attr("x", width-245)
 			.attr("y", 8)
 			.attr("dy", "0.32em")
 			.attr("text-anchor", "start")
@@ -268,9 +279,9 @@ function normalized_chart(){
 
 		serie_kozmu02.append('text')
 			.attr("id", "kozmu02_forras")
-			.attr("x", width- 230)
+			.attr("x", width- 300)
 			.attr("y",  380 + 40)
-			.text("Adatok forrása: MEKH");
+			.text("Adatok forrása: MEKH adatszolgáltatás, 2018.");
 
 	});
 
