@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style> /* set the CSS */
+
+.line_0304 {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+.axisSteelBlue_0304 text{
+  fill: steelblue;
+}
+
+.axisRed_0304 text{
+  fill: red;
+}
+
+</style>
+<body>
+
+<!-- load the d3.js library -->    	
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+
+// set the dimensions and margins of the graph
+var margin_0304 = {top: 20, right: 40, bottom: 30, left: 50},
+    width_0304 = 960 - margin_0304.left - margin_0304.right,
+    height_0304 = 500 - margin_0304.top - margin_0304.bottom;
+    
+//var margin_0304 = {
+//  top: 50, 
+//  right: 50, 
+//  bottom: 60, 
+//  left: 60
+//};
+//
+//var width_0304 = d3.select("#topic03-vis04").node().getBoundingClientRect().width - margin_0304.left - margin_0304.right;
+//var height_0304 = d3.select("#topic03-vis04").node().getBoundingClientRect().height - margin_0304.top - margin_0304.bottom;
+
+var parseTime_0304 = d3.timeParse("%Y");
+
+// set the ranges
+var x_0304 = d3.scaleTime().range([0, width_0304]);
+var y0_0304 = d3.scaleLinear().range([height_0304, 0]);
+var y1_0304 = d3.scaleLinear().range([height_0304, 0]);
+
+// define the 1st line
+var valueline_0304 = d3.line()
+    .x(function(d) { return x_0304(d.date); })
+    .y(function(d) { return y0_0304(d.Önkormányzati); });
+
+// define the 2nd line
+var valueline2_0304 = d3.line()
+    .x(function(d) { return x_0304(d.date); })
+    .y(function(d) { return y1_0304(d.NET); });
+
+// append the svg obgect to the body of the page
+// appends a 'group' element to 'svg'
+// moves the 'group' element to the top left margin_0304
+var svg_0304 = d3.select("body").append("svg")
+    .attr("width", width_0304 + margin_0304.left + margin_0304.right)
+    .attr("height", height_0304 + margin_0304.top + margin_0304.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin_0304.left + "," + margin_0304.top + ")");
+
+// Get the data
+d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_timeseries.tsv", function(error, data) {
+  if (error) throw error;
+
+  // format the data
+  data.forEach(function(d) {
+      d.date = parseTime_0304(d.date);
+      d.Önkormányzati = +d.Önkormányzati;
+      d.NET = +d.NET;
+  });
+
+  // Scale the range of the data
+  x_0304.domain(d3.extent(data, function(d) { return d.date; }));
+  y0_0304.domain([0, d3.max(data, function(d) {return Math.max(d.Önkormányzati);})]);
+  y1_0304.domain([0, d3.max(data, function(d) {return Math.max(d.NET); })]);
+
+  // Add the valueline_0304 path.
+  svg_0304.append("path")
+      .data([data])
+      .attr("class", "line_0304")
+      .attr("d", valueline_0304);
+
+  // Add the valueline2_0304 path.
+  svg_0304.append("path")
+      .data([data])
+      .attr("class", "line_0304")
+      .style("stroke", "red")
+      .attr("d", valueline2_0304);
+
+  // Add the X Axis
+  svg_0304.append("g")
+      .attr("transform", "translate(0," + height_0304 + ")")
+      .call(d3.axisBottom(x_0304));
+
+  // Add the Y0 Axis
+  svg_0304.append("g")
+      .attr("class", "axisSteelBlue_0304")
+      .call(d3.axisLeft(y0_0304));
+
+  // Add the Y1 Axis
+  svg_0304.append("g")
+      .attr("class", "axisRed_0304")
+      .attr("transform", "translate( " + width_0304 + ", 0 )")
+      .call(d3.axisRight(y1_0304));
+
+});
+
+
+</script>
+</body>
