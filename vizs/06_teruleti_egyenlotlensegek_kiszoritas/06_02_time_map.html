@@ -30,13 +30,13 @@
     <script>
         var width = window.innerWidth;
         var height = window.innerHeight;
-
+        var f = width + height * 10;
         var svg = d3.select("body").append("svg");
 
         var projection = d3.geoMercator()
             .center([19.5, 47.15]) // roughly the center of Hungary
             .translate([width / 2, height / 2])
-            .scale(12500);
+            .scale(f);
 
         var path = d3.geoPath()
             .projection(projection);
