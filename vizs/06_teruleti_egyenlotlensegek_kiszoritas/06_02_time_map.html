@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-
+<!-- TODO:
+1. separate css and js from html
+2. add placeholder for the svg and don't use it explicitly
+3. add slider
+4. add colors
+-->
 <head>
     <meta charset="utf-8">
     <script src="../../js/d3.v4.min.js"></script>
@@ -29,7 +34,7 @@
         var svg = d3.select("body").append("svg");
 
         var projection = d3.geoMercator()
-            .center([19.5, 47.15])
+            .center([19.5, 47.15]) // roughly the center of Hungary
             .translate([width / 2, height / 2])
             .scale(12500);
 
