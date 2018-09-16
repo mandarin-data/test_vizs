@@ -4,25 +4,25 @@
 3. add slider
 4. add colors
 -->
+<!-- Based on https://bl.ocks.org/duspviz-mit/57c15198c563f7f82f77eed0536eb78c -->
 <html>
 
 <head>
     <meta charset="utf-8">
     <script src="../../js/d3.v4.min.js"></script>
     <script src="joined_var.geojson"></script>
+<!--
+    <script src="../../js/06_02_time_map.js"></script>
+    <link rel="stylesheet" href="../../css/06_02_time_map.css">
+-->
     <style>
-        body {
+        .map-wit-time-slider {
             margin: 0;
             position: fixed;
             top: 0;
             right: 0;
             bottom: 0;
             left: 0;
-        }
-
-        svg {
-            width: 100%;
-            height: 100%
         }
 
         .sliderContainer {
@@ -39,6 +39,7 @@
             <span id="range">2007</span>
         </div>
     </div>
+
     <script>
         // initialize map values
         var width = window.innerWidth;
@@ -165,6 +166,7 @@
         }
 
     </script>
+
 </body>
 
 </html>
