@@ -16,10 +16,6 @@ text#doughnut_forras{
 
 }
 
-text#doughnut_labjegyzet{
-  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-  font-weight: normal;
-}
 
 .legend.d_rect {
   cursor: pointer;
@@ -36,7 +32,7 @@ div#d_tooltip {
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #666;

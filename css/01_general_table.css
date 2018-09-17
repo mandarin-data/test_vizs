@@ -1,0 +1,73 @@
+/*
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: transparent;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+*/
+
+.card {
+    background-color: #fff;
+    min-width: 99%;
+    min-height: 99%;
+    overflow-x: auto;
+    display: flex;
+}
+
+.card--content {
+    background-color: #fff;
+    min-width: 99%;
+    margin: 0.3%;
+}
+
+.card::-webkit-scrollbar {
+    width: 0.5%;
+    background-color: #F5F5F5;
+}
+
+.card::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+.rTable {
+  	display: table;
+  	width: 99%;
+		table-layout: fixed;
+
+}
+.rTableRow {
+  	display: table-row;
+}
+.rTableHeading {
+  	display: table-header-group;
+  	background-color: #ddd;
+}
+.rTableCell, .rTableHead {
+  	display: table-cell;
+  	padding: 3px 10px;
+  	border: 1px solid #999999;
+	    text-align: center; 
+    vertical-align: middle;
+}
+.rTableHeading {
+  	display: table-header-group;
+  	background-color: #ddd;
+  	font-weight: bold;
+}
+.rTableFoot {
+  	display: table-footer-group;
+  	font-weight: bold;
+  	background-color: #ddd;
+}
+.rTableBody {
+  	display: table-row-group;
+}

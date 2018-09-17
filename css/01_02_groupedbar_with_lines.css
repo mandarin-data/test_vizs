@@ -1,3 +1,4 @@
+
 /* Dropdown style */
 .form-style-2{
 	max-height:20px;
@@ -60,81 +61,88 @@ input.myinput_large{
 
 }
 
-label.barlabel{
-	font: 14px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	padding: 4px;
-	color: #FFFFFF;  
+.axis_01_02 {
+  font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
 
+.axis_01_02 path,
+.axis_01_02 line {
+  fill: none;
+  stroke: #666;
+  shape-rendering: crispEdges;
+}
+
+.axis_second{
+	  font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 
 }
 
-
-
-/* Checkbox style */
-label#label-11 {
-	font: 14px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	color: #D8D8D8;  
-	text-align : justify;
-	height: 26px;
-	line-height: 26px;
-}
-
-input#mycheck_0201[type=checkbox], input#mycheck_0201[type=radio] {
-    margin: 2px 4px 0;
-    line-height: normal;
-}
-
-.axis_0201{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-}
-
-.tooltip_0201_group{
-	box-sizing: border-box;
-	background-color: #FFFFFF;
-	position: absolute;
-	line-height: 1;
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	text-align: center;
-	padding: 4px;
-	border: 0.5px solid   #a6a6a6;
-	color: #000000;
-	stroke-width: 0.5px;
-    padding: 3px 10px 3px 10px;
-}
-
-.legend_0201{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-
-}
-
-text.barchart_02_01_forras{
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	font-weight: normal;
-	font-style: italic;
-	text-decoration: underline;	
-}
-
-text#barchart0201_title{
-	font: 17px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	font-weight: normal;
-	text-anchor: middle;
-}
-
-.legend_0201b_01_02{
-		font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+.legend_01_02{
+		font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
         color: #000000;
         fill: #000000;
 }
 
+.legend_01_02_bar{
+		font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+        color: #000000;
+        fill: #000000;	
+}
 
-.tooltip_0201 {
-	box-sizing: border-box;
+text.barline_forras{
+	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+  	font-style: italic;
+	text-decoration: underline;	
+}
+
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.x.axis path {
+    display: none;
+}
+
+
+.line {
+    fill: none;
+    stroke-width: 0.5px;
+}
+
+.tooltip_01_02{
 	background-color: #FFFFFF;
-	position: absolute;
+	color: #666;
+		box-sizing: border-box;
+	background-color: #FFFFFF;
 	line-height: 1;
 	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #666;
 	color: #000000;
+	 white-space: pre-line;
+
+}
+
+#bar_01_02_title{
+	font: 17px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-anchor: middle;
+}
+
+.barline_utasitas{
+	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-style: italic
+}
+
+.legend_text{
+		font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+        color: #000000;
+        fill: #000000;
+		text-decoration: underline;
 }

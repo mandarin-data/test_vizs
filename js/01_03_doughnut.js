@@ -34,7 +34,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 			this._current = d;
 		});
 
-	var legendRectSize_doughnut = doughnutWidth/30;
+	var legendRectSize_doughnut = doughnutWidth/27.2;
 
 	var legendSpacing_doughnut = 4;
 
@@ -58,45 +58,13 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 		.attr('height', legendRectSize_doughnut)
 		.style('fill', color_doughnut)
 		.style('stroke', color_doughnut)
-		.style('stroke-width', 2)
-		.style('cursor', "pointer")
-		.on('click', function(label) {
-		var rect_doughnut = d3.select(this);
-		var enabled_doughnut = true;
-		var totalEnabled_doughnut = d3.sum(dataset_doughnut.map(function(d) {
-			return (d.enabled) ? 1 : 0;
-		}));
+		.style('stroke-width', 2);
 
-		if (rect_doughnut.attr('class') === 'disabled') {
-			rect_doughnut.attr('class', '');
-		} else {
-			if (totalEnabled_doughnut < 2) return;
-			rect_doughnut.attr('class', 'disabled');
-			enabled_doughnut = false;
-		}
-
-		pie_doughnut.value(function(d) {
-			if (d.label === label) d.enabled = enabled_doughnut;
-			return (d.enabled) ? d.percent : 0;
-		});
-
-		path_doughnut = path_doughnut.data(pie_doughnut(dataset_doughnut));
-
-		path_doughnut.transition()
-			.duration(750)
-			.attrTween('d', function(d) {
-			var interpolate_doughnut = d3.interpolate(this._current, d);
-			this._current = interpolate_doughnut(0);
-			return function(t) {
-				return arc_doughnut(interpolate_doughnut(t));
-			};
-		});
-	});
 
 	legend_doughnut.append('text')
 		.attr('x', legendRectSize_doughnut + legendSpacing_doughnut)
 		.attr('y', legendRectSize_doughnut - legendSpacing_doughnut)
-		.style('font-size', doughnutWidth/30)
+		.style('font-size', doughnutWidth/27.2)
 		.text(function(d) {
 		return d;
 	});
@@ -115,7 +83,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 
 	path_doughnut.on('mousemove', function(d) {
 		chartTooltip_doughnut
-			.style("left", d3.mouse(this)[0]+ (d3.select("#chart-doughnut").node().getBoundingClientRect().width)/2 - 30 + "px")
+			.style("left", d3.mouse(this)[0]+ (d3.select("#chart-doughnut").node().getBoundingClientRect().width)/2 - 27.2 + "px")
 			.style("top", d3.mouse(this)[1] + 195 + "px");
 	});
 
@@ -149,17 +117,27 @@ var svgdoughnut = d3.select('#chart-doughnut')
 svgdoughnut.append('text')
 	.attr("id", "doughnut_title")
 	.attr('x', 0)
-	.attr('y', (-doughnutHeight)/2 + margin.top/2)
+	.attr('y', (-doughnutHeight)/2 + (margin.top/4)+5)
 	.attr("text-anchor", "middle")
-	.style('font-size', doughnutWidth/27)
-	.text("A lakott lakások megoszlása használati jogcím szerint (2016)");
+	.style('font-size', doughnutWidth/23.8)
+	.text("A lakott lakások megoszlása");
+
+
+svgdoughnut.append('text')
+	.attr("id", "doughnut_title")
+	.attr('x', 0)
+	.attr('y', (-doughnutHeight)/2 + (margin.top/4)*3+5)
+	.attr("text-anchor", "middle")
+	.style('font-size', doughnutWidth/23.8)
+	.text("használati jogcím szerint (%, 2016)");
+
 
 svgdoughnut.append('text')
 	.attr("id", "doughnut_forras")
 	.attr('x', 0)
 	.attr('y', (+doughnutHeight)/2 - margin.bottom/2)
 	.attr("text-anchor", "middle")
-	.style('font-size', doughnutWidth/30)
+	.style('font-size', doughnutWidth/29.3)
 	.text("Adatok forrása: KSH 2018a")
 	.on('click', function(d) {
 		window.open(
@@ -176,13 +154,7 @@ svgdoughnut.append('text')
 		d3.select(this).style("cursor", "pointer"); 
 	});
 
-svgdoughnut.append('text')
-	.attr("id", "doughnut_labjegyzet")
-	.attr('x', 0)
-	.attr('y', (+doughnutHeight)/2 - margin.bottom/10)
-	.attr("text-anchor", "middle")
-	.style('font-size', doughnutWidth/30)
-	.text("A legend-re kattintva szűrhet!");
+
 
 
 var donutWidth = userInputWidth/5;
