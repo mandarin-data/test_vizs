@@ -15,9 +15,9 @@ function BarChartKomf() {
                 height_020203 = 450 - margin_020203.top - margin_020203.bottom;
 
             var x_020203 = d3.scaleBand()
-                .rangeRound([0, width_020203])
-                .paddingInner(0.1)
-                .align(0.1);
+                .rangeRound([0, width_020203 - 150])
+                .paddingInner(0.15)
+                .align(0.8);
 
             var y_020203 = d3.scaleLinear()
                 .rangeRound([height_020203, 0]);
@@ -101,7 +101,13 @@ function BarChartKomf() {
                 .attr("font-weight", "bold")
                 .attr("text-anchor", "start");
 
-
+            svg_020203.append('text')
+                .attr("id", "020203_ytitle")
+                .attr("x", (width_020203 / 2) - 70)
+                .attr("y", height_020203 + (margin_020203.bottom))
+                .style("text-anchor", "middle")
+                .style("font-size", '13px')
+                .text("Jövedelmi tized");
 
             var state_020203 = svg_020203.selectAll(".state020203")
                 .data(data_020203)
@@ -129,16 +135,52 @@ function BarChartKomf() {
                 .attr("font-size", "12px")
                 .attr("font", "sans-serif");
 
+
             svg_020203.append('text')
-                .attr("class", "barchart_020203_forras")
-                .attr("x", width_020203)
-                .attr("y", height_020203 + margin_020203.bottom - 3)
-                .attr("text-anchor", "end")
-                .text("Adatok forrása: még nem tudni")
+                .attr('id', '020203_title')
+                .attr('x', (width_020203 / 2)-70)
+                .attr('y', 0)
+                .attr("text-anchor", "middle")
+                .style("font-size", "18px")
+                .text("A lakások komfortfokozata jövedelmi tizedek szerint (2016)");
+
+            svg_020203.append("text")
+                .attr("class", "020203_forras")
+                .attr("x", width_020203 - 265)
+                .attr("y", height_020203 + margin_020203.bottom - 2)
+                .style("text-anchor", "middle")
+                .style("font-size", '13px')
+                .style('text-decoration', 'underline')
+                .style('font-style', 'italic')
+                .text("Adatok forrása: KSH 2018c, ")
                 .on('click', function (d) {
                     window.open(
-                        'https://hu.wikipedia.org/wiki/Sablon:Nincs_forr%C3%A1s',
-                        '_blank' // <- This is what makes it open in a new window.
+                        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc025a.html'
+                    );
+                })
+                .on('mouseover', function (d) {
+                    d3.select(this).style("cursor", "pointer");
+                })
+
+                .on("mouseout", function () {
+                    d3.select(this).style("cursor", "default");
+                })
+                .on("mousemove", function (d) {
+                    d3.select(this).style("cursor", "pointer");
+                });
+
+            svg_020203.append("text")
+                .attr("class", "020202_forras")
+                .attr("x", width_020203 - 170)
+                .attr("y", height_020203 + margin_020203.bottom - 2)
+                .style("text-anchor", "middle")
+                .style("font-size", '13px')
+                .style('text-decoration', 'underline')
+                .style('font-style', 'italic')
+                .text("2018d.")
+                .on('click', function (d) {
+                    window.open(
+                        'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc021a.html?down=29008'
                     );
                 })
                 .on('mouseover', function (d) {
@@ -153,6 +195,7 @@ function BarChartKomf() {
                 });
 
 
+
             height_diff_k = 0; //height discrepancy when calculating h based on data vs y(d.y0_020203) - y(d.y1_020203)
 
             state_020203.selectAll("rect")
@@ -160,7 +203,7 @@ function BarChartKomf() {
                     return d.categories_020203;
                 })
                 .enter().append("rect")
-				.attr('id', "rect_020203")
+                .attr('id', "rect_020203")
                 .attr("width", x_020203.bandwidth())
                 .attr("y", function (d) {
                     height_diff_k = height_diff_k + y_020203(d.y0_020203) - y_020203(d.y1_020203) - (y_020203(0) - y_020203(d.value_020203));

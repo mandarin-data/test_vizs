@@ -18,9 +18,9 @@ var svg_020201 = d3.select("#vis-020201").append("svg")
 
 // set x scale
 var x_020201 = d3.scaleBand()
-    .rangeRound([0, width_020201])
-    .paddingInner(0.05)
-    .align(0.1);
+    .rangeRound([0, width_020201 - 150])
+    .paddingInner(0.15)
+    .align(0.8);
 
 // set y scale
 var y_020201 = d3.scaleLinear()
@@ -31,7 +31,7 @@ var z_020201 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A"]);
 
 // load the csv and create the chart
-d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.csv", function (d, i, columns) {
+d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokkentes.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
@@ -80,17 +80,17 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokken
             console.log(d);
             var xPosition_020201 = d3.mouse(this)[0] - 5;
             var yPosition_020201 = d3.mouse(this)[1] - 5;
-            tooltip_020201.attr("transform", "translate(" + (xPosition_020201 + 15) + "," + (yPosition_020201+15) + ")");
+            tooltip_020201.attr("transform", "translate(" + (xPosition_020201 + 15) + "," + (yPosition_020201 + 15) + ")");
             tooltip_020201.select("text").text(((d[1] - d[0])).toFixed(0));
         });
 
     svg_020201.append("g")
-        .attr("class", "axis")
+        .attr("class", "axis_020201")
         .attr("transform", "translate(0," + height_020201 + ")")
         .call(d3.axisBottom(x_020201));
 
     svg_020201.append("g")
-        .attr("class", "axis")
+        .attr("class", "axis_020201")
         .call(d3.axisLeft(y_020201).ticks(null, "s"))
         .append("text")
         .attr("x", 2)
@@ -105,16 +105,69 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokken
         .attr('x', (width_020201 / 2))
         .attr('y', 0)
         .attr("text-anchor", "middle")
-        .text("Energiaköltségek és rezsicsökkentés");
+        .style("font-size", '18px')
+        .text("Az energiaköltségek és a rezsicsökkentés hatása jövedelmi tizedek szerint (Ft, 2016)");
+
+
+    svg_020201.append("text")
+        .attr("class", "020201_forras")
+        .attr("x", width_020201 - 265)
+        .attr("y", height_020201 + margin_020201.bottom - 2)
+        .style("text-anchor", "middle")
+        .style("font-size", '13px')
+        .style('text-decoration', 'underline')
+        .style('font-style', 'italic')
+        .text("Adatok forrása: KSH 2018c, ")
+        .on('click', function (d) {
+            window.open(
+                'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc025a.html'
+            );
+        })
+        .on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+        })
+
+        .on("mouseout", function () {
+            d3.select(this).style("cursor", "default");
+        })
+        .on("mousemove", function (d) {
+            d3.select(this).style("cursor", "pointer");
+        });
+
+    svg_020201.append("text")
+        .attr("class", "020201_forras")
+        .attr("x", width_020201 - 170)
+        .attr("y", height_020201 + margin_020201.bottom - 2)
+        .style("text-anchor", "middle")
+        .style("font-size", '13px')
+        .style(	'text-decoration', 'underline')
+        .style('font-style', 'italic')
+        .text("2018d.")
+        .on('click', function (d) {
+            window.open(
+                'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc021a.html?down=29008'
+            );
+        })
+        .on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+        })
+
+        .on("mouseout", function () {
+            d3.select(this).style("cursor", "default");
+        })
+        .on("mousemove", function (d) {
+            d3.select(this).style("cursor", "pointer");
+        });
+
 
     svg_020201.append('text')
-        .attr("id", "020201_forras")
-        .attr("x", width_020201)
+        .attr("id", "020201_ytitle")
+        .attr("x", (width_020201 / 2) - 70)
         .attr("y", height_020201 + (margin_020201.bottom))
-        .attr("text-anchor", "end")
-        .style('font-size', "12px")
-        .text("Adatok forrása: nincs");
-    
+        .style("text-anchor", "middle")
+        .style("font-size", '14px')
+        .text("Jövedelmi tized");
+
     // Prep the tooltip bits, initial display is hidden
     var tooltip_020201 = svg_020201.append("g")
         .attr("class", "tooltip_020201")
@@ -138,7 +191,7 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_01_rezsicsokken
 
     var legend_020201 = svg_020201.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
-        .attr("font-size", 10)
+        .attr("font-size", '13px')
         .attr("text-anchor", "start")
         .selectAll("g")
         .data(keys_020201.slice().reverse())

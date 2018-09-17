@@ -1,47 +1,56 @@
+.axis_020202 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    fill: #000000;
 
+}
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
+.axis_020202 path,
+.axis_020202 line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
 }
 
 .bar {
-  fill: steelblue;
+    fill: steelblue;
 }
 
-.x.axis path {
-  display: none;
-}
-
-
-.tooltip_020202{
-	box-sizing: border-box;
-	background-color: #FFFFFF;
-	position: absolute;
-	line-height: 1;
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	text-align: center;
-	padding: 4px;
-	border: 0.5px solid #666;
-	color: #000000;
-}
-
-.legend_020202{
-	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-
+.x.axis_020202 path {
+    display: none;
 }
 
 
-text#020202_title{
-  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-  font-weight: normal;
+.tooltip_020202 {
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    position: absolute;
+    line-height: 1;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 4px;
+    border: 0.5px solid #666;
+    color: #000000;
 }
 
-text#020202_forras{
-  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-  font-weight: normal;
-  font-style: italic;	
+.legend_020202 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 
+}
+
+
+
+text#020202_forras {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    text-decoration: underline;
+
+}
+
+text#020202_ytitle {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+text#020202_title {
+    font: 18px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }

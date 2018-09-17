@@ -5,21 +5,21 @@ var margin_020204 = {
         bottom: 30,
         left: 40
     },
-    width_020204 = d3.select("#vis-020204").node().getBoundingClientRect().width- margin_020204.left - margin_020204.right,
+    width_020204 = d3.select("#vis-020204").node().getBoundingClientRect().width - margin_020204.left - margin_020204.right,
     height_020204 = 450 - margin_020204.top - margin_020204.bottom;
 
 
 var svg_020204 = d3.select("#vis-020204").append("svg")
-            .attr("width", width_020204 + margin_020204.left + margin_020204.right)
-            .attr("height", height_020204 + margin_020204.top + margin_020204.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin_020204.left + "," + margin_020204.top + ")");
+    .attr("width", width_020204 + margin_020204.left + margin_020204.right)
+    .attr("height", height_020204 + margin_020204.top + margin_020204.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin_020204.left + "," + margin_020204.top + ")");
 
 // set x scale
 var x_020204 = d3.scaleBand()
-    .rangeRound([0, width_020204 - 230])
-    .paddingInner(0.05)
-    .align(0.1);
+    .rangeRound([0, width_020204 - 65 - 150])
+    .paddingInner(0.15)
+    .align(0.8);
 
 // set y scale
 var y_020204 = d3.scaleLinear()
@@ -30,7 +30,7 @@ var z_020204 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
 // load the csv and create the chart
-d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function (d, i, columns) {
+d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
@@ -84,12 +84,12 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.cs
         });
 
     svg_020204.append("g")
-        .attr("class", "axis")
+        .attr("class", "axis_020204")
         .attr("transform", "translate(0," + height_020204 + ")")
         .call(d3.axisBottom(x_020204));
 
     svg_020204.append("g")
-        .attr("class", "axis")
+        .attr("class", "axis_020204")
         .call(d3.axisLeft(y_020204).ticks(null, "%"))
         .append("text")
         .attr("x", 2)
@@ -98,24 +98,76 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.cs
         .attr("fill", "#000")
         .attr("font-weight", "bold")
         .attr("text-anchor", "start");
-    
+
     svg_020204.append('text')
         .attr('id', '020204_title')
-        .attr('x', ((width_020204  - 230) / 2))
+        .attr('x', ((width_020204 - 230) / 2))
         .attr('y', -5)
         .attr("text-anchor", "middle")
-        .style('font-size', "14px")
-        .text("A lakások megoszlása a fűtés módja szerint (%)");
+        .style('font-size', "18px")
+        .text("A lakások fűtési módja jövedelmi tizedek szerint (2016)");
 
     svg_020204.append('text')
-        .attr("id", "020202_forras")
-        .attr("x", width_020204  - 230)
+        .attr("id", "020204_ytitle")
+        .attr("x", ((width_020204 - 230) / 2))
         .attr("y", height_020204 + (margin_020204.bottom))
-        .attr("text-anchor", "end")
-        .style('font-size', "12px")
-        .text("Adatok forrása: nincs");
+        .style("text-anchor", "middle")
+        .style('font-size', "13px")
+        .text("Jövedelmi tized");
 
-    
+
+    svg_020204.append("text")
+        .attr("class", "020204_forras")
+        .attr("x", width_020204 - 325)
+        .attr("y", height_020204 + margin_020204.bottom - 2)
+        .style("text-anchor", "middle")
+        .style("font-size", '13px')
+        .style('text-decoration', 'underline')
+        .style('font-style', 'italic')
+        .text("Adatok forrása: KSH 2018c, ")
+        .on('click', function (d) {
+            window.open(
+                'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc025a.html'
+            );
+        })
+        .on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+        })
+
+        .on("mouseout", function () {
+            d3.select(this).style("cursor", "default");
+        })
+        .on("mousemove", function (d) {
+            d3.select(this).style("cursor", "pointer");
+        });
+
+    svg_020204.append("text")
+        .attr("class", "020202_forras")
+        .attr("x", width_020204- 230)
+        .attr("y", height_020204 + margin_020204.bottom - 2)
+        .style("text-anchor", "middle")
+        .style("font-size", '13px')
+        .style('text-decoration', 'underline')
+        .style('font-style', 'italic')
+        .text("2018d.")
+        .on('click', function (d) {
+            window.open(
+                'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_zhc021a.html?down=29008'
+            );
+        })
+        .on('mouseover', function (d) {
+            d3.select(this).style("cursor", "pointer");
+        })
+
+        .on("mouseout", function () {
+            d3.select(this).style("cursor", "default");
+        })
+        .on("mousemove", function (d) {
+            d3.select(this).style("cursor", "pointer");
+        });
+
+
+
     // Prep the tooltip bits, initial display is hidden
     var tooltip_020204 = svg_020204.append("g")
         .attr("class", "tooltip_020204")
@@ -135,10 +187,10 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.cs
         .style("text-anchor", "middle")
         .attr("font-size", "12px")
         .attr("font", "sans-serif");
-    
+
     var legend_020204 = svg_020204.append("g")
         .attr("font-family", "NeueHaasGroteskDisp Pro")
-        .attr("font-size", 10)
+        .attr("font-size", "13px")
         .attr("text-anchor", "start")
         .selectAll("g")
         .data(keys_020204.slice().reverse())
@@ -155,7 +207,7 @@ d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.cs
 
     legend_020204.append("text")
         .attr("class", "legend_020204")
-        .attr("x", width_020204-185)
+        .attr("x", width_020204 - 185)
         .attr("y", 9.5)
         .attr("dy", "0.32em")
         .text(function (d) {
