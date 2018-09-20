@@ -1,6 +1,6 @@
 .card-row {
     display: grid;
-/*
+    /*
     flex-wrap: wrap;
     flex-direction: row;
 */
@@ -10,7 +10,7 @@
 /* Create four equal columns that sits next to each other */
 
 .card-column {
-/*    flex: 50%;*/
+    /*    flex: 50%;*/
     max-width: 100%;
     padding: 0 4px;
 }
@@ -20,33 +20,12 @@
     vertical-align: middle;
 }
 
-/* Responsive layout - makes a two column-layout instead of four columns */
-
-/*
-@media screen and (max-width: 800px) {
-    .card-column {
-        flex: 50%;
-        max-width: 50%;
-    }
-}
-*/
-
-/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-
-/*
-@media screen and (max-width: 600px) {
-    .card-column {
-        flex: 100%;
-        max-width: 100%;
-    }
-}
-
-*/
 
 .card-dropdown {
     position: relative;
     display: inline-block;
 }
+
 
 .card-dropdown-content {
     display: none;
@@ -57,6 +36,100 @@
     z-index: 1;
 }
 
+/*POPUPS*/
+#popup1 {
+    width: 50vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+
+#popup2 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup3 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup4 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+
+#popup5 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup6 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup7 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup8 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup9 {
+    width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+#popup10 {
+   width: 75vw;
+    height: auto;
+    font-size: small;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+
+/*
 .card-dropdown:hover .card-dropdown-content {
     display: block;
 }
@@ -65,7 +138,9 @@
     padding: 15px;
     text-align: center;
 }
+*/
 
+/*
 .card {
     background-color: #fff;
     min-width: 100%;
@@ -90,11 +165,16 @@
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #F5F5F5;
 }
-
+*/
+.img {
+    width: 200px;
+    height: 140px;
+}
 .rTable {
     display: table;
-    width: 300%;
-    font-size: xx-small;
+    width: 100%;
+    height: 100%;
+    font-size: small;
 }
 
 .rTableRow {
