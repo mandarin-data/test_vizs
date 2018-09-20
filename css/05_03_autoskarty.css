@@ -1,14 +1,16 @@
 .card-row {
-    display: flex;
+    display: grid;
+/*
     flex-wrap: wrap;
     flex-direction: row;
+*/
     padding: 0 4px;
 }
 
 /* Create four equal columns that sits next to each other */
 
 .card-column {
-    flex: 50%;
+/*    flex: 50%;*/
     max-width: 100%;
     padding: 0 4px;
 }
@@ -20,15 +22,18 @@
 
 /* Responsive layout - makes a two column-layout instead of four columns */
 
+/*
 @media screen and (max-width: 800px) {
     .card-column {
         flex: 50%;
         max-width: 50%;
     }
 }
+*/
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 
+/*
 @media screen and (max-width: 600px) {
     .card-column {
         flex: 100%;
@@ -36,13 +41,14 @@
     }
 }
 
+*/
 
-.dropdown {
+.card-dropdown {
     position: relative;
     display: inline-block;
 }
 
-.dropdown-content {
+.card-dropdown-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -51,11 +57,11 @@
     z-index: 1;
 }
 
-.dropdown:hover .dropdown-content {
+.card-dropdown:hover .card-dropdown-content {
     display: block;
 }
 
-.desc {
+.card-desc {
     padding: 15px;
     text-align: center;
 }
@@ -64,8 +70,9 @@
     background-color: #fff;
     min-width: 100%;
     min-height: 90%;
-    overflow-x: scroll;
-    display: flex;
+    overflow: visible;
+    overflow-x: auto;
+    display: grid;
 }
 
 .card--content {
@@ -87,7 +94,7 @@
 .rTable {
     display: table;
     width: 300%;
-    font-size: small;
+    font-size: xx-small;
 }
 
 .rTableRow {
