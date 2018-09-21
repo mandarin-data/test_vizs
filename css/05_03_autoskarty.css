@@ -13,6 +13,7 @@
     /*    flex: 50%;*/
     max-width: 100%;
     padding: 0 4px;
+    align-content: center;
 }
 
 .card-column img {
@@ -113,7 +114,7 @@
 
 #popup9 {
     width: 75vw;
-    height: auto;
+    height: 20vh;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -121,55 +122,39 @@
 }
 
 #popup10 {
-   width: 75vw;
-    height: auto;
+    width: 75vw;
+    height: 20vh;
     font-size: small;
     position: absolute;
     top: 10%;
     left: 10%;
 }
 
-/*
-.card-dropdown:hover .card-dropdown-content {
-    display: block;
-}
-
-.card-desc {
-    padding: 15px;
+/* Image text overlay*/
+.container {
+    position: relative;
     text-align: center;
-}
-*/
+    color: lightgoldenrodyellow;
+    padding: 0.5rem;
 
-/*
-.card {
-    background-color: #fff;
-    min-width: 100%;
-    min-height: 90%;
-    overflow: visible;
-    overflow-x: auto;
-    display: grid;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
 }
 
-.card--content {
-    background-color: #fff;
-    min-width: 100%;
-    margin: 0.3%;
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.card::-webkit-scrollbar {
-    width: 0.5%;
-    background-color: #F5F5F5;
-}
-
-.card::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #F5F5F5;
-}
-*/
+/* Image*/
 .img {
     width: 200px;
     height: 140px;
 }
+
+/* Popup table */
 .rTable {
     display: table;
     width: 100%;
