@@ -1,5 +1,6 @@
 #title {
     text-align: center;
+    font-size: 90%;
 }
 
 a {
@@ -18,11 +19,13 @@ a {
     /*    flex: 50%;*/
     max-width: 100%;
     padding: 0 4px;
-    margin-left: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
     justify-content: center;
 }
 
 /* Image*/
+
 .card-column img {
     margin-top: 0.5%;
     vertical-align: middle;
@@ -73,7 +76,7 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-   position: fixed;
+    position: fixed;
     top: 10%;
     left: 0%;
     right: 0%;
