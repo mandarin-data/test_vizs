@@ -134,7 +134,7 @@ var margin = {
 var doughnutWidth = userInputWidth;
 var doughnutHeight = userInputHeight;
 var radius_doughnut = Math.min(doughnutWidth, doughnutHeight) / 2;
-var color_doughnut = d3.scaleOrdinal().range(["#A4343A", "#43B02A", "#FF671F", "#888B8D", "#385988"]);
+var color_doughnut = d3.scaleOrdinal().range(["#385988","#888B8D", "#43B02A",  "#FF671F", "#A4343A" ]);
 
 var svgdoughnut = d3.select('#chart-doughnut-040604')
     .append('svg')
@@ -158,7 +158,7 @@ svgdoughnut.append('text')
     .attr('y', (+doughnutHeight) / 2 - margin.bottom / 2)
     .attr("text-anchor", "middle")
     .style('font-size', doughnutWidth / 30)
-    .text("Adatok forrása: MEKH")
+    .text("Adatok forrása: MEKH adatszolgáltatás")
     ;
 
 

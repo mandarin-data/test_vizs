@@ -1,3 +1,13 @@
+var locale_040601 = {
+  "decimal": ",",
+  "thousands": "\u00a0",
+  "grouping": [3],
+  "currency": ["", "\u00a0Ft"]
+};
+d3.formatDefaultLocale(locale_040601);
+var formatPercentDecimal_040601 = d3.format(",.2%"),
+    formatPercent_040601 = d3.format("." + (d3.precisionFixed(0.05) - 2) + "%");
+
 var margin_040601 = {
     top: 50,
     right: 50,
@@ -42,19 +52,38 @@ var svg_040601 = d3.select("#vis-040601").append("svg")
 
 svg_040601.append("text")
     .attr("class", "idosor_title")
-    .attr("x", (w_040601 / 2))             
+    .attr("x", (w_040601 / 2))
     .attr("y", 0 - (margin_040601.top / 2))
     .attr("text-anchor", "middle")
-    .style('font-size', '14px')
-    .text('Közműhátralékkal rendelkező háztartások aránya');
+    .style('font-size', '18px')
+    .text('Közműhátralékkal rendelkező háztartások aránya (%, 2008–2017)');
 
 svg_040601.append('text')
     .attr("id", "idosor_forras")
-    .attr("x", w_040601)
-    .attr("y", h_040601 + (margin_040601.bottom))
-    .attr("text-anchor", "end")
-    .style('font-size', "12px")
-    .text("Adatok forrása: Eurostat");
+    .attr("x", w_040601-75)
+    .attr("y", h_040601 + margin_040601.bottom - 2)
+    .style("text-anchor", "middle")
+    .style("font-size", '13px')
+    .style('text-decoration', 'underline')
+    .style('font-style', 'italic')
+    .attr("font-family", "NeueHaasGroteskDisp Pro")
+    .text("Adatok forrása: Eurostat 2018")
+    .on('click', function (d) {
+        window.open(
+            'http://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=ilc_mdes07&lang=en'
+        );
+    })
+    .on('mouseover', function (d) {
+        d3.select(this).style("cursor", "pointer");
+    })
+
+    .on("mouseout", function () {
+        d3.select(this).style("cursor", "default");
+    })
+    .on("mousemove", function (d) {
+        d3.select(this).style("cursor", "pointer");
+    });
+
 
 d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error, data) {
     if (error) throw error;
@@ -74,7 +103,7 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
     scaleX_040601.domain(d3.extent(data, function (d) {
         return d.date;
     }));
-    scaleY_040601.domain([0, 100]);
+    scaleY_040601.domain([0, 1]);
 
     console.log("categories_040601", categories_040601);
 
@@ -103,18 +132,12 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
         .attr("class", "x axis_040601")
         .attr("transform", "translate(0, " + h_040601 + ")")
         .call(xAxis_040601)
-    
+
 
     svg_040601.append("g")
         .attr("class", "y axis_040601")
-        .call(yAxis_040601)
-        .append("text")
-        .attr("transform", "rotate(-90)")
-        .attr("y", 6)
-        .attr("dy", ".71em")
-        .style("text-anchor", "end")
-        .style("fill", "black")
-        .text("%");
+        .call(yAxis_040601.tickFormat(formatPercent_040601));
+        
 
     var category_040601 = svg_040601.selectAll(".category_040601")
         .data(categories_040601)
@@ -220,7 +243,7 @@ d3.tsv("../../data/04_adossag/04_06_01_idosor.tsv", type_040601, function (error
                     }
 
                     d3.select(this).select('text')
-                        .text(scaleY_040601.invert(pos_040601.y).toFixed(3) + "%");
+                        .text(((scaleY_040601).invert(pos_040601.y)*100).toFixed(2) + "%");
 
                     ypos_040601.push({
                         ind: i,
