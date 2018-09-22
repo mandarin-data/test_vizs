@@ -1,3 +1,7 @@
+#title {
+    text-align: center;
+}
+
 a {
     text-decoration: none;
 }
@@ -18,10 +22,14 @@ a {
     justify-content: center;
 }
 
+/* Image*/
 .card-column img {
     margin-top: 0.5%;
     vertical-align: middle;
     overflow: hidden;
+    width: 300px;
+    height: 200px;
+
 }
 
 
@@ -53,10 +61,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
-    background-color: antiquewhite;
+    left: 0%;
+    right: 0%;
 }
 
 
@@ -65,9 +73,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+   position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup3 {
@@ -75,9 +84,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup4 {
@@ -85,9 +95,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 
@@ -96,9 +107,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup6 {
@@ -106,9 +118,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup7 {
@@ -116,9 +129,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup8 {
@@ -126,9 +140,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup9 {
@@ -136,9 +151,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 #popup10 {
@@ -146,9 +162,10 @@ a {
     width: 65vw;
     height: auto;
     font-size: small;
-    position: absolute;
+    position: fixed;
     top: 10%;
-    left: 10%;
+    left: 0%;
+    right: 0%;
 }
 
 /* Image text overlay*/
@@ -167,13 +184,6 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-/* Image*/
-
-.img {
-    width: 200px;
-    height: 140px;
 }
 
 /* Popup table */
