@@ -47,18 +47,23 @@ a {
 }
 
 /*POPUPS*/
+
 #popup1 {
-    width: 50vw;
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
     left: 10%;
+    background-color: antiquewhite;
 }
 
 
 #popup2 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -66,8 +71,9 @@ a {
 }
 
 #popup3 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -75,8 +81,9 @@ a {
 }
 
 #popup4 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -85,8 +92,9 @@ a {
 
 
 #popup5 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -94,8 +102,9 @@ a {
 }
 
 #popup6 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -103,8 +112,9 @@ a {
 }
 
 #popup7 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -112,8 +122,9 @@ a {
 }
 
 #popup8 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -121,8 +132,9 @@ a {
 }
 
 #popup9 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -130,8 +142,9 @@ a {
 }
 
 #popup10 {
-    width: 50vw;
-
+    background-color: antiquewhite;
+    width: 65vw;
+    height: auto;
     font-size: small;
     position: absolute;
     top: 10%;
@@ -139,12 +152,12 @@ a {
 }
 
 /* Image text overlay*/
+
 .container {
     position: relative;
     text-align: center;
     color: lightgoldenrodyellow;
     padding: 0.5rem;
-
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
 }
@@ -157,12 +170,14 @@ a {
 }
 
 /* Image*/
+
 .img {
     width: 200px;
     height: 140px;
 }
 
 /* Popup table */
+
 .rTable {
     display: table;
     width: 100%;
