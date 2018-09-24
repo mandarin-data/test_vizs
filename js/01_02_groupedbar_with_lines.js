@@ -1,18 +1,41 @@
+if (d3.select("#chart_01_02").node().getBoundingClientRect().width > 450)
+{ 
+       if (d3.select("#chart_01_02").node().getBoundingClientRect().width < 1200){ 
+        var vizuwidth_0102 = d3.select("#chart_01_02").node().getBoundingClientRect().width;
+        } else {
+         var vizuwidth_0102 = 1200    
+        }
+    
+} else {
+  var vizuwidth_0102 = 650
+};
+
+
+
 function MyTitle(){
-	var margin_01_02 = {top: 20, right: 60, bottom: 40, left: 60},
-		width_01_02 = d3.select("#chart_01_02").node().getBoundingClientRect().width - margin_01_02.left - margin_01_02.right,
+    var width_absolute =  vizuwidth_0102;   
+
+	var margin_01_02 = {
+        top: width_absolute/67.5*1.125,
+        right: width_absolute/22.5*1.125,
+        bottom: width_absolute/33.75*1.125,
+        left: width_absolute/22.5*1.125
+    },
+		width_01_02 = width_absolute - margin_01_02.left - margin_01_02.right,
 		height_01_02 = 450 ;
 
 	var svg_01_02_title = d3.select("#svg_01_02_title")
 	.attr("width", width_01_02 + margin_01_02.left + margin_01_02.right)
 	.attr("height", 30);
 
+    var width_0102 = width_01_02 + margin_01_02.left + margin_01_02.right;
+    
 	svg_01_02_title.append('text')
 		.attr('id', 'bar_01_02_title')
-		.attr("x",  (width_01_02)/2 - 90)
+		.attr("x",  (width_0102 - margin_01_02.left - margin_01_02.right)/2 - margin_01_02.left)
 		.attr("y", 27)
-		.text("A jövedelmek és a lakásárak alakulása településtípusok szerint Magyarországon (2007–2017)");
-
+        .attr("font-size", width_0102/79.4*1.125)
+		.text("A jövedelmek és a lakásárak alakulása településtípusok szerint Magyarországon (2007–2017)")
 }
 
 
@@ -25,25 +48,27 @@ d3.select("#svg_01_02").remove();
 /////////////////////////////////
 ////Bar properties
 /////////////////////////////////
+var width_absolute =  vizuwidth_0102;   
 var margin_01_02 = {
-        top: 20,
-        right: 60,
-        bottom: 40,
-        left: 60
+        top: width_absolute/67.5*1.125,
+        right: width_absolute/22.5*1.125,
+        bottom: width_absolute/33.75*1.125,
+        left: width_absolute/22.5*1.125
     },
-	width_01_02 = d3.select("#chart_01_02").node().getBoundingClientRect().width - margin_01_02.left - margin_01_02.right,
+	width_01_02 = width_absolute - margin_01_02.left - margin_01_02.right,
 	height_01_02 = 450 ;
 
+var width_0102 = width_01_02 + margin_01_02.left + margin_01_02.right;
 
 var svg_01_02 = d3.select("#chart_01_02").append("svg")
 	.attr("id", "svg_01_02")
-    .attr("width", width_01_02 + margin_01_02.left + margin_01_02.right)
+    .attr("width", width_0102)
     .attr("height", height_01_02 + margin_01_02.top + margin_01_02.bottom + 20)
 	.append("g")
     .attr("transform", "translate(" + margin_01_02.left + "," + margin_01_02.top + ")");
 
 var x0_01_02 = d3.scaleBand()
-    .rangeRound([0, width_01_02 - 280])
+    .rangeRound([0, width_01_02 - width_0102/4.8*1.125])
     .paddingInner(0.1);
 
 var x1_01_02 = d3.scaleBand()
@@ -65,7 +90,7 @@ var z = d3.scaleOrdinal()
 var parseDate_0102_line = d3.timeParse("%Y");
 
 var scaleX_0102_line = d3.scaleTime()
-    .range([-15, width_01_02 - 280]);
+    .range([-15, width_01_02 - width_0102/4.8*1.125]);
 
 var scaleY_0102_line = d3.scaleLinear()
     .range([height_01_02, 0]);
@@ -120,15 +145,18 @@ d3.tsv(str, function(d, i, columns) {
   svg_01_02.append("g")
       .attr("class", "axis_01_02")
       .attr("transform", "translate(0," + height_01_02 + ")")
+      .attr("font-size", width_0102/96.4*1.125)
       .call(d3.axisBottom(x0_01_02));
 
 	svg_01_02.append("g")	
 		.append("text")
 		.attr("class", "axis_second")
-		.attr("y", height_01_02 + 40)
-		.attr("x",  (width_01_02 - 280)/2 )
+        .attr("font-size", width_0102/96.4*1.125)
+		.attr("y", height_01_02 + width_0102/33.75*1.125)
+		.attr("x",  (width_01_02 - width_0102/4.8*1.125)/2 )
 		.attr("dy", ".23em")
 		.style("text-anchor", "middle")
+        .attr("font-size", width_0102/96.4*1.125)
 		.text("Év");
 		
   svg_01_02.append("g")
@@ -136,28 +164,35 @@ d3.tsv(str, function(d, i, columns) {
 		.call(d3.axisLeft(y_01_02).ticks(null, "s"))
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", 0 - (margin_01_02.left-15))
+		.attr("y", 0 - (margin_01_02.left-(width_0102/112.5*1.125)))
 		.attr("x", 0  - height_01_02/2 )
 		.style("text-anchor", "middle")
+        .attr("font-size", width_0102/96.4*1.125)
 		.style("fill", "#000000")
         .text("Egy főre eső, havi bruttó jövedelem (ezer Ft)");
 
 	
 	svg_01_02.append("g")
 		.attr("class", "axis_01_02")
-		.attr("transform", "translate(" + (width_01_02 - 280) + ",0)")
+		.attr("transform", "translate(" + (width_01_02 - width_0102/4.8*1.125) + ",0)")
+        .attr("font-size", width_0102/96.4*1.125)
 		.call(d3.axisRight(y_01_02).ticks(null, "s"))
 	
 	svg_01_02.append("g")	
 		.append("text")
 		.attr("class", "axis_second")
 		.attr("transform", "rotate(-90)")
-		.attr("y", width_01_02- 230)
+		.attr("y", width_01_02 - width_0102/6*1.125)
 		.attr("x", -height_01_02/2 )
 		.attr("dy", ".23em")
 		.style("text-anchor", "middle")
+        .attr("font-size", width_0102/96.4*1.125)
 		.text("Lakások átlagos piaci ára (ezer Ft/négyzetméter)");
 
+	svg_01_02.selectAll(".tick")
+            .attr("font-size", width_0102/96.4*1.125);
+    
+    
 
   var legend_0102_bar = svg_01_02.append("g")
     .selectAll("g")
@@ -166,29 +201,32 @@ d3.tsv(str, function(d, i, columns) {
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
   legend_0102_bar.append("rect")
-      .attr("x", width_01_02 - 210)
-	  .attr("y", height_01_02 - 113)
-      .attr("width", 15)
-      .attr("height", 15)
+      .attr("x", width_01_02 - width_0102/6.4*1.125)
+	  .attr("y", ((width_0102/122.7*1.125) + (20*16.3)))
+      .attr("width", width_0102/90*1.125)
+      .attr("height", width_0102/90*1.125)
 	  .attr("opacity", 0.5)
       .attr("fill", z);
 
   legend_0102_bar.append("text")
 	  .attr("class", "legend_01_02_bar")
 	  .style("text-anchor", "start")
-      .attr("x",width_01_02 - 185)
-      .attr("y", height_01_02 - 105)
+      .attr("x",width_01_02 - width_0102/7.3*1.125)
+      .attr("y",((width_0102/67.5*1.125) + (20*16.3)))
+      .attr("font-size", width_0102/103.8*1.125)
       .attr("dy", "0.32em")
       .text(function(d) { return d; });	
+
 
 	svg_01_02.append("g")	
 		.append("text")
 		.attr("class", "legend_text")
-		.attr("y", height_01_02 - 123)
-		.attr("x",  width_01_02 - 210 )
+		.attr("y", ((width_0102/67.5*1.125) + (20*16.3)) - (width_0102/67.5*1.125))
+		.attr("x",  width_01_02 - width_0102/6.4*1.125 )
 		.attr("dy", ".23em")
 		.style("text-anchor", "start")
-		.text("Jövedelem");	
+        .attr("font-size", width_0102/96.4*1.125)
+		.text("Lakásár");	
 	
 /////////////////////////////////
 ////Start Linechart
@@ -225,17 +263,18 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_02_jov_v4.tsv", type
 svg_01_02.append('text')
 	.attr("class", "barline_utasitas")
 	.attr("x", 0)             
-	.attr("y", height_01_02 + 40)
+	.attr("y", height_01_02 + (margin_01_02.bottom*1.2))
 	.attr("text-anchor", "start")
+    .attr("font-size", width_0102/96.4*1.125)
 	.text("*A jövedelmek megjelenítéséhez kattints az üres négyzetekre!")
 	
 
-	
 svg_01_02.append('text')
 	.attr("class", "barline_forras")
-	.attr("x", width_01_02 -300)             
-	.attr("y", height_01_02 + 40)
+	.attr("x", width_01_02 - width_0102/4.5*1.125)             
+	.attr("y", height_01_02 +  (margin_01_02.bottom*1.2))
 	.attr("text-anchor", "end")  
+    .attr("font-size", width_0102/103.8*1.125)
 	.text("Adatok forrása: KSH 2017c")
 	.on('click', function(d) {
 		window.open(
@@ -254,8 +293,9 @@ svg_01_02.append('text')
     
 svg_01_02.append('text')
 	.attr("class", "barline_forras")
-	.attr("x", width_01_02 -300)             
-	.attr("y", height_01_02 + 40)
+	.attr("x", width_01_02 - width_0102/4.5*1.125)             
+	.attr("y", height_01_02 + (margin_01_02.bottom*1.2))
+    .attr("font-size", width_0102/103.8*1.125)
 	.attr("text-anchor", "start")  
 	.text(", 2018b")
 	.on('click', function(d) {
@@ -311,10 +351,10 @@ var legend_0102_line = svg_01_02.append("g")
 
 legend_0102_line.append("text")
   .attr("class", "legend_01_02")
-  .style("font-size", "13px")
+  .attr("font-size", width_0102/103.8*1.125)
   .style("text-anchor", "start")
-  .attr("x", width_01_02 - 185)
-  .attr("y", 20)
+  .attr("x", width_01_02 - (width_0102/7.3*1.125))
+  .attr("y", width_0102/67.5*1.125)
   .attr("dy", "0.32em")
   .text(function(d) { return  d.name; });		
 
@@ -322,16 +362,17 @@ svg_01_02.append("g")
 	.append("text")
 	.attr("class", "legend_text")
 	.attr("y", 0)
-	.attr("x",  width_01_02 - 210 )
+	.attr("x", width_01_02 - width_0102/6.4*1.125)
 	.attr("dy", ".23em")
 	.style("text-anchor", "start")
-	.text("Lakásár");		
+    .attr("font-size", width_0102/96.4*1.125)
+	.text("Jövedelem*");		
 	
 legend_0102_line.append("rect")
-    .attr("x", width_01_02 - 210)
-	  .attr("y", 11)
-    .attr("width", 15)
-    .attr("height", 15)
+    .attr("x", width_01_02 - (width_0102/6.4*1.125))
+    .attr("y", (width_0102/122.7*1.125))
+    .attr("width", width_0102/90*1.125)
+    .attr("height", width_0102/90*1.125)
 	.style("fill", "#FFFFFF")
     .style("stroke", function(d) {return color_0102_line(d.name);} )
 	.attr("class", function (d) {

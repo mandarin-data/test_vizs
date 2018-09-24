@@ -1,0 +1,161 @@
+/* Dropdown style */
+.form-style-2{
+	max-height:120px;
+	max-width: 700px;
+	padding: 6px 6px 6px 0px;
+	font: 14px 	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+;
+}
+
+.form-style-2 label{
+	display: block;
+	margin: 0px 0px 0px 0px;
+}
+.form-style-2 label > span{
+	width: 700px;
+	font-weight: bold;
+	float: left;
+	padding-top: 8px;
+	padding-right: 5px;
+}
+.form-style-2 span.required{
+	color:red;
+}
+
+.select-field{
+	float:left;
+	width: 100%;
+    height: 3.2%;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.form-style-2 .select-field{
+	width: 300px;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border: 1px solid #C2C2C2;
+	box-shadow: 1px 1px 4px #EBEBEB;
+	-moz-box-shadow: 1px 1px 4px #EBEBEB;
+	-webkit-box-shadow: 1px 1px 4px #EBEBEB;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	padding: 4px;
+	outline: none;
+	font: 17px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+
+}
+
+.form-style-2 .select-field:focus{
+	border: 1px solid #C2C2C2;
+}
+
+div#vis-0402-hitelfelbontas{
+    margin-top: 20px;
+}
+
+#chart-treemap {
+  max-width: 100%;
+  overflow:auto;
+}
+text {
+  pointer-events: none;
+}
+.grandparent text {
+  font-weight: bold;
+  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;;
+font-size: calc(11px + .3vw);
+}
+
+rect {
+  stroke: #fff;
+  stroke-width: 1px;
+}
+rect.parent,
+.grandparent rect {
+  stroke-width: 3px;
+    cursor: pointer;
+
+}
+.grandparent:hover rect {
+  fill: grey;
+}
+.children rect.parent,
+.grandparent rect {
+
+}
+.children rect.child {
+  opacity: 1;
+
+}
+.children rect.parent {
+}
+.children:hover rect.child {
+  opacity: 1;
+  stroke-width: 1px;
+
+}
+.children:hover rect.parent {
+  opacity: 0;
+
+}
+.legend {
+  margin-bottom:8px !important;
+}
+.legend rect {
+  stroke-width: 0px;
+}
+.legend text {
+  text-anchor: middle;
+  font-size: calc(10px + .3vw);
+  font-family: sans-serif;
+        fill: #666;
+    color: #000000;}
+.form-group {
+	text-align:left;
+}
+.textdiv {
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;;
+	font-size: calc(11px + .3vw);
+	padding: 7px;
+	overflow:none;
+}
+.textdiv .title {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;;
+	font-size: 102%;
+	font-weight: bold;
+	margin-top: 8px;
+	font-size:calc(11px + .3vw) ;
+        fill: #666;
+    color: #000000;
+}
+.textdiv p{
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;;
+	line-height: 13px;
+	margin:0 0 4px ;
+	padding:0px;
+	font-size:calc(11px + .3vw) ;
+    fill: #666;
+    color: #000000;
+
+
+}
+
+.children{
+      fill: #385988;
+      cursor: pointer;
+	font-size:calc(11px + .3vw) ;
+
+}
+
+
+
+#treemap_title{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	text-anchor: middle;
+	font-weight: normal;
+    
+}

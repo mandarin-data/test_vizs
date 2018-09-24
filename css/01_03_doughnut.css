@@ -28,6 +28,7 @@ text#doughnut_forras{
 
 
 div#d_tooltip {
+    font-size: calc(9px + .3vw);
 	box-sizing: border-box;
 	background-color: #FFFFFF;
 	position: absolute;

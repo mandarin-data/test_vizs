@@ -32,7 +32,7 @@ input.myinput_large{
 
 }
 
-label.barlabel_0304{
+label.barlabel_0301{
 	font: 14px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	padding: 4px;
 	color: #FFFFFF;  
@@ -40,49 +40,53 @@ label.barlabel_0304{
 
 }
 
-input#mycheck_0304[type=checkbox], input#mycheck_0304[type=radio] {
+input#mycheck_0301[type=checkbox], input#mycheck_0301[type=radio] {
     margin: 2px 4px 0;
     line-height: normal;
 }
 
-.axis_0304{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+.axis_0301{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;    
 }
 
 
-.legend_0304{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+.legend_0301{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    line-height: normal;    
 
 }
 
-text.barchart_forras_0304{
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+text.barchart_forras_0301{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	font-style: italic;
 	text-decoration: underline;	
+	font-weight: normal;    
 }
 
 
-.tooltip_0304 {
+.tooltip_0301 {
+	font-weight: normal;    
 	box-sizing: border-box;
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #666;
 	color: #000000;
 }	
 
-text#title_0304{
-	font: 17px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+text#title_0301{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	text-anchor: middle;
 }
 
-.labjegyzet_0304{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+.labjegyzet_0301{
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	font-style: italic;
 

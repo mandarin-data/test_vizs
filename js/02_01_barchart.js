@@ -1,8 +1,19 @@
+if (d3.select("#viscontainer-11").node().getBoundingClientRect().width < 470){
+    var width_abs = 400
+} else {
+    if (d3.select("#viscontainer-11").node().getBoundingClientRect().width < 600){
+    var width_abs = d3.select("#viscontainer-11").node().getBoundingClientRect().width 
+    } else {
+      var width_abs = 600  
+    }
+}
+
+
 function MyTitle(){
 		d3.selectAll("#svg_0201barchart_title > *").remove();
 
-	var margin_11 = {top: 30, right: 0, bottom: 30, left: 50},
-		width_11 = d3.select("#viscontainer-11").node().getBoundingClientRect().width - margin_11.left - margin_11.right,
+	var margin_11 = {top: width_abs/(600/30), right: 0, bottom: width_abs/(600/30), left: width_abs/(600/50)},
+		width_11 = width_abs - margin_11.left - margin_11.right,
 		height_11 = 450 - margin_11.top - margin_11.bottom;
 	
 	var svg_0201barchart_title = d3.select("#svg_0201barchart_title")
@@ -11,14 +22,16 @@ function MyTitle(){
 
 	svg_0201barchart_title.append('text')
 		.attr('id', 'barchart0201_title')
-		.attr("x",  (width_11-280)/2 + margin_11.left)
+		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 15)
+        .attr("font-size", 	width_abs/(600/17))        
 		.text("A lakott lakások komfortosság szerinti megoszlásának");
 
 	svg_0201barchart_title.append('text')
 		.attr('id', 'barchart0201_title')
-		.attr("x",  (width_11-280)/2 + margin_11.left)
-		.attr("y", 35)
+		.attr("x",  (width_11-25)/2 + margin_11.left)
+		.attr("y", 35)    
+        .attr("font-size", 	width_abs/(600/17))    
 		.text("regionális egyenlőtlenségei (2016)");
 
 }
@@ -26,8 +39,8 @@ function MyTitle(){
 function MyTitle2(){
 	d3.selectAll("#svg_0201barchart_title > *").remove();
 	
-	var margin_11 = {top: 30, right: 0, bottom: 30, left: 50},
-		width_11 = d3.select("#viscontainer-11").node().getBoundingClientRect().width - margin_11.left - margin_11.right,
+	var margin_11 = {top: width_abs/(600/30), right: 0, bottom: width_abs/(600/30), left: width_abs/(600/50)},
+		width_11 = width_abs - margin_11.left - margin_11.right,
 		height_11 = 450 - margin_11.top - margin_11.bottom;
 
 	var svg_0201barchart_title = d3.select("#svg_0201barchart_title")
@@ -35,15 +48,18 @@ function MyTitle2(){
 	.attr("height", 50);
 
 	svg_0201barchart_title.append('text')
+	svg_0201barchart_title.append('text')
 		.attr('id', 'barchart0201_title')
-		.attr("x",  (width_11-280)/2 + margin_11.left)
+		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 15)
+        .attr("font-size", 	width_abs/(600/17))        
 		.text("A vízellátással, WC-vel és csatornával nem rendelkező lakott");
 
 	svg_0201barchart_title.append('text')
 		.attr('id', 'barchart0201_title')
-		.attr("x",  (width_11-280)/2 + margin_11.left)
+		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 35)
+        .attr("font-size", 	width_abs/(600/17))        
 		.text("lakások arányának regionális egyenlőtlenségei (2016)");
 
 }
@@ -51,8 +67,8 @@ function MyTitle2(){
 function MyTitle3(){
 	d3.selectAll("#svg_0201barchart_title > *").remove();
 	
-	var margin_11 = {top: 30, right: 0, bottom: 30, left: 50},
-		width_11 = d3.select("#viscontainer-11").node().getBoundingClientRect().width - margin_11.left - margin_11.right,
+	var margin_11 = {top: width_abs/(600/30), right: 0, bottom: width_abs/(600/30), left: width_abs/(600/50)},
+		width_11 = width_abs - margin_11.left - margin_11.right,
 		height_11 = 450 - margin_11.top - margin_11.bottom;
 
 	var svg_0201barchart_title = d3.select("#svg_0201barchart_title")
@@ -61,14 +77,16 @@ function MyTitle3(){
 
 	svg_0201barchart_title.append('text')
 		.attr('id', 'barchart0201_title')
-		.attr("x",  (width_11-280)/2 + margin_11.left)
+		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 15)
+        .attr("font-size", 	width_abs/(600/17))        
 		.text("A 2006 és 2016 között felújított lakott lakások arányának");
 
 	svg_0201barchart_title.append('text')
 		.attr('id', 'barchart0201_title')
-		.attr("x",  (width_11-280)/2 + margin_11.left)
+		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 35)
+        .attr("font-size", 	width_abs/(600/17))        
 		.text("regionális egyenlőtlenségei");
 
 }
@@ -81,12 +99,12 @@ function BarChart() {
 		selection.each(function (d, i) {
             d3.select("#vis-11").remove();
 
-			var margin_11 = {top: 30, right: 0, bottom: 45, left: 50},
-				width_11 = d3.select("#viscontainer-11").node().getBoundingClientRect().width - margin_11.left - margin_11.right,
-				height_11 = 450 - margin_11.top - margin_11.bottom;
+			var margin_11 = {top: width_abs/(600/30), right: 0, bottom: width_abs/(600/30), left: width_abs/(600/50)},
+				width_11 = width_abs - margin_11.left - margin_11.right,
+				height_11 = 450 - margin_11.top - margin_11.bottom ;
 
 			var x_11 = d3.scaleBand()
-			.rangeRound([0, width_11 - 280])
+			.rangeRound([0, width_11 -25])
 			.paddingInner(0.15)
 			.align(0.8);
 
@@ -104,7 +122,7 @@ function BarChart() {
 
 			var svg_11 = d3.select("#viscontainer-11").append("svg")
 			.attr("width", width_11 + margin_11.left + margin_11.right)
-			.attr("height", height_11 + margin_11.top + margin_11.bottom)
+			.attr("height", height_11 + margin_11.top + margin_11.bottom + 100)
 			.attr("id","vis-11")
 			.append("g")
 			.attr("transform", "translate(" + margin_11.left + "," + margin_11.top + ")");
@@ -173,6 +191,7 @@ function BarChart() {
 			svg_11.append("g")
 				.attr("class", "axis_0201")
 				.attr("transform", "translate(0," + height_11 + ")")
+                .attr("font-size", 	width_abs/(600/13))
 				.call(xAxis_11);
 
 			svg_11.append("g")
@@ -187,7 +206,8 @@ function BarChart() {
 				.attr("text-anchor", "start")
 			//.text("Population");
 
-
+            svg_11.selectAll(".tick")
+                 .attr("font-size", width_abs/(600/13))
 
 			var state_11 = svg_11.selectAll(".state")
 			.data(data_11)
@@ -195,29 +215,23 @@ function BarChart() {
 			.attr("class", "g_11")
 			.attr("transform", function(d) { return "translate(" + "0" + ",0)"; })
 
-			var tooltip_11 = svg_11.append("g")
-			.attr("class", "tooltip_0201")
-			.style("display", "none");
-
-			tooltip_11.append("rect")
-				.attr("width", 60)
-				.attr("height", 20)
-				.attr("fill", "white")
-				.attr("stroke", "#666")
-				.attr("stroke-width", "0.5px");
-
+            
+            var tooltip_11 = d3.select("#viscontainer-11")
+                .append("div")
+                .attr("class", "tooltip_0201")
+                .style("visibility", "hidden");
+            
 			tooltip_11.append("text")
 				.attr("x", 30)
 				.attr("dy", "1.2em")
-				.style("text-anchor", "middle")
-				.attr("foínt-size", "12px")
-				.attr("font", "sans-serif");	
+				.style("text-anchor", "middle");	
 
 			svg_11.append('text')
 				.attr("class", "barchart_02_01_forras")
-				.attr("x", width_11  - 280)             
-				.attr("y", height_11 + margin_11.bottom - 5)
-				.attr("text-anchor", "end")  
+				.attr("x", width_11  -25)             
+				.attr("y", height_11 + 40)
+				.attr("text-anchor", "end")
+                .attr("font-size",  width_abs/(600/13))
 				.text("Adatok forrása: KSH 2018a")
 				.on('click', function(d) {
 					window.open(
@@ -269,10 +283,15 @@ function BarChart() {
 				.on("mouseout", function() { tooltip_11.style("display", "none"); })
 				.on("mousemove", function(d) {
 				var delta_11 = d.y1_11 - d.y0_11;
-				var xPosition_11 = d3.mouse(this)[0] - 40;
-				var yPosition_11 = d3.mouse(this)[1] - 30;
-				tooltip_11.attr("transform", "translate(" + xPosition_11 + "," + yPosition_11 + ")")
-					.select("text").text((delta_11*100).toFixed(1) + "%");
+                tooltip_11
+                .style("visibility", "visible")
+				.style("left", d3.event.layerX  - 20 + "px")
+				.style("top", d3.event.layerY - 35 + "px")
+				.style("display", "inline")
+				.html((delta_11*100).toFixed(1) + "%")
+                
+                
+
 			});
 
 
@@ -284,14 +303,15 @@ function BarChart() {
 				legendClassArray_11_orig.push(d); //remove spaces
 				return "legend_0201";
 			})
-			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+			.attr("transform", function(d, i) { return "translate(0," + i * 21 + ")"; });
 
 			//reverse order to match order in which bars are stacked
 			legendClassArray_11 = legendClassArray_11.reverse();
 			legendClassArray_11_orig = legendClassArray_11_orig.reverse();
 
 			legend_11.append("rect")
-				.attr("x", width_11 - 260)
+				.attr("x", 5)
+                .attr("y", height_11 + 30)
 				.attr("width", 18)
 				.attr("height", 18)
 				.style("fill", color_11)
@@ -369,10 +389,11 @@ function BarChart() {
 
 			legend_11.append("text")
 				.attr("class", "legend_0201")
-				.attr("x", width_11-225)
-				.attr("y", 8)
+                .attr("x", 30)
+                .attr("y", height_11 + 40)
 				.attr("dy", "0.32em")
 				.attr("text-anchor", "start")
+                .attr("font-size",  width_abs/(600/14))                    
 				.text(function(d) { return d; });
 
 
@@ -499,8 +520,8 @@ function BarChart() {
 
 function GroupedChart(str) {
 d3.select("#vis-11").remove();
-			var margin_02_01 = {top: 20, right: 0, bottom: 45, left: 50},
-				width_11 = d3.select("#viscontainer-11").node().getBoundingClientRect().width - margin_02_01.left - margin_02_01.right,
+			var margin_02_01 = {top: width_abs/(600/30), right: 0, bottom: width_abs/(600/30), left: width_abs/(600/50)},
+				width_11 = width_abs - margin_02_01.left - margin_02_01.right,
 				height_11 = 450 - margin_02_01.top - margin_02_01.bottom;
 
 
@@ -509,12 +530,12 @@ d3.select("#vis-11").remove();
 var svg_11 = d3.select("#viscontainer-11").append("svg")
     .attr("id", "vis-11")
     .attr("width", width_11 + margin_02_01.left + margin_02_01.right)
-    .attr("height", height_11 + margin_02_01.top + margin_02_01.bottom + 20)
+    .attr("height", height_11 + margin_02_01.top + margin_02_01.bottom + 200)
 	.append("g")
     .attr("transform", "translate(" + margin_02_01.left + "," + margin_02_01.top + ")");
 
 var x0_11 = d3.scaleBand()
-    .rangeRound([0, width_11 - 280])
+    .rangeRound([0, width_11 -25])
     .paddingInner(0.10);
 
 var x1_11 = d3.scaleBand()
@@ -564,15 +585,15 @@ d3.tsv(str, function(d, i, columns) {
 		.on("mousemove", function (d) {
 			tooltip_0201
 				.style("visibility", "visible")
-				.style("left", d3.event.clientX - 100 + "px")
-				.style("top", d3.event.clientY   - 150 + "px")
+				.style("left", d3.event.layerX  - 20 + "px")
+				.style("top", d3.event.layerY - 35 + "px")
 				.style("display", "inline")
 				.html((d.value*100).toFixed(1) + "%");
 		})
 		.on("mouseout", function (d) {
 			tooltip_0201.style("display", "none");
 		});
-  
+
 
   svg_11.append("g")
       .attr("class", "axis_0201")
@@ -581,18 +602,22 @@ d3.tsv(str, function(d, i, columns) {
 	
   svg_11.append("g")
 		.attr("class", "axis_0201")
-		.style("font-size", "13px")
+		.style("font-size", width_abs/(600/13))
 		.call(d3.axisLeft(y_11).ticks(null, "%"));
-	
+
+            svg_11.selectAll(".tick")
+                 .attr("font-size", width_abs/(600/13))
+    
 	
   var legend_0201b = svg_11.append("g")
     .selectAll("g")
     .data(keys.slice().reverse())
     .enter().append("g")
-      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+      .attr("transform", function(d, i) { return "translate(0," + i * 22 + ")"; });
 
   legend_0201b.append("rect")
-      .attr("x", width_11  - 280)
+        .attr("x", 5)
+        .attr("y", height_11 + 30)
       .attr("width", 19)
       .attr("height", 19)
       .attr("fill", z_11);
@@ -600,17 +625,19 @@ d3.tsv(str, function(d, i, columns) {
   legend_0201b.append("text")
 	  .attr("class", "legend_0201b_01_02")
 	  .style("text-anchor", "start")
-      .attr("x", width_11 - 250)
-      .attr("y", 9.5)
+                .attr("x", 30)
+                .attr("y", height_11 + 40)
       .attr("dy", "0.32em")
+    .attr("font-size",  width_abs/(600/14))                        
       .text(function(d) { return d; });
 	
 			svg_11.append('text')
 				.attr("class", "barchart_02_01_forras")
-				.attr("x", width_11  - 280)             
-				.attr("y", height_11 + margin_02_01.bottom - 5)
+				.attr("x", width_11  -25)             
+				.attr("y", height_11 +  40)
+                .attr("font-size",  width_abs/(600/13))    
 				.attr("text-anchor", "end")  
-				.text("Adatok forrása: KSH2018a")
+				.text("Adatok forrása: KSH 2018a")
 				.on('click', function(d) {
 					window.open(
 						'https://www.ksh.hu/mikrocenzus2016/kotet_7_lakaskorulmenyek',

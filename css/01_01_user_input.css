@@ -1,14 +1,15 @@
 .form-style-01-01{
+    min-width: 550px;
     max-width: 1000px;
     padding: 6px 6px 6px 6px;
-    font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 }
 
 
 .form-style-01-01 label{
+    font-weight: normal;
+    min-width: 550px;
     display: block;
     margin: 6px 0px 6px 0px;
-    font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
     color: #333;
     margin-left: 0px;
     text-align: start;
@@ -25,21 +26,40 @@
 
 }
 
-.form-style-01-01 label > span{
-    width: 620px;
-    font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
+
+
+.form-style-01-01 label > span#span_1{
+    font-size: calc(9px + .3vw);
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
     font-weight: normal;
     float: left;
     color: #333;
     padding-top: 8px;
-    padding-right: 0px;
+    padding-right: 26px;
+    
 }
+
+.form-style-01-01 label > span#span_2{
+    font-size: calc(9px + .3vw);
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
+    font-weight: normal;
+    float: left;
+    color: #333;
+    padding-right: 20px;
+}
+
 .form-style-01-01 span.required{
     color:red;
 }
 
+
+
 .form-style-01-01 input.input-field-01-01{
-    width: 20%; 
+    width: 15%;
+    font-size: calc(9px + .3vw);
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif; 
+    font-weight: normal;
+
 }
 .form-style-01-01 input.input-field-01-01{
     box-sizing: border-box;
@@ -61,11 +81,15 @@
 
 
 .button{
+    margin-top:  8px;
     background: #385988;
     padding: 8px 12px 8px 12px;
     border: none;
     color: #fff;
+    font-size: calc(9px + .3vw);
 	font: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+
 }
 	
 .button:hover, 
@@ -87,7 +111,9 @@
 }
 
 .axis_userinput {
-  font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+        font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    	font-weight: normal;
+
 }
 
 .axis_userinput path,
@@ -99,11 +125,13 @@
 
 
 div#toolTip {
+    font-size: calc(8px + .3vw);
 	box-sizing: border-box;
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid #666;
@@ -120,12 +148,13 @@ path.marker {
 }
 
 .label_01_01{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
 }
 
 text#userinput_forras{
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-	  font-weight: normal;
+	font-family:'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
   font-style: italic;
   text-decoration: underline;	
 
@@ -136,7 +165,8 @@ text#ytitle{
 }
 
 text#userinput_title{
-	font: 16px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	text-anchor: middle;
+
 }

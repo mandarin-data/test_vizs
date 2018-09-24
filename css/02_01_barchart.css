@@ -3,7 +3,8 @@
 	max-height:20px;
 	max-width: 500px;
 	padding: 6px 6px 6px 0px;
-	font: 14px 	font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
 ;
 }
 
@@ -43,7 +44,9 @@
 	-moz-border-radius: 3px;
 	padding: 4px;
 	outline: none;
-	font: 14px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+        font-size: 14px;
+
 
 }
 
@@ -85,7 +88,8 @@ input#mycheck_0201[type=checkbox], input#mycheck_0201[type=radio] {
 }
 
 .axis_0201{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
 }
 
 .tooltip_0201_group{
@@ -93,37 +97,43 @@ input#mycheck_0201[type=checkbox], input#mycheck_0201[type=radio] {
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: calc(9px + .3vw);
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid   #a6a6a6;
 	color: #000000;
 	stroke-width: 0.5px;
-    padding: 3px 10px 3px 10px;
+    font-weight: normal;
+
 }
 
 .legend_0201{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-weight: normal;    
 
 }
 
 text.barchart_02_01_forras{
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	font-style: italic;
 	text-decoration: underline;	
 }
 
 text#barchart0201_title{
-	font: 17px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	text-anchor: middle;
+	font-weight: normal;
+    
 }
 
 .legend_0201b_01_02{
-		font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+		font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
         color: #000000;
         fill: #000000;
+	    font-weight: normal;    
 }
 
 
@@ -132,9 +142,12 @@ text#barchart0201_title{
 	background-color: #FFFFFF;
 	position: absolute;
 	line-height: 1;
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: calc(9px + .3vw);
 	text-align: center;
 	padding: 4px;
-	border: 0.5px solid #666;
+	border: 0.5px solid   #a6a6a6;
 	color: #000000;
+	stroke-width: 0.5px;
+    font-weight: normal;
 }

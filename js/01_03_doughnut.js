@@ -1,3 +1,20 @@
+if (d3.select("#chart-doughnut").node().getBoundingClientRect().width  < 980)
+{ 
+   if (d3.select("#chart-doughnut").node().getBoundingClientRect().width  > 700){ 
+        var vizuwidth_0102 = 600 ;
+        } else {
+            if (d3.select("#chart-doughnut").node().getBoundingClientRect().width  < 500){ 
+                var vizuwidth_0102 = 500 ;
+                } else {
+                 var vizuwidth_0102 = d3.select("#chart-doughnut").node().getBoundingClientRect().width    
+                }   
+        }
+} else {
+  var vizuwidth_0102 = 600
+};
+
+
+
 var chartTooltip_doughnut = d3.select('#chart-doughnut')
 	.append('div')
 	.style("display", "none")
@@ -83,7 +100,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 
 	path_doughnut.on('mousemove', function(d) {
 		chartTooltip_doughnut
-			.style("left", d3.mouse(this)[0]+ (d3.select("#chart-doughnut").node().getBoundingClientRect().width)/2 - 27.2 + "px")
+			.style("left", d3.mouse(this)[0] + (vizuwidth_0102)/3.5  + "px")
 			.style("top", d3.mouse(this)[1] + 195 + "px");
 	});
 
@@ -96,8 +113,8 @@ var margin = {
 	bottom: 50,
 	left: 100
 },
-	userInputWidth = d3.select("#chart-doughnut").node().getBoundingClientRect().width - margin.left - margin.right,
-	userInputHeight = d3.select("#chart-doughnut").node().getBoundingClientRect().width - margin.top - margin.bottom;
+	userInputWidth = vizuwidth_0102 - margin.left - margin.right,
+	userInputHeight = vizuwidth_0102 - margin.top - margin.bottom;
 
 
 var doughnutWidth = userInputWidth;

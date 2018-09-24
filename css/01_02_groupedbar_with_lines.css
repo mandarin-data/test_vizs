@@ -31,6 +31,7 @@
 }
 
 .form-style-2 .select-field{
+    font-size: calc(9px + .3vw);
 	width: 200px;
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -44,7 +45,8 @@
 	-moz-border-radius: 3px;
 	padding: 4px;
 	outline: none;
-	font: 14px 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 	'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
 
 }
 
@@ -62,7 +64,8 @@ input.myinput_large{
 }
 
 .axis_01_02 {
-  font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+   font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+   font-weight: normal;
 }
 
 .axis_01_02 path,
@@ -73,24 +76,27 @@ input.myinput_large{
 }
 
 .axis_second{
-	  font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	  font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+      font-weight: normal;
 
 }
 
 .legend_01_02{
-		font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+		font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
         color: #000000;
         fill: #000000;
+    	font-weight: normal;
 }
 
 .legend_01_02_bar{
-		font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+		font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
         color: #000000;
         fill: #000000;	
+    	font-weight: normal;
 }
 
 text.barline_forras{
-	font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
 	font-weight: normal;
   	font-style: italic;
 	text-decoration: underline;	
@@ -130,19 +136,21 @@ text.barline_forras{
 }
 
 #bar_01_02_title{
-	font: 17px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	font-weight: normal;
 	text-anchor: middle;
 }
 
 .barline_utasitas{
-	font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+	font-family:  'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
 	font-style: italic
 }
 
 .legend_text{
-		font: 14px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+		font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
         color: #000000;
         fill: #000000;
+    	font-weight: normal;
 		text-decoration: underline;
 }

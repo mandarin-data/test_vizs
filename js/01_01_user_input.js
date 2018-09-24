@@ -1,6 +1,20 @@
+if (d3.select("#vis-0101").node().getBoundingClientRect().width  > 450)
+{ 
+   if (d3.select("#vis-0101").node().getBoundingClientRect().width  < 820){ 
+        var vizuwidth_0102 = d3.select("#vis-0101").node().getBoundingClientRect().width ;
+        } else {
+         var vizuwidth_0102 = 820    
+        }
+} else {
+  var vizuwidth_0102 = 450 // teljes szélesség, 3/4-1/4 arány
+};
+
+
 function MyTitle(){
-	var margin_userinput = {top: 20, right: 0, bottom: 45, left: 40},
-		userInputWidth = d3.select("#vis-0101").node().getBoundingClientRect().width - margin_userinput.left - margin_userinput.right,
+    var absolute_width_0101 = vizuwidth_0102 
+    
+	var margin_userinput = {top: absolute_width_0101/39.4, right: 0, bottom: absolute_width_0101/17.5, left: absolute_width_0101/13.3},
+		userInputWidth = absolute_width_0101 - margin_userinput.left - margin_userinput.right,
 		userInputHeight = 450 - margin_userinput.top - margin_userinput.bottom;
 
 	var svg_userinput_title = d3.select("#svg_userinput_title")
@@ -9,22 +23,25 @@ function MyTitle(){
 
 	svg_userinput_title.append('text')
 		.attr('id', 'userinput_title')
-		.attr("x",  (userInputWidth)/2 )
+		.attr("x",  (userInputWidth)/2+ margin_userinput.left )
 		.attr("y", 27)
+        .attr("font-size", absolute_width_0101/46.3)
 		.text("Az egy főre jutó havi lakhatási költségek és nettó jövedelmek jövedelmi tizedenként (Ft, 2016)");
 
 }
 
 
+var absolute_width_0101 = vizuwidth_0102 
 
 var margin_userinput = {
-        top: 20,
-        right: 60,
-        bottom: 40,
-        left: 60
+        top: absolute_width_0101/39.4,
+        right: 0,
+        bottom: absolute_width_0101/19.7,
+        left: absolute_width_0101/13.3
     },
-	userInputWidth = d3.select("#vis-0101").node().getBoundingClientRect().width - margin_userinput.left - margin_userinput.right,
+	userInputWidth = absolute_width_0101 - margin_userinput.left - margin_userinput.right,
 	userInputHeight = 350 ;
+
 
 
 var fullwidth_ui = userInputWidth/2;
@@ -56,6 +73,7 @@ var svg_userinput = d3.select("#vis-0101").append("svg")
 var tooltip_userinput = d3.select("#vis-0101")
     .append("div")
     .attr("id", "toolTip")
+    .attr("font-size", absolute_width_0101/60.61)
     .style("visibility", "hidden");
 
 
@@ -77,12 +95,15 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 		.call(yAxis_userinput)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", 0 - (margin_userinput.left-15))
+		.attr("y", 0 - (margin_userinput.left-(margin_userinput.left*0.20)))
 		.attr("x", 0  - (350/2) )
+        .attr("font-size", absolute_width_0101/60.61)
 		.style("text-anchor", "middle")
 		.style("fill", "#000000")
 		.text("Lakhatásra fordított költségek a nettó jövedelemből (%)");
 
+    svg_userinput.selectAll(".tick")
+            .attr("font-size", absolute_width_0101/60.61)
 
 	
     svg_userinput.selectAll(".bar")
@@ -105,10 +126,10 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
             tooltip_userinput
                 .style("visibility", "visible")
                 .style("left", d3.mouse(this)[0] + "px")
-                .style("top", d3.mouse(this)[1] + 95  + "px")
+                .style("top", d3.mouse(this)[1] + absolute_width_0101/5  + "px")
 		                .style("display", "inline")
 
-                .html((d.Decilis) + ". decilis : " + (d["Percent"] + "%"));
+                .html((d.Decilis) + ". decilis: " + (d["Percent"] + "%"));
         })
         .on("mouseout", function (d) {
             tooltip_userinput.style("display", "none");
@@ -119,6 +140,7 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 			.attr("x", fullwidth_ui * 2 )
 			.attr("y",  350 + (margin_userinput.bottom) + 10)
 			.attr("text-anchor", "end")
+            .attr("font-size", absolute_width_0101/60.61)
 			.text("Adatok forrása: KSH 2017a")
 			.on('click', function(d) {
 				window.open(
@@ -138,9 +160,9 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
 		svg_userinput.append('text')
 			.attr("id", "ytitle")
 			.attr("x", fullwidth_ui )
-			.attr("y",  350 + (margin_userinput.bottom - 5))
+			.attr("y",  350 + (margin_userinput.bottom - (margin_userinput.bottom*0.05)))
 			.style("text-anchor", "middle")
-			.style("font-size", "14px")
+			.style("font-size", absolute_width_0101/60.61)
 			.text("Jövedelmi tized");
 	
 });
@@ -205,7 +227,7 @@ function myFunction() {
                 return 10;
             })
 		    .style("text-anchor", "middle")
-			.style("font-size", "14px")
+            .attr("font-size", absolute_width_0101/56.28)
             .text( dec_userinput + ". jövedelmi tizedbe tartozik,")
 
 
@@ -222,7 +244,7 @@ function myFunction() {
                 return 25;
             })
             .style("text-anchor", "middle")
-			.style("font-size", "14px")
+            .attr("font-size", absolute_width_0101/56.28)
             .text(function (d) {
                 if (dif_userinput < 0) {
                     return "melynek átlagához képest " + Math.round(Math.abs(dif_userinput)) + " százalékkal"
@@ -244,7 +266,7 @@ function myFunction() {
                 return 40;
             })
             .style("text-anchor", "middle")
-			.style("font-size", "14px")
+            .attr("font-size", absolute_width_0101/56.28)
             .text(function (d) {
                 if (dif_userinput < 0) {
                     return "költ kevesebbet lakhatásra"
