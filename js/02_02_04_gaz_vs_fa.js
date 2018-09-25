@@ -30,7 +30,7 @@ var z_020204 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
 // load the csv and create the chart
-d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function (d, i, columns) {
+d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
