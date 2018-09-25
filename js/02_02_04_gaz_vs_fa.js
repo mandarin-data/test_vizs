@@ -30,7 +30,7 @@ var z_020204 = d3.scaleOrdinal()
     .range(["#385988", "#43B02A", "#FF671F", "#A4343A"]);
 
 // load the csv and create the chart
-d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function (d, i, columns) {
+d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
@@ -95,8 +95,6 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .attr("x", 2)
         .attr("y", y_020204(y_020204.ticks().pop()) + 0.5)
         .attr("dy", "0.32em")
-        .attr("fill", "#000")
-        .attr("font-weight", "bold")
         .attr("text-anchor", "start");
 
     svg_020204.append('text')
@@ -105,6 +103,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .attr('y', -5)
         .attr("text-anchor", "middle")
         .style('font-size', "18px")
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("A lakások fűtési módja jövedelmi tizedek szerint (2016)");
 
     svg_020204.append('text')
@@ -113,6 +112,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .attr("y", height_020204 + (margin_020204.bottom))
         .style("text-anchor", "middle")
         .style('font-size', "13px")
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("Jövedelmi tized");
 
 
@@ -124,6 +124,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .style("font-size", '13px')
         .style('text-decoration', 'underline')
         .style('font-style', 'italic')
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("Adatok forrása: KSH 2018c, ")
         .on('click', function (d) {
             window.open(
@@ -149,6 +150,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
         .style("font-size", '13px')
         .style('text-decoration', 'underline')
         .style('font-style', 'italic')
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("2018d.")
         .on('click', function (d) {
             window.open(

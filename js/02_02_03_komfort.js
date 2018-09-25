@@ -79,8 +79,6 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_03_komfort.csv", func
         .attr("x", 2)
         .attr("y", y(y.ticks().pop()) + 0.5)
         .attr("dy", "0.32em")
-        .attr("fill", "#000")
-        .attr("font-weight", "bold")
         .attr("text-anchor", "start")
         .text("%");
 

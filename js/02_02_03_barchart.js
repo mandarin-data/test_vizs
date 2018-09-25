@@ -97,8 +97,6 @@ function BarChartKomf() {
                 .attr("x", 2)
                 .attr("y", y_020203(y_020203.ticks().pop()) + 0.5)
                 .attr("dy", "0.32em")
-                .attr("fill", "#000")
-                .attr("font-weight", "bold")
                 .attr("text-anchor", "start");
 
             svg_020203.append('text')
@@ -107,6 +105,7 @@ function BarChartKomf() {
                 .attr("y", height_020203 + (margin_020203.bottom))
                 .style("text-anchor", "middle")
                 .style("font-size", '13px')
+            	.attr("font-family", "NeueHaasGroteskDisp Pro")
                 .text("Jövedelmi tized");
 
             var state_020203 = svg_020203.selectAll(".state020203")
@@ -142,6 +141,7 @@ function BarChartKomf() {
                 .attr('y', 0)
                 .attr("text-anchor", "middle")
                 .style("font-size", "18px")
+            	.attr("font-family", "NeueHaasGroteskDisp Pro")
                 .text("A lakások komfortfokozata jövedelmi tizedek szerint (2016)");
 
             svg_020203.append("text")
@@ -152,6 +152,7 @@ function BarChartKomf() {
                 .style("font-size", '13px')
                 .style('text-decoration', 'underline')
                 .style('font-style', 'italic')
+            	.attr("font-family", "NeueHaasGroteskDisp Pro")
                 .text("Adatok forrása: KSH 2018c, ")
                 .on('click', function (d) {
                     window.open(
@@ -177,6 +178,7 @@ function BarChartKomf() {
                 .style("font-size", '13px')
                 .style('text-decoration', 'underline')
                 .style('font-style', 'italic')
+            	.attr("font-family", "NeueHaasGroteskDisp Pro")
                 .text("2018d.")
                 .on('click', function (d) {
                     window.open(

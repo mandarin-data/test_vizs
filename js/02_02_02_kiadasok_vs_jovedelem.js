@@ -30,7 +30,7 @@ var z_020202 = d3.scaleOrdinal()
     .range(["#C4D600", "#A4343A" , "#385988", "#43B02A", "#FF671F", "#888B8D"]);
 
 // load the csv and create the chart
-d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovedelem.csv", function (d, i, columns) {
+d3.csv("/wp-habitat/data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovedelem.csv", function (d, i, columns) {
     for (i = 1, t = 0; i < columns.length; ++i) t += d[columns[i]] = +d[columns[i]];
     d.total = t;
     return d;
@@ -90,23 +90,34 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
 
         .call(d3.axisBottom(x_020202));
 
+    var locale = d3.formatLocale({
+        decimal: ",",
+    });
+
+    var format = locale.format(",.1f");
+
     svg_020202.append("g")
         .attr("class", "axis_020202")
-        .call(d3.axisLeft(y_020202).ticks(null, "s"))
+        .call(d3.axisLeft(y_020202).tickFormat(function (d) {
+            if (this.parentNode.nextSibling) {
+                return format(d / 1000000) + " M"
+            } else {
+                return format(d / 1000000) + " M"
+            }
+        }))
         .append("text")
         .attr("x", 2)
         .attr("y", y_020202(y_020202.ticks().pop()) + 0.5)
         .attr("dy", "0.32em")
-        .attr("fill", "#000")
-        .attr("font-weight", "bold")
         .attr("text-anchor", "start");
 
     svg_020202.append('text')
         .attr('id', '020202_title')
-        .attr('x', (width_020202 / 2))
+        .attr('x', (width_020202 / 2)-70)
         .attr('y', 0)
         .attr("text-anchor", "middle")
         .style("font-size", "18px")
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("Az alapvető szükségletek éves kiadásai jövedelmi tizedek szerint (Ft, 2016)");
 
     svg_020202.append("text")
@@ -117,6 +128,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
         .style("font-size", '13px')
         .style('text-decoration', 'underline')
         .style('font-style', 'italic')
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("Adatok forrása: KSH 2018c, ")
         .on('click', function (d) {
             window.open(
@@ -142,6 +154,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
         .style("font-size", '13px')
         .style(	'text-decoration', 'underline')
         .style('font-style', 'italic')
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("2018d.")
         .on('click', function (d) {
             window.open(
@@ -166,6 +179,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
         .attr("y", height_020202 + (margin_020202.bottom))
         .style("text-anchor", "middle")
         .style("font-size", '14px')
+    	.attr("font-family", "NeueHaasGroteskDisp Pro")
         .text("Jövedelmi tized");
 
 
