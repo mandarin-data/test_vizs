@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+            <svg id=svg_treemap_title></svg>
+			<div class="form-style-2">
+				<select class="select-field" id="d3-dropdown-hitelfelbontas">
+					<option value="type">Hitel típusa szerinti bontás</option>
+					<option value="kvintilis">Jövedelmi ötödök szerinti bontás</option>
+				</select>
+
+				<br>
+			</div>
+
+            <div id="vis-0402-hitelfelbontas">
+            <p id="chart-treemap"></p>
+            <script src="../../js/d3.v4.min.js"></script>
+            <link rel="stylesheet" href="../../css/04_02_hitelfelbontas.css">
+		  <script src="../../js/04_02_hitelfelbontas.js"></script>
+			<script>
+				MyTitle()
+                str = "../../data/04_eladosodas/04_02_hitelfelbontas_type.json";
+				Mytreemap(str)
+				d3.select("select#d3-dropdown-hitelfelbontas")
+					.on("change", function(d) {
+					var selected = d3.select("#d3-dropdown-hitelfelbontas").node().value;
+
+                    if (selected == "type") {
+					var str="../../data/04_eladosodas/04_02_hitelfelbontas_type.json";
+					Mytreemap(str)
+
+					} else {
+						str = "../../data/04_eladosodas/04_02_hitelfelbontas_kvintilis.json";
+						Mytreemap(str)
+
+					};
+				})
+
+			</script>
+		</div>
+    <div align="right">
+    <a href="http://www.hitelintezetiszemle.hu/letoltes/boldizsar-anna-kekesi-zsuzsa-koczian-balazs-sisak-balazs.pdf" style="font-style:italic;font-family:NeueHaasGroteskDisp Pro, Arial, Helvetica, sans-serif;font-size:16px;color:black;text-align:right;text-decoration:underline" >Adatok forrása: Boldizsár et al. 2016.</a></div>

@@ -1,0 +1,24 @@
+{
+ "name": "Összes háztartás",  "color": "#bbbbbb",
+
+   "children": [
+    {"name": "Nincs hitele", "value": 67.8,  "color": "#385988"},
+    {
+     "name": "Van hitele",
+     "children": [
+      {"name": "1. jövedelmi ötödbe tartozó hiteles", "value": 10.9, "color": "#00AFD7"},
+      {"name": "2. jövedelmi ötödbe tartozó hiteles", "value": 5.8, "color": "#00AFD7"},
+      {"name": "3. jövedelmi ötödbe tartozó hiteles", "value": 4.8, "color": "#00AFD7"},
+      {"name": "4. jövedelmi ötödbe tartozó hiteles", "value": 4.2, "color": "#00AFD7"},
+      {
+		  "name": "5. jövedelmi ötödbe tartozó hiteles", "color": "#00AFD7",
+			 "children": [
+			  {"name": "Nettó vagyon szerint 80-95%-ba tartozó hiteles", "value": 3.5, "color": "#00AFD7"},
+			  {"name": "Nettó vagyon szerint 96-99%-ba tartozó hiteles", "value": 1.0, "color": "#00AFD7"},
+			  {"name": "Nettó vagyon szerinti felső 1%-ba tartozó hiteles", "value": 1.9, "color": "#00AFD7"}
+				 ]
+	  }
+     ]
+    }
+   ]
+}
