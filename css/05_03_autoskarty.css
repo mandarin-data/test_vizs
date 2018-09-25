@@ -1,3 +1,7 @@
+body {
+    font: "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+}
+
 #title {
     text-align: center;
     font-size: 90%;
