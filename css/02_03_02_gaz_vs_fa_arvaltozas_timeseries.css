@@ -1,4 +1,4 @@
-#topic05-vis01 {
+#topic02-vis03-part02 {
     width: 100%;
     height: 500px;
 }
@@ -11,12 +11,12 @@ body {
 	color: #666;
 }
 
-svg_0501 {
+svg_020302 {
     display: block;
     margin: auto;
 }
 
-.axis_0501 {
+.axis_020302 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: normal;
@@ -24,7 +24,7 @@ svg_0501 {
 	color: #666;
 }
 
-.legend_0501 {
+.legend_020302 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: normal;
@@ -32,7 +32,7 @@ svg_0501 {
 	color: #666;
 }
 
-.title_0501 {
+.title_020302 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
     font-size: 18px;
     font-weight: normal;
@@ -40,7 +40,7 @@ svg_0501 {
 	color: #666;
 }
 
-.data_source_0501 {
+.data_source_020302 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
     font-style: italic;
 	font-weight: lighter;
@@ -49,18 +49,30 @@ svg_0501 {
 	color: #666;
 }
 
-.axis_0501 path,
-.axis_0501 line {
+.axis_020302 path,
+.axis_020302 line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
 
-.x.axis_0501 path {
+.x.axis_020302 path {
     display: none;
 }
 
-.line_0501 {
+.line_020302 {
     fill: none;
     stroke-width: 2px;
+}
+
+.y.axisLeft_020302 text{
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.y.axisRight_020302 text{
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
 }

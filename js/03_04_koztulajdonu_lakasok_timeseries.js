@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
 var margin_0304 = {
-  top: 90, 
+  top: 60, 
   right: 45, 
   bottom: 175, 
   left: 55
@@ -18,12 +18,12 @@ var yline_0304 = d3.scaleLinear().range([height_0304, 0]);
 
 // set the colors
 var z_0304 = d3.scaleOrdinal()
-    .range(["#385988", "#00AFD7", "#310f11" , "#ad484d", "#bf7075", "#ecd6d7"]);
+    .range(["#97AFB9", "#00AFD7", "#D52E2E", "#FFA38E", "#294163", "#446b7f"]);
 
 var line_0304 = d3.line()
+    .defined(function(d) {return d.ydata != "null"; })
     .x(function(d) {return xbar_0304(d.date)})
     .y(function(d) {return yline_0304(d.ydata)})
-    //.curve(d3.curveBasis);
 
 // append the svg object
 var svg_0304 = d3.select("#topic03-vis04").append("svg")
@@ -32,6 +32,15 @@ var svg_0304 = d3.select("#topic03-vis04").append("svg")
     .append("g")
     .attr("transform",
           "translate(" + margin_0304.left + "," + margin_0304.top + ")");
+
+var tooltip_0304 = d3.tooltip() // returns the tooltip function
+    .extent([[0,0],[width_0304,height_0304]]) // tells the tooltip how much area it has to work with
+    //.tips(["value", "search(d.value, medianlist_0304)"],["Részvételi arány: ", "Medián (forint): "])
+    .tips(["1"],[""])// tells the tooltip which properties to display in the tip and what to label thme
+    .fontSize(13) // sets the font size for the tooltip
+    .padding([8,4]) // sets the amount of padding in the tooltip rectangle
+    .margin([10,10]) // set the distance H and V to keep the tooltip from the mouse pointer
+    .format("notpercent");
 
 // Get the data
 d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_timeseries.tsv", function(error, data) {
@@ -57,11 +66,11 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       categoriesline_0304 = categories_0304.slice(2,6);
 
   xbar_0304.domain(data.map(function(d) { return d.date; }));
-  ybar_0304.domain([0, d3.max(categoriesbar_0304, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.1; }); }) ]);
+  ybar_0304.domain([0, 240]);
   z_0304.domain(keys_0304);
 
   // Scale the range of the line chart data
-  yline_0304.domain([0, d3.max(categoriesline_0304, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.1; }); }) ]);
+  yline_0304.domain([0, 20]);
     
   svg_0304.append("g")
     .selectAll("g")
@@ -74,7 +83,10 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("x", function(d) { return xbar_0304(d.data.date); })
       .attr("y", function(d) { return ybar_0304(d[1]); })
       .attr("height", function(d) { return ybar_0304(d[0]) - ybar_0304(d[1]); })
-      .attr("width", xbar_0304.bandwidth());
+      .attr("width", xbar_0304.bandwidth())
+    .each(tooltip_0304.events);
+
+  svg_0304.call(tooltip_0304)
 
   // Add the X Axis
   svg_0304.append("g")
@@ -87,7 +99,7 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("class", "axisSteelBlue_0304")
       .call(d3.axisLeft(ybar_0304).ticks(null, "s"))
       .append("text")
-      .attr("x", 0 - margin_0304.left)
+      .attr("x", -80)
       .attr("y", -45)
       .attr("dy", "0.32em")
       .attr("text-anchor", "end")
@@ -100,7 +112,7 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("transform", "translate( " + width_0304 + ", 0 )")
       .call(d3.axisRight(yline_0304))
       .append("text")
-      .attr("x", 0 + margin_0304.left)
+      .attr("x", 80)
       .attr("y", -35)
       .attr("dy", "0.32em")
       .attr("text-anchor", "start")
