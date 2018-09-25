@@ -1,340 +1,313 @@
+var locale_0404 = {
+  "decimal": ",",
+  "thousands": "\u00a0",
+  "grouping": [3],
+  "currency": ["", "\u00a0Ft"]
+};
+d3.formatDefaultLocale(locale_0404);
+var formatThousands_0404 = d3.format(",");
+
 var margin_0404 = {
-  top: 50, 
-  right: 50, 
-  bottom: 80, 
-  left: 60
+  top: 100, 
+  right: 55, 
+  bottom: 143, 
+  left: 65
 };
 
-var w_0404 = d3.select("#topic04-vis04").node().getBoundingClientRect().width - margin_0404.left - margin_0404.right;
-var h_0404 = d3.select("#topic04-vis04").node().getBoundingClientRect().height - margin_0404.top - margin_0404.bottom;
+var width_0404 = d3.select("#topic04-vis04").node().getBoundingClientRect().width - margin_0404.left - margin_0404.right;
+var height_0404 = d3.select("#topic04-vis04").node().getBoundingClientRect().height - margin_0404.top - margin_0404.bottom;
 
-var parseDate_0404 = d3.timeParse("%Y%m%d");
+var parseTime_0404 = d3.timeParse("%Y%m");
 
-var scaleX_0404 = d3.scaleTime()
-    .range([0, w_0404]);
-
-var scaleY_0404 = d3.scaleLinear()
-    .range([h_0404, 0]);
-
-var color_0404 = d3.scaleOrdinal()
-    .range(["#385988", "#43B02A" , "#FF671F", "#A4343A"]);
-
-var xAxis_0404 = d3.axisBottom()
-    .scale(scaleX_0404);
-
-var yAxis_0404 = d3.axisLeft()
-    .scale(scaleY_0404)
-
-var line_0404 = d3.line()
-    .x(function(d) {return scaleX_0404(d.date)})
-    .y(function(d) {return scaleY_0404(d.ydata)})
-    //.curve(d3.curveBasis);
+const row_0404 = d => {
+    d.date = parseTime_0404(d.date);
+    d["Ingatlanhitelek, forint"] = +d["Ingatlanhitelek, forint"];
+    d["Ingatlanhitelek, deviza"] = +d["Ingatlanhitelek, deviza"];
+    d["Fogyasztási és egyéb hitelek, forint"] = +d["Fogyasztási és egyéb hitelek, forint"];
+    d["Fogyasztási és egyéb hitelek, deviza"] = +d["Fogyasztási és egyéb hitelek, deviza"];
+    d["Hitelek a nem pénzügyi szektortól"] = +d["Hitelek a nem pénzügyi szektortól"];
+    d["Forint/Svájci frank árfolyam"] = +d["Forint/Svájci frank árfolyam"];
+    return d;
+};
+      
+// Load and summarize the data.
+d3.tsv('../../data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv', row_0404, data => {
+    render_0404(data);
+});
 
 var svg_0404 = d3.select("#topic04-vis04").append("svg")
-    .attr("width", w_0404 + margin_0404.left + margin_0404.right)
-    .attr("height", h_0404 + margin_0404.top + margin_0404.bottom)
-    // .style("background-color", "lightGreen")
+    .attr("width", width_0404 + margin_0404.left + margin_0404.right)
+    .attr("height", height_0404 + margin_0404.top + margin_0404.bottom)
     .append("g")
     .attr("transform", "translate("+margin_0404.left +", "+margin_0404.top+")")
 
-d3.tsv("../../data/04_eladosodas/04_04_haztartasok_eladosodasa.tsv", type_0404, function (error, data) {
-    if (error) throw error;
+var xAxisG_0404 = svg_0404.append('g')
+    .attr('class', 'axis_0404');
+var yAxisG_0404 = svg_0404.append('g')
+    .attr('class', 'axis_0404 axis_0404--major axis_0404--y');
+var yAxisLineG_0404 = svg_0404.append('g')
+    .attr('class', 'axis_0404 axis_0404--major axis_0404--y');
+var xAxisMinor_0404G_0404 = xAxisG_0404.append('g')
+    .attr('class', 'axis_0404 axis_0404--minor');
+var xAxisMajor_0404G_0404 = xAxisG_0404.append('g')
+    .attr('class', 'axis_0404 axis_0404--major');
 
-    var categories_0404 = data.columns.slice(1).map(function (name) {
-        return {
-            name: name, 
-            values: data.map(function (d) {
-                return {
-                    date: d.date, 
-                    ydata: d[name]
-                };
-            })
-        };
-    });
+const keys_0404 = ["Ingatlanhitelek, forint", "Ingatlanhitelek, deviza", "Fogyasztási és egyéb hitelek, forint", "Fogyasztási és egyéb hitelek, deviza", "Hitelek a nem pénzügyi szektortól"];
 
-scaleX_0404.domain(d3.extent(data, function(d){
-  return d.date;
-}));
-scaleY_0404.domain([
-    0,
-    d3.max(categories_0404, function(c) { return d3.max(c.values, function(d) { return d.ydata * 1.3; }); })
-  ]);
+var stack_0404 = d3.stack().keys(keys_0404);
 
-console.log("categories_0404", categories_0404);
+var xValue_0404 = function (d) { return d.date; };
+var xScale_0404 = d3.scaleTime();
+var yScale_0404 = d3.scaleLinear();
+var yLineScale_0404 = d3.scaleLinear();
+var colorScale_0404 = d3.scaleOrdinal().range(["#1F314B", "#385988", "#006600", "#43B02A", "#FF671F"]);
+var line_0404 = d3.line();
 
-var legend_0404 = svg_0404.selectAll("g")
-    .data(categories_0404)
-    .enter()
-    .append("g")
-    .attr("class", "legend");
 
-legend_0404.append("rect")
-    .attr("x", w_0404-200)
-    .attr("y", function(d, i) {return i * 20;} )
-    .attr("width", 2)
-    .attr("height", 15)
-    .style("fill", function(d) {return color_0404(d.name);} );
+var xAxisMajor_0404 = d3.axisBottom().scale(xScale_0404);
+var xAxisMinor_0404 = d3.axisBottom().scale(xScale_0404).ticks(30);
+var yAxis_0404 = d3.axisLeft().scale(yScale_0404).tickFormat(formatThousands_0404);
+var yAxisLine_0404 = d3.axisRight().scale(yLineScale_0404).ticks(10);
 
-legend_0404.append("text")
-    .attr("font-size", (w_0404 * 0.0005 + 0.5) + "em")
-    .attr("x", w_0404-195)
-    .attr("y", function(d, i) {return (i * 20) + 12;} )
-    .text(function(d) {return d.name;} );
 
-svg_0404.append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0, "+h_0404+")")
-    .call(xAxis_0404)
-    .selectAll(".tick text")
-    .attr("font-size", (w_0404 * 0.0005 + 0.5) + "em");
+var area_0404 = d3.area()
+    .x(d => xScale_0404(xValue_0404(d.data)))
+    .y0(d => yScale_0404(d[0]))
+    .y1(d => yScale_0404(d[1]))
+    .curve(d3.curveBasis);
 
-svg_0404.append("g")
-    .attr("class", "y axis")
-    .call(yAxis_0404)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", 6)
-    .attr("dy", ".71em")
-    .style("text-anchor", "end")
-    .style("fill", "black")
-    .text("Milliárd forint");
+// Render chart
+function render_0404(data) {
+    const stacked_0404 = stack_0404(data)
 
-svg_0404.selectAll(".y.axis text")
-    .attr("font-size", (w_0404 * 0.0005 + 0.5) + "em");
+    //console.log(data);
 
-svg_0404.append("text") // text label for the x axis
-        .attr("x", w_0404)
-        .attr("y", h_0404 + 60)
+    xScale_0404
+        .domain(d3.extent(data, xValue_0404))
+        .range([0, width_0404]);
+
+    yScale_0404
+        .domain([
+            d3.min(stacked_0404, function (series) {
+              return d3.min(series, function (d) { return d[0]; });
+            }), 11000
+        ])
+        .range([height_0404, 0]);
+
+    yLineScale_0404
+        .domain([130, 300])
+        .range([height_0404, 0]);
+
+    colorScale_0404.domain(d3.range(keys_0404.length));
+
+    line_0404
+        .defined(function(d) {return d["Forint/Svájci frank árfolyam"] != 0; })
+        .x(function(d) {return xScale_0404(d.date)})
+        .y(function(d) {return yLineScale_0404(d["Forint/Svájci frank árfolyam"])});
+
+    var paths_0404 = svg_0404.selectAll('path').data(stacked_0404);
+    var pathsEnter_0404 = paths_0404
+        .enter().append('path');
+    pathsEnter_0404.merge(paths_0404)
+        .attr('fill', function (d) { return colorScale_0404(d.index); })
+        .attr('stroke', function (d) { return colorScale_0404(d.index); })
+        .attr('d', area_0404);
+
+    paths_0404.select('title')
+        .merge(pathsEnter_0404.append('title'))
+        .text(function (d) { return d.key; })
+
+    var pathsLine_0404 = svg_0404.selectAll('path').data(stacked_0404);
+    var pathsEnterLine_0404 = paths_0404
+        .enter().append('path');
+    pathsEnter_0404.merge(paths_0404)
+        .attr('fill', function (d) { return colorScale_0404(d.index); })
+        .attr('stroke', function (d) { return colorScale_0404(d.index); })
+        .attr('d', area_0404);
+
+    var labels_0404 = svg_0404.selectAll('text').data(stacked_0404)
+    labels_0404
+        .enter().append('text')
+        .attr('class', 'area label_0404')
+        .merge(labels_0404)
+        .text(function (d) { return d.key; })
+        .attr('transform', d3.areaLabel(area_0404).interpolateResolution(1000));     
+    xAxisMajor_0404.tickSize(2); 
+    xAxisMinor_0404.tickSize(2);
+
+    xAxisG_0404.attr('transform', `translate(0,${height_0404})`);
+    xAxisMajor_0404G_0404.call(xAxisMajor_0404);
+    xAxisMinor_0404G_0404.call(xAxisMinor_0404);
+    yAxisG_0404.call(yAxis_0404);
+    yAxisLineG_0404.call(yAxisLine_0404);
+    yAxisLineG_0404.attr("transform", "translate( " + width_0404 + ", 0 )");
+    yAxisG_0404.append('text')
+        .attr('class', 'axis label_0404')
+        .attr('x', -height_0404 / 2)
+        .attr('y', -55)
+        .attr('transform', `rotate(-90)`)
+        .style('text-anchor', 'middle')
+        .text("Milliárd forint");
+
+    yAxisLineG_0404.append('text')
+        .attr('class', 'axis label_0404')
+        .attr('x', height_0404 / 2)
+        .attr('y', -40)
+        .attr('transform', `rotate(90)`)
+        .style('text-anchor', 'middle')
+        .text("Forint");
+
+    svg_0404.append("path")
+        .data([data])
+        .attr("class", "yline_0404")
+        .attr("d", line_0404);
+
+    svg_0404.append("text")
+        .attr("class", "title_0404")
+        .attr("x", (width_0404 / 2))             
+        .attr("y", -80)
+        .attr("text-anchor", "middle")
+        .text("A háztartások eladósodottsága (milliárd Ft, 1989–2018)");
+
+    svg_0404.append("line")
+        .attr("class", "event_0404")
+        .attr("x1", xScale_0404(parseTime_0404("200404")))
+        .attr("y1", -26)
+        .attr("x2",  xScale_0404(parseTime_0404("200404")))
+        .attr("y2", height_0404)
+        .style("stroke-dasharray", ("3, 3"));  
+    svg_0404.append("circle")
+        .attr("class", "event_0404")
+        .attr("r", "6")
+        .attr("cx", xScale_0404(parseTime_0404("200404")))
+        .attr("cy", -31)
+        .style("fill", "none");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("200404")))
+        .attr("y", -42)
         .style("text-anchor", "middle")
-        .attr("font-size", (w_0404 * 0.0005 + 0.3) + "em")
-        .text("Forrás: MNB");
+        .text("EU-csatlakozás");
 
-svg_0404.append("line")
-    .attr("class", "event")
-    .attr("x1", scaleX_0404(parseDate_0404("20040401")))
-    .attr("y1", 0)
-    .attr("x2",  scaleX_0404(parseDate_0404("20040401")))
-    .attr("y2", h_0404 + 50)
-    .style("stroke-width", 1)
-    .style("stroke", "red")
-    .style("fill", "none")
-    .style("stroke-dasharray", ("3, 3"));
-    
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20040401")))
-    .attr("y", h_0404 + 60)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("EU-csatlakozás")
-    
-svg_0404.append("line")
-    .attr("class", "event")
-    .attr("x1", scaleX_0404(parseDate_0404("20081001")))
-    .attr("y1", 0)
-    .attr("x2",  scaleX_0404(parseDate_0404("20081001")))
-    .attr("y2", h_0404 + 50)
-    .style("stroke-width", 1)
-    .style("stroke", "red")
-    .style("fill", "none")
-    .style("stroke-dasharray", ("3, 3"));
-    
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20081001")))
-    .attr("y", h_0404 + 60)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("Gazdasági válság")
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20081001")))
-    .attr("y", h_0404 + 75)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("kezdete")
+    svg_0404.append("line")
+        .attr("class", "event_0404")
+        .attr("x1", xScale_0404(parseTime_0404("200810")))
+        .attr("y1", -12)
+        .attr("x2",  xScale_0404(parseTime_0404("200810")))
+        .attr("y2", height_0404)
+        .style("stroke-dasharray", ("3, 3"));
+    svg_0404.append("circle")
+        .attr("class", "event_0404")
+        .attr("r", "6")
+        .attr("cx", xScale_0404(parseTime_0404("200810")))
+        .attr("cy", -17)
+        .style("fill", "none");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("200810")))
+        .attr("y", -42)
+        .style("text-anchor", "middle")
+        .text("Gazdasági válság");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("200810")))
+        .attr("y", -27)
+        .style("text-anchor", "middle")
+        .text("kezdete");
 
-svg_0404.append("line")
-    .attr("class", "event")
-    .attr("x1", scaleX_0404(parseDate_0404("20111001")))
-    .attr("y1", 0)
-    .attr("x2",  scaleX_0404(parseDate_0404("20111001")))
-    .attr("y2", h_0404 + 50)
-    .style("stroke-width", 1)
-    .style("stroke", "red")
-    .style("fill", "none")
-    .style("stroke-dasharray", ("3, 3"));
-    
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20111001")))
-    .attr("y", h_0404 + 60)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("Végtörlesztés:")
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20111001")))
-    .attr("y", h_0404 + 75)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("180 forint/frank")
-    
-svg_0404.append("line")
-    .attr("class", "event")
-    .attr("x1", scaleX_0404(parseDate_0404("20141001")))
-    .attr("y1", 0)
-    .attr("x2",  scaleX_0404(parseDate_0404("20141001")))
-    .attr("y2", h_0404 + 50)
-    .style("stroke-width", 1)
-    .style("stroke", "red")
-    .style("fill", "none")
-    .style("stroke-dasharray", ("3, 3"));
-    
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20141001")))
-    .attr("y", h_0404 + 60)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("Forintosítás:")
-svg_0404.append("text")
-    .attr("class", "event text")
-    .attr("x", scaleX_0404(parseDate_0404("20141001")))
-    .attr("y", h_0404 + 75)
-    .style("text-anchor", "middle")
-    .attr("font-size", (w_0404 * 0.0005 + 0.4) + "em")
-    .text("256,5 forint/frank")
-    
-var category_0404 = svg_0404.selectAll(".category")
-    .data(categories_0404)
-    .enter().append("g")
-    .attr("class", "category");
+    svg_0404.append("line")
+        .attr("class", "event_0404")
+        .attr("x1", xScale_0404(parseTime_0404("201110")))
+        .attr("y1", -12)
+        .attr("x2",  xScale_0404(parseTime_0404("201110")))
+        .attr("y2", height_0404)
+        .style("stroke-dasharray", ("3, 3"));
+    svg_0404.append("circle")
+        .attr("class", "event_0404")
+        .attr("r", "6")
+        .attr("cx", xScale_0404(parseTime_0404("201110")))
+        .attr("cy", -17)
+        .style("fill", "none");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("201110")))
+        .attr("y", -42)
+        .style("text-anchor", "middle")
+        .text("Végtörlesztés:");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("201110")))
+        .attr("y", -27)
+        .style("text-anchor", "middle")
+        .text("180 forint/frank");
 
-category_0404.append("path")
-    .attr("class", "line")
-    .attr("d", function(d) {return line_0404(d.values);} )
-    .style("stroke", function(d) {return color_0404(d.name)} );
+    svg_0404.append("line")
+        .attr("class", "event_0404")
+        .attr("x1", xScale_0404(parseTime_0404("201410")))
+        .attr("y1", -12)
+        .attr("x2",  xScale_0404(parseTime_0404("201410")))
+        .attr("y2", height_0404)
+        .style("stroke-dasharray", ("3, 3"));
+    svg_0404.append("circle")
+        .attr("class", "event_0404")
+        .attr("r", "6")
+        .attr("cx", xScale_0404(parseTime_0404("201410")))
+        .attr("cy", -17)
+        .style("fill", "none");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("201410")))
+        .attr("y", -42)
+        .style("text-anchor", "middle")
+        .text("Forintosítás:");
+    svg_0404.append("text")
+        .attr("class", "event text_0404")
+        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("x", xScale_0404(parseTime_0404("201410")))
+        .attr("y", -27)
+        .style("text-anchor", "middle")
+        .text("256,5 forint/frank");
 
-var mouseG_0404 = svg_0404.append("g") // this the black vertical line to folow mouse
-    .attr("class", "mouse-over-effects");
+    var legendarea_0404 = svg_0404.selectAll(".legendarea_0404")
+        .data(stacked_0404)
+        .enter().append("g")
+        .attr("class", "legendarea_0404")
+        .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
+    legendarea_0404.append("rect")
+        .attr("x", -20)
+        .attr("y", height_0404 + 30)
+        .attr("width", 13)
+        .attr("height", 13)
+        .style("fill", function(d) {return colorScale_0404(d.key);} );
+    legendarea_0404.append("text")
+        .attr("x", -2)
+        .attr("y", height_0404 + 42)
+        .text(function(d) {return d.key + " (bal tengely)";} );
 
-mouseG_0404.append("path")
-    .attr("class", "mouse-line")
-    .style("stroke", "black")
-    .style("stroke-width", "1px")
-    .style("opacity", "0");
+    var legendline_0404 = svg_0404.selectAll(".legendline_0404")
+        .data(["Forint/Svájci frank árfolyam"])
+        .enter().append("g")
+        .attr("class", "legendline_0404")
+        .attr("transform", function(d, i) { return "translate(30," + i * 19 + ")"; });
+    legendline_0404.append("rect")
+        .attr("x", -20)
+        .attr("y", height_0404 + 125)
+        .attr("width", 3)
+        .attr("height", 13)
+        .style("fill", "#222" );
+    legendline_0404.append("text")
+        .attr("x", -13)
+        .attr("y", height_0404 + 137)
+        .text("Forint/Svájci frank árfolyam (jobb tengely)");
 
-var lines_0404 = document.getElementsByClassName("line");
-var mousePerLine_0404 = mouseG_0404.selectAll(".mouse-per-line")
-    .data(categories_0404)
-    .enter()
-    .append("g")
-    .attr("class", "mouse-per-line");
-
-mousePerLine_0404.append("circle")
-    .attr("r", 7)
-    .style("stroke", function(d) {return color_0404(d.name);} )
-    .style("fill", "none")
-    .style("stroke-width", "1px")
-    .style("opacity", "0");
-
-mousePerLine_0404.append("text")
-    .attr("transform", "translate(10, 3)")
-    .attr("font-size", (w_0404 * 0.0005 + 0.5) + "em");
-
-mouseG_0404.append("rect")
-    .attr("width", w_0404)
-    .attr("height", h_0404)
-    .attr("fill", "none")
-    .attr("pointer-events", "all")
-    .on("mouseout", function(){
-        d3.select(".mouse-line").style("opacity", "0");
-        d3.selectAll(".mouse-per-line circle").style("opacity", "0");
-        d3.selectAll(".mouse-per-line text").style("opacity", "0")
-    })
-    .on("mouseover", function(){
-        d3.select(".mouse-line").style("opacity", "1");
-        d3.selectAll(".mouse-per-line circle").style("opacity", "1");
-        d3.selectAll(".mouse-per-line text").style("opacity", "1")
-    })
-    .on("mousemove", function(){
-        var mouse_0404 = d3.mouse(this);
-    
-        console.log("Mouse:", mouse_0404);
-    
-        d3.select(".mouse-line")
-            .attr("d", function(){
-                var d_0404 = "M" + mouse_0404[0] +", " + h_0404;
-                d_0404+=" " +mouse_0404[0] + ", " + 0;
-                return d_0404;
-            })
-    
-        var ypos_0404 = [];
-
-        d3.selectAll(".mouse-per-line")
-            .attr("transform", function(d, i) {
-                console.log(w_0404/mouse_0404[0])
-                var xDate_0404 = scaleX_0404.invert(mouse_0404[0]), 
-                bisect_0404 = d3.bisector(function(d) { return d.date;}).right;
-                idx_0404 = bisect_0404(d.values, xDate_0404);
-
-                console.log("xDate:", xDate_0404);
-                console.log("bisect", bisect_0404);
-                console.log("idx:", idx_0404)
-
-                var beginning_0404 = 0, 
-                    end_0404 = lines_0404[i].getTotalLength(), 
-                    target_0404 = null;
-
-                console.log("end", end_0404);
-
-                while (true){
-                  target_0404 = Math.floor((beginning_0404 + end_0404) / 2);
-                  console.log("Target:", target_0404);
-                  pos_0404 = lines_0404[i].getPointAtLength(target_0404);
-                  console.log("Position", pos_0404.y);
-                  console.log("What is the position here:", pos_0404)
-                  if ((target_0404 === end_0404 || target_0404 === beginning_0404) && pos_0404.x !== mouse_0404[0]) {break;}
-                  if (pos_0404.x > mouse_0404[0]) end_0404 = target_0404;
-                  else if (pos_0404.x < mouse_0404[0]) beginning_0404 = target_0404;
-                  else break; //position found
-                }
-
-                d3.select(this).select('text')
-                  .text(scaleY_0404.invert(pos_0404.y).toFixed(3));
-
-                ypos_0404.push ({ind: i, y: pos_0404.y, off: 0});
-
-                return "translate(" + mouse_0404[0] + ", " + pos_0404.y +")";
-        })
-
-        .call(function(sel) {
-            ypos_0404.sort (function(a, b) { return a.y - b.y; });
-            ypos_0404.forEach (function(p, i) {
-                if (i > 0) {
-                var last_0404 = ypos_0404[i-1].y;
-                ypos_0404[i].off = Math.max (0, (last_0404 + 15) - ypos_0404[i].y);
-                ypos_0404[i].y += ypos_0404[i].off;
-                }
-            })
-            ypos_0404.sort (function(a, b) { return a.ind - b.ind; });
-        })
-
-        .select("text")
-        .attr("transform", function(d, i) {
-            return "translate (10, "+(3+ypos_0404[i].off)+")";
-        });
-
-    });
-});
-    
-function type_0404(d, _, columns) {
-    d.date = parseDate_0404(d.date);
-    for (var i_0404 = 1, n = columns.length, c; i_0404 < n; ++i_0404) d[c = columns[i_0404]] = +d[c];
-    return d;
 }
-
+  
 /*Sources:
-https://bl.ocks.org/mbostock/3884955
-https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo */
+https://gist.github.com/sajudson/5b1a5f1c8ad0d3b858b3ec3a385d7e0c
+*/

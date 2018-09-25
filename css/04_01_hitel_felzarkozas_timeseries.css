@@ -1,39 +1,77 @@
+#topic04-vis01 {
+    width: 100%;
+    height: 500px;
+}
+
 body {
-    font: 10px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif;
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+	fill: #000;
+	color: #666;
 }
 
-.axis {
-    font: 10px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+svg_0401 {
+    display: block;
+    margin: auto;
 }
 
-.legend {
-    font: 12px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+.axis_0401 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+	fill: #000;
+	color: #666;
 }
 
-.axis path,
-.axis line {
+.legend_0401 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+	fill: #000;
+	color: #666;
+}
+
+.title_0401 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+	fill: #000;
+	color: #666;
+}
+
+.data_source_0401 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-style: italic;
+	font-weight: lighter;
+  	text-decoration: underline;	
+	fill: #000;
+	color: #666;
+}
+
+.axis_0401 path,
+.axis_0401 line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
 
-.x.axis path {
+.x.axis_0401 path {
     display: none;
 }
 
-svg {
-  display: block;
-  margin: auto;
-}
-
-.line {
+.line_0401 {
     fill: none;
-    stroke: steelblue;
-    stroke-width: 1.5px;
+    stroke-width: 2px;
 }
 
-#topic04-vis01 {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+.line_dashed_0401 {
+    fill: none;
+    stroke-width: 2px;
 }
+
+/*
+.prognose.line_0401 {
+    fill: none;
+    stroke-width: 1.5px;
+}*/

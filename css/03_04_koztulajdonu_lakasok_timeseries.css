@@ -11,7 +11,7 @@ body {
 	color: #666;
 }
 
-svg {
+svg_0304 {
     display: block;
     margin: auto;
 }
@@ -60,16 +60,16 @@ svg {
 .line_0304 {
     fill: none;
     stroke: steelblue;
-    stroke-width: 2.5px;
+    stroke-width: 3px;
 }
 
 .axisSteelBlue_0304 text{
-    fill: #385988;
+    fill: #000000;
     font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
 .axisRed_0304 text{
-    fill: #ad484d;
+    fill: #000000;
     font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
