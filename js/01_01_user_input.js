@@ -129,7 +129,7 @@ d3.tsv("../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_01_user_input.tsv", 
                 .style("top", d3.mouse(this)[1] + absolute_width_0101/5  + "px")
 		                .style("display", "inline")
 
-                .html((d.Decilis) + ". decilis: " + (d["Percent"] + "%"));
+                .html((d.Decilis) + ". decilis: " + (d["Percent"].toString().replace(".",",") + "%"));
         })
         .on("mouseout", function (d) {
             tooltip_userinput.style("display", "none");

@@ -307,7 +307,7 @@ function normalized_chart(){
 			var xPosition_kozmu02 = d3.mouse(this)[0] - 25;
 			var yPosition_kozmu02 = d3.mouse(this)[1] - 30;
 			tooltip_kozmu02.attr("transform", "translate(" + xPosition_kozmu02 + "," + yPosition_kozmu02 + ")")
-				.select("text").text(((delta_kozmu02*100).toFixed(1)) +"%");
+				.select("text").text(((delta_kozmu02*100).toFixed(1)).toString().replace(".",",") +"%");
 		});
 
 		serie_kozmu02.append('text')

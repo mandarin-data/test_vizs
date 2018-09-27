@@ -90,7 +90,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 	path_doughnut.on('mouseover', function(d) {
 
 		chartTooltip_doughnut.select('#d_label').html(d.data.label);
-		chartTooltip_doughnut.select('#d_percent').html(parseFloat(d.data.percent * 100).toFixed(1) + '%');
+		chartTooltip_doughnut.select('#d_percent').html(parseFloat(d.data.percent * 100).toFixed(1).toString().replace(".",",") + '%');
 		chartTooltip_doughnut.style('display', 'inline');
 	});
 	path_doughnut.on('mouseout', function() {

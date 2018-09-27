@@ -288,7 +288,7 @@ function BarChart() {
 				.style("left", d3.event.layerX  - 20 + "px")
 				.style("top", d3.event.layerY - 35 + "px")
 				.style("display", "inline")
-				.html((delta_11*100).toFixed(1) + "%")
+				.html((delta_11*100).toFixed(1).toString().replace(".",",") + "%")
                 
                 
 
@@ -588,7 +588,7 @@ d3.tsv(str, function(d, i, columns) {
 				.style("left", d3.event.layerX  - 20 + "px")
 				.style("top", d3.event.layerY - 35 + "px")
 				.style("display", "inline")
-				.html((d.value*100).toFixed(1) + "%");
+				.html((d.value*100).toFixed(1).toString().replace(".",",") + "%");
 		})
 		.on("mouseout", function (d) {
 			tooltip_0201.style("display", "none");
