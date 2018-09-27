@@ -1,9 +1,9 @@
 if (d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width  > 550)
 { 
-   if (d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width  < 820){ 
+   if (d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width  < 900){ 
         var width_abs_kozmu02 = d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width ;
         } else {
-         var width_abs_kozmu02 = 820    
+         var width_abs_kozmu02 = 900    
         }
 } else {
   var width_abs_kozmu02 = 550 // 
@@ -13,66 +13,64 @@ if (d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width  > 5
 function MyTitle(){
     d3.selectAll("#svg_kozmu02_title > *").remove();
 
-	var margin_kozmu02 = {top: width_abs_kozmu02/(820/20), right: 0, bottom: width_abs_kozmu02/(820/60), left: width_abs_kozmu02/(820/60)},
+	var margin_kozmu02 = {top: width_abs_kozmu02/(900/20), right: 0, bottom: width_abs_kozmu02/(900/60), left: width_abs_kozmu02/(900/60)},
 		width = width_abs_kozmu02 - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
 	var svg_kozmu02_title = d3.select("#svg_kozmu02_title")
 	.attr("width", width + margin_kozmu02.left + margin_kozmu02.right)
-	.attr("height", width_abs_kozmu02/(820/50));
+	.attr("height", width_abs_kozmu02/(900/50));
 
 	svg_kozmu02_title.append('text')
 		.attr('id', 'kozmu02_title')
 		.attr("x",  (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left   )
-		.attr("y", width_abs_kozmu02/(820/15))
-        .attr("font-size", width_abs_kozmu02/(820/17))
+		.attr("y", width_abs_kozmu02/(900/15))
+        .attr("font-size", width_abs_kozmu02/(900/19))
 		.text("Hátralékos fogyasztók a tartozás hossza szerint");
     
 	svg_kozmu02_title.append('text')
 		.attr('id', 'kozmu02_title')
 		.attr("x",   (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left  )
-		.attr("y", width_abs_kozmu02/(820/35))
-        .attr("font-size", width_abs_kozmu02/(820/17))
+		.attr("y", width_abs_kozmu02/(900/35))
+        .attr("font-size", width_abs_kozmu02/(900/19))
 		.text("(Millió, 2017. december 31.)");
 }
 
 function MyTitle2(){
     d3.selectAll("#svg_kozmu02_title > *").remove();
 
-	var margin_kozmu02 = {top: width_abs_kozmu02/(820/20), right: 0, bottom: width_abs_kozmu02/(820/60), left: width_abs_kozmu02/(820/60)},
+	var margin_kozmu02 = {top: width_abs_kozmu02/(900/20), right: 0, bottom: width_abs_kozmu02/(900/60), left: width_abs_kozmu02/(900/60)},
 		width = width_abs_kozmu02 - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
 	var svg_kozmu02_title = d3.select("#svg_kozmu02_title")
 	.attr("width", width + margin_kozmu02.left + margin_kozmu02.right)
-	.attr("height", width_abs_kozmu02/(820/50));
+	.attr("height", width_abs_kozmu02/(900/50));
 
 	svg_kozmu02_title.append('text')
 		.attr('id', 'kozmu02_title')
 		.attr("x",  (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left   )
-		.attr("y", width_abs_kozmu02/(820/15))
-        .attr("font-size", width_abs_kozmu02/(820/17))
+		.attr("y", width_abs_kozmu02/(900/15))
+        .attr("font-size", width_abs_kozmu02/(900/19))
 		.text("Hátralékos fogyasztók a tartozás hossza szerint");
     
 	svg_kozmu02_title.append('text')
 		.attr('id', 'kozmu02_title')
 		.attr("x",   (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left  )
-		.attr("y", width_abs_kozmu02/(820/35))
-        .attr("font-size", width_abs_kozmu02/(820/17))
+		.attr("y", width_abs_kozmu02/(900/35))
+        .attr("font-size", width_abs_kozmu02/(900/19))
 		.text("(%, 2017. december 31.)");
 }
-
-
 
 function stacked_chart(){
 	d3.select("#svg_kozmu02").remove();
 
-	var margin_kozmu02 = {top: width_abs_kozmu02/(820/20), right: 0, bottom: width_abs_kozmu02/(820/60), left: width_abs_kozmu02/(820/60)},
+	var margin_kozmu02 = {top: width_abs_kozmu02/(900/20), right: 0, bottom: width_abs_kozmu02/(900/60), left: width_abs_kozmu02/(900/60)},
 		width = width_abs_kozmu02 - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
 	var x_kozmu02 = d3.scaleBand()
-	.rangeRound([0, width - width_abs_kozmu02/(820/300)])
+	.rangeRound([0, width - width_abs_kozmu02/(900/300)])
 	.paddingInner(0.15)
 	.align(0.8);
 
@@ -125,12 +123,12 @@ function stacked_chart(){
 		
 		svg_kozmu02.append("g")
 			.attr("class", "axis_kozmu02")
-            .attr("font-size", width_abs_kozmu02/(820/14) )
+            .attr("font-size", width_abs_kozmu02/(900/15) )
 			.attr("transform", "translate(0," + 380 + ")")
 			.call(d3.axisBottom(x_kozmu02));
         
  		svg_kozmu02.selectAll(".tick")
-            .attr("font-size", width_abs_kozmu02/(820/14) )
+            .attr("font-size", width_abs_kozmu02/(900/15) )
        
 
 var locale = d3.formatLocale({
@@ -153,7 +151,7 @@ return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 			.attr("text-anchor", "start");
 
  		svg_kozmu02.selectAll(".tick")
-            .attr("font-size", width_abs_kozmu02/(820/14) )        
+            .attr("font-size", width_abs_kozmu02/(900/16) )        
         
 		var legend_kozmu02 = svg_kozmu02.append("g")
 			.selectAll("g")
@@ -162,18 +160,18 @@ return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 			.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend_kozmu02.append("rect")
-			.attr("x", width - width_abs_kozmu02/(820/280))
-			.attr("width", width_abs_kozmu02/(820/18))
-			.attr("height", width_abs_kozmu02/(820/18))
+			.attr("x", width - width_abs_kozmu02/(900/280))
+			.attr("width", width_abs_kozmu02/(900/18))
+			.attr("height", width_abs_kozmu02/(900/18))
 			.attr("fill", z_kozmu02);
 
 		legend_kozmu02.append("text")
 			.attr("class", "legend_kozmu02b")
-			.attr("x", width-width_abs_kozmu02/(820/245))
+			.attr("x", width-width_abs_kozmu02/(900/245))
 			.attr("y", 8)
 			.attr("dy", "0.32em")
 			.attr("text-anchor", "start")
-            .attr("font-size", width_abs_kozmu02/(820/14) )        
+            .attr("font-size", width_abs_kozmu02/(900/16) )        
 			.text(function(d) { return d; });
 
 		var tooltip_kozmu02 = svg_kozmu02.append("g")
@@ -181,16 +179,16 @@ return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 			.style("visibility", "hidden");
 
 		tooltip_kozmu02.append("rect")
-			.attr("width", width_abs_kozmu02/(820/60))
-			.attr("height", width_abs_kozmu02/(820/20))
+			.attr("width", width_abs_kozmu02/(900/60))
+			.attr("height", width_abs_kozmu02/(900/20))
 			.attr("fill", "white")
 			.attr("stroke", "#666")
 			.attr("stroke-width", "0.5px");
 
 		tooltip_kozmu02.append("text")
-			.attr("x", width_abs_kozmu02/(820/30))
+			.attr("x", width_abs_kozmu02/(900/30))
 			.attr("dy", "1.2em")
-            .attr("font-size", width_abs_kozmu02/(820/14) )            
+            .attr("font-size", width_abs_kozmu02/(900/15) )            
 			.style("text-anchor", "middle");	
 
 		serie_kozmu02.selectAll("rect")
@@ -208,10 +206,10 @@ return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 
 		serie_kozmu02.append('text')
 			.attr("id", "kozmu02_forras")
-			.attr("x", width- width_abs_kozmu02/(820/300))
+			.attr("x", width- width_abs_kozmu02/(900/300))
 			.attr("y",  380 + margin_kozmu02.bottom*0.66)
 			.attr("text-anchor", "end")
-            .attr("font-size", width_abs_kozmu02/(820/13) )        
+            .attr("font-size", width_abs_kozmu02/(900/15) )        
 			.text("Adatok forrása: MEKH adatszolgáltatás, 2018.");
 	});
 
@@ -221,12 +219,12 @@ return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 function normalized_chart(){		
 	d3.select("#svg_kozmu02").remove();
 
-	var margin_kozmu02 = {top: width_abs_kozmu02/(820/20), right: 0, bottom: width_abs_kozmu02/(820/60), left: width_abs_kozmu02/(820/60)},
+	var margin_kozmu02 = {top: width_abs_kozmu02/(900/20), right: 0, bottom: width_abs_kozmu02/(900/60), left: width_abs_kozmu02/(900/60)},
 		width = width_abs_kozmu02 - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
 
 	var x_kozmu02 = d3.scaleBand()
-		.rangeRound([0, width - width_abs_kozmu02/(820/300)])
+		.rangeRound([0, width - width_abs_kozmu02/(900/300)])
 		.paddingInner(0.15)
 		.align(0.8);
 
@@ -270,7 +268,7 @@ function normalized_chart(){
 
 		svg_kozmu02.append("g")
 			.attr("class", "axis_kozmu02")
-            .attr("font-size", width_abs_kozmu02/(820/14) )        
+            .attr("font-size", width_abs_kozmu02/(900/16) )        
 			.attr("transform", "translate(0," + 380 + ")")
 			.call(d3.axisBottom(x_kozmu02));
 
@@ -279,7 +277,7 @@ function normalized_chart(){
 			.call(d3.axisLeft(y_kozmu02).ticks(10, "%"));
 
  		svg_kozmu02.selectAll(".tick")
-            .attr("font-size", width_abs_kozmu02/(820/14) )    
+            .attr("font-size", width_abs_kozmu02/(900/16) )    
         
 		var legendClassArray_kozmu02 = []; 
 		var legendClassArray_orig_kozmu02 = []; 
@@ -295,20 +293,20 @@ function normalized_chart(){
 		.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
 
 		legend_kozmu02.append("rect")
-			.attr("x", width - width_abs_kozmu02/(820/280))
-			.attr("width", width_abs_kozmu02/(820/18))
-			.attr("height", width_abs_kozmu02/(820/18))
+			.attr("x", width - width_abs_kozmu02/(900/280))
+			.attr("width", width_abs_kozmu02/(900/18))
+			.attr("height", width_abs_kozmu02/(900/18))
 			.style("fill", z_kozmu02)
 			.attr("id", function (d, i) {
 			return "id" + d.replace(/\s+|[,]+\s/g, '')});	
 
 		legend_kozmu02.append("text")
 			.attr("class", "legend_kozmu02")
-			.attr("x", width-width_abs_kozmu02/(820/245))
+			.attr("x", width-width_abs_kozmu02/(900/245))
 			.attr("y", 8)
 			.attr("dy", "0.32em")
 			.attr("text-anchor", "start")
-            .attr("font-size", width_abs_kozmu02/(820/14) )    
+            .attr("font-size", width_abs_kozmu02/(900/16) )    
 			.text(function(d) { return d; });
 
 		var tooltip_kozmu02 = svg_kozmu02.append("g")
@@ -316,16 +314,16 @@ function normalized_chart(){
 			.style("display", "none");
 
 		tooltip_kozmu02.append("rect")
-			.attr("width", width_abs_kozmu02/(820/60))
-			.attr("height", width_abs_kozmu02/(820/20))
+			.attr("width", width_abs_kozmu02/(900/60))
+			.attr("height", width_abs_kozmu02/(900/20))
 			.attr("fill", "white")
 			.attr("stroke", "#666")
 			.attr("stroke-width", "0.5px");
 
 		tooltip_kozmu02.append("text")
-			.attr("x", width_abs_kozmu02/(820/30))
+			.attr("x", width_abs_kozmu02/(900/30))
 			.attr("dy", "1.2em")
-            .attr("font-size", width_abs_kozmu02/(820/14) )                    
+            .attr("font-size", width_abs_kozmu02/(900/15) )                    
 			.style("text-anchor", "middle");	
 
 		serie_kozmu02.selectAll("rect")
@@ -341,9 +339,9 @@ function normalized_chart(){
 
 		serie_kozmu02.append('text')
 			.attr("id", "kozmu02_forras")
-			.attr("x", width- width_abs_kozmu02/(820/300))
+			.attr("x", width- width_abs_kozmu02/(900/300))
 			.attr("y",  380 + margin_kozmu02.bottom*0.66)
-            .attr("font-size", width_abs_kozmu02/(820/13) )                
+            .attr("font-size", width_abs_kozmu02/(900/15) )                
 			.text("Adatok forrása: MEKH adatszolgáltatás, 2018.");
 
 	});
