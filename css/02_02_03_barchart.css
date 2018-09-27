@@ -1,0 +1,104 @@
+/* Dropdown style */
+
+.form-style-2-k {
+    max-height: 20px;
+    max-width: 500px;
+    padding: 6px 6px 6px 0px;
+    font: 13px font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    ;
+}
+
+.form-style-2-k label-k {
+    display: block;
+    margin: 0px 0px 0px 0px;
+}
+
+.form-style-2-k label-k > span {
+    width: 500px;
+    font-weight: bold;
+    float: left;
+    padding-top: 8px;
+    padding-right: 5px;
+}
+
+.form-style-2-k span.required {
+    color: red;
+}
+
+.select-field-k {
+    float: left;
+    width: 48%;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+
+.form-style-2-k .select-field-k {
+    width: 250px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    border: 1px solid #C2C2C2;
+    box-shadow: 1px 1px 4px #EBEBEB;
+    -moz-box-shadow: 1px 1px 4px #EBEBEB;
+    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    padding: 4px;
+    outline: none;
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+
+}
+
+.form-style-2-k .select-field-k:focus {
+    border: 1px solid #C2C2C2;
+}
+
+
+
+/* Checkbox style */
+
+label#label_020203 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    color: #D8D8D8;
+    text-align: justify;
+    height: 26px;
+    line-height: 26px;
+}
+
+.axis_020203 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+.tooltip_020203 {
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    position: absolute;
+    line-height: 1;
+    font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 4px;
+    border: 0.5px solid #666;
+    color: #000000;
+}
+
+.legend_020203 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+
+}
+
+text#020203_forras {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+    text-decoration: underline;
+
+}
+
+text#020203_ytitle {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
+
+text#020203_title {
+    font: 18px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}

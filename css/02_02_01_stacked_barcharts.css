@@ -1,0 +1,55 @@
+.axis_020201 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    fill: #000000;
+
+}
+
+.axis_020201 path,
+.axis_020201 line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.bar {
+    fill: steelblue;
+}
+
+.x.axis_020201 path {
+    display: none;
+}
+
+
+.tooltip_020201 {
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    position: absolute;
+    line-height: 1;
+    font: 12px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 4px;
+    border: 0.5px solid #666;
+    color: #000000;
+}
+
+.legend_020201 {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+
+}
+
+
+text#020201_title {
+    font-family: 18px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+text#020201_forras {
+    font-family: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+text#020201_ytitle {
+    font: 13px 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+}
