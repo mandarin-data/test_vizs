@@ -1,9 +1,9 @@
 // create the svg
 var margin_020204 = {
-        top: 20,
+        top: 40,
         right: 20,
-        bottom: 30,
-        left: 40
+        bottom: 50,
+        left: 50
     },
     width_020204 = d3.select("#vis-020204").node().getBoundingClientRect().width - margin_020204.left - margin_020204.right,
     height_020204 = 450 - margin_020204.top - margin_020204.bottom;
@@ -100,7 +100,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_04_gaz_vs_fa.csv", fu
     svg_020204.append('text')
         .attr('id', '020204_title')
         .attr('x', ((width_020204 - 230) / 2))
-        .attr('y', -5)
+        .attr('y', -15)
         .attr("text-anchor", "middle")
         .style('font-size', "18px")
     	.attr("font-family", "NeueHaasGroteskDisp Pro")

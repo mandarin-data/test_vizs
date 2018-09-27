@@ -5,10 +5,10 @@ function BarChartKomf() {
             d3.select("#vis-komfort").remove();
 
             var margin_020203 = {
-                    top: 20,
+                    top: 40,
                     right: 20,
-                    bottom: 30,
-                    left: 40
+                    bottom: 50,
+                    left: 50
                 },
 
                 width_020203 = d3.select("#vis-020203").node().getBoundingClientRect().width - margin_020203.left - margin_020203.right,
@@ -138,7 +138,7 @@ function BarChartKomf() {
             svg_020203.append('text')
                 .attr('id', '020203_title')
                 .attr('x', (width_020203 / 2)-70)
-                .attr('y', 0)
+                .attr('y', -20)
                 .attr("text-anchor", "middle")
                 .style("font-size", "18px")
             	.attr("font-family", "NeueHaasGroteskDisp Pro")

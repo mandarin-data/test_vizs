@@ -1,9 +1,9 @@
 // create the svg
 var margin_020202 = {
-        top: 20,
+        top: 40,
         right: 20,
-        bottom: 30,
-        left: 40
+        bottom: 50,
+        left: 50
     },
     width_020202 = d3.select("#vis-020202").node().getBoundingClientRect().width - margin_020202.left - margin_020202.right,
     height_020202 = 450 - margin_020202.top - margin_020202.bottom;
@@ -114,7 +114,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
     svg_020202.append('text')
         .attr('id', '020202_title')
         .attr('x', (width_020202 / 2)-70)
-        .attr('y', 0)
+        .attr('y', -15)
         .attr("text-anchor", "middle")
         .style("font-size", "18px")
     	.attr("font-family", "NeueHaasGroteskDisp Pro")

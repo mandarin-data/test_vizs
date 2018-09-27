@@ -57,7 +57,7 @@ var series_020201 = d3.stack()
     (data);
 
 var margin_020201 = {
-        top: 20,
+        top: 40,
         right: 20,
         bottom: 30,
         left: 20
@@ -76,9 +76,9 @@ var x_020201 = d3.scaleBand()
     .domain(data.map(function (d) {
         return d.Tized;
     }))
-    .rangeRound([0, width_020201 - 150])
+    .rangeRound([0+20, width_020201 - 130])
     .padding(0.15)
-.align(1);
+    .align(0.5);
 
 var y_020201 = d3.scaleLinear()
     .domain([d3.min(series_020201, stackMin), d3.max(series_020201, stackMax)])
@@ -153,8 +153,8 @@ svg_020201.append("g")
 
 svg_020201.append('text')
     .attr('id', '020201_title')
-    .attr('x', (width_020201 / 2 - 85))
-    .attr('y', 0)
+    .attr('x', (width_020201 / 2)- 65)
+    .attr('y', -10)
     .attr("text-anchor", "middle")
     .style("font-size", '18px')
     .text("Az energiaköltségek és a rezsicsökkentés hatása jövedelmi tizedek szerint (Ft, 2016)");
@@ -212,7 +212,7 @@ svg_020201.append("text")
 
 svg_020201.append('text')
     .attr("id", "020201_ytitle")
-    .attr("x", (width_020201 / 2) - 70)
+    .attr("x", (width_020201 / 2) - margin_020201.right -40)
     .attr("y", height_020201)
     .style("text-anchor", "middle")
     .style("font-size", '14px')
@@ -251,7 +251,7 @@ var legend_020201 = svg_020201.append("g")
     });
 
 legend_020201.append("rect")
-    .attr("x", 50)
+    .attr("x", 40)
     .attr("y", 15)
     .attr("width", 19)
     .attr("height", 19)
@@ -259,7 +259,7 @@ legend_020201.append("rect")
 
 legend_020201.append("text")
     .attr("class", "legend_020201")
-    .attr("x", 75)
+    .attr("x", 65)
     .attr("y", 24)
     .attr("dy", "0.32em")
     .text(function (d) {
