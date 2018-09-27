@@ -73,7 +73,7 @@ d3.csv("../../data/04_eladosodas/04_kozmu03.csv", function(d, i, columns) {
 svg_kozmu03.append('text')
 		.attr('id', 'title_0304')
 		.attr("x",  (width - width_abs_kozmu03/(820/100) )/2)
-        .attr("font-size", width_abs_kozmu03/(820/19))
+        .attr("font-size", width_abs_kozmu03/(820/18))
 		.attr("y", -width_abs_kozmu03/(820/25))
 		.text("90 napon túli késedelmes hitelszerződések száma (2017. december)");
 		
@@ -119,7 +119,7 @@ svg_kozmu03.append('text')
 		.attr("class", "legend_kozmu03")
 		.attr("x", width-width_abs_kozmu03/(820/60))
 		.attr("y", 8)
-        .attr("font-size", width_abs_kozmu03/(820/16))    
+        .attr("font-size", width_abs_kozmu03/(820/15))    
 		.attr("dy", "0.32em")
 		.attr("text-anchor", "start")
 		.text(function(d) { return d; });
@@ -138,7 +138,7 @@ svg_kozmu03.append('text')
 	tooltip_kozmu03.append("text")
 		.attr("x", width_abs_kozmu03/(820/30))
 		.attr("dy", "1.2em")
-        .attr("font-size", width_abs_kozmu03/(820/16))
+        .attr("font-size", width_abs_kozmu03/(820/14))
         .style("text-anchor", "middle");	
 
 	serie_kozmu03.selectAll("rect")
