@@ -11,6 +11,8 @@ if (d3.select("#viscontainer-kozmu02").node().getBoundingClientRect().width  > 5
 
 
 function MyTitle(){
+    d3.selectAll("#svg_kozmu02_title > *").remove();
+
 	var margin_kozmu02 = {top: width_abs_kozmu02/(820/20), right: 0, bottom: width_abs_kozmu02/(820/60), left: width_abs_kozmu02/(820/60)},
 		width = width_abs_kozmu02 - margin_kozmu02.left - margin_kozmu02.right,
 		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
@@ -31,8 +33,35 @@ function MyTitle(){
 		.attr("x",   (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left  )
 		.attr("y", width_abs_kozmu02/(820/35))
         .attr("font-size", width_abs_kozmu02/(820/17))
-		.text("(2017. december 31.)");
+		.text("(Millió, 2017. december 31.)");
 }
+
+function MyTitle2(){
+    d3.selectAll("#svg_kozmu02_title > *").remove();
+
+	var margin_kozmu02 = {top: width_abs_kozmu02/(820/20), right: 0, bottom: width_abs_kozmu02/(820/60), left: width_abs_kozmu02/(820/60)},
+		width = width_abs_kozmu02 - margin_kozmu02.left - margin_kozmu02.right,
+		height = 450 - margin_kozmu02.top - margin_kozmu02.bottom;
+
+	var svg_kozmu02_title = d3.select("#svg_kozmu02_title")
+	.attr("width", width + margin_kozmu02.left + margin_kozmu02.right)
+	.attr("height", width_abs_kozmu02/(820/50));
+
+	svg_kozmu02_title.append('text')
+		.attr('id', 'kozmu02_title')
+		.attr("x",  (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left   )
+		.attr("y", width_abs_kozmu02/(820/15))
+        .attr("font-size", width_abs_kozmu02/(820/17))
+		.text("Hátralékos fogyasztók a tartozás hossza szerint");
+    
+	svg_kozmu02_title.append('text')
+		.attr('id', 'kozmu02_title')
+		.attr("x",   (width -   margin_kozmu02.left - margin_kozmu02.right)/2 - margin_kozmu02.left  )
+		.attr("y", width_abs_kozmu02/(820/35))
+        .attr("font-size", width_abs_kozmu02/(820/17))
+		.text("(%, 2017. december 31.)");
+}
+
 
 
 function stacked_chart(){
