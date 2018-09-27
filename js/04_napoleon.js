@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 var margin_04nap = {
   top: 90, 
-  right: 45, 
+  right: 65, 
   bottom: 175, 
   left: 55
 };
@@ -97,7 +97,7 @@ d3.tsv("../../data/04_eladosodas/04_napoleon.tsv", function(error, data) {
       .attr("transform", "rotate(-90)")
       .text("Milliárd fornit");
 
-/*
+
   // Add the Y1 Axis
   svg_04nap.append("g")
       .attr("class", "axisRed_04nap")
@@ -105,13 +105,13 @@ d3.tsv("../../data/04_eladosodas/04_napoleon.tsv", function(error, data) {
       .call(d3.axisRight(yline_04nap))
       .append("text")
       .attr("x", 0 + margin_04nap.left)
-      .attr("y", -35)
+      .attr("y", -50)
       .attr("dy", "0.32em")
       .attr("text-anchor", "start")
       .attr("transform", "rotate(90)")
       .text("Milliárd forint");
       
-*/
+
     var category_04nap = svg_04nap.selectAll(".category_04nap")
         .data(categoriesline_04nap)
         .enter().append("g")
@@ -127,7 +127,7 @@ d3.tsv("../../data/04_eladosodas/04_napoleon.tsv", function(error, data) {
         .attr("x", (width_04nap / 2))             
         .attr("y", 0 - (margin_04nap.top / 2))
         .attr("text-anchor", "middle")
-        .text("A lakossági hitelállomány alakulása (2009–2018, negyedéves adatok)");
+        .text("A lakossági éven túli késedelmes hitelállomány alakulása (2009–2018, negyedéves adatok)");
     
     var legendbar_04nap = svg_04nap.selectAll(".legendbar_04nap")
         .data(categoriesbar_04nap)

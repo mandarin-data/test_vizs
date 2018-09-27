@@ -68,6 +68,10 @@ svg {
     font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
+.axisRed_04nap text{
+    fill: #000000;
+    font: 14px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
+}
 
 .axis_04nap path,
 .axis_04nap line {
