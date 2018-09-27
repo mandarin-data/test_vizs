@@ -32,7 +32,7 @@ function MyTitle(){
 		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 35)    
         .attr("font-size", 	width_abs/(600/17))    
-		.text("regionális egyenlőtlenségei (2016)");
+		.text("regionális egyenlőtlenségei (%, 2016)");
 
 }
 
@@ -60,7 +60,7 @@ function MyTitle2(){
 		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 35)
         .attr("font-size", 	width_abs/(600/17))        
-		.text("lakások arányának regionális egyenlőtlenségei (2016)");
+		.text("lakások arányának regionális egyenlőtlenségei (%, 2016)");
 
 }
 
@@ -87,7 +87,7 @@ function MyTitle3(){
 		.attr("x",  (width_11-25)/2 + margin_11.left)
 		.attr("y", 35)
         .attr("font-size", 	width_abs/(600/17))        
-		.text("regionális egyenlőtlenségei");
+		.text("regionális egyenlőtlenségei (%)");
 
 }
 
