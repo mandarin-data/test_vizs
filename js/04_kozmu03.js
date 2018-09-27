@@ -135,7 +135,7 @@ svg_kozmu03.append('text')
 	tooltip_kozmu03.append("text")
 		.attr("x", width_abs_kozmu03/(820/30))
 		.attr("dy", "1.2em")
-        .attr("font-size", width_abs_kozmu03/(820/13))
+        .attr("font-size", width_abs_kozmu03/(820/14))
         .style("text-anchor", "middle");	
 
 	serie_kozmu03.selectAll("rect")

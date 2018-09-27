@@ -161,7 +161,7 @@ return format(d/1000000) + " M"} else { return format(d/1000000)  + " M"}}))
 		tooltip_kozmu02.append("text")
 			.attr("x", width_abs_kozmu02/(820/30))
 			.attr("dy", "1.2em")
-            .attr("font-size", width_abs_kozmu02/(820/13) )            
+            .attr("font-size", width_abs_kozmu02/(820/14) )            
 			.style("text-anchor", "middle");	
 
 		serie_kozmu02.selectAll("rect")
@@ -296,7 +296,7 @@ function normalized_chart(){
 		tooltip_kozmu02.append("text")
 			.attr("x", width_abs_kozmu02/(820/30))
 			.attr("dy", "1.2em")
-            .attr("font-size", width_abs_kozmu02/(820/13) )                    
+            .attr("font-size", width_abs_kozmu02/(820/14) )                    
 			.style("text-anchor", "middle");	
 
 		serie_kozmu02.selectAll("rect")
