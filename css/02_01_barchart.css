@@ -143,7 +143,7 @@ text#barchart0201_title{
 	position: absolute;
 	line-height: 1;
 	font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: calc(9px + .3vw);
+    font-size: calc(8px + .3vw);
 	text-align: center;
 	padding: 4px;
 	border: 0.5px solid   #a6a6a6;
