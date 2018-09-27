@@ -2,8 +2,8 @@
             <svg id=svg_treemap_title></svg>
 			<div class="form-style-2">
 				<select class="select-field" id="d3-dropdown-hitelfelbontas">
+                    <option value="kvintilis">Jövedelmi ötödök szerinti bontás</option>
 					<option value="type">Hitel típusa szerinti bontás</option>
-					<option value="kvintilis">Jövedelmi ötödök szerinti bontás</option>
 				</select>
 
 				<br>
@@ -16,7 +16,7 @@
 		  <script src="../../js/04_02_hitelfelbontas.js"></script>
 			<script>
 				MyTitle()
-                str = "../../data/04_eladosodas/04_02_hitelfelbontas_type.json";
+                str = "../../data/04_eladosodas/04_02_hitelfelbontas_kvintilis.json";
 				Mytreemap(str)
 				d3.select("select#d3-dropdown-hitelfelbontas")
 					.on("change", function(d) {

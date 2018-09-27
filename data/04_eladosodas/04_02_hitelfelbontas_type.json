@@ -6,9 +6,9 @@
     {
      "name": "Van hitele",
      "children": [
-      {"name": "Jelzáloghitele van", "value": 4.8, "color": "#00AFD7"},
-      {"name": "Fogyasztási hitele van", "value": 12.1, "color": "#00AFD7"},
-      {"name": "Fogyasztási és jelzálog hitele van", "value": 15.3, "color": "#00AFD7"}
+      {"name": "Csak jelzáloghitele van", "value": 4.8, "color": "#00AFD7"},
+      {"name": "Csak (jelzálog nélküli) fogyasztási hitele van", "value": 12.1, "color": "#00AFD7"},
+      {"name": "Fogyasztási és jelzáloghitele van", "value": 15.3, "color": "#00AFD7"}
      ]
     }     
    ]

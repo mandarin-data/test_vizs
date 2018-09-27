@@ -268,7 +268,7 @@ function Mytreemap(str) {
             return breadcrumbs(d) + 
                 (d.parent
                 ? "Visszalépéshez kattintson ide!"
-                : "Nagyításhoz kattintson a négyzetekre!");
+                : "Nagyításhoz kattintson a téglalapokra!");
         }
 
         function breadcrumbs(d) {
