@@ -120,6 +120,7 @@ d3.tsv("../../data/04_eladosodas/04_napoleon.tsv", function(error, data) {
     category_04nap.append("path")
         .attr("class", "line_04nap")
         .attr("d", function(d) {return line_04nap(d.values);} )
+        .style("fill", "none")
         .style("stroke", function(d) {return z_04nap(d.name)} );
     
     svg_04nap.append("text")
@@ -224,22 +225,3 @@ function wrap(text, width) {
     
 });
 
-//// Prep the tooltip bits, initial display is hidden
-//var tooltip_04nap = svg_04nap.append("g")
-//    .attr("class", "tooltip_04nap")
-//    .style("display", "none");
-//
-//tooltip_04nap.append("rect")
-//    .attr("width", 60)
-//    .attr("height", 20)
-//    .attr("fill", "white")
-//    .style("opacity", 0.5)
-//    .attr("stroke", "#666")
-//    .attr("stroke-width", "0.5px");
-//
-//tooltip_04nap.append("text")
-//    .attr("x", 30)
-//    .attr("dy", "1.2em")
-//    .style("text-anchor", "middle")
-//    .attr("font-size", "12px")
-//    .attr("font", "sans serif");

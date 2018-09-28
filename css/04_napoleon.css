@@ -74,7 +74,7 @@ svg {
 }
 
 .axis_04nap path,
-.axis_04nap line {
+.axis_04nap line_04nap {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
@@ -92,7 +92,7 @@ svg {
     font: 13px "Neue Haas Grotesk W01 Disp", Helvetica, Arial, sans-serif; 
 }
 
-/*
+
 .tooltip_04nap {
     position: absolute;
     min-width: 80px;
@@ -102,4 +102,3 @@ svg {
     padding: 14px;
     text-align: center;
 }
-*/
