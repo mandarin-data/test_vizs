@@ -10,7 +10,7 @@ var formatThousands_0404 = d3.format(",");
 var margin_0404 = {
   top: 100, 
   right: 55, 
-  bottom: 143, 
+  bottom: 165, 
   left: 65
 };
 
@@ -140,7 +140,41 @@ function render_0404(data) {
     xAxisMinor_0404G_0404.call(xAxisMinor_0404);
     yAxisG_0404.call(yAxis_0404);
     yAxisLineG_0404.call(yAxisLine_0404);
-    yAxisLineG_0404.attr("transform", "translate( " + width_0404 + ", 0 )");
+    yAxisLineG_0404
+        .attr("transform", "translate( " + width_0404 + ", 0 )")
+        .attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;});
+    xAxisMajor_0404G_0404
+        .attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
+    xAxisG_0404
+        .selectAll("text")
+      .attr("y", function() {
+          if (width_0404 <= 350) { return 0}
+          else 	{ return 10}
+      ;})
+      .attr("x", function() {
+          if (width_0404 <= 350) { return -3}
+          else 	{ return 0}
+      ;})
+      .attr("dy", ".35em")
+      .attr("transform", function() {
+          if (width_0404 <= 350) { return "rotate(-90)"}
+          else 	{ return "rotate(0)"}
+      ;})
+      .style("text-anchor",  function() {
+          if (width_0404 <= 350) { return "end"}
+          else 	{ return "middle"}
+      ;});
+    yAxisG_0404.attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;});
+    
     yAxisG_0404.append('text')
         .attr('class', 'axis label_0404')
         .attr('x', -height_0404 / 2)
@@ -155,17 +189,22 @@ function render_0404(data) {
         .attr('y', -40)
         .attr('transform', `rotate(90)`)
         .style('text-anchor', 'middle')
-        .text("Forint");
+        .text("Forint/Svájci frank");
 
     svg_0404.append("path")
         .data([data])
         .attr("class", "yline_0404")
-        .attr("d", line_0404);
+        .attr("d", line_0404)
+        .style("fill", "none");
 
     svg_0404.append("text")
         .attr("class", "title_0404")
         .attr("x", (width_0404 / 2))             
         .attr("y", -80)
+        .attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.6) + "em"}
+            else 	{ return "18px" }
+        ;})
         .attr("text-anchor", "middle")
         .text("A háztartások eladósodottsága (milliárd Ft, 1989–2018)");
 
@@ -184,7 +223,11 @@ function render_0404(data) {
         .style("fill", "none");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("200404")))
         .attr("y", -42)
         .style("text-anchor", "middle")
@@ -205,14 +248,22 @@ function render_0404(data) {
         .style("fill", "none");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("200810")))
         .attr("y", -42)
         .style("text-anchor", "middle")
         .text("Gazdasági válság");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("200810")))
         .attr("y", -27)
         .style("text-anchor", "middle")
@@ -233,14 +284,22 @@ function render_0404(data) {
         .style("fill", "none");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("201110")))
         .attr("y", -42)
         .style("text-anchor", "middle")
         .text("Végtörlesztés:");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("201110")))
         .attr("y", -27)
         .style("text-anchor", "middle")
@@ -261,14 +320,22 @@ function render_0404(data) {
         .style("fill", "none");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("201410")))
         .attr("y", -42)
         .style("text-anchor", "middle")
         .text("Forintosítás:");
     svg_0404.append("text")
         .attr("class", "event text_0404")
-        .attr("font-size", (width_0404 * 0.0005 + 0.4) + "em")
+        .attr("font-size", function() {
+            if (width_0404 <= 800 & width_0404 >650) {return "10px"}
+            if (width_0404 <= 650) {return (width_0404 * 0.0005 + 0.2) + "em"}
+            else 	{ return "12px" }
+        ;})
         .attr("x", xScale_0404(parseTime_0404("201410")))
         .attr("y", -27)
         .style("text-anchor", "middle")
@@ -288,6 +355,10 @@ function render_0404(data) {
     legendarea_0404.append("text")
         .attr("x", -2)
         .attr("y", height_0404 + 42)
+        .attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
         .text(function(d) {return d.key + " (bal tengely)";} );
 
     var legendline_0404 = svg_0404.selectAll(".legendline_0404")
@@ -300,11 +371,39 @@ function render_0404(data) {
         .attr("y", height_0404 + 125)
         .attr("width", 3)
         .attr("height", 13)
-        .style("fill", "#222" );
+        .style("fill", "red" );
     legendline_0404.append("text")
         .attr("x", -13)
         .attr("y", height_0404 + 137)
+        .attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
         .text("Forint/Svájci frank árfolyam (jobb tengely)");
+        
+    svg_0404.append("text")
+        .attr("class", "data_source_0404")
+        .attr("x", width_0404)
+        .attr("y", height_0404 + 160)
+        .attr("font-size", function() {
+            if (width_0404 <= 500) {return (width_0404 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
+        .style("text-anchor", "end")
+        .text("Adatok forrása: MNB")
+        .on('click', function(d) {
+		window.open(
+            'http://www.mnb.hu/letoltes/htszla-hu.xlsx'
+		);
+        })
+        .on('mouseover', function(d){
+            d3.select(this).style("cursor", "pointer"); 
+        })
+
+        .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+        .on("mousemove", function(d) {
+        d3.select(this).style("cursor", "pointer"); 
+        });
 
 }
   

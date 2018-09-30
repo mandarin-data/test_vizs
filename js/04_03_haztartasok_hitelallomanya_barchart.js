@@ -27,32 +27,13 @@ var svg_0403 = d3.select("#topic04-vis03").append("svg")
     .append("g")
     .attr("transform", "translate("+margin_0403.left +", "+margin_0403.top+")")
 
-var medianlist_0304 = [
-   {arany: 20.6, median: 5330000},
-   {arany: 25.5, median: 3000000},
-   {arany: 20.7, median: 3000000},
-   {arany: 16.4, median: 3500000},
-   {arany: 17.2, median: 3500000},
-   {arany: 36.1, median: 500000},
-   {arany: 29.5, median: 260000},
-   {arany: 26, median: 380000},
-   {arany: 25.4, median: 260000},
-   {arany: 20.1, median: 400000}
-];
-
-//var tooltip_0403 = d3.tip()
-//    .attr('class', 'tooltip_0403')
-//    .html(function(d) { return '<span>' + d.value + '<br>' + 'Mediánérték: ' });
-//
-//svg_0403.call(tooltip_0403)
-
 var tooltip_0403 = d3.tooltip() // returns the tooltip function
     .extent([[0,0],[width_0403,height_0403]]) // tells the tooltip how much area it has to work with
-    //.tips(["value", "search(d.value, medianlist_0304)"],["Részvételi arány: ", "Medián (forint): "])
-    .tips(["value"],[""])// tells the tooltip which properties to display in the tip and what to label thme
+    .tips(["value", "median"],["Részvételi arány: ", "Mediánérték: "]) // tells the tooltip which properties to display in the tip and what to label thme
     .fontSize(13) // sets the font size for the tooltip
     .padding([8,4]) // sets the amount of padding in the tooltip rectangle
-    .margin([10,10]); // set the distance H and V to keep the tooltip from the mouse pointer
+    .margin([10,10]) // set the distance H and V to keep the tooltip from the mouse pointer
+    .visName("#topic04-vis03");
 
 d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv", function (d, i, columns) {
     for (var i_0403 = 1, n = columns.length; i_0403 < n; ++i_0403) d[columns[i_0403]] = +d[columns[i_0403]];
@@ -107,43 +88,6 @@ d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv",
             return z_0403(d.key);
         })
         .each(tooltip_0403.events);
-//        .on('mouseover', tooltip_0403.show)
-//        .on('mouseout', tooltip_0403.hide)
-    
-//        .on("mouseover", function() { tooltip_0403.style("display", null); })
-//        .on("mousemove", function(d) {
-//          console.log(d);
-//          var xPosition_0403 = d3.mouse(this)[0] + 5;
-//          var yPosition_0403 = d3.mouse(this)[1] + 5;
-//          //console.log(xPosition_0403);
-//          //console.log(yPosition_0403);
-//          tooltip_0403
-//              .attr("transform", "translate(" + xPosition_0403 + "," + yPosition_0403 + ")")
-//              .select("text").html(d.value + "<br/>"  + "Valami:" + search(d.value, medianlist_0304))	 
-//				.style("left", (d3.event.pageX) + "px")			 
-//				.style("top", (d3.event.pageY - 28) + "px");
-//        })
-//        .on("mouseout", function() { tooltip_0403.style("display", "none"); });
-//
-//    // Prep the tooltip bits, initial display is hidden
-//    var tooltip_0403 = svg_0403.append("g")
-//        .attr("class", "tooltip_0403")
-//        .style("display", "none");
-//
-//    tooltip_0403.append("rect")
-//        .attr("width", 60)
-//        .attr("height", 60)
-//        .attr("fill", "white")
-//        .style("opacity", 0.5)
-//        .attr("stroke", "#666")
-//        .attr("stroke-width", "0.5px");
-//
-//    tooltip_0403.append("text")
-//        .attr("x", 30)
-//        .attr("dy", "1.2em")
-//        .style("text-anchor", "middle")
-//        .attr("font-size", "12px")
-//        .attr("font", "sans serif");
     
     svg_0403.call(tooltip_0403) // draws the tooltip;
     
@@ -151,12 +95,20 @@ d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv",
         .attr("class", "xaxis_0403")
         .attr("transform", "translate(0," + height_0403 + ")")
         .call(d3.axisBottom(x0_0403))
+        .attr("font-size", function() {
+            if (width_0403 <= 500) {return (width_0403 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})  
         .selectAll(".tick text")
         .call(wrap_0403, x0_0403.bandwidth());
 
     svg_0403.append("g")
         .attr("class", "yaxis_0403")
         .call(d3.axisLeft(y_0403).tickFormat(formatPercent_tooltip))
+        .attr("font-size", function() {
+            if (width_0403 <= 500) {return (width_0403 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})  
         .append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", -50)
@@ -166,14 +118,20 @@ d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv",
         .attr("text-anchor", "middle")
         .text("Részvételi arány");
 
-    svg_0403.append("text")             
-      .attr("transform",
+    svg_0403.append("text")
+        .attr("class", "xaxis_0403")
+        .attr("transform",
             "translate(" + (width_0403/2) + " ," + 
                            (height_0403 + 40) + ")")
-      .style("text-anchor", "middle")
-      .text("Jövedelmi ötöd");
+        .attr("font-size", function() {
+            if (width_0403 <= 500) {return (width_0403 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})  
+        .style("text-anchor", "middle")
+        .text("Jövedelmi ötöd");
 
     var legend_0403 = svg_0403.append("g")
+        .attr("class", "legend_0403")
         .attr("text-anchor", "end")
         .selectAll("g")
         .data(keys_0403.slice())
@@ -192,6 +150,11 @@ d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv",
         .attr("x", width_0403 - 24)
         .attr("y", 9.5)
         .attr("dy", "0.32em")
+        .attr("font-size", function() {
+            if (width_0403 <= 500) {return (width_0403 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
+        .style("font-family", "NeueHaasGroteskDisp Pro, Arial, Helvetica, sans-serif")
         .text(function (d) {
             return d;
         });
@@ -200,14 +163,22 @@ d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv",
         .attr("class", "title_0403")
         .attr("x", (width_0403 / 2))             
         .attr("y", 0 - (margin_0403.top / 2))
+        .attr("font-size", function() {
+            if (width_0403 <= 500) {return (width_0403 * 0.0005 + 0.6) + "em"}
+            else 	{ return "18px" }
+        ;}) 
         .attr("text-anchor", "middle")
         .text("A háztartások hitelállománya nettó vagyoni helyzet alapján");
     
     svg_0403.append("text")
         .attr("class", "data_source_0403")
-        .attr("x", width_0403 - 120)
+        .attr("x", width_0403)
         .attr("y", height_0403 + 70)
-        .style("text-anchor", "middle")
+        .attr("font-size", function() {
+            if (width_0403 <= 500) {return (width_0403 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})  
+        .style("text-anchor", "end")
         .text("Adatok forrása: Boldizsár et al. 2016.")
         .on('click', function(d) {
 		window.open(
@@ -247,15 +218,6 @@ d3.tsv("../../data/04_eladosodas/04_03_haztartasok_hitelallomanya_barchart.tsv",
                 }
             }
         })
-    }
-
-    
-    function search(nameKey, myArray){
-        for (var i=0; i < myArray.length; i++) {
-            if (myArray[i].arany === nameKey) {
-                return myArray[i]["median"];
-            }
-        }
     }
     
 });

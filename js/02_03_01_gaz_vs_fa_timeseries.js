@@ -20,7 +20,6 @@ var h_020301 = d3.select("#topic02-vis03-part01").node().getBoundingClientRect()
 
 var parseDate_020301 = d3.timeParse("%Y");
 
-//var scaleX_020301 = d3.scaleBand().rangeRound([0, w_020301]).padding(1);
 var scaleX_020301 = d3.scaleTime()
     .range([0, w_020301]);
 
@@ -39,7 +38,6 @@ var yAxis_020301 = d3.axisLeft()
 var line_020301 = d3.line()
     .x(function(d) {return scaleX_020301(d.date)})
     .y(function(d) {return scaleY_020301(d.ydata)})
-    //.curve(d3.curveBasis);
 
 var svg_020301 = d3.select("#topic02-vis03-part01").append("svg")
     .attr("width", w_020301 + margin_020301.left + margin_020301.right)
@@ -61,10 +59,9 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_01_gaz_vs_fa_hasznala
             })
         };
     });
-    
-console.log(categories_020301)
 
-//scaleX_020301.domain(data.map(function(d) { return d.date; }));
+var keys_020301 = data.columns.slice(1);
+
 scaleX_020301.domain(d3.extent(data, function(d){
   return d.date;
 }));
@@ -79,16 +76,21 @@ var legend_020301 = svg_020301.selectAll("g")
     .attr("class", "legend_020301");
 
 legend_020301.append("rect")
-    .attr("x", w_020301-280)
+    .attr("x", w_020301)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_020301(d.name);} );
 
 legend_020301.append("text")
-    .attr("x", w_020301-275)
+    .attr("x", w_020301-5)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
-    .text(function(d) {return d.name;} );
+    .attr("font-size", function() {
+        if (w_020301 <= 400) {return (w_020301 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
+    .text(function(d) {return d.name;} )
+    .style("text-anchor", "end");
 
 // Draw the line
 var category_020301 = svg_020301.selectAll(".category_020301")
@@ -101,80 +103,32 @@ category_020301.append("path")
     .attr("d", function(d) {return line_020301(d.values);} )
     .style("stroke", function(d) {return color_020301(d.name)} );
 
-//// Draw the empty value for every point
-//var points = svg_020301.selectAll('.points')
-//  .data(category_020301)
-//  .enter()
-//  .append('g')
-//  .attr('class', 'points')
-//  .append('text')
-//  .attr("x", 9)
-//  .attr("dy", ".35em")
-//  .attr('y', function(d) { return scaleY_020301(d.ydata); })
-//  .text(function(d) { return d.ydata; })
-//  .style('fill', function(d) { return color_020301(d.name); });
-//
-//// Draw the circle
-//category_020301
-//  .style("fill", "#FFF")
-//  .style("stroke", function(d) { return color_020301(d.name); })
-//  .selectAll("circle.line")
-//  .data(function(d){ return d.values })
-//  .enter()
-//  .append("circle")
-//  .attr("r", 5)
-//  .style("stroke-width", 3)
-//  .attr("cx", function(d) { return scaleX_020301(d.date); })
-//  .attr("cy", function(d) { return scaleY_020301(d.ydata); });
-//
-//var focus = svg_020301.append('g')
-//  .attr('class', 'focus')
-//  .style('display', 'none');
-//
-//focus.append('line')
-//  .attr('class', 'x-hover-line hover-line')
-//  .attr('y1' , 0)
-//  .attr('y2', h_020301);
-//
-//svg_020301.append('rect')
-//  .attr("transform", "translate(" + margin_020301.left + "," + margin_020301.top + ")")
-//  .attr("class", "overlay")
-//  .attr("width", w_020301)
-//  .attr("height", h_020301)
-//  .on("mouseover", mouseover)
-//  .on("mouseout", mouseout)
-//  .on("mousemove", mousemove);
-//
-//var timeScales = data.map(function(name) { return scaleX_020301(name.date); });
-//
-//function mouseover() {
-//  focus.style("display", null);
-//  d3.selectAll('.points text').style("display", null);
-//}
-//function mouseout() {
-//  focus.style("display", "none");
-//  d3.selectAll('.points text').style("display", "none");
-//}
-//function mousemove() {
-//  var i = d3.bisect(timeScales, d3.mouse(this)[0], 1);
-//  var di = data[i-1];
-//    //console.log(i)
-//  focus.attr("transform", "translate(" + scaleX_020301(di.date) + ",0)");
-//  d3.selectAll('.points text')
-//    .attr('x', function(di) { return scaleX_020301(di.date) + 15; })
-//    .attr('y', function(d) { return scaleY_020301(d.values[i-1].ydata); })
-//    .text(function(d) { return d.values[i-1].ydata; })
-//    .style('fill', function(d) { return color_020301(d.name); });
-//}
+// Draw the empty value for every point
+var points_020301 = svg_020301.selectAll('.points')
+  .data(categories_020301)
+  .enter()
+  .append('g')
+  .attr('class', 'points_020301')
+  .append('text');
+
+var timeScales_020301 = data.map(function(name) { return scaleX_020301(name.date); });
 
 svg_020301.append("g")
     .attr("class", "x axis_020301")
     .attr("transform", "translate(0, "+h_020301+")")
-    .call(xAxis_020301);
+    .call(xAxis_020301)
+    .attr("font-size", function() {
+        if (w_020301 <= 400) {return (w_020301 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;});
 
 svg_020301.append("g")
     .attr("class", "y axis_020301")
     .call(yAxis_020301.tickFormat(formatPercent_020301))
+    .attr("font-size", function() {
+        if (w_020301 <= 400) {return (w_020301 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
     .append("text")
     .attr("transform", "rotate(-90)")
 	.attr("x", -50)
@@ -189,13 +143,21 @@ svg_020301.append("text")
     .attr("x", (w_020301 / 2))             
     .attr("y", 0 - (margin_020301.top / 2))
     .attr("text-anchor", "middle")
+    .attr("font-size", function() {
+        if (w_020301 <= 400) {return (w_020301 * 0.0005 + 0.6) + "em"}
+        else 	{ return "18px" }
+    ;})
     .text("Az energiahordozók lakossági használatának aránya (2010–2016)");
 
 svg_020301.append("text")
     .attr("class", "data_source_020301")
-    .attr("x", w_020301 - 70)
+    .attr("x", w_020301)
     .attr("y", h_020301 + 50)
-    .style("text-anchor", "middle")
+    .attr("font-size", function() {
+        if (w_020301 <= 400) {return (w_020301 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
+    .style("text-anchor", "end")
     .text("Adatok forrása: KSH 2018c.")
     .on('click', function(d) {
     window.open(
@@ -219,6 +181,7 @@ mouseG_020301.append("path")
     .style("stroke", "black")
     .style("stroke-width", "1px")
     .style("opacity", "0");
+    
 
 var lines_020301 = document.getElementsByClassName("line_020301");
 
@@ -254,15 +217,14 @@ mouseG_020301.append("rect")
         d3.selectAll(".mouse-per-line_020301 text").style("opacity", "1")
     })
     .on("mousemove", function(){
-        var mouse_020301 = d3.mouse(this);
-        console.log("mouse_020301[0]", mouse_020301[0]);
+        var mouse_020301 = d3.mouse(this),
+            j_020301 = d3.bisect(timeScales_020301, mouse_020301[0], 1),
+            di_020301 = data[j_020301-1];
     
         d3.select(".mouse-line_020301")
             .attr("d", function(){
                 var d_020301 = "M" + mouse_020301[0] +", " + h_020301;
-                console.log("d_020301 I", d_020301);
                 d_020301+=" " +mouse_020301[0] + ", " + 0;
-                console.log("d_020301 II", d_020301);
                 return d_020301;
             })
     
@@ -273,26 +235,15 @@ mouseG_020301.append("rect")
                 var xDate_020301 = scaleX_020301.invert(mouse_020301[0]), 
                 bisect_020301 = d3.bisector(function(d) { return d.date;}).right;
                 idx_020301 = bisect_020301(d.values, xDate_020301);
-            
-                //console.log("xDate_020301", xDate_020301);
-                //console.log("idx_020301", idx_020301);
 
                 var beginning_020301 = 0, 
                     end_020301 = lines_020301[i].getTotalLength(), 
                     target_020301 = null;
                 
-                //console.log("lines_020301", lines_020301);
-                //console.log("beginning_020301", beginning_020301);
-                //console.log("end_020301", end_020301);
-                
                 while (true){
                   target_020301 = Math.floor((beginning_020301 + end_020301) / 2);
                     
-                    //console.log("target_020301", target_020301);
-                    
                   pos_020301 = lines_020301[i].getPointAtLength(target_020301);
-                    
-                    //console.log("pos_020301", pos_020301);
                 
                     if ((target_020301 === end_020301 || target_020301 === beginning_020301) && pos_020301.x !== mouse_020301[0]) {break;}
                   if (pos_020301.x > mouse_020301[0]) end_020301 = target_020301;
@@ -301,12 +252,11 @@ mouseG_020301.append("rect")
                 }
 
                 d3.select(this).select('text')
-                    .text(format_020301(scaleY_020301.invert(pos_020301.y)));
-                console.log("i", i);
-                console.log("pos_020301.y", pos_020301.y);
+                    .text(format_020301(di_020301[keys_020301[i]]));
+
                 ypos_020301.push ({ind: i, y: pos_020301.y, off: 0});
 
-                return "translate(" + mouse_020301[0] + ", " + pos_020301.y +")";
+                return "translate(" + mouse_020301[0] + ", " + pos_020301.y +")"
         })
 
         .call(function(sel) {
@@ -324,68 +274,12 @@ mouseG_020301.append("rect")
         .select("text")
         .attr("transform", function(d, i) {
             return "translate(10, " + (3 + ypos_020301[i].off) + ")";
-        });
-
+        })
+        .attr("font-size", function() {
+            if (w_020301 <= 400) {return (w_020301 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;});
     });
-
-
-/*var bisect = d3.bisector(function(d) { return parseDate_020301(d.date); }).left;
-var focus = svg_020301.append("g")
-      .attr("class", "focus")
-      .style("display", "none");
-for(var i=0;i<categories_020301.length;i++){
-          focus.append("g")
-            .attr("class", "focus"+i)
-            .append("circle")
-            .style("stroke",  color_020301(categories_020301[i].name))
-            .style("fill", "none")
-            .attr("transform", "translate(" + margin_020301.left  + "," + margin_020301.top + ")")
-            .attr("r", 4);
-          focus.append("g")
-            .attr("class", "focus"+i)
-            .append("line")
-            .style("stroke",  color_020301(categories_020301[i].name))
-            .style("fill", color_020301(categories_020301[i].name))
-            .attr("transform", "translate(" + margin_020301.left  + "," + margin_020301.top + ")")
-            .classed('x', true); 
-          svg_020301.select(".focus"+i)
-            .append("text")
-            .attr("transform", "translate(" + margin_020301.left  + "," + margin_020301.top + ")")
-            .attr("x", 9)
-            .attr("dy", ".35em");
-      }
-  svg_020301.append("rect")
-      .attr("class", "overlay")
-      .attr("width", w_020301)
-      .attr("height", h_020301)
-        .attr("transform", "translate(" + margin_020301.left + "," + margin_020301.top + ")")
-      .on("mouseover", function() { focus.style("display", null); })
-      .on("mouseout", function() { focus.style("display", "none"); })
-      .on("mousemove",  mousemove);
-function mousemove() {
-          var x0 = scaleX_020301.invert(d3.mouse(this)[0]);
-          var series =
-                categories_020301.map(function(e) {
-                var i = bisect(e.values, x0, 1),
-                    d0 = e.values[i - 1],
-                    d1 = e.values[i];
-                return x0 - d0.date > d1.date - x0 ? d1 : d0;
-              });
-  for(var i=0; i<series.length;i++){
-            var selectedFocus = svg_020301.selectAll(".focus"+i);
-            selectedFocus.attr("transform", "translate(" + scaleX_020301(parseDate_020301(series[i].date)) + "," + scaleY_020301(series[i].ydata) + ")");
-            selectedFocus.select("text").text(series[i].ydata);
-      console.log("i", i);
-      console.log("parseDate_020301(series[i].date)", parseDate_020301(series[i].date));
-      console.log("series[i].ydata", series[i].ydata)
-//           selectedFocus.select("line")
-//                .attr('x1', 0)
-//                .attr('x2', 0)
-//                .attr('y1', 0)
-//                .attr('y2', h_020301 - scaleY_020301(series[i].ydata));
-          }
-        }*/
-
 });
     
 function type_020301(d, _, columns) {
@@ -396,4 +290,6 @@ function type_020301(d, _, columns) {
 
 /*Sources:
 https://bl.ocks.org/mbostock/3884955
-https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo */
+https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo
+https://codepen.io/savemuse/pen/bgQQxp
+*/
