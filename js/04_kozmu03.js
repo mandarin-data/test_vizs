@@ -160,10 +160,10 @@ serie_kozmu03.append('text')
 		.attr("y", height_kozmu03 + margin_kozmu03.top + margin_kozmu03.bottom*0.99)
         .attr("font-size", width_abs_kozmu03/(820/15))    
 	.attr("text-anchor", "end")  
-	.text("Adatok forrása: MNB")
+	.text("Adatok forrása: MNB 2018b")
 	.on('click', function(d) {
 		window.open(
-			'http://www.mnb.hu/statisztika/statisztikai-adatok-informaciok/adatok-idosorok',
+			'http://www.mnb.hu/letoltes/a-haztartasi-szektor-reszere-nyujtott-hitelallomany-osszetetele.xls',
 			'_blank' // <- This is what makes it open in a new window.
 		);
 	})

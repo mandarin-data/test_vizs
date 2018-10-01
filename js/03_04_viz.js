@@ -317,7 +317,7 @@ svg_0301.append('text')
 	.attr("y", height_0301 + margin_0301.bottom -  width_abs_0301/(1200/2))
 	.attr("text-anchor", "start")  
     .attr("font-size", width_abs_0301/(1200/13))        
-	.text(" Pénzügyminisztérium 2018.")
+	.text(" Pénzügyminisztérium 2018.,")
 	.on('click', function(d) {
 		window.open(
 			'http://www.parlament.hu/irom41/00503/adatok/fejezetek/42.pdf',
@@ -333,6 +333,27 @@ svg_0301.append('text')
 	d3.select(this).style("cursor", "pointer"); 
 	});	
 
+svg_0301.append('text')
+	.attr("class", "barchart_forras_0301")
+	.attr("x", width_0301  - width_abs_0301/(1200/640))             
+	.attr("y", height_0301 + margin_0301.bottom -  width_abs_0301/(1200/2))
+	.attr("text-anchor", "start")  
+    .attr("font-size", width_abs_0301/(1200/13))        
+	.text("  Magyar Közlöny 2018")
+	.on('click', function(d) {
+		window.open(
+			'http://www.kozlonyok.hu/nkonline/MKPDF/hiteles/MK18044.pdf',
+			'_blank' // <- This is what makes it open in a new window.
+		);
+	})
+	.on('mouseover', function(d){
+		d3.select(this).style("cursor", "pointer"); 
+	})
+
+	.on("mouseout", function() { d3.select(this).style("cursor", "default"); })
+	.on("mousemove", function(d) {
+	d3.select(this).style("cursor", "pointer"); 
+	});	
 
 	
 svg_0301.append('text')
