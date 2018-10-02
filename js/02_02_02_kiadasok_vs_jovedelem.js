@@ -176,11 +176,11 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
     svg_020202.append('text')
         .attr("id", "020202_ytitle")
         .attr("x", (width_020202 / 2) - 70)
-        .attr("y", height_020202 + (margin_020202.bottom))
+        .attr("y", height_020202 + (margin_020202.bottom) -5)
         .style("text-anchor", "middle")
         .style("font-size", '14px')
     	.attr("font-family", "NeueHaasGroteskDisp Pro")
-        .text("Jövedelmi tized");
+        .text("Egy főre eső éves jövedelem");
 
 
     // Prep the tooltip bits, initial display is hidden
