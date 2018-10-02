@@ -151,3 +151,9 @@ text#barchart0201_title{
 	stroke-width: 0.5px;
     font-weight: normal;
 }
+
+
+
+div#viscontainer-11{
+    max-width:800px
+}

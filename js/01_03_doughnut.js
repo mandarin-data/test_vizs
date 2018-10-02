@@ -100,7 +100,7 @@ d3.csv('../../data/01_hozzaferhetoseg_es_megfizethetoseg/01_03_doughnut.tsv', fu
 
 	path_doughnut.on('mousemove', function(d) {
 		chartTooltip_doughnut
-			.style("left", d3.mouse(this)[0] + (vizuwidth_0102)/3.5  + "px")
+			.style("left", d3.mouse(this)[0] + (vizuwidth_0102)/0.9  + "px")
 			.style("top", d3.mouse(this)[1] + 195 + "px");
 	});
 

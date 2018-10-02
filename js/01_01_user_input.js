@@ -19,7 +19,7 @@ function MyTitle(){
 
 	var svg_userinput_title = d3.select("#svg_userinput_title")
 	.attr("width", userInputWidth + margin_userinput.left + margin_userinput.right)
-	.attr("height", 30);
+	.attr("height", 40);
 
 	svg_userinput_title.append('text')
 		.attr('id', 'userinput_title')
