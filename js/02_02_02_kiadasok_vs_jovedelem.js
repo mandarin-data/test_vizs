@@ -180,7 +180,7 @@ d3.csv("../../data/02_lakasminoseg_energiaszegenyseg/02_02_02_kiadasok_vs_jovede
         .style("text-anchor", "middle")
         .style("font-size", '14px')
     	.attr("font-family", "NeueHaasGroteskDisp Pro")
-        .text("Egy főre eső éves jövedelem");
+        .text("Jövedelmi tized");
 
 
     // Prep the tooltip bits, initial display is hidden
