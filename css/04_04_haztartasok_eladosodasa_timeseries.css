@@ -7,7 +7,6 @@ svg_0404 {
     display: block;
     margin: auto;
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -15,7 +14,6 @@ svg_0404 {
 
 body {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
 	fill: #000;
 	color: #666;
@@ -25,16 +23,15 @@ body {
     fill-opacity: 0.7;
     fill: #fff;
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
 }
 
-path_0404:hover {
+path:hover {
     fill-opacity: 1;
-    fill: #888;
+    fill: #222;
 }
 
-path_0404 {
+path {
     fill-opacity: 0.8;
     stroke-width: 0.5;
 }
@@ -45,13 +42,11 @@ text_0404 {
 
 .axis_0404 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
 }
 
 .axis_0404--major .tick text, .tooltip text {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
 }
 
@@ -71,7 +66,6 @@ text_0404 {
 .axis.label_0404 {
     fill: #000;
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
 }
 
@@ -81,7 +75,6 @@ text_0404 {
 
 .title_0404 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 18px;
     font-weight: normal;
     fill: #000;
     color: #666;
@@ -100,20 +93,18 @@ text_0404 {
 
 .yline_0404 {
     fill: none;
-    stroke: #222;
+    stroke: red;
     stroke-width: 2px;
 }
 
 .yline.text_0404 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 12px;
     font-weight: normal;
     fill: #000;
 }
 
 .legendarea_0404 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
     fill: #000;
     color: #666;
@@ -121,8 +112,16 @@ text_0404 {
 
 .legendline_0404 {
     font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
-    font-size: 14px;
     font-weight: normal;
     fill: #000;
     color: #666;
+}
+
+.data_source_0404 {
+    font-family: 'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif;
+    font-style: italic;
+	font-weight: lighter;
+  	text-decoration: underline;	
+	fill: #000;
+	color: #666;
 }

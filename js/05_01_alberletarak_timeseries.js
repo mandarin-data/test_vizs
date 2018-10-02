@@ -10,7 +10,7 @@ var formatPercentDecimal_0501 = d3.format(",.2%"),
 
 var margin_0501 = {
   top: 80, 
-  right: 50, 
+  right: 70, 
   bottom: 100, 
   left: 65
 };
@@ -61,6 +61,8 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_01_jovedelem_vs_alberletar_nove
         };
     });
 
+var keys_0501 = data.columns.slice(1);
+
 scaleX_0501.domain(d3.extent(data, function(d){
   return d.date;
 }));
@@ -73,25 +75,38 @@ var legend_0501 = svg_0501.selectAll("g")
     .attr("class", "legend_0501");
 
 legend_0501.append("rect")
-    .attr("x", w_0501-190)
+    .attr("x", w_0501)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return color_0501(d.name);} );
 
 legend_0501.append("text")
-    .attr("x", w_0501-185)
+    .attr("x", w_0501-5)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
+    .attr("font-size", function() {
+        if (w_0501 <= 500) {return (w_0501 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
+    .style("text-anchor", "end")
     .text(function(d) {return d.name;} );
 
 svg_0501.append("g")
     .attr("class", "x axis_0501")
     .attr("transform", "translate(0, "+h_0501+")")
-    .call(xAxis_0501);
+    .call(xAxis_0501)
+    .attr("font-size", function() {
+        if (w_0501 <= 500) {return (w_0501 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;});
 
 svg_0501.append("g")
     .attr("class", "y axis_0501")
     .call(yAxis_0501.tickFormat(formatPercent_0501))
+    .attr("font-size", function() {
+        if (w_0501 <= 500) {return (w_0501 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
     .append("text")
     .attr("transform", "rotate(-90)")
     .attr("x", -60)
@@ -99,19 +114,31 @@ svg_0501.append("g")
     .attr("dy", ".71em")
     .style("text-anchor", "end")
     .style("fill", "black")
-    .text("Változás 2010-hez képest");
-
+    .text("Változás 2010-hez képest (2010 = 100%)");
+    
 svg_0501.append("text")
     .attr("class", "title_0501")
     .attr("x", (w_0501 / 2))             
     .attr("y", 0 - (margin_0501.top / 2))
+    .attr("font-size", function() {
+        if (w_0501 <= 500) {return (w_0501 * 0.0005 + 0.5) + "em"}
+        else 	{ return "18px" }
+    ;})
     .attr("text-anchor", "middle")
     .text("A jövedelmek és az albérletárak változása az alsó jövedelmi tizedben (2010–2017)");
 
+
 svg_0501.append("text")
     .attr("class", "data_source_0501")
-    .attr("x", w_0501 - 130)
+    .attr("x", function() {
+        if (w_0501 <= 500) {return w_0501 - 100}
+        else 	{ return (w_0501 - 130)}
+    ;}) 
     .attr("y", h_0501 + 50)
+    .attr("font-size", function() {
+        if (w_0501 <= 500) {return  "10px"}
+        else 	{ return "14px" }
+    ;})
     .style("text-anchor", "middle")
     .text("Adatok forrása: jofogas.hu, ")
     .on('click', function(d) {
@@ -130,8 +157,15 @@ svg_0501.append("text")
 
 svg_0501.append("text")
     .attr("class", "data_source_0501")
-    .attr("x", w_0501 - 25)
+    .attr("x", function() {
+        if (w_0501 <= 500) {return (w_0501 - 25) }
+        else 	{ return (w_0501 - 25)}
+    ;}) 
     .attr("y", h_0501 + 50)
+    .attr("font-size", function() {
+        if (w_0501 <= 500) {return "10px"}
+        else 	{ return "14px" }
+    ;})
     .style("text-anchor", "middle")
     .text("KSH 2018a.")
     .on('click', function(d) {
@@ -157,6 +191,17 @@ category_0501.append("path")
     .attr("class", "line_0501")
     .attr("d", function(d) {return line_0501(d.values);} )
     .style("stroke", function(d) {return color_0501(d.name)} );
+
+// Draw the empty value for every point
+var points_0501 = svg_0501.selectAll('.points')
+  .data(categories_0501)
+  .enter()
+  .append('g')
+  .attr('class', 'points_0501')
+  .append('text');
+
+var timeScales_0501 = data.map(function(name) { return scaleX_0501(name.date); });
+console.log(timeScales_0501)
 
 var mouseG_0501 = svg_0501.append("g") // this the black vertical line to folow mouse
     .attr("class", "mouse-over-effects_0501");
@@ -201,7 +246,14 @@ mouseG_0501.append("rect")
         d3.selectAll(".mouse-per-line_0501 text").style("opacity", "1")
     })
     .on("mousemove", function(){
-        var mouse_0501 = d3.mouse(this);
+        var mouse_0501 = d3.mouse(this),
+            j_0501 = d3.bisect(timeScales_0501, mouse_0501[0], 1),
+            di_0501 = data[j_0501-1];
+            console.log(di_0501["Nettó átlagjövedelem-változás"])
+            if (isNaN(di_0501["Nettó átlagjövedelem-változás"])) {
+                di_0501["Nettó átlagjövedelem-változás"] = 1.1140651021;
+            }
+            console.log(di_0501["Nettó átlagjövedelem-változás"])
     
         d3.select(".mouse-line_0501")
             .attr("d", function(){
@@ -234,7 +286,7 @@ mouseG_0501.append("rect")
                 }
 
                 d3.select(this).select('text')
-                    .text(formatPercentDecimal_0501(scaleY_0501.invert(pos_0501.y)));
+                    .text(formatPercentDecimal_0501(di_0501[keys_0501[i]]));
 
                 ypos_0501.push ({ind: i, y: pos_0501.y, off: 0});
 
@@ -256,9 +308,14 @@ mouseG_0501.append("rect")
         .select("text")
         .attr("transform", function(d, i) {
             return "translate (10, "+(3+ypos_0501[i].off)+")";
-        });
+        })
+        .attr("font-size", function() {
+        if (w_0501 <= 500) {return (w_0501 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+        ;});
 
     });
+
 });
     
 function type_0501(d, _, columns) {
@@ -266,7 +323,6 @@ function type_0501(d, _, columns) {
     for (var i_0501 = 1, n = columns.length, c; i_0501 < n; ++i_0501) d[c = columns[i_0501]] = +d[c];
     return d;
 }
-
 /*Sources:
 https://bl.ocks.org/mbostock/3884955
 https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo */

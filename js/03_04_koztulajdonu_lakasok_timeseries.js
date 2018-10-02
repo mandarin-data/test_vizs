@@ -2,7 +2,7 @@
 var margin_0304 = {
   top: 60, 
   right: 45, 
-  bottom: 175, 
+  bottom: 200, 
   left: 55
 };
 
@@ -32,15 +32,6 @@ var svg_0304 = d3.select("#topic03-vis04").append("svg")
     .append("g")
     .attr("transform",
           "translate(" + margin_0304.left + "," + margin_0304.top + ")");
-
-var tooltip_0304 = d3.tooltip() // returns the tooltip function
-    .extent([[0,0],[width_0304,height_0304]]) // tells the tooltip how much area it has to work with
-    //.tips(["value", "search(d.value, medianlist_0304)"],["Részvételi arány: ", "Medián (forint): "])
-    .tips(["1"],[""])// tells the tooltip which properties to display in the tip and what to label thme
-    .fontSize(13) // sets the font size for the tooltip
-    .padding([8,4]) // sets the amount of padding in the tooltip rectangle
-    .margin([10,10]) // set the distance H and V to keep the tooltip from the mouse pointer
-    .format("notpercent");
 
 // Get the data
 d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_timeseries.tsv", function(error, data) {
@@ -84,20 +75,56 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("y", function(d) { return ybar_0304(d[1]); })
       .attr("height", function(d) { return ybar_0304(d[0]) - ybar_0304(d[1]); })
       .attr("width", xbar_0304.bandwidth())
-    .each(tooltip_0304.events);
-
-  svg_0304.call(tooltip_0304)
+      .on("mouseover", function () {
+            tooltip_0304.style("display", null);
+        })
+      .on("mouseout", function () {
+            tooltip_0304.style("display", "none");
+        })
+      .on("mousemove", function (d) {
+            console.log(d);
+            var xPosition_0304 = d3.mouse(this)[0] - 5;
+            var yPosition_0304 = d3.mouse(this)[1] - 5;
+            tooltip_0304.attr("transform", "translate(" + (xPosition_0304 + 15) + "," + (yPosition_0304 + 15) + ")");
+            tooltip_0304.select("text").text(d[1] - d[0]);
+        });
 
   // Add the X Axis
   svg_0304.append("g")
       .attr("class", "x axis_0304")
       .attr("transform", "translate(0," + height_0304 + ")")
-      .call(d3.axisBottom(xbar_0304));
+      .call(d3.axisBottom(xbar_0304))
+      .attr("font-size", function() {
+        if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+      ;})
+      .selectAll("text")
+      .attr("y", function() {
+          if (width_0304 <= 700) { return 0}
+          else 	{ return 15}
+      ;})
+      .attr("x", function() {
+          if (width_0304 <= 700) { return -6}
+          else 	{ return 0}
+      ;})
+      .attr("dy", ".35em")
+      .attr("transform", function() {
+          if (width_0304 <= 700) { return "rotate(-90)"}
+          else 	{ return "rotate(0)"}
+      ;})
+      .style("text-anchor",  function() {
+          if (width_0304 <= 700) { return "end"}
+          else 	{ return "middle"}
+      ;});
 
   // Add the Y0 Axis
   svg_0304.append("g")
       .attr("class", "axisSteelBlue_0304")
       .call(d3.axisLeft(ybar_0304).ticks(null, "s"))
+      .attr("font-size", function() {
+        if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+      ;})
       .append("text")
       .attr("x", -80)
       .attr("y", -45)
@@ -111,6 +138,10 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
       .attr("class", "axisRed_0304")
       .attr("transform", "translate( " + width_0304 + ", 0 )")
       .call(d3.axisRight(yline_0304))
+      .attr("font-size", function() {
+        if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+      ;})
       .append("text")
       .attr("x", 80)
       .attr("y", -35)
@@ -134,7 +165,34 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
         .attr("x", (width_0304 / 2))             
         .attr("y", 0 - (margin_0304.top / 2))
         .attr("text-anchor", "middle")
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.6) + "em"}
+            else 	{ return "18px" }
+         ;})
         .text("A köztulajdonú lakások állománya és bevétel-kiadás mérlege");
+    
+    // Prep the tooltip bits, initial display is hidden
+    var tooltip_0304 = svg_0304.append("g")
+        .attr("class", "tooltip_0304")
+        .style("display", "none");
+
+    tooltip_0304.append("rect")
+        .attr("width", 60)
+        .attr("height", 20)
+        .attr("fill", "white")
+        .attr("stroke", "#666")
+        .attr("stroke-width", "0.5px");
+
+
+    tooltip_0304.append("text")
+        .attr("x", 30)
+        .attr("dy", "1.2em")
+        .style("text-anchor", "middle")
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
+        .attr("font", "sans-serif");
     
     var legendbar_0304 = svg_0304.selectAll(".legendbar_0304")
         .data(categoriesbar_0304)
@@ -144,14 +202,18 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     
     legendbar_0304.append("rect")
         .attr("x", -20)
-        .attr("y", height_0304 + 30)
+        .attr("y", height_0304 + 50)
         .attr("width", 15)
         .attr("height", 15)
         .style("fill", function(d) {return z_0304(d.name);} );
 
     legendbar_0304.append("text")
         .attr("x", -2)
-        .attr("y", height_0304 + 45)
+        .attr("y", height_0304 + 65)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
         .text(function(d) {return d.name;} );
     
     var legendline_0304 = svg_0304.selectAll(".legendline_0304")
@@ -162,27 +224,45 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     
     legendline_0304.append("rect")
         .attr("x", -20)
-        .attr("y", height_0304 + 68)
+        .attr("y", height_0304 + 88)
         .attr("width", 3)
         .attr("height", 15)
         .style("fill", function(d) {return z_0304(d.name);} );
 
     legendline_0304.append("text")
         .attr("x", -14)
-        .attr("y", height_0304 + 83)
+        .attr("y", height_0304 + 103)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return (width_0304 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
         .text(function(d) {return d.name;} );
 
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 460)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 210)}
+            else 	{ return (width_0304 - 270)}
+        ;})
+        .attr("y", height_0304 + 180)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("Adatok forrása: ");
     
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 388)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 158)}
+            else 	{ return (width_0304 - 198)}
+        ;})
+        .attr("y", height_0304 + 180)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("KSH 2018., ")
         .on('click', function(d) {
@@ -202,13 +282,20 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
 
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 333)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 119)}
+            else 	{ return (width_0304 - 143)}
+        ;})
+        .attr("y", height_0304 + 180)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("NET Zrt., ")
         .on('click', function(d) {
         window.open(
-            'http://',
+            'http://habitat.hu/mivel-foglalkozunk/lakhatasi-jelentesek/lakhatasi-jelentes-2018/lakhatas-2018-adattar/',
             '_blank'
         );
         })
@@ -223,15 +310,26 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 243)
-        .attr("y", height_0304 + 170)
+        .attr("x", width_0304 - 53)
+        .attr("y", height_0304 + 180)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("Költségvetési törvények ");
     
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 162)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 168)}
+            else 	{ return (width_0304 - 212)}
+        ;})
+        .attr("y", height_0304 + 195)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("2012, ")
         .on('click', function(d) {
@@ -251,8 +349,15 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
 
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 132)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 146)}
+            else 	{ return (width_0304 - 182)}
+        ;})
+        .attr("y", height_0304 + 195)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("2013, ")
         .on('click', function(d) {
@@ -272,8 +377,15 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
 
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 102)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 124)}
+            else 	{ return (width_0304 - 152)}
+        ;})
+        .attr("y", height_0304 + 195)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("2014, ")
         .on('click', function(d) {
@@ -293,8 +405,15 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
 
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 72)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 102)}
+            else 	{ return (width_0304 - 122)}
+        ;})
+        .attr("y", height_0304 + 195)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("2015, ")
         .on('click', function(d) {
@@ -314,8 +433,15 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 42)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 80)}
+            else 	{ return (width_0304 - 92)}
+        ;})
+        .attr("y", height_0304 + 195)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("2016, ")
         .on('click', function(d) {
@@ -335,8 +461,15 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     
     svg_0304.append("text")
         .attr("class", "data_source_0304")
-        .attr("x", width_0304 - 12)
-        .attr("y", height_0304 + 170)
+        .attr("x", function() {
+            if (width_0304 <= 500) {return (width_0304 - 58)}
+            else 	{ return (width_0304 - 62)}
+        ;})
+        .attr("y", height_0304 + 195)
+        .attr("font-size", function() {
+            if (width_0304 <= 500) {return "10px"}
+            else 	{ return "14px" }
+        ;})
         .style("text-anchor", "middle")
         .text("2017, ")
         .on('click', function(d) {
@@ -351,37 +484,7 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
 
         .on("mouseout", function() { d3.select(this).style("cursor", "default"); })
         .on("mousemove", function(d) {
-        d3.select(this).style("cursor", "pointer"); 
+           d3.select(this).style("cursor", "pointer"); 
     });
-//    svg_0304.selectAll("rect")
-//        .on("mouseover", function() { tooltip_0304.style("display", null); })
-//        .on("mouseout", function() { tooltip_0304.style("display", "none"); })
-//        .on("mousemove", function(d) {
-//          console.log(d);
-//          var xPosition = d3.mouse(this)[0] - 5;
-//          var yPosition = d3.mouse(this)[1] - 5;
-//          tooltip_0304.attr("transform", "translate(" + xPosition + "," + yPosition + ")");
-//          tooltip_0304.select("text").text(d[1]-d[0]);
-//        });
-    
-});
 
-//// Prep the tooltip bits, initial display is hidden
-//var tooltip_0304 = svg_0304.append("g")
-//    .attr("class", "tooltip_0304")
-//    .style("display", "none");
-//
-//tooltip_0304.append("rect")
-//    .attr("width", 60)
-//    .attr("height", 20)
-//    .attr("fill", "white")
-//    .style("opacity", 0.5)
-//    .attr("stroke", "#666")
-//    .attr("stroke-width", "0.5px");
-//
-//tooltip_0304.append("text")
-//    .attr("x", 30)
-//    .attr("dy", "1.2em")
-//    .style("text-anchor", "middle")
-//    .attr("font-size", "12px")
-//    .attr("font", "sans serif");
+});

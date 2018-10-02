@@ -61,17 +61,17 @@ d3.tsv("../../data/02_lakasminoseg_energiaszegenyseg/02_03_02_gaz_vs_fa_arvaltoz
         };
     });
 
-console.log(data);
+var keys_020302 = data.columns.slice(1);
 
 scaleX_020302.domain(d3.extent(data, function(d){
   return d.date;
 }));
 scaleYLeft_020302.domain([
-    d3.min(data, function(d) {return Math.max(d["A gáz árváltozása"]); }), 
-    d3.max(data, function(d) {return Math.max(d["A gáz árváltozása"]); })]).nice();
+    d3.min(data, function(d) {return Math.max(d["A gáz árváltozása"]) * 0.99 ; }), 
+    d3.max(data, function(d) {return Math.max(d["A gáz árváltozása"]) * 1.02 ; })]).nice();
 scaleYRight_020302.domain([
-    d3.min(data, function(d) {return Math.max(d["A fa árváltozása"]); }), 
-    d3.max(data, function(d) {return Math.max(d["A fa árváltozása"]); })]).nice();
+    d3.min(data, function(d) {return Math.max(d["A fa árváltozása"]) * 0.99 ; }), 
+    d3.max(data, function(d) {return Math.max(d["A fa árváltozása"]) * 1.02; })]).nice();
 
 var legend_020302 = svg_020302.selectAll("g")
     .data(categories_020302)
@@ -80,16 +80,21 @@ var legend_020302 = svg_020302.selectAll("g")
     .attr("class", "legend_020302");
 
 legend_020302.append("rect")
-    .attr("x", w_020302-130)
+    .attr("x", w_020302 - 15)
     .attr("y", function(d, i) {return i * 20;} )
     .attr("width", 2)
     .attr("height", 15)
     .style("fill", function(d) {return colorReversed_020302(d.name);} );
 
 legend_020302.append("text")
-    .attr("x", w_020302-125)
+    .attr("x", w_020302 - 20)
     .attr("y", function(d, i) {return (i * 20) + 12;} )
-    .text(function(d) {return d.name;} );
+    .attr("font-size", function() {
+        if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
+    .text(function(d) {return d.name;} )
+    .style("text-anchor", "end");
 
 svg_020302.append("path")
     .data([data])
@@ -106,11 +111,19 @@ svg_020302.append("path")
 svg_020302.append("g")
     .attr("class", "x axis_020302")
     .attr("transform", "translate(0, "+h_020302+")")
-    .call(d3.axisBottom(scaleX_020302));
+    .call(d3.axisBottom(scaleX_020302))
+    .attr("font-size", function() {
+        if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;});
 
 svg_020302.append("g")
     .attr("class", "y axisLeft_020302")
     .call(d3.axisLeft(scaleYLeft_020302))
+    .attr("font-size", function() {
+        if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
     .append("text")
     .attr("transform", "rotate(-90)")
     .attr("x", 0 - (margin_020302.left +margin_020302.right))
@@ -124,6 +137,10 @@ svg_020302.append("g")
     .attr("class", "y axisRight_020302")
     .attr("transform", "translate( " + w_020302 + ", 0 )")
     .call(d3.axisRight(scaleYRight_020302).tickFormat(formatThousands_020302))
+    .attr("font-size", function() {
+        if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
     .append("text")
     .attr("x", 0 + margin_020302.left)
     .attr("y", -60)
@@ -138,14 +155,22 @@ svg_020302.append("text")
     .attr("x", (w_020302 / 2))             
     .attr("y", 0 - (margin_020302.top / 2))
     .attr("text-anchor", "middle")
+    .attr("font-size", function() {
+        if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.6) + "em"}
+        else 	{ return "18px" }
+    ;})
     .text("Az energiahordozók árváltozásai (2010–2016)");
 
 svg_020302.append("text")
     .attr("class", "data_source_020302")
-    .attr("x", w_020302 - 70)
+    .attr("x", w_020302)
     .attr("y", h_020302 + 50)
-    .style("text-anchor", "middle")
-    .text("Adatok forrása: KSH 2018b, ")
+    .attr("font-size", function() {
+        if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.5) + "em"}
+        else 	{ return "14px" }
+    ;})
+    .style("text-anchor", "end")
+    .text("Adatok forrása: KSH 2018b. ")
     .on('click', function(d) {
     window.open(
         'http://www.ksh.hu/docs/hun/xstadat/xstadat_eves/i_qsf003a.html?down=642.4000244140625'
@@ -160,17 +185,27 @@ svg_020302.append("text")
     d3.select(this).style("cursor", "pointer"); 
     });
 
-//var category_020302 = svg_020302.selectAll(".category_020302")
-//    .data(categories_020302)
-//    .enter().append("g")
-//    .attr("class", "category_020302");
-//
-//category_020302.append("path")
-//    .attr("class", "lineLeft_020302")
-//    .attr("d", function(d) {return lineLeft_020302(d.values);} )
-//    .style("stroke", function(d) {return color_020302(d.name)} );
+var category_020302 = svg_020302.selectAll(".category_020302")
+    .data(categories_020302)
+    .enter().append("g")
+    .attr("class", "category_020302");
 
-var mouseG_020302 = svg_020302.append("g") // this the black vertical line to folow mouse
+category_020302.append("path")
+    .attr("class", "lineLeft_020302")
+    .attr("d", function(d) {return lineLeft_020302(d.values);} )
+    .style("stroke", function(d) {return color_020302(d.name)} );
+
+// Draw the empty value for every point
+var points_020302 = svg_020302.selectAll('.points')
+  .data(categories_020302)
+  .enter()
+  .append('g')
+  .attr('class', 'points_020302')
+  .append('text');
+
+var timeScales_020302 = data.map(function(name) { return scaleX_020302(name.date); });
+
+var mouseG_020302 = svg_020302.append("g") // this the black vertical line to follow mouse
     .attr("class", "mouse-over-effects_020302");
 
 mouseG_020302.append("path")
@@ -213,7 +248,9 @@ mouseG_020302.append("rect")
         d3.selectAll(".mouse-per-line_020302 text").style("opacity", "1")
     })
     .on("mousemove", function(){
-        var mouse_020302 = d3.mouse(this);
+        var mouse_020302 = d3.mouse(this),
+            j_020302 = d3.bisect(timeScales_020302, mouse_020302[0], 1),
+            di_020302 = data[j_020302-1];
     
         d3.select(".mouse-line_020302")
             .attr("d", function(){
@@ -246,7 +283,7 @@ mouseG_020302.append("rect")
                 }
 
                 d3.select(this).select('text')
-                  .text(format_020302(scaleYLeft_020302.invert(pos_020302.y)));
+                .text(formatThousands_020302(di_020302[keys_020302[i]]));
 
                 ypos_020302.push ({ind: i, y: pos_020302.y, off: 0});
 
@@ -268,8 +305,11 @@ mouseG_020302.append("rect")
         .select("text")
         .attr("transform", function(d, i) {
             return "translate (10, "+(3+ypos_020302[i].off)+")";
-        });
-
+        })
+        .attr("font-size", function() {
+            if (w_020302 <= 400) {return (w_020302 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;});
     });
 });
     
@@ -281,4 +321,6 @@ function type_020302(d, _, columns) {
 
 /*Sources:
 https://bl.ocks.org/mbostock/3884955
-https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo */
+https://www.codeseek.co/Asabeneh/d3-mouseover-multi-line-chart-d3js-v4-RZpYBo
+https://codepen.io/savemuse/pen/bgQQxp
+*/

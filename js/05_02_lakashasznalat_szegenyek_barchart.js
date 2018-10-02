@@ -1,7 +1,7 @@
 var margin_0502 = {
     top: 80,
     right: 20,
-    bottom: 75,
+    bottom: 105,
     left: 40
 };
 
@@ -33,7 +33,8 @@ var tooltip_0502 = d3.tooltip() // returns the tooltip function
     .tips(["value"],[""])// tells the tooltip which properties to display in the tip and what to label thme
     .fontSize(13) // sets the font size for the tooltip
     .padding([8,4]) // sets the amount of padding in the tooltip rectangle
-    .margin([10,10]); // set the distance H and V to keep the tooltip from the mouse pointer
+    .margin([10,10]) // set the distance H and V to keep the tooltip from the mouse pointer
+    .visName("#topic05-vis02");
 
 d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_alberletben.tsv", function (d, i, columns) {
     for (var i_0502 = 1, n = columns.length; i_0502 < n; ++i_0502) d[columns[i_0502]] = +d[columns[i_0502]];
@@ -91,12 +92,20 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("class", "xaxis_0502")
         .attr("transform", "translate(0," + height_0502 + ")")
         .call(d3.axisBottom(x0_0502))
+        .attr("font-size", function() {
+            if (width_0502 <= 500) {return (width_0502 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
         .selectAll(".tick text")
         .call(wrap_0502, x0_0502.bandwidth());
 
     svg_0502.append("g")
         .attr("class", "yaxis_0502")
         .call(d3.axisLeft(y_0502).tickFormat(formatPercent_tooltip))
+        .attr("font-size", function() {
+            if (width_0502 <= 500) {return (width_0502 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;});
 
     var legend_0502 = svg_0502.append("g")
         .attr("text-anchor", "end")
@@ -114,9 +123,15 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("fill", z_0502);
 
     legend_0502.append("text")
+        .attr("class", "legend_0502")
         .attr("x", width_0502 - 24)
         .attr("y", 9.5)
+        .attr("font-size", function() {
+            if (width_0502 <= 500) {return (width_0502 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
         .attr("dy", "0.32em")
+        .style("font-family", "NeueHaasGroteskDisp Pro, Arial, Helvetica, sans-serif")
         .text(function (d) {
             return d;
         });
@@ -126,13 +141,21 @@ d3.tsv("../../data/05_alberlet_also_szegmense/05_02_szegenyek_nagyobb_aranyban_a
         .attr("x", (width_0502 / 2))             
         .attr("y", 0 - (margin_0502.top / 2))
         .attr("text-anchor", "middle")
+        .attr("font-size", function() {
+            if (width_0502 <= 500) {return (width_0502 * 0.0005 + 0.6) + "em"}
+            else 	{ return "18px" }
+        ;})
         .text("Lakáshasználati típusok a legalacsonyabb jövedelműek között (2017)");
     
     svg_0502.append("text")
         .attr("class", "data_source_0502")
-        .attr("x", width_0502 - 80)
-        .attr("y", height_0502 + 70)
-        .style("text-anchor", "middle")
+        .attr("x", width_0502)
+        .attr("y", height_0502 + 100)
+        .attr("font-size", function() {
+            if (width_0502 <= 500) {return (width_0502 * 0.0005 + 0.5) + "em"}
+            else 	{ return "14px" }
+        ;})
+        .style("text-anchor", "end")
         .text("Adatok forrása: KSH 2018b.")
         .on('click', function(d) {
 		window.open(

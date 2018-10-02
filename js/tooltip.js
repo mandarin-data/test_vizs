@@ -10,7 +10,8 @@ d3.tooltip = function() {
         translation = new Array([0,0]),
         tooltipDims =  new Array([0,0]),
         fontSize = new Array([]),
-        format = "percent";
+        format = "percent",
+        visName = new Array([]);
 
     var tooltipGroup = d3.select(null),
         tooltipRect = d3.select(null),
@@ -36,8 +37,12 @@ d3.tooltip = function() {
             
         tooltipText = tooltipGroup.append("text")
             .style("fill", "black")
-            .style("font", "'NeueHaasGroteskDisp Pro', Arial, Helvetica, sans-serif")
-            .style("align", "center");
+            .style("font-family", "NeueHaasGroteskDisp Pro, Arial, Helvetica, sans-serif")
+            .style("align", "center")
+            .attr("font-size", function() {
+                if (d3.select(visName).node().getBoundingClientRect().width <= 500) {return (d3.select(visName).node().getBoundingClientRect().width * 0.0005 + 0.5) + "em"}
+                else 	{ return "13px" }
+            ;});
 
     };
 
@@ -49,6 +54,7 @@ d3.tooltip = function() {
             .remove();
 
         tooltipText.attr("y", padding[1])
+            .attr("class", "tooltip_xyz")
             .selectAll("tspan")
             .data(tips)
             .enter()
@@ -56,22 +62,24 @@ d3.tooltip = function() {
             .attr("x",padding[0])
             .attr("dy",fontSize*.9)
             .text(function(e,i) { 
-                var val; 
-                if(typeof d[e] == 'undefined') {
-                    // check the 'data' property too, for voronoi mouseover events
+                var val;
+                if(e != "median" & typeof d[e] == 'undefined') {
                     val = d.data[e];
-                    console.log(val);
                 } else {
-                    val = d[e];
+                    if (e == "median") {
+                        val = formatThousands_tooltip(search(d["value"], medianlist_0304)) + " Ft";
+                    }
+                    else {
+                        val = d[e]; 
+                    }
+                }
+                if(format == "percent" & e != "median"){
+                    val = formatPercentDecimal_tooltip(val)
                 }
                 if(tipFormats[i]) {
                     val = tipFormats[i](val);
                 }
-                if(format == "percent"){
-                    return formatPercentDecimal_tooltip(tipNames[i]  + val);   
-                } else {
-                    return tipNames[i]  + val;   
-                }
+                return tipNames[i]  + val;
             });
 
         updateTooltipDims();
@@ -149,6 +157,11 @@ d3.tooltip = function() {
         format = _format || format;
         return tooltip;
     }
+    
+    tooltip.visName = function(_visName) {
+        visName = _visName || visName;
+        return tooltip;
+    }
 
     function updateTooltipDims() {
         var bb = tooltipText.node().getBBox();
@@ -192,4 +205,27 @@ var locale_tooltip = {
 };
 d3.formatDefaultLocale(locale_tooltip);
 var formatPercentDecimal_tooltip = d3.format(",.2%"),
-    formatPercent_tooltip = d3.format("." + (d3.precisionFixed(0.05) - 2) + "%");
+    formatPercentDecimal1_tooltip = d3.format(",.1%"),
+    formatPercent_tooltip = d3.format("." + (d3.precisionFixed(0.05) - 2) + "%"),
+    formatThousands_tooltip = d3.format(",");
+
+var medianlist_0304 = [
+   {arany: 0.206, median: 5330000},
+   {arany: 0.255, median: 3000000},
+   {arany: 0.207, median: 3000000},
+   {arany: 0.164, median: 3500000},
+   {arany: 0.172, median: 3500000},
+   {arany: 0.361, median: 500000},
+   {arany: 0.295, median: 260000},
+   {arany: 0.26, median: 380000},
+   {arany: 0.254, median: 260000},
+   {arany: 0.201, median: 400000}
+];
+
+function search(nameKey, myArray){
+    for (var i=0; i < myArray.length; i++) {
+        if (myArray[i].arany === nameKey) {
+            return myArray[i]["median"];
+        }
+    }
+}
