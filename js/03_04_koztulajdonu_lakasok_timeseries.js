@@ -241,8 +241,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 210)}
-            else 	{ return (width_0304 - 270)}
+            if (width_0304 <= 500) {return (width_0304 - 235)}
+            else 	{ return (width_0304 - 310)}
         ;})
         .attr("y", height_0304 + 180)
         .attr("font-size", function() {
@@ -255,8 +255,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 158)}
-            else 	{ return (width_0304 - 198)}
+            if (width_0304 <= 500) {return (width_0304 - 174)}
+            else 	{ return (width_0304 - 225)}
         ;})
         .attr("y", height_0304 + 180)
         .attr("font-size", function() {
@@ -283,8 +283,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 119)}
-            else 	{ return (width_0304 - 143)}
+            if (width_0304 <= 500) {return (width_0304 - 127)}
+            else 	{ return (width_0304 - 158)}
         ;})
         .attr("y", height_0304 + 180)
         .attr("font-size", function() {
@@ -322,8 +322,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 168)}
-            else 	{ return (width_0304 - 212)}
+            if (width_0304 <= 500) {return (width_0304 - 188)}
+            else 	{ return (width_0304 - 245)}
         ;})
         .attr("y", height_0304 + 195)
         .attr("font-size", function() {
@@ -350,8 +350,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 146)}
-            else 	{ return (width_0304 - 182)}
+            if (width_0304 <= 500) {return (width_0304 - 162)}
+            else 	{ return (width_0304 - 209)}
         ;})
         .attr("y", height_0304 + 195)
         .attr("font-size", function() {
@@ -378,8 +378,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 124)}
-            else 	{ return (width_0304 - 152)}
+            if (width_0304 <= 500) {return (width_0304 - 136)}
+            else 	{ return (width_0304 - 172)}
         ;})
         .attr("y", height_0304 + 195)
         .attr("font-size", function() {
@@ -406,8 +406,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 102)}
-            else 	{ return (width_0304 - 122)}
+            if (width_0304 <= 500) {return (width_0304 - 110)}
+            else 	{ return (width_0304 - 135)}
         ;})
         .attr("y", height_0304 + 195)
         .attr("font-size", function() {
@@ -434,8 +434,8 @@ d3.tsv("../../data/03_koltsegvetes_es_intezmenyek/03_04_koztulajdonu_lakasok_tim
     svg_0304.append("text")
         .attr("class", "data_source_0304")
         .attr("x", function() {
-            if (width_0304 <= 500) {return (width_0304 - 80)}
-            else 	{ return (width_0304 - 92)}
+            if (width_0304 <= 500) {return (width_0304 - 84)}
+            else 	{ return (width_0304 - 98)}
         ;})
         .attr("y", height_0304 + 195)
         .attr("font-size", function() {

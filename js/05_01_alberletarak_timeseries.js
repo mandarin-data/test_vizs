@@ -158,8 +158,8 @@ svg_0501.append("text")
 svg_0501.append("text")
     .attr("class", "data_source_0501")
     .attr("x", function() {
-        if (w_0501 <= 500) {return (w_0501 - 25) }
-        else 	{ return (w_0501 - 25)}
+        if (w_0501 <= 500) {return (w_0501 - 12) }
+        else 	{ return (w_0501 - 7)}
     ;}) 
     .attr("y", h_0501 + 50)
     .attr("font-size", function() {
