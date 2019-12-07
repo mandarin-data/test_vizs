@@ -61,7 +61,7 @@ svg_kozmu03.append('text')
 		.attr('id', 'title_0304')
 		.attr("x",  (width - 150 )/2)
 		.attr("y", -25)
-		.text("90 napon túli késedelmes hitelszerződések száma (2017. december)");
+		.text("90 napon túl késedelmes hitelek volumene (millió Ft, 2017. december)");
 		
 
 	svg_kozmu03.append("g")
